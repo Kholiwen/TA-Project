@@ -18,3 +18,5 @@ C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTy
 C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x86\msvcr100.dll
 C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x86\SqlServerSpatial110.dll
 C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\bin\Debug\Microsoft.SqlServer.Types.dll
+C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\bin\Debug\netchartdir_cp.dll
+C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\bin\Debug\netchartdir_cp.xml

@@ -37,9 +37,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
@@ -61,25 +58,25 @@
             this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.metroButton3 = new MetroFramework.Controls.MetroButton();
             this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.metroGrid2 = new MetroFramework.Controls.MetroGrid();
+            this.cTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.custClassBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cSSDataSet1 = new TA_Project.CSSDataSet1();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.metroComboBox1 = new MetroFramework.Controls.MetroComboBox();
             this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
+            this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.dataTableTableAdapter = new TA_Project.CSSDataSetTableAdapters.dataTableTableAdapter();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.metroButton3 = new MetroFramework.Controls.MetroButton();
-            this.cSSDataSet1 = new TA_Project.CSSDataSet1();
-            this.custClassBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.custClassTableAdapter = new TA_Project.CSSDataSet1TableAdapters.custClassTableAdapter();
-            this.cTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
             this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
+            this.winChartViewer1 = new ChartDirector.WinChartViewer();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
@@ -90,10 +87,10 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid2)).BeginInit();
-            this.metroTabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.custClassBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet1)).BeginInit();
+            this.metroTabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.winChartViewer1)).BeginInit();
             this.SuspendLayout();
             // 
             // metroStyleManager1
@@ -107,7 +104,7 @@
             this.metroTabControl1.Controls.Add(this.metroTabPage3);
             this.metroTabControl1.Location = new System.Drawing.Point(8, 63);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 2;
+            this.metroTabControl1.SelectedIndex = 1;
             this.metroTabControl1.Size = new System.Drawing.Size(562, 404);
             this.metroTabControl1.TabIndex = 0;
             this.metroTabControl1.UseSelectable = true;
@@ -331,7 +328,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.chart1);
+            this.groupBox2.Controls.Add(this.winChartViewer1);
             this.groupBox2.Location = new System.Drawing.Point(251, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(300, 353);
@@ -353,6 +350,17 @@
             this.groupBox1.Size = new System.Drawing.Size(252, 353);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
+            // 
+            // metroButton3
+            // 
+            this.metroButton3.FontSize = MetroFramework.MetroButtonSize.Medium;
+            this.metroButton3.Location = new System.Drawing.Point(21, 315);
+            this.metroButton3.Name = "metroButton3";
+            this.metroButton3.Size = new System.Drawing.Size(214, 30);
+            this.metroButton3.TabIndex = 1;
+            this.metroButton3.Text = "Process";
+            this.metroButton3.UseSelectable = true;
+            this.metroButton3.Click += new System.EventHandler(this.metroButton3_Click);
             // 
             // button1
             // 
@@ -386,6 +394,7 @@
             this.metroGrid2.AutoGenerateColumns = false;
             this.metroGrid2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.metroGrid2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.metroGrid2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.metroGrid2.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.metroGrid2.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -416,6 +425,7 @@
             this.metroGrid2.MultiSelect = false;
             this.metroGrid2.Name = "metroGrid2";
             this.metroGrid2.ReadOnly = true;
+            this.metroGrid2.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -434,6 +444,26 @@
             this.metroGrid2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.metroGrid2.Size = new System.Drawing.Size(214, 171);
             this.metroGrid2.TabIndex = 7;
+            // 
+            // cTypeDataGridViewTextBoxColumn
+            // 
+            this.cTypeDataGridViewTextBoxColumn.DataPropertyName = "cType";
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cTypeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            this.cTypeDataGridViewTextBoxColumn.HeaderText = "cType";
+            this.cTypeDataGridViewTextBoxColumn.Name = "cTypeDataGridViewTextBoxColumn";
+            this.cTypeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.cTypeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // custClassBindingSource
+            // 
+            this.custClassBindingSource.DataMember = "custClass";
+            this.custClassBindingSource.DataSource = this.cSSDataSet1;
+            // 
+            // cSSDataSet1
+            // 
+            this.cSSDataSet1.DataSetName = "CSSDataSet1";
+            this.cSSDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // textBox1
             // 
@@ -495,64 +525,14 @@
             this.metroTabPage3.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage3.VerticalScrollbarSize = 10;
             // 
-            // dataTableTableAdapter
+            // metroProgressBar1
             // 
-            this.dataTableTableAdapter.ClearBeforeFill = true;
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // chart1
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(7, 33);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(287, 314);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
-            // 
-            // metroButton3
-            // 
-            this.metroButton3.FontSize = MetroFramework.MetroButtonSize.Medium;
-            this.metroButton3.Location = new System.Drawing.Point(21, 315);
-            this.metroButton3.Name = "metroButton3";
-            this.metroButton3.Size = new System.Drawing.Size(214, 30);
-            this.metroButton3.TabIndex = 1;
-            this.metroButton3.Text = "Process";
-            this.metroButton3.UseSelectable = true;
-            this.metroButton3.Click += new System.EventHandler(this.metroButton3_Click);
-            // 
-            // cSSDataSet1
-            // 
-            this.cSSDataSet1.DataSetName = "CSSDataSet1";
-            this.cSSDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // custClassBindingSource
-            // 
-            this.custClassBindingSource.DataMember = "custClass";
-            this.custClassBindingSource.DataSource = this.cSSDataSet1;
-            // 
-            // custClassTableAdapter
-            // 
-            this.custClassTableAdapter.ClearBeforeFill = true;
-            // 
-            // cTypeDataGridViewTextBoxColumn
-            // 
-            this.cTypeDataGridViewTextBoxColumn.DataPropertyName = "cType";
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cTypeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
-            this.cTypeDataGridViewTextBoxColumn.HeaderText = "cType";
-            this.cTypeDataGridViewTextBoxColumn.Name = "cTypeDataGridViewTextBoxColumn";
-            this.cTypeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.cTypeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.metroProgressBar1.Location = new System.Drawing.Point(128, 100);
+            this.metroProgressBar1.Name = "metroProgressBar1";
+            this.metroProgressBar1.ProgressBarStyle = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.metroProgressBar1.Size = new System.Drawing.Size(289, 22);
+            this.metroProgressBar1.TabIndex = 3;
+            this.metroToolTip1.SetToolTip(this.metroProgressBar1, "Data is being processed");
             // 
             // metroLabel1
             // 
@@ -564,20 +544,33 @@
             this.metroLabel1.TabIndex = 2;
             this.metroLabel1.Text = "Data is being processed now";
             // 
-            // metroProgressBar1
+            // dataTableTableAdapter
             // 
-            this.metroProgressBar1.Location = new System.Drawing.Point(128, 100);
-            this.metroProgressBar1.Name = "metroProgressBar1";
-            this.metroProgressBar1.ProgressBarStyle = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.metroProgressBar1.Size = new System.Drawing.Size(289, 22);
-            this.metroProgressBar1.TabIndex = 3;
-            this.metroToolTip1.SetToolTip(this.metroProgressBar1, "Data is being processed");
+            this.dataTableTableAdapter.ClearBeforeFill = true;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // custClassTableAdapter
+            // 
+            this.custClassTableAdapter.ClearBeforeFill = true;
             // 
             // metroToolTip1
             // 
             this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroToolTip1.StyleManager = null;
             this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
+            // winChartViewer1
+            // 
+            this.winChartViewer1.ChartSizeMode = ChartDirector.WinChartSizeMode.StretchImage;
+            this.winChartViewer1.Location = new System.Drawing.Point(6, 19);
+            this.winChartViewer1.Name = "winChartViewer1";
+            this.winChartViewer1.Size = new System.Drawing.Size(288, 340);
+            this.winChartViewer1.TabIndex = 0;
+            this.winChartViewer1.TabStop = false;
+            this.metroToolTip1.SetToolTip(this.winChartViewer1, "3D Scatter Chart view of the cluster");
             // 
             // mainForm
             // 
@@ -603,11 +596,11 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.custClassBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet1)).EndInit();
             this.metroTabPage3.ResumeLayout(false);
             this.metroTabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.custClassBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.winChartViewer1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -643,7 +636,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn lastPurchaseDataGridViewTextBoxColumn;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private MetroFramework.Controls.MetroTextBox metroTextBox1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private MetroFramework.Controls.MetroButton metroButton3;
         private CSSDataSet1 cSSDataSet1;
         private System.Windows.Forms.BindingSource custClassBindingSource;
@@ -652,6 +644,7 @@
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroProgressBar metroProgressBar1;
         private MetroFramework.Components.MetroToolTip metroToolTip1;
+        private ChartDirector.WinChartViewer winChartViewer1;
     }
 }
 
