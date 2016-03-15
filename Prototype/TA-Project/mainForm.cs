@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.OleDb;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -10,18 +11,40 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ChartDirector;
+//using scrollingText;
 
 namespace TA_Project
 {
     public partial class mainForm : MetroFramework.Forms.MetroForm
     {
+        OleDbConnection oleCon;
+        SqlConnection sqlCon;
+
+        String oleConnectionString, query, sqlConn;
+
         public mainForm()
         {
             InitializeComponent();
 
+            //private scrollingText.scrollingTextCtrl m_scrollingTextCtrl;
+
+            ////Add these lines to your InitializeComponent() function call.
+            //this.m_scrollingTextCtrl = new scrollingText.scrollingTextCtrl(); 
+            ////
+            //// m_scrollingTextCtrl
+            ////
+            //this.m_scrollingTextCtrl.scrollingTextColor1 = System.Drawing.Color.Crimson;
+            //this.m_scrollingTextCtrl.scrollingTextColor2 = System.Drawing.Color.Gold;
+            //this.m_scrollingTextCtrl.Location = new System.Drawing.Point(24, 264);
+            //this.m_scrollingTextCtrl.Name = "m_scrollingTextCtrl";
+            //this.m_scrollingTextCtrl.Size = new System.Drawing.Size(240, 32);
+            //this.m_scrollingTextCtrl.TabIndex = 7;
+            //this.m_scrollingTextCtrl.Text = "Welcome to Customer Segmentation System!";
+
             label1.Font = new Font("Tahoma", 11, FontStyle.Regular);
             label2.Font = new Font("Tahoma", 11, FontStyle.Regular);
             label3.Font = new Font("Tahoma", 11, FontStyle.Regular);
+            label4.Font = new Font("Tahoma", 11, FontStyle.Regular);
             metroComboBox1.SelectedIndex = 3;
             //DataTable _table = new DataTable();
             //_table.ReadXml(Application.StartupPath + @"\Data\test.xml");
@@ -79,12 +102,71 @@ namespace TA_Project
                 "title='(x={x|p}, y={y|p}, z={z|p}'");
         }
 
+        private void excelConn(string filePath)
+        {
+            oleConnectionString = string.Format(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0 Xml;HDR=YES;""", filePath).ToString();
+            oleCon = new OleDbConnection(oleConnectionString);
+
+        }
+
+        private void sqlConnection()
+        {
+            sqlConn = TA_Project.Properties.Settings.Default.CSSConnectionString;
+            sqlCon = new SqlConnection(sqlConn);
+        }
+
+        private void insertExcelRecords(string filePath)
+        {
+            int result = 0;
+            excelConn(filePath);
+            query = string.Format("Select [Guest-Name],[Frequency],[Depart],[RmRate] FROM [{0}]", "Sheet1$");
+            OleDbCommand Ecom = new OleDbCommand(query, oleCon);
+            oleCon.Open();
+            DataTable ds = new DataTable();
+            OleDbDataAdapter oda = new OleDbDataAdapter(query, oleCon);
+            oleCon.Close();
+            oda.Fill(ds);
+            var Exceldt = new DataTable();
+            sqlConnection();
+            sqlCon.Open();
+            foreach (DataRow row in ds.Rows)
+            {
+                DataRow excelRecordsRow = ds.NewRow();
+                using (SqlCommand sqlCmd = new SqlCommand("sp_INSERT", sqlCon))
+                {
+                    sqlCmd.CommandType = CommandType.StoredProcedure;
+                    sqlCmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = row[0];
+                    sqlCmd.Parameters.Add("@FRQ", SqlDbType.Int).Value = row[1];
+                    sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = row[3];
+                    sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = row[2];
+                    result += sqlCmd.ExecuteNonQuery();
+                }
+            }
+            MessageBox.Show(string.Format("{0} Rows have been affected", result), "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information); //Show how many rows were affected
+            //SqlBulkCopy objbulk = new SqlBulkCopy(sqlCon);
+            ////assigning Destination table name    
+            //objbulk.DestinationTableName = "dataTable";
+            ////Mapping Table column    
+            //objbulk.ColumnMappings.Add("Guest-Name", "Customer Name");
+            //objbulk.ColumnMappings.Add("Frequency", "Frequency");
+            //objbulk.ColumnMappings.Add("RmRate", "Total purchase");
+            //objbulk.ColumnMappings.Add("Depart", "Last purchase");
+            ////inserting Datatable Records to DataBase
+            //objbulk.WriteToServer(Exceldt);
+            sqlCon.Close();
+            cSSDataSet.Reset();
+            dataTableTableAdapter.Fill(this.cSSDataSet.dataTable);
+
+
+        }
+
         private void metroRadioButton1_CheckedChanged(object sender, EventArgs e)
         {
             if (metroRadioButton1.Checked == true)
             {
                 metroTextBox1.Visible = true;
                 metroButton2.Visible = true;
+                metroLabel2.Visible = false;
             }
             else
             {
@@ -138,7 +220,9 @@ namespace TA_Project
                             // Insert code to read the stream here.
                         }
                         metroTextBox1.Text = directoryPath;
+                        insertExcelRecords(directoryPath);
                     }
+                    metroGrid1.Visible = true;
                 }
                 catch (Exception ex)
                 {
@@ -219,6 +303,22 @@ namespace TA_Project
                 custClassTableAdapter.Adapter.SelectCommand = command;
                 custClassTableAdapter.Adapter.Fill(cSSDataSet1.custClass);
             }
+        }
+
+        private void metroRadioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            metroLabel2.Visible = false;
+            metroGrid1.Visible = true;
+            metroGrid1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            metroGrid1.CurrentCell = metroGrid1.Rows[0].Cells[0];
+            metroGrid1.BeginEdit(true);
+        }
+
+        private void metroTrackBar1_ValueChanged(object sender, EventArgs e)
+        {
+            metroTrackBar1.Minimum = 10;
+            metroTrackBar1.Maximum = 120;
+            label5.Text = (System.Math.Round(metroTrackBar1.Value / 10.0)).ToString();
         }
     }
 }
