@@ -64,11 +64,30 @@ namespace TA_Project
         //Note: the argument chartIndex is unused because this demo only has 1 chart.
         public void createChart(WinChartViewer viewer, int chartIndex)
         {
-            // The XYZ data for the 3D scatter chart as 3 random data series
-            RanSeries r = new RanSeries(0);
-            double[] xData = r.getSeries2(100, 100, -10, 10);
-            double[] yData = r.getSeries2(100, 0, 0, 20);
-            double[] zData = r.getSeries2(100, 100, -10, 10);
+            //// The XYZ data for the 3D scatter chart as 3 random data series
+            //RanSeries r = new RanSeries(0);
+            //double[] xData = r.getSeries2(100, 100, -10, 10);
+            //double[] yData = r.getSeries2(100, 0, 0, 20);
+            //double[] zData = r.getSeries2(100, 100, -10, 10);
+
+            // The random XYZ data for the first 3D scatter group
+            RanSeries r0 = new RanSeries(7);
+            double[] xData0 = r0.getSeries2(100, 100, -10, 10);
+            double[] yData0 = r0.getSeries2(100, 0, 0, 20);
+            double[] zData0 = r0.getSeries2(100, 100, -10, 10);
+
+            // The random XYZ data for the second 3D scatter group
+            RanSeries r1 = new RanSeries(4);
+            double[] xData1 = r1.getSeries2(100, 100, -10, 10);
+            double[] yData1 = r1.getSeries2(100, 0, 0, 20);
+            double[] zData1 = r1.getSeries2(100, 100, -10, 10);
+
+            // The random XYZ data for the third 3D scatter group
+            RanSeries r2 = new RanSeries(8);
+            double[] xData2 = r2.getSeries2(100, 100, -10, 10);
+            double[] yData2 = r2.getSeries2(100, 0, 0, 20);
+            double[] zData2 = r2.getSeries2(100, 100, -10, 10);
+
 
             // Create a ThreeDScatterChart object of size 720 x 600 pixels
             ThreeDScatterChart c = new ThreeDScatterChart(720, 600);
@@ -82,20 +101,38 @@ namespace TA_Project
 
             // Add a scatter group to the chart using 11 pixels glass sphere symbols, in which the
             // color depends on the z value of the symbol
-            c.addScatterGroup(xData, yData, zData, "", Chart.GlassSphere2Shape, 11,
-                Chart.SameAsMainColor);
+            //c.addScatterGroup(xData, yData, zData, "", Chart.GlassSphere2Shape, 11,
+            //    Chart.SameAsMainColor);
+
+            // Set the elevation and rotation angles to 15 and 30 degrees
+            c.setViewAngle(15, 30);
+
+            // Add a legend box at (640, 180)
+            c.addLegend(600, 180);
+
+            // Add 3 scatter groups to the chart with 9 pixels glass sphere symbols of red (ff0000), green
+            // (00ff00) and blue (0000ff) colors
+            c.addScatterGroup(xData0, yData0, zData0, "1st Cluster", Chart.GlassSphere2Shape, 9, 0xff0000);
+            c.addScatterGroup(xData1, yData1, zData1, "2nd Cluster", Chart.GlassSphere2Shape, 9, 0x00ff00);
+            c.addScatterGroup(xData2, yData2, zData2, "3rd Cluster", Chart.GlassSphere2Shape, 9, 0x0000ff);
+
 
             // Add a color axis (the legend) in which the left center is anchored at (645, 270). Set
             // the length to 200 pixels and the labels on the right side.
-            c.setColorAxis(645, 270, Chart.Left, 200, Chart.Right);
+            //c.setColorAxis(645, 270, Chart.Left, 200, Chart.Right);
 
-            // Set the x, y and z axis titles using 10 points Arial Bold font
-            c.xAxis().setTitle("X-Axis Place Holder", "Arial Bold", 10);
-            c.yAxis().setTitle("Y-Axis Place Holder", "Arial Bold", 10);
-            c.zAxis().setTitle("Z-Axis Place Holder", "Arial Bold", 10);
+            //// Set the x, y and z axis titles using 10 points Arial Bold font
+            //c.xAxis().setTitle("X-Axis Place Holder", "Arial Bold", 10);
+            //c.yAxis().setTitle("Y-Axis Place Holder", "Arial Bold", 10);
+            //c.zAxis().setTitle("Z-Axis Place Holder", "Arial Bold", 10);
 
             // Output the chart
             viewer.Chart = c;
+
+            // Set the x, y and z axis titles
+            c.xAxis().setTitle("X-Axis Place Holder");
+            c.yAxis().setTitle("Y-Axis Place Holder");
+            c.zAxis().setTitle("Z-Axis Place Holder");
 
             //include tool tip for the chart
             viewer.ImageMap = c.getHTMLImageMap("clickable", "",
@@ -319,6 +356,50 @@ namespace TA_Project
             metroTrackBar1.Minimum = 10;
             metroTrackBar1.Maximum = 120;
             label5.Text = (System.Math.Round(metroTrackBar1.Value / 10.0)).ToString();
+        }
+
+        private void metroCheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (metroCheckBox1.Checked)
+            {
+                panel1.Enabled = true;
+                panel2.Enabled = true;
+                panel3.Enabled = true;
+
+                Properties.Settings.Default.Save();
+                textBox2.Text = "";
+                textBox3.Text = "";
+                textBox4.Text = "";
+                textBox5.Text = "";
+                textBox6.Text = "";
+                textBox7.Text = "";
+                textBox8.Text = "";
+
+                textBox10.Text = "";
+                textBox11.Text = "";
+                textBox12.Text = "";
+                textBox13.Text = "";
+                textBox14.Text = "";
+                textBox15.Text = "";
+                textBox17.Text = "";
+
+                textBox18.Text = "";
+                textBox19.Text = "";
+                textBox20.Text = "";
+                textBox21.Text = "";
+                textBox22.Text = "";
+                textBox23.Text = "";
+                textBox24.Text = "";
+                textBox25.Text = "";
+                textBox27.Text = "";
+            }
+            else if (metroCheckBox1.Checked==false)
+            {
+                panel1.Enabled = false;
+                panel2.Enabled = false;
+                panel3.Enabled = false;
+                Properties.Settings.Default.Reload();
+            }
         }
     }
 }

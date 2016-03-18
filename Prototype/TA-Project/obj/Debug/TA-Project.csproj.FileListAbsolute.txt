@@ -1,15 +1,12 @@
 C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.exe.config
 C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.exe
 C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.pdb
-C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\bin\Debug\MetroFramework.dll
 C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache
 C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.mainForm.resources
 C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.Properties.Resources.resources
 C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csproj.GenerateResource.Cache
 C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.exe
 C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.pdb
-C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\bin\Debug\MetroFramework.Design.dll
-C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\bin\Debug\MetroFramework.Fonts.dll
 C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\bin\Debug\MetroFramework.Design.pdb
 C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\bin\Debug\MetroFramework.Fonts.pdb
 C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.resultPage.resources
