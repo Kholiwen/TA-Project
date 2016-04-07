@@ -29,34 +29,29 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
-            this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
-            this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
-            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
-            this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
-            this.metroButton2 = new MetroFramework.Controls.MetroButton();
-            this.metroRadioButton2 = new MetroFramework.Controls.MetroRadioButton();
-            this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
-            this.metroButton1 = new MetroFramework.Controls.MetroButton();
-            this.metroGrid1 = new MetroFramework.Controls.MetroGrid();
-            this.cIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.customerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.frequencyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalPurchaseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastPurchaseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cSSDataSet = new TA_Project.CSSDataSet();
-            this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
+            this.custClassBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cSSDataSet1 = new TA_Project.CSSDataSet1();
+            this.dataTableTableAdapter = new TA_Project.CSSDataSetTableAdapters.dataTableTableAdapter();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.custClassTableAdapter = new TA_Project.CSSDataSet1TableAdapters.custClassTableAdapter();
+            this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
+            this.winChartViewer1 = new ChartDirector.WinChartViewer();
+            this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
+            this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
@@ -76,13 +71,13 @@
             this.textBox25 = new System.Windows.Forms.TextBox();
             this.label48 = new System.Windows.Forms.Label();
             this.textBox19 = new System.Windows.Forms.TextBox();
-            this.label43 = new System.Windows.Forms.Label();
             this.textBox21 = new System.Windows.Forms.TextBox();
             this.textBox24 = new System.Windows.Forms.TextBox();
-            this.label41 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.textBox22 = new System.Windows.Forms.TextBox();
             this.textBox23 = new System.Windows.Forms.TextBox();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -107,22 +102,22 @@
             this.label29 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.metroCheckBox1 = new MetroFramework.Controls.MetroCheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -137,259 +132,49 @@
             this.label3 = new System.Windows.Forms.Label();
             this.metroGrid2 = new MetroFramework.Controls.MetroGrid();
             this.cTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.custClassBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cSSDataSet1 = new TA_Project.CSSDataSet1();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.metroComboBox1 = new MetroFramework.Controls.MetroComboBox();
-            this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
-            this.winChartViewer1 = new ChartDirector.WinChartViewer();
-            this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
+            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
+            this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
+            this.metroButton1 = new MetroFramework.Controls.MetroButton();
+            this.metroButton2 = new MetroFramework.Controls.MetroButton();
+            this.metroRadioButton2 = new MetroFramework.Controls.MetroRadioButton();
+            this.metroGrid1 = new MetroFramework.Controls.MetroGrid();
+            this.cIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.customerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.frequencyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalPurchaseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastPurchaseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.dataTableTableAdapter = new TA_Project.CSSDataSetTableAdapters.dataTableTableAdapter();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.custClassTableAdapter = new TA_Project.CSSDataSet1TableAdapters.custClassTableAdapter();
-            this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
+            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
+            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+            this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
-            this.metroTabControl1.SuspendLayout();
-            this.metroTabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet)).BeginInit();
-            this.metroTabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.custClassBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.winChartViewer1)).BeginInit();
+            this.metroPanel1.SuspendLayout();
+            this.metroPanel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.custClassBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet1)).BeginInit();
-            this.metroTabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.winChartViewer1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).BeginInit();
+            this.metroPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroStyleManager1
             // 
             this.metroStyleManager1.Owner = this;
-            // 
-            // metroTabControl1
-            // 
-            this.metroTabControl1.Controls.Add(this.metroTabPage1);
-            this.metroTabControl1.Controls.Add(this.metroTabPage2);
-            this.metroTabControl1.Controls.Add(this.metroTabPage3);
-            this.metroTabControl1.Location = new System.Drawing.Point(8, 63);
-            this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 1;
-            this.metroTabControl1.Size = new System.Drawing.Size(562, 404);
-            this.metroTabControl1.TabIndex = 0;
-            this.metroTabControl1.UseSelectable = true;
-            // 
-            // metroTabPage1
-            // 
-            this.metroTabPage1.Controls.Add(this.metroLabel2);
-            this.metroTabPage1.Controls.Add(this.metroTextBox1);
-            this.metroTabPage1.Controls.Add(this.metroButton2);
-            this.metroTabPage1.Controls.Add(this.metroRadioButton2);
-            this.metroTabPage1.Controls.Add(this.metroRadioButton1);
-            this.metroTabPage1.Controls.Add(this.metroButton1);
-            this.metroTabPage1.Controls.Add(this.metroGrid1);
-            this.metroTabPage1.HorizontalScrollbarBarColor = true;
-            this.metroTabPage1.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage1.HorizontalScrollbarSize = 10;
-            this.metroTabPage1.Location = new System.Drawing.Point(4, 38);
-            this.metroTabPage1.Name = "metroTabPage1";
-            this.metroTabPage1.Size = new System.Drawing.Size(554, 362);
-            this.metroTabPage1.TabIndex = 0;
-            this.metroTabPage1.Text = "Data Input";
-            this.metroTabPage1.VerticalScrollbarBarColor = true;
-            this.metroTabPage1.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage1.VerticalScrollbarSize = 10;
-            // 
-            // metroLabel2
-            // 
-            this.metroLabel2.AutoSize = true;
-            this.metroLabel2.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel2.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel2.Location = new System.Drawing.Point(83, 166);
-            this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(390, 25);
-            this.metroLabel2.TabIndex = 10;
-            this.metroLabel2.Text = "Welcome to Customer Segmentation System";
-            // 
-            // metroTextBox1
-            // 
-            // 
-            // 
-            // 
-            this.metroTextBox1.CustomButton.Image = null;
-            this.metroTextBox1.CustomButton.Location = new System.Drawing.Point(130, 1);
-            this.metroTextBox1.CustomButton.Name = "";
-            this.metroTextBox1.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.metroTextBox1.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox1.CustomButton.TabIndex = 3;
-            this.metroTextBox1.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox1.CustomButton.UseSelectable = true;
-            this.metroTextBox1.Lines = new string[0];
-            this.metroTextBox1.Location = new System.Drawing.Point(223, 18);
-            this.metroTextBox1.MaxLength = 32767;
-            this.metroTextBox1.Name = "metroTextBox1";
-            this.metroTextBox1.PasswordChar = '\0';
-            this.metroTextBox1.ReadOnly = true;
-            this.metroTextBox1.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox1.SelectedText = "";
-            this.metroTextBox1.SelectionLength = 0;
-            this.metroTextBox1.SelectionStart = 0;
-            this.metroTextBox1.ShortcutsEnabled = true;
-            this.metroTextBox1.ShowButton = true;
-            this.metroTextBox1.ShowClearButton = true;
-            this.metroTextBox1.Size = new System.Drawing.Size(152, 23);
-            this.metroTextBox1.TabIndex = 9;
-            this.metroTextBox1.UseSelectable = true;
-            this.metroTextBox1.Visible = false;
-            this.metroTextBox1.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox1.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.metroTextBox1.ButtonClick += new MetroFramework.Controls.MetroTextBox.ButClick(this.metroTextBox1_ButtonClick);
-            // 
-            // metroButton2
-            // 
-            this.metroButton2.Location = new System.Drawing.Point(381, 18);
-            this.metroButton2.Name = "metroButton2";
-            this.metroButton2.Size = new System.Drawing.Size(75, 23);
-            this.metroButton2.TabIndex = 2;
-            this.metroButton2.Text = "Browse..";
-            this.metroButton2.UseSelectable = true;
-            this.metroButton2.Visible = false;
-            this.metroButton2.Click += new System.EventHandler(this.metroButton2_Click);
-            // 
-            // metroRadioButton2
-            // 
-            this.metroRadioButton2.AutoSize = true;
-            this.metroRadioButton2.Location = new System.Drawing.Point(101, 19);
-            this.metroRadioButton2.Name = "metroRadioButton2";
-            this.metroRadioButton2.Size = new System.Drawing.Size(94, 15);
-            this.metroRadioButton2.TabIndex = 1;
-            this.metroRadioButton2.TabStop = true;
-            this.metroRadioButton2.Text = "Manual Input";
-            this.metroRadioButton2.UseSelectable = true;
-            this.metroRadioButton2.CheckedChanged += new System.EventHandler(this.metroRadioButton2_CheckedChanged);
-            // 
-            // metroRadioButton1
-            // 
-            this.metroRadioButton1.AutoSize = true;
-            this.metroRadioButton1.Location = new System.Drawing.Point(11, 19);
-            this.metroRadioButton1.Name = "metroRadioButton1";
-            this.metroRadioButton1.Size = new System.Drawing.Size(84, 15);
-            this.metroRadioButton1.TabIndex = 0;
-            this.metroRadioButton1.TabStop = true;
-            this.metroRadioButton1.Text = "Batch input";
-            this.metroRadioButton1.UseSelectable = true;
-            this.metroRadioButton1.CheckedChanged += new System.EventHandler(this.metroRadioButton1_CheckedChanged);
-            // 
-            // metroButton1
-            // 
-            this.metroButton1.Location = new System.Drawing.Point(463, 18);
-            this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(75, 23);
-            this.metroButton1.TabIndex = 3;
-            this.metroButton1.Text = "Next";
-            this.metroButton1.UseSelectable = true;
-            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
-            // 
-            // metroGrid1
-            // 
-            this.metroGrid1.AllowUserToResizeRows = false;
-            this.metroGrid1.AutoGenerateColumns = false;
-            this.metroGrid1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.metroGrid1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
-            this.metroGrid1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.metroGrid1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.metroGrid1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.metroGrid1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(211)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.metroGrid1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.metroGrid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.metroGrid1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cIDDataGridViewTextBoxColumn,
-            this.customerNameDataGridViewTextBoxColumn,
-            this.frequencyDataGridViewTextBoxColumn,
-            this.totalPurchaseDataGridViewTextBoxColumn,
-            this.lastPurchaseDataGridViewTextBoxColumn});
-            this.metroGrid1.DataSource = this.dataTableBindingSource;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(211)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.metroGrid1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.metroGrid1.EnableHeadersVisualStyles = false;
-            this.metroGrid1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.metroGrid1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.metroGrid1.HighLightPercentage = 0.5F;
-            this.metroGrid1.Location = new System.Drawing.Point(11, 47);
-            this.metroGrid1.Name = "metroGrid1";
-            this.metroGrid1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(211)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.metroGrid1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.metroGrid1.RowHeadersVisible = false;
-            this.metroGrid1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.metroGrid1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.metroGrid1.Size = new System.Drawing.Size(527, 309);
-            this.metroGrid1.TabIndex = 8;
-            this.metroGrid1.Visible = false;
-            // 
-            // cIDDataGridViewTextBoxColumn
-            // 
-            this.cIDDataGridViewTextBoxColumn.DataPropertyName = "CID";
-            this.cIDDataGridViewTextBoxColumn.HeaderText = "CID";
-            this.cIDDataGridViewTextBoxColumn.Name = "cIDDataGridViewTextBoxColumn";
-            // 
-            // customerNameDataGridViewTextBoxColumn
-            // 
-            this.customerNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.customerNameDataGridViewTextBoxColumn.DataPropertyName = "Customer Name";
-            this.customerNameDataGridViewTextBoxColumn.HeaderText = "Customer Name";
-            this.customerNameDataGridViewTextBoxColumn.Name = "customerNameDataGridViewTextBoxColumn";
-            this.customerNameDataGridViewTextBoxColumn.Width = 102;
-            // 
-            // frequencyDataGridViewTextBoxColumn
-            // 
-            this.frequencyDataGridViewTextBoxColumn.DataPropertyName = "Frequency";
-            this.frequencyDataGridViewTextBoxColumn.HeaderText = "Frequency";
-            this.frequencyDataGridViewTextBoxColumn.Name = "frequencyDataGridViewTextBoxColumn";
-            // 
-            // totalPurchaseDataGridViewTextBoxColumn
-            // 
-            this.totalPurchaseDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.totalPurchaseDataGridViewTextBoxColumn.DataPropertyName = "Total purchase";
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.totalPurchaseDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.totalPurchaseDataGridViewTextBoxColumn.HeaderText = "Total purchase";
-            this.totalPurchaseDataGridViewTextBoxColumn.Name = "totalPurchaseDataGridViewTextBoxColumn";
-            this.totalPurchaseDataGridViewTextBoxColumn.Width = 96;
-            // 
-            // lastPurchaseDataGridViewTextBoxColumn
-            // 
-            this.lastPurchaseDataGridViewTextBoxColumn.DataPropertyName = "Last purchase";
-            this.lastPurchaseDataGridViewTextBoxColumn.HeaderText = "Last purchase";
-            this.lastPurchaseDataGridViewTextBoxColumn.Name = "lastPurchaseDataGridViewTextBoxColumn";
             // 
             // dataTableBindingSource
             // 
@@ -401,22 +186,87 @@
             this.cSSDataSet.DataSetName = "CSSDataSet";
             this.cSSDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // metroTabPage2
+            // custClassBindingSource
             // 
-            this.metroTabPage2.Controls.Add(this.groupBox2);
-            this.metroTabPage2.Controls.Add(this.groupBox1);
-            this.metroTabPage2.HorizontalScrollbarBarColor = true;
-            this.metroTabPage2.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage2.HorizontalScrollbarSize = 10;
-            this.metroTabPage2.Location = new System.Drawing.Point(4, 38);
-            this.metroTabPage2.Name = "metroTabPage2";
-            this.metroTabPage2.Size = new System.Drawing.Size(554, 362);
-            this.metroTabPage2.TabIndex = 1;
-            this.metroTabPage2.Text = "Classification and Clustering";
-            this.metroTabPage2.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTabPage2.VerticalScrollbarBarColor = true;
-            this.metroTabPage2.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage2.VerticalScrollbarSize = 10;
+            this.custClassBindingSource.DataMember = "custClass";
+            this.custClassBindingSource.DataSource = this.cSSDataSet1;
+            // 
+            // cSSDataSet1
+            // 
+            this.cSSDataSet1.DataSetName = "CSSDataSet1";
+            this.cSSDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dataTableTableAdapter
+            // 
+            this.dataTableTableAdapter.ClearBeforeFill = true;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // custClassTableAdapter
+            // 
+            this.custClassTableAdapter.ClearBeforeFill = true;
+            // 
+            // metroToolTip1
+            // 
+            this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroToolTip1.StyleManager = null;
+            this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
+            // winChartViewer1
+            // 
+            this.winChartViewer1.ChartSizeMode = ChartDirector.WinChartSizeMode.StretchImage;
+            this.winChartViewer1.Location = new System.Drawing.Point(96, 69);
+            this.winChartViewer1.Name = "winChartViewer1";
+            this.winChartViewer1.Size = new System.Drawing.Size(340, 296);
+            this.winChartViewer1.TabIndex = 7;
+            this.winChartViewer1.TabStop = false;
+            this.metroToolTip1.SetToolTip(this.winChartViewer1, "3D Scatter Chart view of the cluster");
+            // 
+            // metroProgressBar1
+            // 
+            this.metroProgressBar1.Location = new System.Drawing.Point(125, 41);
+            this.metroProgressBar1.Name = "metroProgressBar1";
+            this.metroProgressBar1.ProgressBarStyle = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.metroProgressBar1.Size = new System.Drawing.Size(289, 22);
+            this.metroProgressBar1.TabIndex = 6;
+            this.metroToolTip1.SetToolTip(this.metroProgressBar1, "Data is being processed");
+            // 
+            // metroPanel1
+            // 
+            this.metroPanel1.Controls.Add(this.metroLabel2);
+            this.metroPanel1.Controls.Add(this.metroTextBox1);
+            this.metroPanel1.Controls.Add(this.metroRadioButton1);
+            this.metroPanel1.Controls.Add(this.metroButton1);
+            this.metroPanel1.Controls.Add(this.metroButton2);
+            this.metroPanel1.Controls.Add(this.metroRadioButton2);
+            this.metroPanel1.Controls.Add(this.metroGrid1);
+            this.metroPanel1.HorizontalScrollbarBarColor = true;
+            this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroPanel1.HorizontalScrollbarSize = 10;
+            this.metroPanel1.Location = new System.Drawing.Point(20, 91);
+            this.metroPanel1.Name = "metroPanel1";
+            this.metroPanel1.Size = new System.Drawing.Size(540, 400);
+            this.metroPanel1.TabIndex = 2;
+            this.metroPanel1.VerticalScrollbarBarColor = true;
+            this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanel1.VerticalScrollbarSize = 10;
+            // 
+            // metroPanel2
+            // 
+            this.metroPanel2.Controls.Add(this.groupBox2);
+            this.metroPanel2.Controls.Add(this.groupBox1);
+            this.metroPanel2.HorizontalScrollbarBarColor = true;
+            this.metroPanel2.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroPanel2.HorizontalScrollbarSize = 10;
+            this.metroPanel2.Location = new System.Drawing.Point(19, 91);
+            this.metroPanel2.Name = "metroPanel2";
+            this.metroPanel2.Size = new System.Drawing.Size(539, 400);
+            this.metroPanel2.TabIndex = 3;
+            this.metroPanel2.VerticalScrollbarBarColor = true;
+            this.metroPanel2.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanel2.VerticalScrollbarSize = 10;
             // 
             // groupBox2
             // 
@@ -427,10 +277,10 @@
             this.groupBox2.Controls.Add(this.metroCheckBox1);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.groupBox2.Location = new System.Drawing.Point(251, 3);
+            this.groupBox2.Location = new System.Drawing.Point(254, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(300, 353);
-            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
             // 
             // panel3
@@ -453,13 +303,13 @@
             this.panel3.Controls.Add(this.textBox25);
             this.panel3.Controls.Add(this.label48);
             this.panel3.Controls.Add(this.textBox19);
-            this.panel3.Controls.Add(this.label43);
             this.panel3.Controls.Add(this.textBox21);
             this.panel3.Controls.Add(this.textBox24);
-            this.panel3.Controls.Add(this.label41);
             this.panel3.Controls.Add(this.label42);
             this.panel3.Controls.Add(this.textBox22);
             this.panel3.Controls.Add(this.textBox23);
+            this.panel3.Controls.Add(this.label41);
+            this.panel3.Controls.Add(this.label43);
             this.panel3.Enabled = false;
             this.panel3.Location = new System.Drawing.Point(6, 229);
             this.panel3.Name = "panel3";
@@ -497,7 +347,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(62, 5);
+            this.label19.Location = new System.Drawing.Point(62, 6);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(61, 13);
             this.label19.TabIndex = 6;
@@ -545,7 +395,7 @@
             // 
             this.label44.AutoSize = true;
             this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(265, 5);
+            this.label44.Location = new System.Drawing.Point(265, 6);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(22, 13);
             this.label44.TabIndex = 11;
@@ -563,7 +413,7 @@
             // textBox20
             // 
             this.textBox20.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox20.Location = new System.Drawing.Point(148, 2);
+            this.textBox20.Location = new System.Drawing.Point(148, 3);
             this.textBox20.MaxLength = 3;
             this.textBox20.Name = "textBox20";
             this.textBox20.Size = new System.Drawing.Size(32, 21);
@@ -573,7 +423,7 @@
             // textBox18
             // 
             this.textBox18.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox18.Location = new System.Drawing.Point(233, 2);
+            this.textBox18.Location = new System.Drawing.Point(233, 3);
             this.textBox18.MaxLength = 3;
             this.textBox18.Name = "textBox18";
             this.textBox18.Size = new System.Drawing.Size(32, 21);
@@ -584,7 +434,7 @@
             // 
             this.label40.AutoSize = true;
             this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(179, 5);
+            this.label40.Location = new System.Drawing.Point(179, 6);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(57, 13);
             this.label40.TabIndex = 11;
@@ -630,16 +480,6 @@
             this.textBox19.TabIndex = 10;
             this.textBox19.Text = "10";
             // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.Location = new System.Drawing.Point(179, 72);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(57, 13);
-            this.label43.TabIndex = 11;
-            this.label43.Text = "(M) <  m  <";
-            // 
             // textBox21
             // 
             this.textBox21.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -660,16 +500,6 @@
             this.textBox24.TabIndex = 10;
             this.textBox24.Text = "9";
             // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(179, 28);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(57, 13);
-            this.label41.TabIndex = 11;
-            this.label41.Text = "(M) <  m  <";
-            // 
             // label42
             // 
             this.label42.AutoSize = true;
@@ -683,10 +513,10 @@
             // textBox22
             // 
             this.textBox22.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox22.Location = new System.Drawing.Point(233, 69);
+            this.textBox22.Location = new System.Drawing.Point(234, 69);
             this.textBox22.MaxLength = 3;
             this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new System.Drawing.Size(32, 21);
+            this.textBox22.Size = new System.Drawing.Size(31, 21);
             this.textBox22.TabIndex = 10;
             this.textBox22.Text = "20";
             // 
@@ -699,6 +529,26 @@
             this.textBox23.Size = new System.Drawing.Size(32, 21);
             this.textBox23.TabIndex = 10;
             this.textBox23.Text = "4";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(179, 28);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(57, 13);
+            this.label41.TabIndex = 11;
+            this.label41.Text = "(M) <  m  <";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.Location = new System.Drawing.Point(179, 72);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(57, 13);
+            this.label43.TabIndex = 11;
+            this.label43.Text = "(M) <  m  <";
             // 
             // panel2
             // 
@@ -740,7 +590,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(63, 5);
+            this.label15.Location = new System.Drawing.Point(63, 6);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(61, 13);
             this.label15.TabIndex = 6;
@@ -750,7 +600,7 @@
             // 
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(266, 49);
+            this.label37.Location = new System.Drawing.Point(266, 50);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(18, 15);
             this.label37.TabIndex = 11;
@@ -760,7 +610,7 @@
             // 
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(266, 26);
+            this.label35.Location = new System.Drawing.Point(266, 27);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(18, 15);
             this.label35.TabIndex = 11;
@@ -770,7 +620,7 @@
             // 
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(266, 3);
+            this.label33.Location = new System.Drawing.Point(266, 4);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(18, 15);
             this.label33.TabIndex = 11;
@@ -779,7 +629,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(63, 28);
+            this.label16.Location = new System.Drawing.Point(63, 29);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(37, 13);
             this.label16.TabIndex = 7;
@@ -788,7 +638,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(63, 74);
+            this.label18.Location = new System.Drawing.Point(63, 75);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(57, 13);
             this.label18.TabIndex = 9;
@@ -797,7 +647,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(63, 51);
+            this.label17.Location = new System.Drawing.Point(63, 52);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(33, 13);
             this.label17.TabIndex = 8;
@@ -806,7 +656,7 @@
             // textBox17
             // 
             this.textBox17.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox17.Location = new System.Drawing.Point(148, 71);
+            this.textBox17.Location = new System.Drawing.Point(148, 72);
             this.textBox17.MaxLength = 3;
             this.textBox17.Name = "textBox17";
             this.textBox17.Size = new System.Drawing.Size(32, 21);
@@ -817,7 +667,7 @@
             // 
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(179, 72);
+            this.label38.Location = new System.Drawing.Point(179, 73);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(37, 15);
             this.label38.TabIndex = 11;
@@ -826,7 +676,7 @@
             // textBox15
             // 
             this.textBox15.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox15.Location = new System.Drawing.Point(148, 48);
+            this.textBox15.Location = new System.Drawing.Point(148, 49);
             this.textBox15.MaxLength = 3;
             this.textBox15.Name = "textBox15";
             this.textBox15.Size = new System.Drawing.Size(32, 21);
@@ -837,7 +687,7 @@
             // 
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(179, 49);
+            this.label36.Location = new System.Drawing.Point(179, 50);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(50, 15);
             this.label36.TabIndex = 11;
@@ -846,7 +696,7 @@
             // textBox13
             // 
             this.textBox13.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox13.Location = new System.Drawing.Point(148, 25);
+            this.textBox13.Location = new System.Drawing.Point(148, 26);
             this.textBox13.MaxLength = 3;
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new System.Drawing.Size(32, 21);
@@ -857,7 +707,7 @@
             // 
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(179, 26);
+            this.label34.Location = new System.Drawing.Point(179, 27);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(50, 15);
             this.label34.TabIndex = 11;
@@ -866,7 +716,7 @@
             // textBox14
             // 
             this.textBox14.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox14.Location = new System.Drawing.Point(233, 48);
+            this.textBox14.Location = new System.Drawing.Point(233, 49);
             this.textBox14.MaxLength = 3;
             this.textBox14.Name = "textBox14";
             this.textBox14.Size = new System.Drawing.Size(32, 21);
@@ -876,7 +726,7 @@
             // textBox10
             // 
             this.textBox10.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox10.Location = new System.Drawing.Point(148, 2);
+            this.textBox10.Location = new System.Drawing.Point(148, 3);
             this.textBox10.MaxLength = 3;
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(32, 21);
@@ -886,7 +736,7 @@
             // textBox12
             // 
             this.textBox12.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox12.Location = new System.Drawing.Point(233, 25);
+            this.textBox12.Location = new System.Drawing.Point(233, 26);
             this.textBox12.MaxLength = 3;
             this.textBox12.Name = "textBox12";
             this.textBox12.Size = new System.Drawing.Size(32, 21);
@@ -897,7 +747,7 @@
             // 
             this.label32.AutoSize = true;
             this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(179, 3);
+            this.label32.Location = new System.Drawing.Point(179, 4);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(50, 15);
             this.label32.TabIndex = 11;
@@ -906,7 +756,7 @@
             // textBox11
             // 
             this.textBox11.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox11.Location = new System.Drawing.Point(233, 2);
+            this.textBox11.Location = new System.Drawing.Point(233, 3);
             this.textBox11.MaxLength = 3;
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(32, 21);
@@ -919,22 +769,22 @@
             this.panel1.Controls.Add(this.label29);
             this.panel1.Controls.Add(this.label27);
             this.panel1.Controls.Add(this.label25);
-            this.panel1.Controls.Add(this.label30);
             this.panel1.Controls.Add(this.label28);
             this.panel1.Controls.Add(this.label26);
             this.panel1.Controls.Add(this.label24);
             this.panel1.Controls.Add(this.textBox7);
-            this.panel1.Controls.Add(this.textBox5);
             this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.textBox8);
             this.panel1.Controls.Add(this.textBox6);
-            this.panel1.Controls.Add(this.textBox4);
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label11);
-            this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.label14);
+            this.panel1.Controls.Add(this.textBox8);
+            this.panel1.Controls.Add(this.label30);
+            this.panel1.Controls.Add(this.textBox5);
+            this.panel1.Controls.Add(this.textBox4);
+            this.panel1.Controls.Add(this.label12);
             this.panel1.Enabled = false;
             this.panel1.Location = new System.Drawing.Point(6, 29);
             this.panel1.Name = "panel1";
@@ -945,136 +795,96 @@
             // 
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(267, 49);
+            this.label29.Location = new System.Drawing.Point(267, 51);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(19, 13);
             this.label29.TabIndex = 11;
-            this.label29.Text = "(h)";
+            this.label29.Text = "(d)";
             // 
             // label27
             // 
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(267, 27);
+            this.label27.Location = new System.Drawing.Point(267, 29);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(19, 13);
             this.label27.TabIndex = 11;
-            this.label27.Text = "(h)";
+            this.label27.Text = "(d)";
             // 
             // label25
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(266, 5);
+            this.label25.Location = new System.Drawing.Point(266, 75);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(19, 13);
             this.label25.TabIndex = 11;
-            this.label25.Text = "(h)";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(181, 72);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(40, 13);
-            this.label30.TabIndex = 11;
-            this.label30.Text = "(h) <  r ";
+            this.label25.Text = "(d)";
             // 
             // label28
             // 
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(181, 49);
+            this.label28.Location = new System.Drawing.Point(181, 51);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(49, 13);
             this.label28.TabIndex = 11;
-            this.label28.Text = "(h) <  r  <";
+            this.label28.Text = "(d) <  r  <";
             // 
             // label26
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(181, 27);
+            this.label26.Location = new System.Drawing.Point(181, 29);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(49, 13);
             this.label26.TabIndex = 11;
-            this.label26.Text = "(h) <  r  <";
+            this.label26.Text = "(d) <  r  <";
             // 
             // label24
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(181, 5);
+            this.label24.Location = new System.Drawing.Point(181, 73);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(49, 13);
             this.label24.TabIndex = 11;
-            this.label24.Text = "(h) <  r  <";
+            this.label24.Text = "(d) <  r  <";
             // 
             // textBox7
             // 
             this.textBox7.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(234, 46);
+            this.textBox7.Location = new System.Drawing.Point(234, 26);
             this.textBox7.MaxLength = 3;
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(32, 21);
             this.textBox7.TabIndex = 10;
-            this.textBox7.Text = "504";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(234, 24);
-            this.textBox5.MaxLength = 3;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(32, 21);
-            this.textBox5.TabIndex = 10;
-            this.textBox5.Text = "336";
+            this.textBox7.Text = "21";
             // 
             // textBox3
             // 
             this.textBox3.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(234, 2);
+            this.textBox3.Location = new System.Drawing.Point(234, 70);
             this.textBox3.MaxLength = 3;
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(32, 21);
             this.textBox3.TabIndex = 10;
-            this.textBox3.Text = "168";
-            // 
-            // textBox8
-            // 
-            this.textBox8.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox8.Location = new System.Drawing.Point(148, 68);
-            this.textBox8.MaxLength = 3;
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(32, 21);
-            this.textBox8.TabIndex = 10;
-            this.textBox8.Text = "480";
+            this.textBox3.Text = "7";
             // 
             // textBox6
             // 
             this.textBox6.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(148, 46);
+            this.textBox6.Location = new System.Drawing.Point(148, 26);
             this.textBox6.MaxLength = 3;
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(32, 21);
             this.textBox6.TabIndex = 10;
-            this.textBox6.Text = "312";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(148, 24);
-            this.textBox4.MaxLength = 3;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(32, 21);
-            this.textBox4.TabIndex = 10;
-            this.textBox4.Text = "144";
+            this.textBox6.Text = "13";
             // 
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(148, 2);
+            this.textBox2.Location = new System.Drawing.Point(148, 70);
             this.textBox2.MaxLength = 3;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(32, 21);
@@ -1093,25 +903,16 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(63, 5);
+            this.label11.Location = new System.Drawing.Point(63, 73);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(49, 13);
             this.label11.TabIndex = 6;
             this.label11.Text = "Recently";
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(63, 27);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(85, 13);
-            this.label12.TabIndex = 7;
-            this.label12.Text = "Quite Long Time";
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(63, 49);
+            this.label13.Location = new System.Drawing.Point(63, 29);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(57, 13);
             this.label13.TabIndex = 8;
@@ -1120,11 +921,60 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(63, 72);
+            this.label14.Location = new System.Drawing.Point(63, 7);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(79, 13);
             this.label14.TabIndex = 9;
             this.label14.Text = "Long Time Ago";
+            // 
+            // textBox8
+            // 
+            this.textBox8.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox8.Location = new System.Drawing.Point(148, 4);
+            this.textBox8.MaxLength = 3;
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(32, 21);
+            this.textBox8.TabIndex = 10;
+            this.textBox8.Text = "20";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(181, 7);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(40, 13);
+            this.label30.TabIndex = 11;
+            this.label30.Text = "(d) <  r ";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox5.Location = new System.Drawing.Point(234, 48);
+            this.textBox5.MaxLength = 3;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(32, 21);
+            this.textBox5.TabIndex = 10;
+            this.textBox5.Text = "14";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.Location = new System.Drawing.Point(148, 48);
+            this.textBox4.MaxLength = 3;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(32, 21);
+            this.textBox4.TabIndex = 10;
+            this.textBox4.Text = "6";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(63, 51);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(85, 13);
+            this.label12.TabIndex = 7;
+            this.label12.Text = "Quite Long Time";
             // 
             // metroCheckBox1
             // 
@@ -1165,10 +1015,10 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.metroComboBox1);
-            this.groupBox1.Location = new System.Drawing.Point(0, 3);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(252, 353);
-            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             // 
             // label49
@@ -1194,9 +1044,9 @@
             this.label31.AutoSize = true;
             this.label31.Location = new System.Drawing.Point(21, 241);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(48, 13);
+            this.label31.Size = new System.Drawing.Size(49, 13);
             this.label31.TabIndex = 12;
-            this.label31.Text = "h = Hour";
+            this.label31.Text = "d = Days";
             // 
             // label6
             // 
@@ -1332,16 +1182,6 @@
             this.cTypeDataGridViewTextBoxColumn.ReadOnly = true;
             this.cTypeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
-            // custClassBindingSource
-            // 
-            this.custClassBindingSource.DataMember = "custClass";
-            this.custClassBindingSource.DataSource = this.cSSDataSet1;
-            // 
-            // cSSDataSet1
-            // 
-            this.cSSDataSet1.DataSetName = "CSSDataSet1";
-            this.cSSDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1397,69 +1237,242 @@
             this.metroComboBox1.Visible = false;
             this.metroComboBox1.SelectedIndexChanged += new System.EventHandler(this.metroComboBox1_SelectedIndexChanged);
             // 
-            // metroTabPage3
+            // metroLabel2
             // 
-            this.metroTabPage3.Controls.Add(this.winChartViewer1);
-            this.metroTabPage3.Controls.Add(this.metroProgressBar1);
-            this.metroTabPage3.Controls.Add(this.metroLabel1);
-            this.metroTabPage3.HorizontalScrollbarBarColor = true;
-            this.metroTabPage3.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage3.HorizontalScrollbarSize = 10;
-            this.metroTabPage3.Location = new System.Drawing.Point(4, 38);
-            this.metroTabPage3.Name = "metroTabPage3";
-            this.metroTabPage3.Size = new System.Drawing.Size(554, 362);
-            this.metroTabPage3.TabIndex = 2;
-            this.metroTabPage3.Text = "Data Process";
-            this.metroTabPage3.VerticalScrollbarBarColor = true;
-            this.metroTabPage3.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage3.VerticalScrollbarSize = 10;
+            this.metroLabel2.AutoSize = true;
+            this.metroLabel2.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel2.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.metroLabel2.Location = new System.Drawing.Point(75, 150);
+            this.metroLabel2.Name = "metroLabel2";
+            this.metroLabel2.Size = new System.Drawing.Size(390, 25);
+            this.metroLabel2.TabIndex = 17;
+            this.metroLabel2.Text = "Welcome to Customer Segmentation System";
             // 
-            // winChartViewer1
+            // metroTextBox1
             // 
-            this.winChartViewer1.ChartSizeMode = ChartDirector.WinChartSizeMode.StretchImage;
-            this.winChartViewer1.Location = new System.Drawing.Point(101, 76);
-            this.winChartViewer1.Name = "winChartViewer1";
-            this.winChartViewer1.Size = new System.Drawing.Size(340, 296);
-            this.winChartViewer1.TabIndex = 4;
-            this.winChartViewer1.TabStop = false;
-            this.metroToolTip1.SetToolTip(this.winChartViewer1, "3D Scatter Chart view of the cluster");
             // 
-            // metroProgressBar1
             // 
-            this.metroProgressBar1.Location = new System.Drawing.Point(130, 48);
-            this.metroProgressBar1.Name = "metroProgressBar1";
-            this.metroProgressBar1.ProgressBarStyle = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.metroProgressBar1.Size = new System.Drawing.Size(289, 22);
-            this.metroProgressBar1.TabIndex = 3;
-            this.metroToolTip1.SetToolTip(this.metroProgressBar1, "Data is being processed");
+            // 
+            this.metroTextBox1.CustomButton.Image = null;
+            this.metroTextBox1.CustomButton.Location = new System.Drawing.Point(130, 1);
+            this.metroTextBox1.CustomButton.Name = "";
+            this.metroTextBox1.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.metroTextBox1.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroTextBox1.CustomButton.TabIndex = 3;
+            this.metroTextBox1.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.metroTextBox1.CustomButton.UseSelectable = true;
+            this.metroTextBox1.Lines = new string[0];
+            this.metroTextBox1.Location = new System.Drawing.Point(215, 2);
+            this.metroTextBox1.MaxLength = 32767;
+            this.metroTextBox1.Name = "metroTextBox1";
+            this.metroTextBox1.PasswordChar = '\0';
+            this.metroTextBox1.ReadOnly = true;
+            this.metroTextBox1.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.metroTextBox1.SelectedText = "";
+            this.metroTextBox1.SelectionLength = 0;
+            this.metroTextBox1.SelectionStart = 0;
+            this.metroTextBox1.ShortcutsEnabled = true;
+            this.metroTextBox1.ShowButton = true;
+            this.metroTextBox1.ShowClearButton = true;
+            this.metroTextBox1.Size = new System.Drawing.Size(152, 23);
+            this.metroTextBox1.TabIndex = 16;
+            this.metroTextBox1.UseSelectable = true;
+            this.metroTextBox1.Visible = false;
+            this.metroTextBox1.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.metroTextBox1.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.metroTextBox1.Click += new System.EventHandler(this.metroTextBox1_ButtonClick);
+            // 
+            // metroRadioButton1
+            // 
+            this.metroRadioButton1.AutoSize = true;
+            this.metroRadioButton1.Location = new System.Drawing.Point(3, 3);
+            this.metroRadioButton1.Name = "metroRadioButton1";
+            this.metroRadioButton1.Size = new System.Drawing.Size(84, 15);
+            this.metroRadioButton1.TabIndex = 11;
+            this.metroRadioButton1.Text = "Batch input";
+            this.metroRadioButton1.UseSelectable = true;
+            this.metroRadioButton1.CheckedChanged += new System.EventHandler(this.metroRadioButton1_CheckedChanged);
+            // 
+            // metroButton1
+            // 
+            this.metroButton1.Location = new System.Drawing.Point(455, 2);
+            this.metroButton1.Name = "metroButton1";
+            this.metroButton1.Size = new System.Drawing.Size(75, 23);
+            this.metroButton1.TabIndex = 14;
+            this.metroButton1.Text = "Next";
+            this.metroButton1.UseSelectable = true;
+            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
+            // 
+            // metroButton2
+            // 
+            this.metroButton2.Location = new System.Drawing.Point(373, 2);
+            this.metroButton2.Name = "metroButton2";
+            this.metroButton2.Size = new System.Drawing.Size(75, 23);
+            this.metroButton2.TabIndex = 13;
+            this.metroButton2.Text = "Browse..";
+            this.metroButton2.UseSelectable = true;
+            this.metroButton2.Visible = false;
+            this.metroButton2.Click += new System.EventHandler(this.metroButton2_Click);
+            // 
+            // metroRadioButton2
+            // 
+            this.metroRadioButton2.AutoSize = true;
+            this.metroRadioButton2.Location = new System.Drawing.Point(93, 3);
+            this.metroRadioButton2.Name = "metroRadioButton2";
+            this.metroRadioButton2.Size = new System.Drawing.Size(94, 15);
+            this.metroRadioButton2.TabIndex = 12;
+            this.metroRadioButton2.Text = "Manual Input";
+            this.metroRadioButton2.UseSelectable = true;
+            this.metroRadioButton2.CheckedChanged += new System.EventHandler(this.metroRadioButton2_CheckedChanged);
+            // 
+            // metroGrid1
+            // 
+            this.metroGrid1.AllowUserToResizeRows = false;
+            this.metroGrid1.AutoGenerateColumns = false;
+            this.metroGrid1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.metroGrid1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            this.metroGrid1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.metroGrid1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.metroGrid1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.metroGrid1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(211)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.metroGrid1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.metroGrid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.metroGrid1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cIDDataGridViewTextBoxColumn,
+            this.customerNameDataGridViewTextBoxColumn,
+            this.frequencyDataGridViewTextBoxColumn,
+            this.totalPurchaseDataGridViewTextBoxColumn,
+            this.lastPurchaseDataGridViewTextBoxColumn});
+            this.metroGrid1.DataSource = this.dataTableBindingSource;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(211)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.metroGrid1.DefaultCellStyle = dataGridViewCellStyle3;
+            this.metroGrid1.EnableHeadersVisualStyles = false;
+            this.metroGrid1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.metroGrid1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.metroGrid1.HighLightPercentage = 0.5F;
+            this.metroGrid1.Location = new System.Drawing.Point(3, 31);
+            this.metroGrid1.Name = "metroGrid1";
+            this.metroGrid1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(211)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.metroGrid1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.metroGrid1.RowHeadersVisible = false;
+            this.metroGrid1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.metroGrid1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.metroGrid1.Size = new System.Drawing.Size(527, 322);
+            this.metroGrid1.TabIndex = 15;
+            this.metroGrid1.Visible = false;
+            // 
+            // cIDDataGridViewTextBoxColumn
+            // 
+            this.cIDDataGridViewTextBoxColumn.DataPropertyName = "CID";
+            this.cIDDataGridViewTextBoxColumn.HeaderText = "CID";
+            this.cIDDataGridViewTextBoxColumn.Name = "cIDDataGridViewTextBoxColumn";
+            // 
+            // customerNameDataGridViewTextBoxColumn
+            // 
+            this.customerNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.customerNameDataGridViewTextBoxColumn.DataPropertyName = "Customer Name";
+            this.customerNameDataGridViewTextBoxColumn.HeaderText = "Customer Name";
+            this.customerNameDataGridViewTextBoxColumn.Name = "customerNameDataGridViewTextBoxColumn";
+            this.customerNameDataGridViewTextBoxColumn.Width = 102;
+            // 
+            // frequencyDataGridViewTextBoxColumn
+            // 
+            this.frequencyDataGridViewTextBoxColumn.DataPropertyName = "Frequency";
+            this.frequencyDataGridViewTextBoxColumn.HeaderText = "Frequency";
+            this.frequencyDataGridViewTextBoxColumn.Name = "frequencyDataGridViewTextBoxColumn";
+            // 
+            // totalPurchaseDataGridViewTextBoxColumn
+            // 
+            this.totalPurchaseDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.totalPurchaseDataGridViewTextBoxColumn.DataPropertyName = "Total purchase";
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.totalPurchaseDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.totalPurchaseDataGridViewTextBoxColumn.HeaderText = "Total purchase";
+            this.totalPurchaseDataGridViewTextBoxColumn.Name = "totalPurchaseDataGridViewTextBoxColumn";
+            this.totalPurchaseDataGridViewTextBoxColumn.Width = 96;
+            // 
+            // lastPurchaseDataGridViewTextBoxColumn
+            // 
+            this.lastPurchaseDataGridViewTextBoxColumn.DataPropertyName = "Last purchase";
+            this.lastPurchaseDataGridViewTextBoxColumn.HeaderText = "Last purchase";
+            this.lastPurchaseDataGridViewTextBoxColumn.Name = "lastPurchaseDataGridViewTextBoxColumn";
+            // 
+            // metroPanel3
+            // 
+            this.metroPanel3.Controls.Add(this.winChartViewer1);
+            this.metroPanel3.Controls.Add(this.metroProgressBar1);
+            this.metroPanel3.Controls.Add(this.metroLabel1);
+            this.metroPanel3.HorizontalScrollbarBarColor = true;
+            this.metroPanel3.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroPanel3.HorizontalScrollbarSize = 10;
+            this.metroPanel3.Location = new System.Drawing.Point(19, 91);
+            this.metroPanel3.Name = "metroPanel3";
+            this.metroPanel3.Size = new System.Drawing.Size(541, 397);
+            this.metroPanel3.TabIndex = 3;
+            this.metroPanel3.VerticalScrollbarBarColor = true;
+            this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanel3.VerticalScrollbarSize = 10;
             // 
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel1.Location = new System.Drawing.Point(161, 10);
+            this.metroLabel1.Location = new System.Drawing.Point(156, 3);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(229, 25);
-            this.metroLabel1.TabIndex = 2;
+            this.metroLabel1.TabIndex = 5;
             this.metroLabel1.Text = "Data is being processed now";
             // 
-            // dataTableTableAdapter
+            // metroLabel3
             // 
-            this.dataTableTableAdapter.ClearBeforeFill = true;
+            this.metroLabel3.AutoSize = true;
+            this.metroLabel3.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel3.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.metroLabel3.Location = new System.Drawing.Point(19, 60);
+            this.metroLabel3.Name = "metroLabel3";
+            this.metroLabel3.Size = new System.Drawing.Size(103, 25);
+            this.metroLabel3.TabIndex = 4;
+            this.metroLabel3.Text = "Data Input";
             // 
-            // openFileDialog1
+            // shapeContainer1
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.shapeContainer1.Location = new System.Drawing.Point(20, 60);
+            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
+            this.shapeContainer1.Name = "shapeContainer1";
+            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.lineShape1});
+            this.shapeContainer1.Size = new System.Drawing.Size(540, 400);
+            this.shapeContainer1.TabIndex = 5;
+            this.shapeContainer1.TabStop = false;
             // 
-            // custClassTableAdapter
+            // lineShape1
             // 
-            this.custClassTableAdapter.ClearBeforeFill = true;
-            // 
-            // metroToolTip1
-            // 
-            this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroToolTip1.StyleManager = null;
-            this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.lineShape1.Name = "lineShape1";
+            this.lineShape1.X1 = 3;
+            this.lineShape1.X2 = 540;
+            this.lineShape1.Y1 = 25;
+            this.lineShape1.Y2 = 25;
             // 
             // mainForm
             // 
@@ -1469,20 +1482,25 @@
             this.BackImagePadding = new System.Windows.Forms.Padding(10, 10, 0, 0);
             this.BackMaxSize = 50;
             this.ClientSize = new System.Drawing.Size(580, 480);
-            this.Controls.Add(this.metroTabControl1);
+            this.Controls.Add(this.metroPanel1);
+            this.Controls.Add(this.metroLabel3);
+            this.Controls.Add(this.metroPanel3);
+            this.Controls.Add(this.metroPanel2);
+            this.Controls.Add(this.shapeContainer1);
             this.MaximizeBox = false;
             this.Name = "mainForm";
             this.Resizable = false;
             this.Text = "      Customer Segmentation System";
             this.Load += new System.EventHandler(this.mainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).EndInit();
-            this.metroTabControl1.ResumeLayout(false);
-            this.metroTabPage1.ResumeLayout(false);
-            this.metroTabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet)).EndInit();
-            this.metroTabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.custClassBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.winChartViewer1)).EndInit();
+            this.metroPanel1.ResumeLayout(false);
+            this.metroPanel1.PerformLayout();
+            this.metroPanel2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -1494,88 +1512,67 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.custClassBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet1)).EndInit();
-            this.metroTabPage3.ResumeLayout(false);
-            this.metroTabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.winChartViewer1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).EndInit();
+            this.metroPanel3.ResumeLayout(false);
+            this.metroPanel3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private MetroFramework.Components.MetroStyleManager metroStyleManager1;
-        private MetroFramework.Controls.MetroTabControl metroTabControl1;
-        private MetroFramework.Controls.MetroTabPage metroTabPage1;
-        private MetroFramework.Controls.MetroTabPage metroTabPage2;
-        private MetroFramework.Controls.MetroGrid metroGrid1;
-        private MetroFramework.Controls.MetroTabPage metroTabPage3;
-        private MetroFramework.Controls.MetroRadioButton metroRadioButton2;
-        private MetroFramework.Controls.MetroRadioButton metroRadioButton1;
-        private MetroFramework.Controls.MetroButton metroButton1;
-        private MetroFramework.Controls.MetroButton metroButton2;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private MetroFramework.Controls.MetroComboBox metroComboBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label3;
-        private MetroFramework.Controls.MetroGrid metroGrid2;
-        private System.Windows.Forms.Button button1;
         private CSSDataSet cSSDataSet;
         private System.Windows.Forms.BindingSource dataTableBindingSource;
         private CSSDataSetTableAdapters.dataTableTableAdapter dataTableTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn customerNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn frequencyDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn totalPurchaseDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lastPurchaseDataGridViewTextBoxColumn;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private MetroFramework.Controls.MetroTextBox metroTextBox1;
-        private MetroFramework.Controls.MetroButton metroButton3;
         private CSSDataSet1 cSSDataSet1;
         private System.Windows.Forms.BindingSource custClassBindingSource;
         private CSSDataSet1TableAdapters.custClassTableAdapter custClassTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cTypeDataGridViewTextBoxColumn;
-        private MetroFramework.Controls.MetroLabel metroLabel1;
-        private MetroFramework.Controls.MetroProgressBar metroProgressBar1;
         private MetroFramework.Components.MetroToolTip metroToolTip1;
-        private MetroFramework.Controls.MetroLabel metroLabel2;
-        private MetroFramework.Controls.MetroTrackBar metroTrackBar1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private MetroFramework.Controls.MetroLabel metroLabel3;
+        private MetroFramework.Controls.MetroPanel metroPanel3;
         private ChartDirector.WinChartViewer winChartViewer1;
-        private MetroFramework.Controls.MetroCheckBox metroCheckBox1;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox textBox3;
+        private MetroFramework.Controls.MetroProgressBar metroProgressBar1;
+        private MetroFramework.Controls.MetroLabel metroLabel1;
+        private MetroFramework.Controls.MetroPanel metroPanel1;
+        private MetroFramework.Controls.MetroPanel metroPanel2;
+        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox textBox20;
+        private System.Windows.Forms.TextBox textBox18;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.TextBox textBox27;
+        private System.Windows.Forms.TextBox textBox25;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.TextBox textBox19;
+        private System.Windows.Forms.TextBox textBox21;
+        private System.Windows.Forms.TextBox textBox24;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.TextBox textBox22;
+        private System.Windows.Forms.TextBox textBox23;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox textBox17;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.TextBox textBox15;
@@ -1587,37 +1584,59 @@
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.TextBox textBox20;
-        private System.Windows.Forms.TextBox textBox18;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.TextBox textBox27;
-        private System.Windows.Forms.TextBox textBox25;
-        private System.Windows.Forms.Label label48;
-        private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.TextBox textBox21;
-        private System.Windows.Forms.TextBox textBox24;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.TextBox textBox22;
-        private System.Windows.Forms.TextBox textBox23;
+        private System.Windows.Forms.Label label12;
+        private MetroFramework.Controls.MetroCheckBox metroCheckBox1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private MetroFramework.Controls.MetroTrackBar metroTrackBar1;
+        private MetroFramework.Controls.MetroButton metroButton3;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label3;
+        private MetroFramework.Controls.MetroGrid metroGrid2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cTypeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label1;
+        private MetroFramework.Controls.MetroComboBox metroComboBox1;
+        private MetroFramework.Controls.MetroLabel metroLabel2;
+        private MetroFramework.Controls.MetroTextBox metroTextBox1;
+        private MetroFramework.Controls.MetroRadioButton metroRadioButton1;
+        private MetroFramework.Controls.MetroButton metroButton1;
+        private MetroFramework.Controls.MetroButton metroButton2;
+        private MetroFramework.Controls.MetroRadioButton metroRadioButton2;
+        private MetroFramework.Controls.MetroGrid metroGrid1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn customerNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn frequencyDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalPurchaseDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lastPurchaseDataGridViewTextBoxColumn;
+        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
+        private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
     }
 }
 

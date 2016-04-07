@@ -17,3 +17,20 @@ C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTy
 C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\bin\Debug\Microsoft.SqlServer.Types.dll
 C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\bin\Debug\netchartdir_cp.dll
 C:\Users\Raymond\Documents\TA-Project\Prototype\TA-Project\bin\Debug\netchartdir_cp.xml
+C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.exe.config
+C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.exe
+C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.pdb
+C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x64\msvcr100.dll
+C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x64\SqlServerSpatial110.dll
+C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x86\msvcr100.dll
+C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x86\SqlServerSpatial110.dll
+C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.exe
+C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.pdb
+C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\bin\Debug\MetroFramework.Design.pdb
+C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\bin\Debug\MetroFramework.Fonts.pdb
+C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\bin\Debug\netchartdir_cp.xml
+C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache
+C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.mainForm.resources
+C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.Properties.Resources.resources
+C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.resultPage.resources
+C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csproj.GenerateResource.Cache

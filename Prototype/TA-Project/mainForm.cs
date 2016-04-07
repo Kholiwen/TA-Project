@@ -53,6 +53,8 @@ namespace TA_Project
             createChart(winChartViewer1, 1);
             metroGrid1.Font = new Font("Segoe UI", 11f, FontStyle.Regular, GraphicsUnit.Pixel);
 
+            metroPanel2.Visible = false;
+            metroPanel3.Visible = false;
             //chart1.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = true;
         }
         public string getName() { return "3D Scatter Chart (1)"; }
@@ -214,7 +216,10 @@ namespace TA_Project
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
-            metroTabControl1.SelectTab(metroTabPage2);
+            metroPanel1.Visible = false;
+            metroLabel3.Text = "Clustering Options";
+            metroPanel2.Visible = true;
+            metroPanel3.Visible = false;
         }
 
         private void mainForm_Load(object sender, EventArgs e)
@@ -232,7 +237,10 @@ namespace TA_Project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            metroTabControl1.SelectTab(metroTabPage1);
+            metroPanel1.Visible = true;
+            metroLabel3.Text = "Data Input";
+            metroPanel2.Visible = false;
+            metroPanel3.Visible = false;
         }
 
         private void metroButton2_Click(object sender, EventArgs e)
@@ -275,7 +283,10 @@ namespace TA_Project
 
         private void metroButton3_Click(object sender, EventArgs e)
         {
-            metroTabControl1.SelectTab(metroTabPage3);
+            metroPanel1.Visible = false;
+            metroPanel2.Visible = false;
+            metroPanel3.Visible = true;
+            metroLabel3.Text = "Process";
         }
 
         private void metroComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -338,7 +349,7 @@ namespace TA_Project
                 command.Connection = myConnection;
                 custClassTableAdapter.ClearBeforeFill = true;
                 custClassTableAdapter.Adapter.SelectCommand = command;
-                custClassTableAdapter.Adapter.Fill(cSSDataSet1.custClass);
+               custClassTableAdapter.Adapter.Fill(cSSDataSet1.custClass);
             }
         }
 
