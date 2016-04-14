@@ -55,6 +55,7 @@ namespace TA_Project
 
             metroPanel2.Visible = false;
             metroPanel3.Visible = false;
+
             //chart1.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = true;
         }
         public string getName() { return "3D Scatter Chart (1)"; }
@@ -95,7 +96,7 @@ namespace TA_Project
             ThreeDScatterChart c = new ThreeDScatterChart(720, 600);
 
             // Add a title to the chart using 20 points Times New Roman Italic font
-            c.addTitle("3D Scatter Chart (1)  ", "Times New Roman Italic", 20);
+            c.addTitle("3D Scatter Chart", "Times New Roman Italic", 20);
 
             // Set the center of the plot region at (350, 280), and set width x depth x height to
             // 360 x 360 x 270 pixels
@@ -362,11 +363,9 @@ namespace TA_Project
             metroGrid1.BeginEdit(true);
         }
 
-        private void metroTrackBar1_ValueChanged(object sender, EventArgs e)
+        private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
-            metroTrackBar1.Minimum = 10;
-            metroTrackBar1.Maximum = 120;
-            label5.Text = (System.Math.Round(metroTrackBar1.Value / 10.0)).ToString();
+            label5.Text = (trackBar1.Value+1).ToString();
         }
 
         private void metroCheckBox1_CheckedChanged(object sender, EventArgs e)
@@ -411,6 +410,11 @@ namespace TA_Project
                 panel3.Enabled = false;
                 Properties.Settings.Default.Reload();
             }
+       }
+
+        private void numericUpDown1_MouseDown(object sender, MouseEventArgs e)
+        {
+            trackBar1.Focus();
         }
     }
 }
