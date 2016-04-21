@@ -11,12 +11,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ChartDirector;
+using System.Threading;
 //using scrollingText;
 
 namespace TA_Project
 {
     public partial class mainForm : MetroFramework.Forms.MetroForm
     {
+        int a = 20;
         OleDbConnection oleCon;
         SqlConnection sqlCon;
 
@@ -50,12 +52,11 @@ namespace TA_Project
             //_table.ReadXml(Application.StartupPath + @"\Data\test.xml");
             //metroGrid1.DataSource = _table;
             WinChartViewer wc = new WinChartViewer();
-            createChart(winChartViewer1, 1);
+            createChart(winChartViewer1, 1, a);
             metroGrid1.Font = new Font("Segoe UI", 11f, FontStyle.Regular, GraphicsUnit.Pixel);
-
             metroPanel2.Visible = false;
             metroPanel3.Visible = false;
-
+            metroButton2.Focus();
             //chart1.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = true;
         }
         public string getName() { return "3D Scatter Chart (1)"; }
@@ -65,8 +66,9 @@ namespace TA_Project
 
         //Main code for creating chart.
         //Note: the argument chartIndex is unused because this demo only has 1 chart.
-        public void createChart(WinChartViewer viewer, int chartIndex)
+        public void createChart(WinChartViewer viewer, int chartIndex, int a)
         {
+            this.a = a;
             //// The XYZ data for the 3D scatter chart as 3 random data series
             //RanSeries r = new RanSeries(0);
             //double[] xData = r.getSeries2(100, 100, -10, 10);
@@ -75,9 +77,9 @@ namespace TA_Project
 
             // The random XYZ data for the first 3D scatter group
             RanSeries r0 = new RanSeries(7);
-            double[] xData0 = r0.getSeries2(100, 100, -10, 10);
-            double[] yData0 = r0.getSeries2(100, 0, 0, 20);
-            double[] zData0 = r0.getSeries2(100, 100, -10, 10);
+            double[] xData0 = r0.getSeries2(a, 100, -10, 10);
+            double[] yData0 = r0.getSeries2(a, 0, 0, 20);
+            double[] zData0 = r0.getSeries2(a, 100, -10, 10);
 
             // The random XYZ data for the second 3D scatter group
             RanSeries r1 = new RanSeries(4);
@@ -221,6 +223,7 @@ namespace TA_Project
             metroLabel3.Text = "Clustering Options";
             metroPanel2.Visible = true;
             metroPanel3.Visible = false;
+            metroButton3.Focus();
         }
 
         private void mainForm_Load(object sender, EventArgs e)
@@ -248,7 +251,6 @@ namespace TA_Project
         {
             Stream myStream = null;
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
-
             openFileDialog1.InitialDirectory = "c:\\";
             openFileDialog1.Filter = "txt files (*.txt)|*.txt|Excel Files (*.xls,*.xlsx)|*.xls;*.xlsx";
             openFileDialog1.FilterIndex = 2;
@@ -282,12 +284,105 @@ namespace TA_Project
             metroTextBox1.Clear();
         }
 
+
+        // This method will be called when the thread is started. 
+        public void DoWork()
+        {
+            while (!_shouldStop)
+            {
+                Console.WriteLine("worker thread: working...");
+                createChart(winChartViewer1, 1, a);
+                a += 20;
+            }
+            Console.WriteLine("worker thread: terminating gracefully.");
+        }
+        public void RequestStop()
+        {
+            _shouldStop = true;
+        }
+        // Volatile is used as hint to the compiler that this data 
+        // member will be accessed by multiple threads. 
+        private volatile bool _shouldStop;
+
+        public void chartThread()
+        {
+
+            // Create the thread object. This does not start the thread.
+
+            Thread workerThread = new Thread(new System.Threading.ThreadStart(DoWork));
+
+            // Start the worker thread.
+            workerThread.Start();
+            Console.WriteLine("main thread: Starting worker thread...");
+
+            // Loop until worker thread activates. 
+            while (!workerThread.IsAlive) ;
+            // Put the main thread to sleep for 1 millisecond to 
+            // allow the worker thread to do some work:
+            Thread.Sleep(1000);
+
+            // Request that the worker thread stop itself:
+            RequestStop();
+
+            // Use the Join method to block the current thread  
+            // until the object's thread terminates.
+            workerThread.Join();
+            Console.WriteLine("main thread: Worker thread has terminated.");
+        }
+
         private void metroButton3_Click(object sender, EventArgs e)
         {
+            int cltr = 0;
+            int w = 2;
+            int maxIter = 100;
+            double tc = 0.00001;
+            int P0 = 0;
+            int t = 1;
+            cltr = Decimal.ToInt32(numericUpDown1.Value);
+            Random rnd = new Random();
+            double[] u = new double[100];
+            double[,] X = new double[100, 3];
+            for (int i = 0; i < 100; i++)
+            {
+                u[i] = rnd.NextDouble();
+            }
+
+            SqlConnection myConnection;
+            SqlCommand command = new SqlCommand();
+            string connectionString = TA_Project.Properties.Settings.Default.CSSConnectionString;
+            string query = "SELECT * FROM dataTable";
+            myConnection = new SqlConnection(connectionString);
+            command.CommandText = query;
+            command.CommandType = CommandType.Text;
+            command.Connection = myConnection;
+            SqlDataAdapter sa = new SqlDataAdapter(command);
+            DataTable dt = new DataTable();
+            sa.Fill(dt);
+            foreach (DataRow dr in dt.Rows)
+            {
+                X[dt.Rows.IndexOf(dr), 0] = Convert.ToInt32((DateTime.Now - Convert.ToDateTime(dr["Last purchase"])).TotalDays);
+                X[dt.Rows.IndexOf(dr), 1] = Convert.ToInt32(dr["Frequency"]);
+                X[dt.Rows.IndexOf(dr), 2] = Convert.ToInt32(dr["Total purchase"]);
+            }
+            //Fuzzy C-Means Method\\
+            for (int i = 0; i < 100; i++)
+            {
+                for (int k = 0; k < cltr; k++)
+                {
+                    Math.Pow(u[i], 2);
+                    for (int j = 0; j < 100; j++)
+                    {
+
+                    }
+                }
+            }
+
+
+            metroPanel3.Visible = true;
             metroPanel1.Visible = false;
             metroPanel2.Visible = false;
-            metroPanel3.Visible = true;
             metroLabel3.Text = "Process";
+            chartThread();
         }
 
         private void metroComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -350,7 +445,7 @@ namespace TA_Project
                 command.Connection = myConnection;
                 custClassTableAdapter.ClearBeforeFill = true;
                 custClassTableAdapter.Adapter.SelectCommand = command;
-               custClassTableAdapter.Adapter.Fill(cSSDataSet1.custClass);
+                custClassTableAdapter.Adapter.Fill(cSSDataSet1.custClass);
             }
         }
 
@@ -365,7 +460,7 @@ namespace TA_Project
 
         private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
-            label5.Text = (trackBar1.Value+1).ToString();
+            label5.Text = (trackBar1.Value + 1).ToString();
         }
 
         private void metroCheckBox1_CheckedChanged(object sender, EventArgs e)
@@ -403,14 +498,14 @@ namespace TA_Project
                 textBox25.Text = "";
                 textBox27.Text = "";
             }
-            else if (metroCheckBox1.Checked==false)
+            else if (metroCheckBox1.Checked == false)
             {
                 panel1.Enabled = false;
                 panel2.Enabled = false;
                 panel3.Enabled = false;
                 Properties.Settings.Default.Reload();
             }
-       }
+        }
 
         private void numericUpDown1_MouseDown(object sender, MouseEventArgs e)
         {

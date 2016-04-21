@@ -34,3 +34,20 @@ C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\obj\Debug\TA
 C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.Properties.Resources.resources
 C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.resultPage.resources
 C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csproj.GenerateResource.Cache
+E:\New folder\Prototype\TA-Project\bin\Debug\SqlServerTypes\x64\msvcr100.dll
+E:\New folder\Prototype\TA-Project\bin\Debug\SqlServerTypes\x64\SqlServerSpatial110.dll
+E:\New folder\Prototype\TA-Project\bin\Debug\SqlServerTypes\x86\msvcr100.dll
+E:\New folder\Prototype\TA-Project\bin\Debug\SqlServerTypes\x86\SqlServerSpatial110.dll
+E:\New folder\Prototype\TA-Project\bin\Debug\TA-Project.exe.config
+E:\New folder\Prototype\TA-Project\bin\Debug\TA-Project.exe
+E:\New folder\Prototype\TA-Project\bin\Debug\TA-Project.pdb
+E:\New folder\Prototype\TA-Project\bin\Debug\Microsoft.SqlServer.Types.dll
+E:\New folder\Prototype\TA-Project\obj\Debug\TA_Project.mainForm.resources
+E:\New folder\Prototype\TA-Project\obj\Debug\TA_Project.Properties.Resources.resources
+E:\New folder\Prototype\TA-Project\obj\Debug\TA_Project.resultPage.resources
+E:\New folder\Prototype\TA-Project\obj\Debug\TA-Project.csproj.GenerateResource.Cache
+E:\New folder\Prototype\TA-Project\obj\Debug\TA-Project.exe
+E:\New folder\Prototype\TA-Project\obj\Debug\TA-Project.pdb
+E:\New folder\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache
+E:\New folder\Prototype\TA-Project\bin\Debug\Microsoft.VisualBasic.PowerPacks.dll
+E:\New folder\Prototype\TA-Project\bin\Debug\Microsoft.VisualBasic.PowerPacks.xml
