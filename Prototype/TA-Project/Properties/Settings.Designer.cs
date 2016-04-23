@@ -26,8 +26,8 @@ namespace TA_Project.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IT\\SQLEXPRESS;Initial Catalog=CSS;Persist Security Info=True;User ID=" +
-            "sa;Password=sql12345")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=Z\\SQLEXPRESS;Initial Catalog=CSS;Persist Security Info=True;User ID=s" +
+            "a;Password=sql12345")]
         public string CSSConnectionString {
             get {
                 return ((string)(this["CSSConnectionString"]));

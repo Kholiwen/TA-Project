@@ -59,15 +59,5 @@ namespace TA_Project.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Robot_logo_resized {
-            get {
-                object obj = ResourceManager.GetObject("Robot-logo-resized", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

@@ -339,13 +339,8 @@ namespace TA_Project
             int P0 = 0;
             int t = 1;
             cltr = Decimal.ToInt32(numericUpDown1.Value);
+            float[,] V = new float[cltr, 3];
             Random rnd = new Random();
-            double[] u = new double[100];
-            double[,] X = new double[100, 3];
-            for (int i = 0; i < 100; i++)
-            {
-                u[i] = rnd.NextDouble();
-            }
 
             SqlConnection myConnection;
             SqlCommand command = new SqlCommand();
@@ -358,25 +353,38 @@ namespace TA_Project
             SqlDataAdapter sa = new SqlDataAdapter(command);
             DataTable dt = new DataTable();
             sa.Fill(dt);
+            double[,] u = new double[dt.Rows.Count, cltr];
+            for (int k = 0; k < cltr; k++)
+            {
+                for (int i = 0; i < 100; i++)
+                {
+                    u[i, k] = rnd.NextDouble();
+                }
+            }
+            double[,] X = new double[dt.Rows.Count, 3];
             foreach (DataRow dr in dt.Rows)
             {
                 X[dt.Rows.IndexOf(dr), 0] = Convert.ToInt32((DateTime.Now - Convert.ToDateTime(dr["Last purchase"])).TotalDays);
                 X[dt.Rows.IndexOf(dr), 1] = Convert.ToInt32(dr["Frequency"]);
-                X[dt.Rows.IndexOf(dr), 2] = Convert.ToInt32(dr["Total purchase"]);
+                X[dt.Rows.IndexOf(dr), 2] = Convert.ToInt64(dr["Total purchase"]);
             }
-            //Fuzzy C-Means Method\\
-            for (int i = 0; i < 100; i++)
-            {
-                for (int k = 0; k < cltr; k++)
-                {
-                    Math.Pow(u[i], 2);
-                    for (int j = 0; j < 100; j++)
-                    {
 
+            //Fuzzy C-Means Method\\
+            float temp1 = 0, temp2 = 0;
+            for (int k = 0; k < cltr; k++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    for (int i = 0; i < 100; i++)
+                    {
+                        temp1 += Convert.ToSingle(Math.Pow(u[i,k], 2));
+                        temp2 += Convert.ToSingle(Math.Pow(u[i,k], 2) * X[i, j]);
                     }
+                    V[k, j] = temp2 / temp1;
+                    temp1 = 0;
+                    temp2 = 0;
                 }
             }
-
 
             metroPanel3.Visible = true;
             metroPanel1.Visible = false;

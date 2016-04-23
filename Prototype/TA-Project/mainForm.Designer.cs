@@ -153,7 +153,6 @@
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableBindingSource)).BeginInit();
@@ -1169,7 +1168,7 @@
             this.metroCheckBox1.Location = new System.Drawing.Point(92, 11);
             this.metroCheckBox1.Name = "metroCheckBox1";
             this.metroCheckBox1.Size = new System.Drawing.Size(65, 15);
-            this.metroCheckBox1.TabIndex = 1;
+            this.metroCheckBox1.TabIndex = 6;
             this.metroCheckBox1.Text = "Custom";
             this.metroCheckBox1.UseSelectable = true;
             this.metroCheckBox1.CheckedChanged += new System.EventHandler(this.metroCheckBox1_CheckedChanged);
@@ -1204,7 +1203,7 @@
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(252, 353);
-            this.groupBox1.TabIndex = 18;
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
             // numericUpDown1
@@ -1225,7 +1224,7 @@
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.ReadOnly = true;
             this.numericUpDown1.Size = new System.Drawing.Size(122, 26);
-            this.numericUpDown1.TabIndex = 15;
+            this.numericUpDown1.TabIndex = 1;
             this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericUpDown1.Value = new decimal(new int[] {
             2,
@@ -1240,7 +1239,7 @@
             this.trackBar1.Maximum = 11;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(214, 45);
-            this.trackBar1.TabIndex = 6;
+            this.trackBar1.TabIndex = 3;
             this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
             this.trackBar1.Value = 5;
             this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
@@ -1296,8 +1295,7 @@
             this.metroButton3.Location = new System.Drawing.Point(21, 315);
             this.metroButton3.Name = "metroButton3";
             this.metroButton3.Size = new System.Drawing.Size(214, 30);
-            this.metroButton3.TabIndex = 8;
-            this.metroButton3.TabStop = false;
+            this.metroButton3.TabIndex = 5;
             this.metroButton3.Text = "Process";
             this.metroButton3.UseSelectable = true;
             this.metroButton3.Click += new System.EventHandler(this.metroButton3_Click);
@@ -1308,7 +1306,7 @@
             this.button1.Location = new System.Drawing.Point(0, 5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(25, 25);
-            this.button1.TabIndex = 9;
+            this.button1.TabIndex = 7;
             this.button1.Text = "<";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -1482,31 +1480,22 @@
             // 
             // shapeContainer1
             // 
-            this.shapeContainer1.Location = new System.Drawing.Point(0, 0);
+            this.shapeContainer1.Location = new System.Drawing.Point(20, 60);
             this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
             this.shapeContainer1.Name = "shapeContainer1";
-            this.shapeContainer1.Size = new System.Drawing.Size(150, 150);
-            this.shapeContainer1.TabIndex = 0;
-            this.shapeContainer1.TabStop = false;
-            // 
-            // shapeContainer2
-            // 
-            this.shapeContainer2.Location = new System.Drawing.Point(20, 60);
-            this.shapeContainer2.Margin = new System.Windows.Forms.Padding(0);
-            this.shapeContainer2.Name = "shapeContainer2";
-            this.shapeContainer2.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
             this.lineShape1});
-            this.shapeContainer2.Size = new System.Drawing.Size(540, 400);
-            this.shapeContainer2.TabIndex = 5;
-            this.shapeContainer2.TabStop = false;
+            this.shapeContainer1.Size = new System.Drawing.Size(540, 400);
+            this.shapeContainer1.TabIndex = 5;
+            this.shapeContainer1.TabStop = false;
             // 
             // lineShape1
             // 
             this.lineShape1.Name = "lineShape1";
-            this.lineShape1.X1 = 6;
-            this.lineShape1.X2 = 532;
-            this.lineShape1.Y1 = 25;
-            this.lineShape1.Y2 = 25;
+            this.lineShape1.X1 = 2;
+            this.lineShape1.X2 = 533;
+            this.lineShape1.Y1 = 26;
+            this.lineShape1.Y2 = 26;
             // 
             // mainForm
             // 
@@ -1520,7 +1509,7 @@
             this.Controls.Add(this.metroPanel2);
             this.Controls.Add(this.metroPanel3);
             this.Controls.Add(this.metroPanel1);
-            this.Controls.Add(this.shapeContainer2);
+            this.Controls.Add(this.shapeContainer1);
             this.MaximizeBox = false;
             this.Name = "mainForm";
             this.Resizable = false;
@@ -1669,11 +1658,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn frequencyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalPurchaseDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastPurchaseDataGridViewTextBoxColumn;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
+        
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer2;
+        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
+        
+        
     }
 }
 
