@@ -26,10 +26,6 @@ C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\bin\Debug\Sq
 C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x86\SqlServerSpatial110.dll
 C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.exe
 C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.pdb
-C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\bin\Debug\MetroFramework.Design.pdb
-C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\bin\Debug\MetroFramework.Fonts.pdb
-C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\bin\Debug\netchartdir_cp.xml
-C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache
 C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.mainForm.resources
 C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.Properties.Resources.resources
 C:\Users\Xu Li Wen\Documents\GitHub\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.resultPage.resources
@@ -48,3 +44,51 @@ E:\New folder\Prototype\TA-Project\obj\Debug\TA-Project.csproj.GenerateResource.
 E:\New folder\Prototype\TA-Project\obj\Debug\TA-Project.exe
 E:\New folder\Prototype\TA-Project\obj\Debug\TA-Project.pdb
 E:\New folder\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache
+C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.exe.config
+C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.exe
+C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.pdb
+C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x64\msvcr100.dll
+C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x64\SqlServerSpatial110.dll
+C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x86\msvcr100.dll
+C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x86\SqlServerSpatial110.dll
+C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.exe
+C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.pdb
+C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache
+C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.mainForm.resources
+C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.Properties.Resources.resources
+C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.resultPage.resources
+C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csproj.GenerateResource.Cache
+\\192.168.1.3\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.exe.config
+\\192.168.1.3\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.exe
+\\192.168.1.3\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.pdb
+\\192.168.1.3\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x64\msvcr100.dll
+\\192.168.1.3\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x64\SqlServerSpatial110.dll
+\\192.168.1.3\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x86\msvcr100.dll
+\\192.168.1.3\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x86\SqlServerSpatial110.dll
+\\192.168.1.3\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.exe
+\\192.168.1.3\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.pdb
+\\192.168.1.3\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache
+\\192.168.1.3\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.mainForm.resources
+\\192.168.1.3\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.Properties.Resources.resources
+\\192.168.1.3\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.resultPage.resources
+\\192.168.1.3\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csproj.GenerateResource.Cache
+E:\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.exe.config
+E:\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.exe
+E:\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.pdb
+E:\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x64\msvcr100.dll
+E:\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x64\SqlServerSpatial110.dll
+E:\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x86\msvcr100.dll
+E:\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x86\SqlServerSpatial110.dll
+E:\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.exe
+E:\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.pdb
+E:\TA-Project\Prototype\TA-Project\bin\Debug\MetroFramework.Design.pdb
+E:\TA-Project\Prototype\TA-Project\bin\Debug\MetroFramework.Fonts.pdb
+E:\TA-Project\Prototype\TA-Project\bin\Debug\netchartdir_cp.xml
+E:\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache
+E:\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.mainForm.resources
+E:\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.Properties.Resources.resources
+E:\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.resultPage.resources
+E:\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csproj.GenerateResource.Cache
+E:\New folder\Prototype\TA-Project\bin\Debug\MetroFramework.Design.pdb
+E:\New folder\Prototype\TA-Project\bin\Debug\MetroFramework.Fonts.pdb
+E:\New folder\Prototype\TA-Project\bin\Debug\netchartdir_cp.xml

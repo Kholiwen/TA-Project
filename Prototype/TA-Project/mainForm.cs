@@ -19,6 +19,7 @@ namespace TA_Project
     public partial class mainForm : MetroFramework.Forms.MetroForm
     {
         int a = 20;
+        string directoryPath = "";
         OleDbConnection oleCon;
         SqlConnection sqlCon;
 
@@ -44,10 +45,8 @@ namespace TA_Project
             //this.m_scrollingTextCtrl.Text = "Welcome to Customer Segmentation System!";
 
             label1.Font = new Font("Tahoma", 11, FontStyle.Regular);
-            label2.Font = new Font("Tahoma", 11, FontStyle.Regular);
             label3.Font = new Font("Tahoma", 11, FontStyle.Regular);
             label4.Font = new Font("Tahoma", 11, FontStyle.Regular);
-            metroComboBox1.SelectedIndex = 3;
             //DataTable _table = new DataTable();
             //_table.ReadXml(Application.StartupPath + @"\Data\test.xml");
             //metroGrid1.DataSource = _table;
@@ -56,7 +55,7 @@ namespace TA_Project
             metroGrid1.Font = new Font("Segoe UI", 11f, FontStyle.Regular, GraphicsUnit.Pixel);
             metroPanel2.Visible = false;
             metroPanel3.Visible = false;
-            metroButton2.Focus();
+            browseBtn.Focus();
             //chart1.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = true;
         }
         public string getName() { return "3D Scatter Chart (1)"; }
@@ -204,16 +203,16 @@ namespace TA_Project
 
         private void metroRadioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            if (metroRadioButton1.Checked == true)
+            if (batchRadioButton.Checked == true)
             {
-                metroTextBox1.Visible = true;
-                metroButton2.Visible = true;
-                metroLabel2.Visible = false;
+                fileTextBox.Visible = true;
+                browseBtn.Visible = true;
+                welcomeLbl.Visible = false;
             }
             else
             {
-                metroTextBox1.Visible = false;
-                metroButton2.Visible = false;
+                fileTextBox.Visible = false;
+                browseBtn.Visible = false;
             }
         }
 
@@ -223,7 +222,7 @@ namespace TA_Project
             metroLabel3.Text = "Clustering Options";
             metroPanel2.Visible = true;
             metroPanel3.Visible = false;
-            metroButton3.Focus();
+            processBtn.Focus();
         }
 
         private void mainForm_Load(object sender, EventArgs e)
@@ -249,25 +248,23 @@ namespace TA_Project
 
         private void metroButton2_Click(object sender, EventArgs e)
         {
-            Stream myStream = null;
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.InitialDirectory = "c:\\";
-            openFileDialog1.Filter = "txt files (*.txt)|*.txt|Excel Files (*.xls,*.xlsx)|*.xls;*.xlsx";
-            openFileDialog1.FilterIndex = 2;
-            openFileDialog1.RestoreDirectory = true;
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            if (browseBtn.Text == "Browse..")
+            {
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                openFileDialog1.ShowDialog();
+                openFileDialog1.Filter = "txt files (*.txt)|*.txt|Excel Files (*.xls,*.xlsx)|*.xls;*.xlsx";
+                openFileDialog1.FilterIndex = 2;
+                openFileDialog1.RestoreDirectory = true;
+                directoryPath = openFileDialog1.FileName;
+                fileTextBox.Text = directoryPath;
+                browseBtn.Text = "OK";
+            }
+            else if (browseBtn.Text == "OK")
             {
                 try
                 {
-                    if ((myStream = openFileDialog1.OpenFile()) != null)
+                    if (fileTextBox.Text != "")
                     {
-                        string directoryPath = openFileDialog1.FileName;
-                        using (myStream)
-                        {
-                            // Insert code to read the stream here.
-                        }
-                        metroTextBox1.Text = directoryPath;
                         insertExcelRecords(directoryPath);
                     }
                     metroGrid1.Visible = true;
@@ -276,12 +273,14 @@ namespace TA_Project
                 {
                     MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
                 }
+                fileTextBox.Text = "";
+                browseBtn.Text = "Browse..";
             }
         }
 
         private void metroTextBox1_ButtonClick(object sender, EventArgs e)
         {
-            metroTextBox1.Clear();
+            fileTextBox.Clear();
         }
 
 
@@ -336,10 +335,11 @@ namespace TA_Project
             int w = 2;
             int maxIter = 100;
             double tc = 0.00001;
-            int P0 = 0;
-            int t = 1;
-            cltr = Decimal.ToInt32(numericUpDown1.Value);
-            float[,] V = new float[cltr, 3];
+            double[] P = new double[maxIter];
+            P[0] = 0;
+            cltr = Decimal.ToInt32(clusterSizeNUD.Value);
+            double[,] V = new double[cltr, 3];
+            int ctr = 1;
             Random rnd = new Random();
 
             SqlConnection myConnection;
@@ -356,7 +356,7 @@ namespace TA_Project
             double[,] u = new double[dt.Rows.Count, cltr];
             for (int k = 0; k < cltr; k++)
             {
-                for (int i = 0; i < 100; i++)
+                for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     u[i, k] = rnd.NextDouble();
                 }
@@ -370,96 +370,83 @@ namespace TA_Project
             }
 
             //Fuzzy C-Means Method\\
-            float temp1 = 0, temp2 = 0;
-            for (int k = 0; k < cltr; k++)
+            double temp1 = 0, temp2 = 0, temp3 = 0, temp4 = 0, temp5 = 0, temp6 = 0, temp7 = 0, temp8 = 0, temp9 = 0;
+            do
             {
-                for (int j = 0; j < 3; j++)
+
+                for (int k = 0; k < cltr; k++)
                 {
-                    for (int i = 0; i < 100; i++)
+                    for (int j = 0; j < 3; j++)
                     {
-                        temp1 += Convert.ToSingle(Math.Pow(u[i,k], 2));
-                        temp2 += Convert.ToSingle(Math.Pow(u[i,k], 2) * X[i, j]);
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            temp1 += Math.Pow(u[i, k], w);
+                            temp2 += Math.Pow(u[i, k], w) * X[i, j];
+                        }
+                        V[k, j] = temp2 / temp1;
+                        temp1 = 0;
+                        temp2 = 0;
                     }
-                    V[k, j] = temp2 / temp1;
-                    temp1 = 0;
-                    temp2 = 0;
                 }
-            }
+
+                //Objective Function
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    for (int k = 0; k < cltr; k++)
+                    {
+                        for (int j = 0; j < 3; j++)
+                        {
+                            temp3 += Math.Pow(X[i, j] - V[k, j], w);
+                        }
+                        temp4 += temp3 * Math.Pow(u[i, k], 2);
+                        temp3 = 0;
+                    }
+                }
+                P[ctr] += temp4;
+                temp4 = 0;
+                //Membership degree\\
+
+
+
+
+                for (int k = 0; k < cltr; k++)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        for (int k2 = 0; k2 < cltr; k2++)
+                        {
+                            for (int j = 0; j < 3; j++)
+                            {
+                                temp5 += Math.Pow(X[i, j] - V[k, j], w);
+                                temp6 += Math.Pow(X[i, j] - V[k2, j], w);
+                            }
+                            temp7 = Math.Pow(temp5, -1);
+                            temp8 = Math.Pow(temp6, -1);
+                            temp9 += temp8;
+                            temp5 = 0;
+                            temp6 = 0;
+                        }
+                        u[i, k] = temp7 / temp9;
+                        temp7 = 0;
+                        temp8 = 0;
+                        temp9 = 0;
+                    }
+                }
+                ctr++;
+            } while (ctr < maxIter && Math.Abs((P[ctr-1] - P[ctr - 2])) > tc);
 
             metroPanel3.Visible = true;
             metroPanel1.Visible = false;
             metroPanel2.Visible = false;
             metroLabel3.Text = "Process";
+            Console.Out.WriteLine("Process Finished");
+            Console.Out.WriteLine(String.Format("{0:F5}", P[20]));
             chartThread();
-        }
-
-        private void metroComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (metroComboBox1.SelectedIndex == 0)
-            {
-                cSSDataSet1.Clear();
-                SqlConnection myConnection;
-                SqlCommand command = new SqlCommand();
-                string connectionString = TA_Project.Properties.Settings.Default.CSSConnectionString;
-                string query = "SELECT TOP 3 cType FROM custClass";
-                myConnection = new SqlConnection(connectionString);
-                command.CommandText = query;
-                command.CommandType = CommandType.Text;
-                command.Connection = myConnection;
-                custClassTableAdapter.ClearBeforeFill = true;
-                custClassTableAdapter.Adapter.SelectCommand = command;
-                custClassTableAdapter.Adapter.Fill(cSSDataSet1.custClass);
-            }
-            else if (metroComboBox1.SelectedIndex == 1)
-            {
-                cSSDataSet1.Clear();
-                SqlConnection myConnection;
-                SqlCommand command = new SqlCommand();
-                string connectionString = TA_Project.Properties.Settings.Default.CSSConnectionString;
-                string query = "SELECT TOP 4 cType FROM custClass";
-                myConnection = new SqlConnection(connectionString);
-                command.CommandText = query;
-                command.CommandType = CommandType.Text;
-                command.Connection = myConnection;
-                custClassTableAdapter.ClearBeforeFill = true;
-                custClassTableAdapter.Adapter.SelectCommand = command;
-                custClassTableAdapter.Adapter.Fill(cSSDataSet1.custClass);
-            }
-            else if (metroComboBox1.SelectedIndex == 2)
-            {
-                cSSDataSet1.Clear();
-                SqlConnection myConnection;
-                SqlCommand command = new SqlCommand();
-                string connectionString = TA_Project.Properties.Settings.Default.CSSConnectionString;
-                string query = "SELECT TOP 5 cType FROM custClass";
-                myConnection = new SqlConnection(connectionString);
-                command.CommandText = query;
-                command.CommandType = CommandType.Text;
-                command.Connection = myConnection;
-                custClassTableAdapter.ClearBeforeFill = true;
-                custClassTableAdapter.Adapter.SelectCommand = command;
-                custClassTableAdapter.Adapter.Fill(cSSDataSet1.custClass);
-            }
-            else if (metroComboBox1.SelectedIndex == 3)
-            {
-                cSSDataSet1.Clear();
-                SqlConnection myConnection;
-                SqlCommand command = new SqlCommand();
-                string connectionString = TA_Project.Properties.Settings.Default.CSSConnectionString;
-                string query = "SELECT TOP 6 cType FROM custClass";
-                myConnection = new SqlConnection(connectionString);
-                command.CommandText = query;
-                command.CommandType = CommandType.Text;
-                command.Connection = myConnection;
-                custClassTableAdapter.ClearBeforeFill = true;
-                custClassTableAdapter.Adapter.SelectCommand = command;
-                custClassTableAdapter.Adapter.Fill(cSSDataSet1.custClass);
-            }
         }
 
         private void metroRadioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            metroLabel2.Visible = false;
+            welcomeLbl.Visible = false;
             metroGrid1.Visible = true;
             metroGrid1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             metroGrid1.CurrentCell = metroGrid1.Rows[0].Cells[0];
@@ -468,12 +455,12 @@ namespace TA_Project
 
         private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
-            label5.Text = (trackBar1.Value + 1).ToString();
+            label5.Text = (criteriaTrackBar.Value + 1).ToString();
         }
 
         private void metroCheckBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (metroCheckBox1.Checked)
+            if (customCheckbox.Checked)
             {
                 panel1.Enabled = true;
                 panel2.Enabled = true;
@@ -506,7 +493,7 @@ namespace TA_Project
                 textBox25.Text = "";
                 textBox27.Text = "";
             }
-            else if (metroCheckBox1.Checked == false)
+            else if (customCheckbox.Checked == false)
             {
                 panel1.Enabled = false;
                 panel2.Enabled = false;
@@ -517,7 +504,7 @@ namespace TA_Project
 
         private void numericUpDown1_MouseDown(object sender, MouseEventArgs e)
         {
-            trackBar1.Focus();
+            criteriaTrackBar.Focus();
         }
     }
 }
