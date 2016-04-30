@@ -155,7 +155,7 @@ namespace TA_Project
             Hide();
         }
 
-        private void dataGridView2_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string custID = dataGridView2.Rows[dataGridView2.CurrentCell.RowIndex].Cells[0].Value.ToString();
             string custName = dataGridView2.Rows[dataGridView2.CurrentCell.RowIndex].Cells[1].Value.ToString();

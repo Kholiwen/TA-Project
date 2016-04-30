@@ -24,8 +24,8 @@ namespace TA_Project
         SqlConnection sqlCon;
         SqlDataAdapter sa;
         SqlCommand command;
-        String olesqlConn, excelQuery, sqlConn, query, delQuery;
         DataTable dt;
+        String olesqlConn, excelQuery, sqlConn, query, delQuery;
         int dataCtr;
         int result = 0, cltr = 0, t = 1;
         int[] custCltr;
@@ -33,6 +33,7 @@ namespace TA_Project
         string[] custName, custID;
         string directoryPath = "";
         int[,] rfmc;
+        double[] rfm;
         double[,] r;
         double[,] f;
         double[,] m;
@@ -462,6 +463,44 @@ namespace TA_Project
                 rfmprogressBar.ProgressBarStyle = ProgressBarStyle.Continuous;
                 rfmprogressBar.Visible = false;
                 fuzzyrfmTimerLabel.Location = new Point(163, 37);
+                query = "SELECT TOP 1 * FROM [CSS].[dbo].[historyIndex] order by historyID DESC";
+                sqlConnection();
+                sqlCon.Open();
+                dt = new DataTable();
+                command.CommandText = query;
+                command.CommandType = CommandType.Text;
+                command.Connection = sqlCon;
+                sa = new SqlDataAdapter(command);
+                sa.Fill(dt);
+                sqlCon.Close();
+                Rectangle bounds = this.Bounds;
+                using (Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height))
+                {
+                    using (Graphics g = Graphics.FromImage(bitmap))
+                    {
+                        g.CopyFromScreen(new Point(bounds.Left, bounds.Top), Point.Empty, bounds.Size);
+                    }
+                    bitmap.Save("../Screenshot/" + dt.Rows[0][0].ToString().Trim() + "_Chart" + ".jpg", ImageFormat.Jpeg);
+                }
+                query = "SELECT TOP 1 * FROM [CSS].[dbo].[historyIndex] order by historyID DESC";
+                sqlConnection();
+                sqlCon.Open();
+                dt = new DataTable();
+                command.CommandText = query;
+                command.CommandType = CommandType.Text;
+                command.Connection = sqlCon;
+                sa = new SqlDataAdapter(command);
+                sa.Fill(dt);
+                for (int i = 0; i < cltr; i++)
+                {
+                    string historyQuery = "INSERT historyDetail ([historyID] ,[clusterIndex],[recencyCentroid],[frequencyCentroid],[monetaryCentroid] ,[recencyDOM],[frequencyDOM],[monetaryDOM],[rfmScore] ,[clusterSegment]) VALUES ('" + dt.Rows[0][0].ToString() + "', '" + (i + 1) + "', '" + V[i, 0] + "', '" + V[i, 1] + "', '" + V[i, 2] + "', '" + r[i, 0] + "', '" + f[i, 0] + "', '" + m[i, 0] + "', '" + rfm[i] + "', '" + rfmv[i] + "')";
+                    command.CommandText = historyQuery;
+                    command.CommandType = CommandType.Text;
+                    command.Connection = sqlCon;
+                    command = new SqlCommand(historyQuery, sqlCon);
+                    command.ExecuteNonQuery();
+                }
+                sqlCon.Close();
             };
 
             rfmprogressBar.ProgressBarStyle = ProgressBarStyle.Marquee;
@@ -633,7 +672,7 @@ namespace TA_Project
         public void fuzzyRFM()
         {
             //Fuzzy RFM Method\\
-            double[] rfm = new double[cltr];
+            rfm = new double[cltr];
             double[] temp = new double[2];
             double g = 0.5;
 
@@ -1124,7 +1163,7 @@ namespace TA_Project
                             sqlCmd.CommandType = CommandType.StoredProcedure;
                             sqlCmd.Parameters.Add("@PROCDT", SqlDbType.DateTime).Value = fuzzycmeanstimeStart;
                             sqlCmd.Parameters.Add("@CLTR", SqlDbType.Int).Value = clusterSizeNUD.Value;
-                            sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Int).Value = t;
+                            sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Int).Value = t-1;
                             sqlCmd.Parameters.Add("@PERIOD", SqlDbType.Int).Value = periodTrackBar.Value;
                             result += sqlCmd.ExecuteNonQuery();
                         }
@@ -1181,6 +1220,10 @@ namespace TA_Project
                 {
                     Environment.Exit(0);
                 }
+            }
+            else
+            {
+                Environment.Exit(0);
             }
         }
 
@@ -1268,13 +1311,19 @@ namespace TA_Project
             metroPanel3.Visible = false;
             metroPanel2.Visible = false;
             metroPanel1.Visible = false;
+            for (int i = 0; i < metroGrid1.Rows.Count; i++)
+            {
+                if (Convert.ToInt32(metroGrid1.Rows[i].Cells[4].Value) == 1)
+                {
+                    metroGrid1.Rows[i].Cells[4].Style.Format = "# 'month'";
+                }
+            }
         }
 
         private void metroGrid1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            History his = new History();
+            History his = new History(metroGrid1.SelectedCells);
             his.Show();
-            this.Hide();
         }
 
         private void exitToolStrip_Click(object sender, EventArgs e)
@@ -1288,7 +1337,7 @@ namespace TA_Project
             }
             else
             {
-                System.Windows.Forms.Application.Exit();
+                Environment.Exit(0);
             }
         }
         //private void manualInputGrid_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
