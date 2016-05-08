@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ChartDirector;
 using System.Threading;
-//using scrollingText;
 
 namespace TA_Project
 {
@@ -22,34 +21,14 @@ namespace TA_Project
         string directoryPath = "";
         OleDbConnection oleCon;
         SqlConnection sqlCon;
-
         String oleConnectionString, query, sqlConn;
 
         public mainForm()
         {
             InitializeComponent();
-
-            //private scrollingText.scrollingTextCtrl m_scrollingTextCtrl;
-
-            ////Add these lines to your InitializeComponent() function call.
-            //this.m_scrollingTextCtrl = new scrollingText.scrollingTextCtrl(); 
-            ////
-            //// m_scrollingTextCtrl
-            ////
-            //this.m_scrollingTextCtrl.scrollingTextColor1 = System.Drawing.Color.Crimson;
-            //this.m_scrollingTextCtrl.scrollingTextColor2 = System.Drawing.Color.Gold;
-            //this.m_scrollingTextCtrl.Location = new System.Drawing.Point(24, 264);
-            //this.m_scrollingTextCtrl.Name = "m_scrollingTextCtrl";
-            //this.m_scrollingTextCtrl.Size = new System.Drawing.Size(240, 32);
-            //this.m_scrollingTextCtrl.TabIndex = 7;
-            //this.m_scrollingTextCtrl.Text = "Welcome to Customer Segmentation System!";
-
             label1.Font = new Font("Tahoma", 11, FontStyle.Regular);
             label3.Font = new Font("Tahoma", 11, FontStyle.Regular);
             label4.Font = new Font("Tahoma", 11, FontStyle.Regular);
-            //DataTable _table = new DataTable();
-            //_table.ReadXml(Application.StartupPath + @"\Data\test.xml");
-            //metroGrid1.DataSource = _table;
             WinChartViewer wc = new WinChartViewer();
             createChart(winChartViewer1, 1, a);
             metroGrid1.Font = new Font("Segoe UI", 11f, FontStyle.Regular, GraphicsUnit.Pixel);
@@ -60,19 +39,13 @@ namespace TA_Project
         }
         public string getName() { return "3D Scatter Chart (1)"; }
 
-        //Number of charts produced in this demo module
+        //Number of charts produced
         public int getNoOfCharts() { return 1; }
 
         //Main code for creating chart.
-        //Note: the argument chartIndex is unused because this demo only has 1 chart.
         public void createChart(WinChartViewer viewer, int chartIndex, int a)
         {
             this.a = a;
-            //// The XYZ data for the 3D scatter chart as 3 random data series
-            //RanSeries r = new RanSeries(0);
-            //double[] xData = r.getSeries2(100, 100, -10, 10);
-            //double[] yData = r.getSeries2(100, 0, 0, 20);
-            //double[] zData = r.getSeries2(100, 100, -10, 10);
 
             // The random XYZ data for the first 3D scatter group
             RanSeries r0 = new RanSeries(7);
@@ -103,11 +76,6 @@ namespace TA_Project
             // 360 x 360 x 270 pixels
             c.setPlotRegion(350, 280, 360, 360, 270);
 
-            // Add a scatter group to the chart using 11 pixels glass sphere symbols, in which the
-            // color depends on the z value of the symbol
-            //c.addScatterGroup(xData, yData, zData, "", Chart.GlassSphere2Shape, 11,
-            //    Chart.SameAsMainColor);
-
             // Set the elevation and rotation angles to 15 and 30 degrees
             c.setViewAngle(15, 30);
 
@@ -119,16 +87,6 @@ namespace TA_Project
             c.addScatterGroup(xData0, yData0, zData0, "1st Cluster", Chart.GlassSphere2Shape, 9, 0xff0000);
             c.addScatterGroup(xData1, yData1, zData1, "2nd Cluster", Chart.GlassSphere2Shape, 9, 0x00ff00);
             c.addScatterGroup(xData2, yData2, zData2, "3rd Cluster", Chart.GlassSphere2Shape, 9, 0x0000ff);
-
-
-            // Add a color axis (the legend) in which the left center is anchored at (645, 270). Set
-            // the length to 200 pixels and the labels on the right side.
-            //c.setColorAxis(645, 270, Chart.Left, 200, Chart.Right);
-
-            //// Set the x, y and z axis titles using 10 points Arial Bold font
-            //c.xAxis().setTitle("X-Axis Place Holder", "Arial Bold", 10);
-            //c.yAxis().setTitle("Y-Axis Place Holder", "Arial Bold", 10);
-            //c.zAxis().setTitle("Z-Axis Place Holder", "Arial Bold", 10);
 
             // Output the chart
             viewer.Chart = c;
@@ -147,7 +105,6 @@ namespace TA_Project
         {
             oleConnectionString = string.Format(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0 Xml;HDR=YES;""", filePath).ToString();
             oleCon = new OleDbConnection(oleConnectionString);
-
         }
 
         private void sqlConnection()
@@ -184,21 +141,9 @@ namespace TA_Project
                 }
             }
             MessageBox.Show(string.Format("{0} Rows have been affected", result), "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information); //Show how many rows were affected
-            //SqlBulkCopy objbulk = new SqlBulkCopy(sqlCon);
-            ////assigning Destination table name    
-            //objbulk.DestinationTableName = "dataTable";
-            ////Mapping Table column    
-            //objbulk.ColumnMappings.Add("Guest-Name", "Customer Name");
-            //objbulk.ColumnMappings.Add("Frequency", "Frequency");
-            //objbulk.ColumnMappings.Add("RmRate", "Total purchase");
-            //objbulk.ColumnMappings.Add("Depart", "Last purchase");
-            ////inserting Datatable Records to DataBase
-            //objbulk.WriteToServer(Exceldt);
             sqlCon.Close();
             cSSDataSet.Reset();
             dataTableTableAdapter.Fill(this.cSSDataSet.dataTable);
-
-
         }
 
         private void metroRadioButton1_CheckedChanged(object sender, EventArgs e)
@@ -231,11 +176,6 @@ namespace TA_Project
             this.custClassTableAdapter.Fill(this.cSSDataSet1.custClass);
             // TODO: This line of code loads data into the 'cSSDataSet.dataTable' table. You can move, or remove it, as needed.
             this.dataTableTableAdapter.Fill(this.cSSDataSet.dataTable);
-            // TODO: This line of code loads data into the 'cSSDataSet.dataTable' table. You can move, or remove it, as needed.
-            // TODO: This line of code loads data into the 'cSSDataSet.dataTable' table. You can move, or remove it, as needed.
-            //this.dataTableTableAdapter.Fill(this.cSSDataSet.dataTable);
-            // TODO: This line of code loads data into the 'cSSDataSet1.dataTable' table. You can move, or remove it, as needed.
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -283,7 +223,6 @@ namespace TA_Project
             fileTextBox.Clear();
         }
 
-
         // This method will be called when the thread is started. 
         public void DoWork()
         {
@@ -307,7 +246,6 @@ namespace TA_Project
         {
 
             // Create the thread object. This does not start the thread.
-
             Thread workerThread = new Thread(new System.Threading.ThreadStart(DoWork));
 
             // Start the worker thread.
@@ -316,6 +254,7 @@ namespace TA_Project
 
             // Loop until worker thread activates. 
             while (!workerThread.IsAlive) ;
+
             // Put the main thread to sleep for 1 millisecond to 
             // allow the worker thread to do some work:
             Thread.Sleep(1000);
@@ -373,7 +312,6 @@ namespace TA_Project
             double temp1 = 0, temp2 = 0, temp3 = 0, temp4 = 0, temp5 = 0, temp6 = 0, temp7 = 0, temp8 = 0, temp9 = 0;
             do
             {
-
                 for (int k = 0; k < cltr; k++)
                 {
                     for (int j = 0; j < 3; j++)
@@ -467,31 +405,31 @@ namespace TA_Project
                 panel3.Enabled = true;
 
                 Properties.Settings.Default.Save();
-                textBox2.Text = "";
-                textBox3.Text = "";
-                textBox4.Text = "";
-                textBox5.Text = "";
-                textBox6.Text = "";
-                textBox7.Text = "";
-                textBox8.Text = "";
+                recRCTLY1.Text = "";
+                recRCTLY2.Text = "";
+                recQLT1.Text = "";
+                recQLT2.Text = "";
+                recLT1.Text = "";
+                recLT2.Text = "";
+                recLTA.Text = "";
 
-                textBox10.Text = "";
-                textBox11.Text = "";
-                textBox12.Text = "";
-                textBox13.Text = "";
-                textBox14.Text = "";
-                textBox15.Text = "";
-                textBox17.Text = "";
+                freVR1.Text = "";
+                freVR2.Text = "";
+                freR2.Text = "";
+                freR1.Text = "";
+                freO2.Text = "";
+                freO1.Text = "";
+                freVO.Text = "";
 
-                textBox18.Text = "";
-                textBox19.Text = "";
-                textBox20.Text = "";
-                textBox21.Text = "";
-                textBox22.Text = "";
-                textBox23.Text = "";
-                textBox24.Text = "";
-                textBox25.Text = "";
-                textBox27.Text = "";
+                monVL2.Text = "";
+                monL2.Text = "";
+                monVL1.Text = "";
+                monM2.Text = "";
+                monH2.Text = "";
+                monL1.Text = "";
+                monM1.Text = "";
+                monH1.Text = "";
+                monVH.Text = "";
             }
             else if (customCheckbox.Checked == false)
             {
