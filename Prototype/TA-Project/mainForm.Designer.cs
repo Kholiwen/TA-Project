@@ -53,6 +53,10 @@
             this.browseBtn = new MetroFramework.Controls.MetroButton();
             this.manualRadioButton = new MetroFramework.Controls.MetroRadioButton();
             this.metroGrid1 = new MetroFramework.Controls.MetroGrid();
+            this.customerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.frequencyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalPurchaseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastPurchaseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -66,18 +70,18 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.textBox20 = new System.Windows.Forms.TextBox();
-            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.monVLlow = new System.Windows.Forms.TextBox();
+            this.monVLhigh = new System.Windows.Forms.TextBox();
             this.label40 = new System.Windows.Forms.Label();
-            this.textBox27 = new System.Windows.Forms.TextBox();
-            this.textBox25 = new System.Windows.Forms.TextBox();
+            this.monVH = new System.Windows.Forms.TextBox();
+            this.monHlow = new System.Windows.Forms.TextBox();
             this.label48 = new System.Windows.Forms.Label();
-            this.textBox19 = new System.Windows.Forms.TextBox();
-            this.textBox21 = new System.Windows.Forms.TextBox();
-            this.textBox24 = new System.Windows.Forms.TextBox();
+            this.monLhigh = new System.Windows.Forms.TextBox();
+            this.monMhigh = new System.Windows.Forms.TextBox();
+            this.monMlow = new System.Windows.Forms.TextBox();
             this.label42 = new System.Windows.Forms.Label();
-            this.textBox22 = new System.Windows.Forms.TextBox();
-            this.textBox23 = new System.Windows.Forms.TextBox();
+            this.monHhigh = new System.Windows.Forms.TextBox();
+            this.monLlow = new System.Windows.Forms.TextBox();
             this.label41 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -89,17 +93,17 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.freVO = new System.Windows.Forms.TextBox();
             this.label38 = new System.Windows.Forms.Label();
-            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.freOlow = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
-            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.freRlow = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.freOhigh = new System.Windows.Forms.TextBox();
+            this.freVRlow = new System.Windows.Forms.TextBox();
+            this.freRhigh = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.freVRhigh = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label29 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
@@ -107,18 +111,18 @@
             this.label28 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.recLThigh = new System.Windows.Forms.TextBox();
+            this.recRCNThigh = new System.Windows.Forms.TextBox();
+            this.recLTlow = new System.Windows.Forms.TextBox();
+            this.recRCNTlow = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.recLTA = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.recQLThigh = new System.Windows.Forms.TextBox();
+            this.recQLTlow = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.customCheckbox = new MetroFramework.Controls.MetroCheckBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -140,10 +144,6 @@
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
-            this.customerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.frequencyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalPurchaseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastPurchaseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet)).BeginInit();
@@ -390,6 +390,37 @@
             this.metroGrid1.TabIndex = 7;
             this.metroGrid1.Visible = false;
             // 
+            // customerNameDataGridViewTextBoxColumn
+            // 
+            this.customerNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.customerNameDataGridViewTextBoxColumn.DataPropertyName = "Customer Name";
+            this.customerNameDataGridViewTextBoxColumn.HeaderText = "Customer Name";
+            this.customerNameDataGridViewTextBoxColumn.Name = "customerNameDataGridViewTextBoxColumn";
+            this.customerNameDataGridViewTextBoxColumn.Width = 20;
+            // 
+            // frequencyDataGridViewTextBoxColumn
+            // 
+            this.frequencyDataGridViewTextBoxColumn.DataPropertyName = "Frequency";
+            this.frequencyDataGridViewTextBoxColumn.HeaderText = "Frequency";
+            this.frequencyDataGridViewTextBoxColumn.Name = "frequencyDataGridViewTextBoxColumn";
+            // 
+            // totalPurchaseDataGridViewTextBoxColumn
+            // 
+            this.totalPurchaseDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.totalPurchaseDataGridViewTextBoxColumn.DataPropertyName = "Total purchase";
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.totalPurchaseDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.totalPurchaseDataGridViewTextBoxColumn.HeaderText = "Total purchase";
+            this.totalPurchaseDataGridViewTextBoxColumn.Name = "totalPurchaseDataGridViewTextBoxColumn";
+            this.totalPurchaseDataGridViewTextBoxColumn.Width = 20;
+            // 
+            // lastPurchaseDataGridViewTextBoxColumn
+            // 
+            this.lastPurchaseDataGridViewTextBoxColumn.DataPropertyName = "Last purchase";
+            this.lastPurchaseDataGridViewTextBoxColumn.HeaderText = "Last purchase";
+            this.lastPurchaseDataGridViewTextBoxColumn.Name = "lastPurchaseDataGridViewTextBoxColumn";
+            // 
             // metroPanel2
             // 
             this.metroPanel2.Controls.Add(this.groupBox2);
@@ -434,18 +465,18 @@
             this.panel3.Controls.Add(this.label23);
             this.panel3.Controls.Add(this.label44);
             this.panel3.Controls.Add(this.label22);
-            this.panel3.Controls.Add(this.textBox20);
-            this.panel3.Controls.Add(this.textBox18);
+            this.panel3.Controls.Add(this.monVLlow);
+            this.panel3.Controls.Add(this.monVLhigh);
             this.panel3.Controls.Add(this.label40);
-            this.panel3.Controls.Add(this.textBox27);
-            this.panel3.Controls.Add(this.textBox25);
+            this.panel3.Controls.Add(this.monVH);
+            this.panel3.Controls.Add(this.monHlow);
             this.panel3.Controls.Add(this.label48);
-            this.panel3.Controls.Add(this.textBox19);
-            this.panel3.Controls.Add(this.textBox21);
-            this.panel3.Controls.Add(this.textBox24);
+            this.panel3.Controls.Add(this.monLhigh);
+            this.panel3.Controls.Add(this.monMhigh);
+            this.panel3.Controls.Add(this.monMlow);
             this.panel3.Controls.Add(this.label42);
-            this.panel3.Controls.Add(this.textBox22);
-            this.panel3.Controls.Add(this.textBox23);
+            this.panel3.Controls.Add(this.monHhigh);
+            this.panel3.Controls.Add(this.monLlow);
             this.panel3.Controls.Add(this.label41);
             this.panel3.Controls.Add(this.label43);
             this.panel3.Enabled = false;
@@ -468,9 +499,9 @@
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(62, 28);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(37, 13);
+            this.label20.Size = new System.Drawing.Size(27, 13);
             this.label20.TabIndex = 7;
-            this.label20.Text = "Rarely";
+            this.label20.Text = "Low";
             // 
             // label47
             // 
@@ -487,9 +518,9 @@
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(62, 6);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(61, 13);
+            this.label19.Size = new System.Drawing.Size(51, 13);
             this.label19.TabIndex = 6;
-            this.label19.Text = "Very Rarely";
+            this.label19.Text = "Very Low";
             // 
             // label46
             // 
@@ -506,9 +537,9 @@
             this.label21.AutoSize = true;
             this.label21.Location = new System.Drawing.Point(62, 50);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(33, 13);
+            this.label21.Size = new System.Drawing.Size(44, 13);
             this.label21.TabIndex = 8;
-            this.label21.Text = "Often";
+            this.label21.Text = "Medium";
             // 
             // label45
             // 
@@ -525,9 +556,9 @@
             this.label23.AutoSize = true;
             this.label23.Location = new System.Drawing.Point(62, 94);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(57, 13);
+            this.label23.Size = new System.Drawing.Size(53, 13);
             this.label23.TabIndex = 9;
-            this.label23.Text = "Very Often";
+            this.label23.Text = "Very High";
             // 
             // label44
             // 
@@ -544,29 +575,29 @@
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(62, 72);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(57, 13);
+            this.label22.Size = new System.Drawing.Size(29, 13);
             this.label22.TabIndex = 9;
-            this.label22.Text = "Very Often";
+            this.label22.Text = "High";
             // 
-            // textBox20
+            // monVLlow
             // 
-            this.textBox20.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox20.Location = new System.Drawing.Point(148, 3);
-            this.textBox20.MaxLength = 3;
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(32, 21);
-            this.textBox20.TabIndex = 12;
-            this.textBox20.Text = "0";
+            this.monVLlow.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monVLlow.Location = new System.Drawing.Point(148, 3);
+            this.monVLlow.MaxLength = 3;
+            this.monVLlow.Name = "monVLlow";
+            this.monVLlow.Size = new System.Drawing.Size(32, 21);
+            this.monVLlow.TabIndex = 12;
+            this.monVLlow.Text = "0";
             // 
-            // textBox18
+            // monVLhigh
             // 
-            this.textBox18.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox18.Location = new System.Drawing.Point(233, 3);
-            this.textBox18.MaxLength = 3;
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(32, 21);
-            this.textBox18.TabIndex = 13;
-            this.textBox18.Text = "5";
+            this.monVLhigh.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monVLhigh.Location = new System.Drawing.Point(233, 3);
+            this.monVLhigh.MaxLength = 3;
+            this.monVLhigh.Name = "monVLhigh";
+            this.monVLhigh.Size = new System.Drawing.Size(32, 21);
+            this.monVLhigh.TabIndex = 13;
+            this.monVLhigh.Text = "5";
             // 
             // label40
             // 
@@ -578,25 +609,25 @@
             this.label40.TabIndex = 11;
             this.label40.Text = "(M) <  m  <";
             // 
-            // textBox27
+            // monVH
             // 
-            this.textBox27.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox27.Location = new System.Drawing.Point(148, 91);
-            this.textBox27.MaxLength = 3;
-            this.textBox27.Name = "textBox27";
-            this.textBox27.Size = new System.Drawing.Size(32, 21);
-            this.textBox27.TabIndex = 20;
-            this.textBox27.Text = "19";
+            this.monVH.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monVH.Location = new System.Drawing.Point(148, 91);
+            this.monVH.MaxLength = 3;
+            this.monVH.Name = "monVH";
+            this.monVH.Size = new System.Drawing.Size(32, 21);
+            this.monVH.TabIndex = 20;
+            this.monVH.Text = "19";
             // 
-            // textBox25
+            // monHlow
             // 
-            this.textBox25.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox25.Location = new System.Drawing.Point(148, 69);
-            this.textBox25.MaxLength = 3;
-            this.textBox25.Name = "textBox25";
-            this.textBox25.Size = new System.Drawing.Size(32, 21);
-            this.textBox25.TabIndex = 18;
-            this.textBox25.Text = "14";
+            this.monHlow.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monHlow.Location = new System.Drawing.Point(148, 69);
+            this.monHlow.MaxLength = 3;
+            this.monHlow.Name = "monHlow";
+            this.monHlow.Size = new System.Drawing.Size(32, 21);
+            this.monHlow.TabIndex = 18;
+            this.monHlow.Text = "14";
             // 
             // label48
             // 
@@ -608,35 +639,35 @@
             this.label48.TabIndex = 11;
             this.label48.Text = "(M) <  m";
             // 
-            // textBox19
+            // monLhigh
             // 
-            this.textBox19.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox19.Location = new System.Drawing.Point(233, 25);
-            this.textBox19.MaxLength = 3;
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(32, 21);
-            this.textBox19.TabIndex = 15;
-            this.textBox19.Text = "10";
+            this.monLhigh.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monLhigh.Location = new System.Drawing.Point(233, 25);
+            this.monLhigh.MaxLength = 3;
+            this.monLhigh.Name = "monLhigh";
+            this.monLhigh.Size = new System.Drawing.Size(32, 21);
+            this.monLhigh.TabIndex = 15;
+            this.monLhigh.Text = "10";
             // 
-            // textBox21
+            // monMhigh
             // 
-            this.textBox21.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox21.Location = new System.Drawing.Point(233, 47);
-            this.textBox21.MaxLength = 3;
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(32, 21);
-            this.textBox21.TabIndex = 17;
-            this.textBox21.Text = "15";
+            this.monMhigh.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monMhigh.Location = new System.Drawing.Point(233, 47);
+            this.monMhigh.MaxLength = 3;
+            this.monMhigh.Name = "monMhigh";
+            this.monMhigh.Size = new System.Drawing.Size(32, 21);
+            this.monMhigh.TabIndex = 17;
+            this.monMhigh.Text = "15";
             // 
-            // textBox24
+            // monMlow
             // 
-            this.textBox24.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox24.Location = new System.Drawing.Point(148, 47);
-            this.textBox24.MaxLength = 3;
-            this.textBox24.Name = "textBox24";
-            this.textBox24.Size = new System.Drawing.Size(32, 21);
-            this.textBox24.TabIndex = 16;
-            this.textBox24.Text = "9";
+            this.monMlow.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monMlow.Location = new System.Drawing.Point(148, 47);
+            this.monMlow.MaxLength = 3;
+            this.monMlow.Name = "monMlow";
+            this.monMlow.Size = new System.Drawing.Size(32, 21);
+            this.monMlow.TabIndex = 16;
+            this.monMlow.Text = "9";
             // 
             // label42
             // 
@@ -648,25 +679,25 @@
             this.label42.TabIndex = 11;
             this.label42.Text = "(M) <  m  <";
             // 
-            // textBox22
+            // monHhigh
             // 
-            this.textBox22.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox22.Location = new System.Drawing.Point(234, 69);
-            this.textBox22.MaxLength = 3;
-            this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new System.Drawing.Size(31, 21);
-            this.textBox22.TabIndex = 19;
-            this.textBox22.Text = "20";
+            this.monHhigh.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monHhigh.Location = new System.Drawing.Point(234, 69);
+            this.monHhigh.MaxLength = 3;
+            this.monHhigh.Name = "monHhigh";
+            this.monHhigh.Size = new System.Drawing.Size(31, 21);
+            this.monHhigh.TabIndex = 19;
+            this.monHhigh.Text = "20";
             // 
-            // textBox23
+            // monLlow
             // 
-            this.textBox23.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox23.Location = new System.Drawing.Point(148, 25);
-            this.textBox23.MaxLength = 3;
-            this.textBox23.Name = "textBox23";
-            this.textBox23.Size = new System.Drawing.Size(32, 21);
-            this.textBox23.TabIndex = 14;
-            this.textBox23.Text = "4";
+            this.monLlow.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monLlow.Location = new System.Drawing.Point(148, 25);
+            this.monLlow.MaxLength = 3;
+            this.monLlow.Name = "monLlow";
+            this.monLlow.Size = new System.Drawing.Size(32, 21);
+            this.monLlow.TabIndex = 14;
+            this.monLlow.Text = "4";
             // 
             // label41
             // 
@@ -699,17 +730,17 @@
             this.panel2.Controls.Add(this.label16);
             this.panel2.Controls.Add(this.label18);
             this.panel2.Controls.Add(this.label17);
-            this.panel2.Controls.Add(this.textBox17);
+            this.panel2.Controls.Add(this.freVO);
             this.panel2.Controls.Add(this.label38);
-            this.panel2.Controls.Add(this.textBox15);
+            this.panel2.Controls.Add(this.freOlow);
             this.panel2.Controls.Add(this.label36);
-            this.panel2.Controls.Add(this.textBox13);
+            this.panel2.Controls.Add(this.freRlow);
             this.panel2.Controls.Add(this.label34);
-            this.panel2.Controls.Add(this.textBox14);
-            this.panel2.Controls.Add(this.textBox10);
-            this.panel2.Controls.Add(this.textBox12);
+            this.panel2.Controls.Add(this.freOhigh);
+            this.panel2.Controls.Add(this.freVRlow);
+            this.panel2.Controls.Add(this.freRhigh);
             this.panel2.Controls.Add(this.label32);
-            this.panel2.Controls.Add(this.textBox11);
+            this.panel2.Controls.Add(this.freVRhigh);
             this.panel2.Enabled = false;
             this.panel2.Location = new System.Drawing.Point(6, 129);
             this.panel2.Name = "panel2";
@@ -791,15 +822,15 @@
             this.label17.TabIndex = 8;
             this.label17.Text = "Often";
             // 
-            // textBox17
+            // freVO
             // 
-            this.textBox17.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox17.Location = new System.Drawing.Point(148, 72);
-            this.textBox17.MaxLength = 3;
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(32, 21);
-            this.textBox17.TabIndex = 17;
-            this.textBox17.Text = "40";
+            this.freVO.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.freVO.Location = new System.Drawing.Point(148, 72);
+            this.freVO.MaxLength = 3;
+            this.freVO.Name = "freVO";
+            this.freVO.Size = new System.Drawing.Size(32, 21);
+            this.freVO.TabIndex = 17;
+            this.freVO.Text = "40";
             // 
             // label38
             // 
@@ -811,15 +842,15 @@
             this.label38.TabIndex = 11;
             this.label38.Text = "(t) <  f";
             // 
-            // textBox15
+            // freOlow
             // 
-            this.textBox15.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox15.Location = new System.Drawing.Point(148, 49);
-            this.textBox15.MaxLength = 3;
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(32, 21);
-            this.textBox15.TabIndex = 15;
-            this.textBox15.Text = "25";
+            this.freOlow.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.freOlow.Location = new System.Drawing.Point(148, 49);
+            this.freOlow.MaxLength = 3;
+            this.freOlow.Name = "freOlow";
+            this.freOlow.Size = new System.Drawing.Size(32, 21);
+            this.freOlow.TabIndex = 15;
+            this.freOlow.Text = "25";
             // 
             // label36
             // 
@@ -831,15 +862,15 @@
             this.label36.TabIndex = 11;
             this.label36.Text = "(t) <  f  <";
             // 
-            // textBox13
+            // freRlow
             // 
-            this.textBox13.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox13.Location = new System.Drawing.Point(148, 26);
-            this.textBox13.MaxLength = 3;
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(32, 21);
-            this.textBox13.TabIndex = 13;
-            this.textBox13.Text = "10";
+            this.freRlow.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.freRlow.Location = new System.Drawing.Point(148, 26);
+            this.freRlow.MaxLength = 3;
+            this.freRlow.Name = "freRlow";
+            this.freRlow.Size = new System.Drawing.Size(32, 21);
+            this.freRlow.TabIndex = 13;
+            this.freRlow.Text = "10";
             // 
             // label34
             // 
@@ -851,35 +882,35 @@
             this.label34.TabIndex = 11;
             this.label34.Text = "(t) <  f  <";
             // 
-            // textBox14
+            // freOhigh
             // 
-            this.textBox14.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox14.Location = new System.Drawing.Point(233, 49);
-            this.textBox14.MaxLength = 3;
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(32, 21);
-            this.textBox14.TabIndex = 16;
-            this.textBox14.Text = "45";
+            this.freOhigh.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.freOhigh.Location = new System.Drawing.Point(233, 49);
+            this.freOhigh.MaxLength = 3;
+            this.freOhigh.Name = "freOhigh";
+            this.freOhigh.Size = new System.Drawing.Size(32, 21);
+            this.freOhigh.TabIndex = 16;
+            this.freOhigh.Text = "45";
             // 
-            // textBox10
+            // freVRlow
             // 
-            this.textBox10.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox10.Location = new System.Drawing.Point(148, 3);
-            this.textBox10.MaxLength = 3;
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(32, 21);
-            this.textBox10.TabIndex = 11;
-            this.textBox10.Text = "0";
+            this.freVRlow.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.freVRlow.Location = new System.Drawing.Point(148, 3);
+            this.freVRlow.MaxLength = 3;
+            this.freVRlow.Name = "freVRlow";
+            this.freVRlow.Size = new System.Drawing.Size(32, 21);
+            this.freVRlow.TabIndex = 11;
+            this.freVRlow.Text = "0";
             // 
-            // textBox12
+            // freRhigh
             // 
-            this.textBox12.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox12.Location = new System.Drawing.Point(233, 26);
-            this.textBox12.MaxLength = 3;
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(32, 21);
-            this.textBox12.TabIndex = 14;
-            this.textBox12.Text = "30";
+            this.freRhigh.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.freRhigh.Location = new System.Drawing.Point(233, 26);
+            this.freRhigh.MaxLength = 3;
+            this.freRhigh.Name = "freRhigh";
+            this.freRhigh.Size = new System.Drawing.Size(32, 21);
+            this.freRhigh.TabIndex = 14;
+            this.freRhigh.Text = "30";
             // 
             // label32
             // 
@@ -891,15 +922,15 @@
             this.label32.TabIndex = 11;
             this.label32.Text = "(t) <  f  <";
             // 
-            // textBox11
+            // freVRhigh
             // 
-            this.textBox11.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox11.Location = new System.Drawing.Point(233, 3);
-            this.textBox11.MaxLength = 3;
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(32, 21);
-            this.textBox11.TabIndex = 12;
-            this.textBox11.Text = "15";
+            this.freVRhigh.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.freVRhigh.Location = new System.Drawing.Point(233, 3);
+            this.freVRhigh.MaxLength = 3;
+            this.freVRhigh.Name = "freVRhigh";
+            this.freVRhigh.Size = new System.Drawing.Size(32, 21);
+            this.freVRhigh.TabIndex = 12;
+            this.freVRhigh.Text = "15";
             // 
             // panel1
             // 
@@ -910,18 +941,18 @@
             this.panel1.Controls.Add(this.label28);
             this.panel1.Controls.Add(this.label26);
             this.panel1.Controls.Add(this.label24);
-            this.panel1.Controls.Add(this.textBox7);
-            this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.textBox6);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.recLThigh);
+            this.panel1.Controls.Add(this.recRCNThigh);
+            this.panel1.Controls.Add(this.recLTlow);
+            this.panel1.Controls.Add(this.recRCNTlow);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.label14);
-            this.panel1.Controls.Add(this.textBox8);
+            this.panel1.Controls.Add(this.recLTA);
             this.panel1.Controls.Add(this.label30);
-            this.panel1.Controls.Add(this.textBox5);
-            this.panel1.Controls.Add(this.textBox4);
+            this.panel1.Controls.Add(this.recQLThigh);
+            this.panel1.Controls.Add(this.recQLTlow);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Enabled = false;
             this.panel1.Location = new System.Drawing.Point(6, 29);
@@ -989,45 +1020,45 @@
             this.label24.TabIndex = 11;
             this.label24.Text = "(d) <  r  <";
             // 
-            // textBox7
+            // recLThigh
             // 
-            this.textBox7.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(234, 26);
-            this.textBox7.MaxLength = 3;
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(32, 21);
-            this.textBox7.TabIndex = 12;
-            this.textBox7.Text = "21";
+            this.recLThigh.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recLThigh.Location = new System.Drawing.Point(234, 26);
+            this.recLThigh.MaxLength = 3;
+            this.recLThigh.Name = "recLThigh";
+            this.recLThigh.Size = new System.Drawing.Size(32, 21);
+            this.recLThigh.TabIndex = 12;
+            this.recLThigh.Text = "21";
             // 
-            // textBox3
+            // recRCNThigh
             // 
-            this.textBox3.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(234, 70);
-            this.textBox3.MaxLength = 3;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(32, 21);
-            this.textBox3.TabIndex = 16;
-            this.textBox3.Text = "7";
+            this.recRCNThigh.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recRCNThigh.Location = new System.Drawing.Point(234, 70);
+            this.recRCNThigh.MaxLength = 3;
+            this.recRCNThigh.Name = "recRCNThigh";
+            this.recRCNThigh.Size = new System.Drawing.Size(32, 21);
+            this.recRCNThigh.TabIndex = 16;
+            this.recRCNThigh.Text = "7";
             // 
-            // textBox6
+            // recLTlow
             // 
-            this.textBox6.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(148, 26);
-            this.textBox6.MaxLength = 3;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(32, 21);
-            this.textBox6.TabIndex = 11;
-            this.textBox6.Text = "13";
+            this.recLTlow.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recLTlow.Location = new System.Drawing.Point(148, 26);
+            this.recLTlow.MaxLength = 3;
+            this.recLTlow.Name = "recLTlow";
+            this.recLTlow.Size = new System.Drawing.Size(32, 21);
+            this.recLTlow.TabIndex = 11;
+            this.recLTlow.Text = "13";
             // 
-            // textBox2
+            // recRCNTlow
             // 
-            this.textBox2.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(148, 70);
-            this.textBox2.MaxLength = 3;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(32, 21);
-            this.textBox2.TabIndex = 15;
-            this.textBox2.Text = "0";
+            this.recRCNTlow.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recRCNTlow.Location = new System.Drawing.Point(148, 70);
+            this.recRCNTlow.MaxLength = 3;
+            this.recRCNTlow.Name = "recRCNTlow";
+            this.recRCNTlow.Size = new System.Drawing.Size(32, 21);
+            this.recRCNTlow.TabIndex = 15;
+            this.recRCNTlow.Text = "0";
             // 
             // label8
             // 
@@ -1041,7 +1072,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(63, 73);
+            this.label11.Location = new System.Drawing.Point(60, 73);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(49, 13);
             this.label11.TabIndex = 6;
@@ -1065,15 +1096,15 @@
             this.label14.TabIndex = 9;
             this.label14.Text = "Long Time Ago";
             // 
-            // textBox8
+            // recLTA
             // 
-            this.textBox8.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox8.Location = new System.Drawing.Point(148, 4);
-            this.textBox8.MaxLength = 3;
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(32, 21);
-            this.textBox8.TabIndex = 10;
-            this.textBox8.Text = "20";
+            this.recLTA.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recLTA.Location = new System.Drawing.Point(148, 4);
+            this.recLTA.MaxLength = 3;
+            this.recLTA.Name = "recLTA";
+            this.recLTA.Size = new System.Drawing.Size(32, 21);
+            this.recLTA.TabIndex = 10;
+            this.recLTA.Text = "20";
             // 
             // label30
             // 
@@ -1085,25 +1116,25 @@
             this.label30.TabIndex = 11;
             this.label30.Text = "(d) <  r ";
             // 
-            // textBox5
+            // recQLThigh
             // 
-            this.textBox5.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(234, 48);
-            this.textBox5.MaxLength = 3;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(32, 21);
-            this.textBox5.TabIndex = 14;
-            this.textBox5.Text = "14";
+            this.recQLThigh.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recQLThigh.Location = new System.Drawing.Point(234, 48);
+            this.recQLThigh.MaxLength = 3;
+            this.recQLThigh.Name = "recQLThigh";
+            this.recQLThigh.Size = new System.Drawing.Size(32, 21);
+            this.recQLThigh.TabIndex = 14;
+            this.recQLThigh.Text = "14";
             // 
-            // textBox4
+            // recQLTlow
             // 
-            this.textBox4.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(148, 48);
-            this.textBox4.MaxLength = 3;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(32, 21);
-            this.textBox4.TabIndex = 13;
-            this.textBox4.Text = "6";
+            this.recQLTlow.Font = new System.Drawing.Font("Verdana", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recQLTlow.Location = new System.Drawing.Point(148, 48);
+            this.recQLTlow.MaxLength = 3;
+            this.recQLTlow.Name = "recQLTlow";
+            this.recQLTlow.Size = new System.Drawing.Size(32, 21);
+            this.recQLTlow.TabIndex = 13;
+            this.recQLTlow.Text = "6";
             // 
             // label12
             // 
@@ -1349,37 +1380,6 @@
             this.lineShape1.Y1 = 26;
             this.lineShape1.Y2 = 26;
             // 
-            // customerNameDataGridViewTextBoxColumn
-            // 
-            this.customerNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.customerNameDataGridViewTextBoxColumn.DataPropertyName = "Customer Name";
-            this.customerNameDataGridViewTextBoxColumn.HeaderText = "Customer Name";
-            this.customerNameDataGridViewTextBoxColumn.Name = "customerNameDataGridViewTextBoxColumn";
-            this.customerNameDataGridViewTextBoxColumn.Width = 20;
-            // 
-            // frequencyDataGridViewTextBoxColumn
-            // 
-            this.frequencyDataGridViewTextBoxColumn.DataPropertyName = "Frequency";
-            this.frequencyDataGridViewTextBoxColumn.HeaderText = "Frequency";
-            this.frequencyDataGridViewTextBoxColumn.Name = "frequencyDataGridViewTextBoxColumn";
-            // 
-            // totalPurchaseDataGridViewTextBoxColumn
-            // 
-            this.totalPurchaseDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.totalPurchaseDataGridViewTextBoxColumn.DataPropertyName = "Total purchase";
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.totalPurchaseDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.totalPurchaseDataGridViewTextBoxColumn.HeaderText = "Total purchase";
-            this.totalPurchaseDataGridViewTextBoxColumn.Name = "totalPurchaseDataGridViewTextBoxColumn";
-            this.totalPurchaseDataGridViewTextBoxColumn.Width = 20;
-            // 
-            // lastPurchaseDataGridViewTextBoxColumn
-            // 
-            this.lastPurchaseDataGridViewTextBoxColumn.DataPropertyName = "Last purchase";
-            this.lastPurchaseDataGridViewTextBoxColumn.HeaderText = "Last purchase";
-            this.lastPurchaseDataGridViewTextBoxColumn.Name = "lastPurchaseDataGridViewTextBoxColumn";
-            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1389,14 +1389,14 @@
             this.BackMaxSize = 50;
             this.ClientSize = new System.Drawing.Size(580, 480);
             this.Controls.Add(this.metroLabel3);
-            this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.metroPanel2);
             this.Controls.Add(this.metroPanel3);
+            this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.shapeContainer1);
             this.MaximizeBox = false;
             this.Name = "mainForm";
             this.Resizable = false;
-            this.Text = "      Customer Segmentation System";
+            this.Text = "      Customer Segmentation Application";
             this.Load += new System.EventHandler(this.mainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableBindingSource)).EndInit();
@@ -1457,18 +1457,18 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TextBox textBox20;
-        private System.Windows.Forms.TextBox textBox18;
+        private System.Windows.Forms.TextBox monVLlow;
+        private System.Windows.Forms.TextBox monVLhigh;
         private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.TextBox textBox27;
-        private System.Windows.Forms.TextBox textBox25;
+        private System.Windows.Forms.TextBox monVH;
+        private System.Windows.Forms.TextBox monHlow;
         private System.Windows.Forms.Label label48;
-        private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.TextBox textBox21;
-        private System.Windows.Forms.TextBox textBox24;
+        private System.Windows.Forms.TextBox monLhigh;
+        private System.Windows.Forms.TextBox monMhigh;
+        private System.Windows.Forms.TextBox monMlow;
         private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.TextBox textBox22;
-        private System.Windows.Forms.TextBox textBox23;
+        private System.Windows.Forms.TextBox monHhigh;
+        private System.Windows.Forms.TextBox monLlow;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Panel panel2;
@@ -1480,17 +1480,17 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox textBox17;
+        private System.Windows.Forms.TextBox freVO;
         private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.TextBox freOlow;
         private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.TextBox freRlow;
         private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox freOhigh;
+        private System.Windows.Forms.TextBox freVRlow;
+        private System.Windows.Forms.TextBox freRhigh;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox freVRhigh;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label27;
@@ -1498,18 +1498,18 @@
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox recLThigh;
+        private System.Windows.Forms.TextBox recRCNThigh;
+        private System.Windows.Forms.TextBox recLTlow;
+        private System.Windows.Forms.TextBox recRCNTlow;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox recLTA;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox recQLThigh;
+        private System.Windows.Forms.TextBox recQLTlow;
         private System.Windows.Forms.Label label12;
         private MetroFramework.Controls.MetroCheckBox customCheckbox;
         private System.Windows.Forms.Label label7;

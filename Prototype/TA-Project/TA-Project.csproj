@@ -94,6 +94,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CSSDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="CSSDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CSSDataSet2.xsd</DependentUpon>
+    </Compile>
     <Compile Include="resultPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +152,17 @@
     </None>
     <None Include="CSSDataSet1.xss">
       <DependentUpon>CSSDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="CSSDataSet2.xsc">
+      <DependentUpon>CSSDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="CSSDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CSSDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CSSDataSet2.xss">
+      <DependentUpon>CSSDataSet2.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -53,7 +53,6 @@ C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerType
 C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x86\SqlServerSpatial110.dll
 C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.exe
 C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.pdb
-C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache
 C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.mainForm.resources
 C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.Properties.Resources.resources
 C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.resultPage.resources
@@ -92,3 +91,4 @@ E:\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csproj.GenerateResource.
 E:\New folder\Prototype\TA-Project\bin\Debug\MetroFramework.Design.pdb
 E:\New folder\Prototype\TA-Project\bin\Debug\MetroFramework.Fonts.pdb
 E:\New folder\Prototype\TA-Project\bin\Debug\netchartdir_cp.xml
+C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache
