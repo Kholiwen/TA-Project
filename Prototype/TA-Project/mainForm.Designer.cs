@@ -37,11 +37,11 @@
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
             this.dataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cSSDataSet = new TA_Project.CSSDataSet();
-            this.custClassBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.segmentStrategyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cSSDataSet1 = new TA_Project.CSSDataSet1();
             this.dataTableTableAdapter = new TA_Project.CSSDataSetTableAdapters.dataTableTableAdapter();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.custClassTableAdapter = new TA_Project.CSSDataSet1TableAdapters.custClassTableAdapter();
+            this.segmentStrategyTableAdapter = new TA_Project.CSSDataSet1TableAdapters.segmentStrategyTableAdapter();
             this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
             this.winChartViewer1 = new ChartDirector.WinChartViewer();
             this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
@@ -147,7 +147,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.custClassBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.segmentStrategyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.winChartViewer1)).BeginInit();
             this.metroPanel1.SuspendLayout();
@@ -177,10 +177,10 @@
             this.cSSDataSet.DataSetName = "CSSDataSet";
             this.cSSDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // custClassBindingSource
+            // segmentStrategyBindingSource
             // 
-            this.custClassBindingSource.DataMember = "custClass";
-            this.custClassBindingSource.DataSource = this.cSSDataSet1;
+            this.segmentStrategyBindingSource.DataMember = "segmentStrategy";
+            this.segmentStrategyBindingSource.DataSource = this.cSSDataSet1;
             // 
             // cSSDataSet1
             // 
@@ -195,9 +195,9 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // custClassTableAdapter
+            // segmentStrategyTableAdapter
             // 
-            this.custClassTableAdapter.ClearBeforeFill = true;
+            this.segmentStrategyTableAdapter.ClearBeforeFill = true;
             // 
             // metroToolTip1
             // 
@@ -1193,7 +1193,7 @@
             this.clusterSizeNUD.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.clusterSizeNUD.Location = new System.Drawing.Point(114, 52);
             this.clusterSizeNUD.Maximum = new decimal(new int[] {
-            6,
+            20,
             0,
             0,
             0});
@@ -1401,7 +1401,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.custClassBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.segmentStrategyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.winChartViewer1)).EndInit();
             this.metroPanel1.ResumeLayout(false);
@@ -1435,8 +1435,8 @@
         private CSSDataSetTableAdapters.dataTableTableAdapter dataTableTableAdapter;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private CSSDataSet1 cSSDataSet1;
-        private System.Windows.Forms.BindingSource custClassBindingSource;
-        private CSSDataSet1TableAdapters.custClassTableAdapter custClassTableAdapter;
+        private System.Windows.Forms.BindingSource segmentStrategyBindingSource;
+        private CSSDataSet1TableAdapters.segmentStrategyTableAdapter segmentStrategyTableAdapter;
         private MetroFramework.Components.MetroToolTip metroToolTip1;
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private MetroFramework.Controls.MetroPanel metroPanel3;

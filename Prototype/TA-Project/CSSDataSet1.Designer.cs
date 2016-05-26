@@ -24,7 +24,7 @@ namespace TA_Project {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class CSSDataSet1 : global::System.Data.DataSet {
         
-        private custClassDataTable tablecustClass;
+        private segmentStrategyDataTable tablesegmentStrategy;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -54,8 +54,8 @@ namespace TA_Project {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["custClass"] != null)) {
-                    base.Tables.Add(new custClassDataTable(ds.Tables["custClass"]));
+                if ((ds.Tables["segmentStrategy"] != null)) {
+                    base.Tables.Add(new segmentStrategyDataTable(ds.Tables["segmentStrategy"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace TA_Project {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public custClassDataTable custClass {
+        public segmentStrategyDataTable segmentStrategy {
             get {
-                return this.tablecustClass;
+                return this.tablesegmentStrategy;
             }
         }
         
@@ -152,8 +152,8 @@ namespace TA_Project {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["custClass"] != null)) {
-                    base.Tables.Add(new custClassDataTable(ds.Tables["custClass"]));
+                if ((ds.Tables["segmentStrategy"] != null)) {
+                    base.Tables.Add(new segmentStrategyDataTable(ds.Tables["segmentStrategy"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace TA_Project {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tablecustClass = ((custClassDataTable)(base.Tables["custClass"]));
+            this.tablesegmentStrategy = ((segmentStrategyDataTable)(base.Tables["segmentStrategy"]));
             if ((initTable == true)) {
-                if ((this.tablecustClass != null)) {
-                    this.tablecustClass.InitVars();
+                if ((this.tablesegmentStrategy != null)) {
+                    this.tablesegmentStrategy.InitVars();
                 }
             }
         }
@@ -204,13 +204,13 @@ namespace TA_Project {
             this.Namespace = "http://tempuri.org/CSSDataSet1.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tablecustClass = new custClassDataTable();
-            base.Tables.Add(this.tablecustClass);
+            this.tablesegmentStrategy = new segmentStrategyDataTable();
+            base.Tables.Add(this.tablesegmentStrategy);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializecustClass() {
+        private bool ShouldSerializesegmentStrategy() {
             return false;
         }
         
@@ -270,21 +270,21 @@ namespace TA_Project {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void custClassRowChangeEventHandler(object sender, custClassRowChangeEvent e);
+        public delegate void segmentStrategyRowChangeEventHandler(object sender, segmentStrategyRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class custClassDataTable : global::System.Data.TypedTableBase<custClassRow> {
+        public partial class segmentStrategyDataTable : global::System.Data.TypedTableBase<segmentStrategyRow> {
             
             private global::System.Data.DataColumn columncType;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public custClassDataTable() {
-                this.TableName = "custClass";
+            public segmentStrategyDataTable() {
+                this.TableName = "segmentStrategy";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -292,7 +292,7 @@ namespace TA_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal custClassDataTable(global::System.Data.DataTable table) {
+            internal segmentStrategyDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -309,7 +309,7 @@ namespace TA_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected custClassDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected segmentStrategyDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -333,45 +333,45 @@ namespace TA_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public custClassRow this[int index] {
+            public segmentStrategyRow this[int index] {
                 get {
-                    return ((custClassRow)(this.Rows[index]));
+                    return ((segmentStrategyRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event custClassRowChangeEventHandler custClassRowChanging;
+            public event segmentStrategyRowChangeEventHandler segmentStrategyRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event custClassRowChangeEventHandler custClassRowChanged;
+            public event segmentStrategyRowChangeEventHandler segmentStrategyRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event custClassRowChangeEventHandler custClassRowDeleting;
+            public event segmentStrategyRowChangeEventHandler segmentStrategyRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event custClassRowChangeEventHandler custClassRowDeleted;
+            public event segmentStrategyRowChangeEventHandler segmentStrategyRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddcustClassRow(custClassRow row) {
+            public void AddsegmentStrategyRow(segmentStrategyRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public custClassRow AddcustClassRow(string cType) {
-                custClassRow rowcustClassRow = ((custClassRow)(this.NewRow()));
+            public segmentStrategyRow AddsegmentStrategyRow(string cType) {
+                segmentStrategyRow rowsegmentStrategyRow = ((segmentStrategyRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         cType};
-                rowcustClassRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowcustClassRow);
-                return rowcustClassRow;
+                rowsegmentStrategyRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowsegmentStrategyRow);
+                return rowsegmentStrategyRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                custClassDataTable cln = ((custClassDataTable)(base.Clone()));
+                segmentStrategyDataTable cln = ((segmentStrategyDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -379,7 +379,7 @@ namespace TA_Project {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new custClassDataTable();
+                return new segmentStrategyDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -398,28 +398,28 @@ namespace TA_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public custClassRow NewcustClassRow() {
-                return ((custClassRow)(this.NewRow()));
+            public segmentStrategyRow NewsegmentStrategyRow() {
+                return ((segmentStrategyRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new custClassRow(builder);
+                return new segmentStrategyRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(custClassRow);
+                return typeof(segmentStrategyRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.custClassRowChanged != null)) {
-                    this.custClassRowChanged(this, new custClassRowChangeEvent(((custClassRow)(e.Row)), e.Action));
+                if ((this.segmentStrategyRowChanged != null)) {
+                    this.segmentStrategyRowChanged(this, new segmentStrategyRowChangeEvent(((segmentStrategyRow)(e.Row)), e.Action));
                 }
             }
             
@@ -427,8 +427,8 @@ namespace TA_Project {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.custClassRowChanging != null)) {
-                    this.custClassRowChanging(this, new custClassRowChangeEvent(((custClassRow)(e.Row)), e.Action));
+                if ((this.segmentStrategyRowChanging != null)) {
+                    this.segmentStrategyRowChanging(this, new segmentStrategyRowChangeEvent(((segmentStrategyRow)(e.Row)), e.Action));
                 }
             }
             
@@ -436,8 +436,8 @@ namespace TA_Project {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.custClassRowDeleted != null)) {
-                    this.custClassRowDeleted(this, new custClassRowChangeEvent(((custClassRow)(e.Row)), e.Action));
+                if ((this.segmentStrategyRowDeleted != null)) {
+                    this.segmentStrategyRowDeleted(this, new segmentStrategyRowChangeEvent(((segmentStrategyRow)(e.Row)), e.Action));
                 }
             }
             
@@ -445,14 +445,14 @@ namespace TA_Project {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.custClassRowDeleting != null)) {
-                    this.custClassRowDeleting(this, new custClassRowChangeEvent(((custClassRow)(e.Row)), e.Action));
+                if ((this.segmentStrategyRowDeleting != null)) {
+                    this.segmentStrategyRowDeleting(this, new segmentStrategyRowChangeEvent(((segmentStrategyRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemovecustClassRow(custClassRow row) {
+            public void RemovesegmentStrategyRow(segmentStrategyRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -479,7 +479,7 @@ namespace TA_Project {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "custClassDataTable";
+                attribute2.FixedValue = "segmentStrategyDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -523,15 +523,15 @@ namespace TA_Project {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class custClassRow : global::System.Data.DataRow {
+        public partial class segmentStrategyRow : global::System.Data.DataRow {
             
-            private custClassDataTable tablecustClass;
+            private segmentStrategyDataTable tablesegmentStrategy;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal custClassRow(global::System.Data.DataRowBuilder rb) : 
+            internal segmentStrategyRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tablecustClass = ((custClassDataTable)(this.Table));
+                this.tablesegmentStrategy = ((segmentStrategyDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -539,27 +539,27 @@ namespace TA_Project {
             public string cType {
                 get {
                     try {
-                        return ((string)(this[this.tablecustClass.cTypeColumn]));
+                        return ((string)(this[this.tablesegmentStrategy.cTypeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'cType\' in table \'custClass\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'cType\' in table \'segmentStrategy\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablecustClass.cTypeColumn] = value;
+                    this[this.tablesegmentStrategy.cTypeColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IscTypeNull() {
-                return this.IsNull(this.tablecustClass.cTypeColumn);
+                return this.IsNull(this.tablesegmentStrategy.cTypeColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetcTypeNull() {
-                this[this.tablecustClass.cTypeColumn] = global::System.Convert.DBNull;
+                this[this.tablesegmentStrategy.cTypeColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -567,22 +567,22 @@ namespace TA_Project {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class custClassRowChangeEvent : global::System.EventArgs {
+        public class segmentStrategyRowChangeEvent : global::System.EventArgs {
             
-            private custClassRow eventRow;
+            private segmentStrategyRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public custClassRowChangeEvent(custClassRow row, global::System.Data.DataRowAction action) {
+            public segmentStrategyRowChangeEvent(segmentStrategyRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public custClassRow Row {
+            public segmentStrategyRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -610,7 +610,7 @@ namespace TA_Project.CSSDataSet1TableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class custClassTableAdapter : global::System.ComponentModel.Component {
+    public partial class segmentStrategyTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -624,7 +624,7 @@ namespace TA_Project.CSSDataSet1TableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public custClassTableAdapter() {
+        public segmentStrategyTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -721,12 +721,12 @@ namespace TA_Project.CSSDataSet1TableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "custClass";
+            tableMapping.DataSetTable = "segmentStrategy";
             tableMapping.ColumnMappings.Add("cType", "cType");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[custClass] ([cType]) VALUES (@cType)";
+            this._adapter.InsertCommand.CommandText = "";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cType", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -744,7 +744,7 @@ namespace TA_Project.CSSDataSet1TableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT cType FROM dbo.custClass";
+            this._commandCollection[0].CommandText = "SELECT cType FROM dbo.segmentStrategy";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -752,7 +752,7 @@ namespace TA_Project.CSSDataSet1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(CSSDataSet1.custClassDataTable dataTable) {
+        public virtual int Fill(CSSDataSet1.segmentStrategyDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -765,9 +765,9 @@ namespace TA_Project.CSSDataSet1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual CSSDataSet1.custClassDataTable GetData() {
+        public virtual CSSDataSet1.segmentStrategyDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            CSSDataSet1.custClassDataTable dataTable = new CSSDataSet1.custClassDataTable();
+            CSSDataSet1.segmentStrategyDataTable dataTable = new CSSDataSet1.segmentStrategyDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -775,7 +775,7 @@ namespace TA_Project.CSSDataSet1TableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(CSSDataSet1.custClassDataTable dataTable) {
+        public virtual int Update(CSSDataSet1.segmentStrategyDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
@@ -783,7 +783,7 @@ namespace TA_Project.CSSDataSet1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(CSSDataSet1 dataSet) {
-            return this.Adapter.Update(dataSet, "custClass");
+            return this.Adapter.Update(dataSet, "segmentStrategy");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -800,33 +800,6 @@ namespace TA_Project.CSSDataSet1TableAdapters {
         public virtual int Update(global::System.Data.DataRow[] dataRows) {
             return this.Adapter.Update(dataRows);
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string cType) {
-            if ((cType == null)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(cType));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
     }
     
     /// <summary>
@@ -841,7 +814,7 @@ namespace TA_Project.CSSDataSet1TableAdapters {
         
         private UpdateOrderOption _updateOrder;
         
-        private custClassTableAdapter _custClassTableAdapter;
+        private segmentStrategyTableAdapter _segmentStrategyTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -863,12 +836,12 @@ namespace TA_Project.CSSDataSet1TableAdapters {
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public custClassTableAdapter custClassTableAdapter {
+        public segmentStrategyTableAdapter segmentStrategyTableAdapter {
             get {
-                return this._custClassTableAdapter;
+                return this._segmentStrategyTableAdapter;
             }
             set {
-                this._custClassTableAdapter = value;
+                this._segmentStrategyTableAdapter = value;
             }
         }
         
@@ -891,9 +864,9 @@ namespace TA_Project.CSSDataSet1TableAdapters {
                 if ((this._connection != null)) {
                     return this._connection;
                 }
-                if (((this._custClassTableAdapter != null) 
-                            && (this._custClassTableAdapter.Connection != null))) {
-                    return this._custClassTableAdapter.Connection;
+                if (((this._segmentStrategyTableAdapter != null) 
+                            && (this._segmentStrategyTableAdapter.Connection != null))) {
+                    return this._segmentStrategyTableAdapter.Connection;
                 }
                 return null;
             }
@@ -908,7 +881,7 @@ namespace TA_Project.CSSDataSet1TableAdapters {
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
-                if ((this._custClassTableAdapter != null)) {
+                if ((this._segmentStrategyTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -922,12 +895,12 @@ namespace TA_Project.CSSDataSet1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateUpdatedRows(CSSDataSet1 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._custClassTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.custClass.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._segmentStrategyTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.segmentStrategy.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._custClassTableAdapter.Update(updatedRows));
+                    result = (result + this._segmentStrategyTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -941,11 +914,11 @@ namespace TA_Project.CSSDataSet1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateInsertedRows(CSSDataSet1 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._custClassTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.custClass.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._segmentStrategyTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.segmentStrategy.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._custClassTableAdapter.Update(addedRows));
+                    result = (result + this._segmentStrategyTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -959,11 +932,11 @@ namespace TA_Project.CSSDataSet1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(CSSDataSet1 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._custClassTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.custClass.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._segmentStrategyTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.segmentStrategy.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._custClassTableAdapter.Update(deletedRows));
+                    result = (result + this._segmentStrategyTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -1006,8 +979,8 @@ namespace TA_Project.CSSDataSet1TableAdapters {
             if ((dataSet.HasChanges() == false)) {
                 return 0;
             }
-            if (((this._custClassTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._custClassTableAdapter.Connection) == false))) {
+            if (((this._segmentStrategyTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._segmentStrategyTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -1043,13 +1016,13 @@ namespace TA_Project.CSSDataSet1TableAdapters {
             try {
                 // ---- Prepare for update -----------
                 //
-                if ((this._custClassTableAdapter != null)) {
-                    revertConnections.Add(this._custClassTableAdapter, this._custClassTableAdapter.Connection);
-                    this._custClassTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._custClassTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._custClassTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._custClassTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._custClassTableAdapter.Adapter);
+                if ((this._segmentStrategyTableAdapter != null)) {
+                    revertConnections.Add(this._segmentStrategyTableAdapter, this._segmentStrategyTableAdapter.Connection);
+                    this._segmentStrategyTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._segmentStrategyTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._segmentStrategyTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._segmentStrategyTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._segmentStrategyTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -1110,9 +1083,9 @@ namespace TA_Project.CSSDataSet1TableAdapters {
                 if (workConnOpened) {
                     workConnection.Close();
                 }
-                if ((this._custClassTableAdapter != null)) {
-                    this._custClassTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._custClassTableAdapter]));
-                    this._custClassTableAdapter.Transaction = null;
+                if ((this._segmentStrategyTableAdapter != null)) {
+                    this._segmentStrategyTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._segmentStrategyTableAdapter]));
+                    this._segmentStrategyTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

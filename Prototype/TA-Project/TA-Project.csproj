@@ -89,6 +89,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CSSDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="CSSDataSet1.cs">
+      <DependentUpon>CSSDataSet1.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CSSDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

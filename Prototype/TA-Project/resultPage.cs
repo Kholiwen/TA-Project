@@ -47,6 +47,7 @@ namespace TA_Project
             ds2.Clear();
             sa.Fill(ds2,"dataTable");
             dataGridView2.DataSource = ds2.Tables[0].DefaultView;
+            sqlCon.Close();
         }
         private void sqlConnection()
         {

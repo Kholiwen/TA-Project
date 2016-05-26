@@ -41,7 +41,7 @@ namespace TA_Project
             metroPanel3.Visible = false;
             browseBtn.Focus();
 
-            string delQuery = "delete prepTable delete dataTable";
+            string delQuery = "delete transactionTable delete dataTable";
             sqlConnection();
             sqlCon.Open();
             command = new SqlCommand(delQuery, sqlCon);
@@ -132,7 +132,7 @@ namespace TA_Project
             result = 0;
             excelConn(filePath);
             excelQuery = string.Format("Select [Customer-Name],[Frequency],[Last-Purchase],[Total-Purchase] FROM [{0}]", "Sheet1$");
-            string copyQuery = "delete preptable INSERT prepTable SELECT * FROM dataTable";
+            string copyQuery = "delete transactionTable INSERT transactionTable SELECT * FROM dataTable";
             sqlConnection();
             sqlCon.Open();
             command = new SqlCommand(copyQuery, sqlCon);
@@ -194,7 +194,7 @@ namespace TA_Project
         private void mainForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'cSSDataSet1.custClass' table. You can move, or remove it, as needed.
-            this.custClassTableAdapter.Fill(this.cSSDataSet1.custClass);
+            this.segmentStrategyTableAdapter.Fill(this.cSSDataSet1.segmentStrategy);
             // TODO: This line of code loads data into the 'cSSDataSet.dataTable' table. You can move, or remove it, as needed.
             this.dataTableTableAdapter.Fill(this.cSSDataSet.dataTable);
         }
@@ -303,7 +303,7 @@ namespace TA_Project
             Random rnd = new Random();
 
             command = new SqlCommand();
-            string query = "SELECT * FROM dataTable";
+            string query = "SELECT * FROM dataTable order by CID";
             sqlConnection();
             command.CommandText = query;
             command.CommandType = CommandType.Text;
@@ -386,7 +386,7 @@ namespace TA_Project
             }
 
             //Fuzzy C-Means Method\\
-            double temp1 = 0, temp2 = 0, temp3 = 0, temp4 = 0, temp5 = 0, temp6 = 0, temp7 = 0, temp8 = 0, temp9 = 0, temp10 = 0;
+            double temp1 = 0, temp2 = 0, temp3 = 0, temp4 = 0, temp5 = 0, temp6 = 0, temp7 = 0, temp8 = 0, temp9 = 0;
             do
             {
                 for (int k = 0; k < cltr; k++)
@@ -441,25 +441,32 @@ namespace TA_Project
                             temp6 = 0;
                         }
                         u[i, k] = temp7 / temp9;
-                        if (temp10 < u[i, k])
-                        {
-                            temp10 = u[i, k];
-                            custCltr[i] = k;
-                        }
                         temp7 = 0;
                         temp8 = 0;
                         temp9 = 0;
                     }
-                    temp10 = 0;
                 }
                 ctr++;
             } while (ctr < maxIter && Math.Abs((P[ctr - 1] - P[ctr - 2])) > tc);
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                temp1 = 0;
+                for (int k = 0; k < cltr; k++)
+                {
+                    if (temp1 < u[i, k])
+                    {
+                        temp1 = u[i, k];
+                        custCltr[i] = k;
+                    }
+                    System.Console.WriteLine("U[{0},{1}] = {2}",i,k,u[i, k]);
+                }
+            }
 
             //Fuzzy RFM Method\\
             double[] rfm = new double[cltr];
             double[] temp = new double[2];
             double g = 0.5;
-            string[] rfmvalue = new string[cltr];
 
             for (int k = 0; k < cltr; k++)
             {
@@ -556,6 +563,7 @@ namespace TA_Project
                             if (i == 0)
                             {
                                 temp[0] = downlinearValue(V[k, j], rfmc[j, 0], rfmc[j, 1]);
+                                temp[1] = i;
                             }
                             if (i == 1)
                             {
@@ -598,9 +606,8 @@ namespace TA_Project
                         m[k, 1] = temp[1];
                         temp[0] = 0;
                     }
-                    rfm[k] = Math.Pow((r[k, 0] * f[k, 0] * m[k, 0]), 1 - g) * Math.Pow(1 - (((1 - r[k, 0]) * (1 - f[k, 0]) * (1 - m[k, 0]))), 0.5);
-                    rfmvalue[k] = r[k, 1].ToString() + f[k, 1].ToString() + m[k, 1].ToString();
                 }
+                rfm[k] = Math.Pow((r[k, 0] * f[k, 0] * m[k, 0]), 1 - g) * Math.Pow(1 - (((1 - r[k, 0]) * (1 - f[k, 0]) * (1 - m[k, 0]))), 0.5);
             }
 
             rfmv = new string[cltr];
@@ -620,7 +627,7 @@ namespace TA_Project
             sa = new SqlDataAdapter(command);
             command = new SqlCommand(query, sqlCon);
             command.ExecuteNonQuery();
-            query = "select * from prepTable";
+            query = "select * from transactionTable order by CID";
             command.CommandText = query;
             sa = new SqlDataAdapter(command);
             command = new SqlCommand(query, sqlCon);
@@ -628,7 +635,7 @@ namespace TA_Project
             sa.Fill(dt);
             foreach (DataRow row in dt.Rows)
             {
-                excelRecordsRow = dt.NewRow();
+                //excelRecordsRow = dt.NewRow();
                 using (SqlCommand sqlCmd = new SqlCommand("sp_INSERT", sqlCon))
                 {
                     sqlCmd.CommandType = CommandType.StoredProcedure;
@@ -636,7 +643,7 @@ namespace TA_Project
                     sqlCmd.Parameters.Add("@FRQ", SqlDbType.Int).Value = row[2];
                     sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = row[3];
                     sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = row[4];
-                    sqlCmd.Parameters.Add("@CL", SqlDbType.Int).Value = custCltr[dt.Rows.IndexOf(row)]+1;
+                    sqlCmd.Parameters.Add("@CL", SqlDbType.Int).Value = custCltr[dt.Rows.IndexOf(row)] + 1;
                     sqlCmd.Parameters.Add("@SGMT", SqlDbType.VarChar).Value = rfmv[custCltr[dt.Rows.IndexOf(row)]];
                     sqlCmd.ExecuteNonQuery();
                 }
@@ -647,7 +654,7 @@ namespace TA_Project
             command.Connection = sqlCon;
             command = new SqlCommand(delClusterQuery, sqlCon);
             command.ExecuteNonQuery();
-            for (int i=0;i<cltr;i++)
+            for (int i = 0; i < cltr; i++)
             {
                 string clusterQuery = "INSERT clusterResult (clusterIndex, recencyCentroid, frequencyCentroid, monetaryCentroid) VALUES (" + (i + 1) + ", '" + r[i, 0] + "', '" + f[i, 0] + "', '" + m[i, 0] + "')";
                 command.CommandText = clusterQuery;
@@ -657,7 +664,7 @@ namespace TA_Project
                 command.ExecuteNonQuery();
             }
             sqlCon.Close();
-            metroPanel3.Visible = true; 
+            metroPanel3.Visible = true;
             metroPanel1.Visible = false;
             metroPanel2.Visible = false;
             metroLabel3.Text = "Process";
