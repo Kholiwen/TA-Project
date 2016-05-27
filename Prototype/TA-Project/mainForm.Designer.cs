@@ -53,10 +53,6 @@
             this.browseBtn = new MetroFramework.Controls.MetroButton();
             this.manualRadioButton = new MetroFramework.Controls.MetroRadioButton();
             this.metroGrid1 = new MetroFramework.Controls.MetroGrid();
-            this.customerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.frequencyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalPurchaseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastPurchaseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -144,6 +140,10 @@
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+            this.customerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.frequencyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalPurchaseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastPurchaseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet)).BeginInit();
@@ -261,7 +261,7 @@
             // 
             // 
             this.fileTextBox.CustomButton.Image = null;
-            this.fileTextBox.CustomButton.Location = new System.Drawing.Point(130, 1);
+            this.fileTextBox.CustomButton.Location = new System.Drawing.Point(155, 1);
             this.fileTextBox.CustomButton.Name = "";
             this.fileTextBox.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.fileTextBox.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -269,7 +269,7 @@
             this.fileTextBox.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.fileTextBox.CustomButton.UseSelectable = true;
             this.fileTextBox.Lines = new string[0];
-            this.fileTextBox.Location = new System.Drawing.Point(215, 2);
+            this.fileTextBox.Location = new System.Drawing.Point(190, 2);
             this.fileTextBox.MaxLength = 32767;
             this.fileTextBox.Name = "fileTextBox";
             this.fileTextBox.PasswordChar = '\0';
@@ -281,19 +281,19 @@
             this.fileTextBox.ShortcutsEnabled = true;
             this.fileTextBox.ShowButton = true;
             this.fileTextBox.ShowClearButton = true;
-            this.fileTextBox.Size = new System.Drawing.Size(152, 23);
+            this.fileTextBox.Size = new System.Drawing.Size(177, 23);
             this.fileTextBox.TabIndex = 5;
             this.fileTextBox.TabStop = false;
             this.fileTextBox.UseSelectable = true;
             this.fileTextBox.Visible = false;
             this.fileTextBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.fileTextBox.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.fileTextBox.Click += new System.EventHandler(this.metroTextBox1_ButtonClick);
+            this.fileTextBox.ButtonClick += new MetroFramework.Controls.MetroTextBox.ButClick(this.metroTextBox1_ButtonClick);
             // 
             // batchRadioButton
             // 
             this.batchRadioButton.AutoSize = true;
-            this.batchRadioButton.Location = new System.Drawing.Point(3, 3);
+            this.batchRadioButton.Location = new System.Drawing.Point(3, 6);
             this.batchRadioButton.Name = "batchRadioButton";
             this.batchRadioButton.Size = new System.Drawing.Size(84, 15);
             this.batchRadioButton.TabIndex = 3;
@@ -326,7 +326,7 @@
             // manualRadioButton
             // 
             this.manualRadioButton.AutoSize = true;
-            this.manualRadioButton.Location = new System.Drawing.Point(93, 3);
+            this.manualRadioButton.Location = new System.Drawing.Point(93, 6);
             this.manualRadioButton.Name = "manualRadioButton";
             this.manualRadioButton.Size = new System.Drawing.Size(94, 15);
             this.manualRadioButton.TabIndex = 4;
@@ -389,37 +389,6 @@
             this.metroGrid1.Size = new System.Drawing.Size(534, 345);
             this.metroGrid1.TabIndex = 7;
             this.metroGrid1.Visible = false;
-            // 
-            // customerNameDataGridViewTextBoxColumn
-            // 
-            this.customerNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.customerNameDataGridViewTextBoxColumn.DataPropertyName = "Customer Name";
-            this.customerNameDataGridViewTextBoxColumn.HeaderText = "Customer Name";
-            this.customerNameDataGridViewTextBoxColumn.Name = "customerNameDataGridViewTextBoxColumn";
-            this.customerNameDataGridViewTextBoxColumn.Width = 20;
-            // 
-            // frequencyDataGridViewTextBoxColumn
-            // 
-            this.frequencyDataGridViewTextBoxColumn.DataPropertyName = "Frequency";
-            this.frequencyDataGridViewTextBoxColumn.HeaderText = "Frequency";
-            this.frequencyDataGridViewTextBoxColumn.Name = "frequencyDataGridViewTextBoxColumn";
-            // 
-            // totalPurchaseDataGridViewTextBoxColumn
-            // 
-            this.totalPurchaseDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.totalPurchaseDataGridViewTextBoxColumn.DataPropertyName = "Total purchase";
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.totalPurchaseDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.totalPurchaseDataGridViewTextBoxColumn.HeaderText = "Total purchase";
-            this.totalPurchaseDataGridViewTextBoxColumn.Name = "totalPurchaseDataGridViewTextBoxColumn";
-            this.totalPurchaseDataGridViewTextBoxColumn.Width = 20;
-            // 
-            // lastPurchaseDataGridViewTextBoxColumn
-            // 
-            this.lastPurchaseDataGridViewTextBoxColumn.DataPropertyName = "Last purchase";
-            this.lastPurchaseDataGridViewTextBoxColumn.HeaderText = "Last purchase";
-            this.lastPurchaseDataGridViewTextBoxColumn.Name = "lastPurchaseDataGridViewTextBoxColumn";
             // 
             // metroPanel2
             // 
@@ -1380,6 +1349,37 @@
             this.lineShape1.Y1 = 26;
             this.lineShape1.Y2 = 26;
             // 
+            // customerNameDataGridViewTextBoxColumn
+            // 
+            this.customerNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.customerNameDataGridViewTextBoxColumn.DataPropertyName = "Customer Name";
+            this.customerNameDataGridViewTextBoxColumn.HeaderText = "Customer Name";
+            this.customerNameDataGridViewTextBoxColumn.Name = "customerNameDataGridViewTextBoxColumn";
+            this.customerNameDataGridViewTextBoxColumn.Width = 20;
+            // 
+            // frequencyDataGridViewTextBoxColumn
+            // 
+            this.frequencyDataGridViewTextBoxColumn.DataPropertyName = "Frequency";
+            this.frequencyDataGridViewTextBoxColumn.HeaderText = "Frequency";
+            this.frequencyDataGridViewTextBoxColumn.Name = "frequencyDataGridViewTextBoxColumn";
+            // 
+            // totalPurchaseDataGridViewTextBoxColumn
+            // 
+            this.totalPurchaseDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.totalPurchaseDataGridViewTextBoxColumn.DataPropertyName = "Total purchase";
+            dataGridViewCellStyle2.Format = "\"Rp. \"###,###.##\",-";
+            dataGridViewCellStyle2.NullValue = null;
+            this.totalPurchaseDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.totalPurchaseDataGridViewTextBoxColumn.HeaderText = "Total purchase";
+            this.totalPurchaseDataGridViewTextBoxColumn.Name = "totalPurchaseDataGridViewTextBoxColumn";
+            this.totalPurchaseDataGridViewTextBoxColumn.Width = 20;
+            // 
+            // lastPurchaseDataGridViewTextBoxColumn
+            // 
+            this.lastPurchaseDataGridViewTextBoxColumn.DataPropertyName = "Last purchase";
+            this.lastPurchaseDataGridViewTextBoxColumn.HeaderText = "Last purchase";
+            this.lastPurchaseDataGridViewTextBoxColumn.Name = "lastPurchaseDataGridViewTextBoxColumn";
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1389,9 +1389,9 @@
             this.BackMaxSize = 50;
             this.ClientSize = new System.Drawing.Size(580, 480);
             this.Controls.Add(this.metroLabel3);
+            this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.metroPanel2);
             this.Controls.Add(this.metroPanel3);
-            this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.shapeContainer1);
             this.MaximizeBox = false;
             this.Name = "mainForm";

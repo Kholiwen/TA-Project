@@ -25,7 +25,7 @@ namespace TA_Project
         SqlCommand command;
         String olesqlConn, excelQuery, sqlConn;
         DataRow excelRecordsRow;
-        DataTable ds;
+        DataTable dt, dt2;
         int result = 0;
 
         public mainForm()
@@ -41,7 +41,7 @@ namespace TA_Project
             metroPanel3.Visible = false;
             browseBtn.Focus();
 
-            string delQuery = "delete transactionTable delete dataTable";
+            string delQuery = "delete transactionTable delete processedTable";
             sqlConnection();
             sqlCon.Open();
             command = new SqlCommand(delQuery, sqlCon);
@@ -50,6 +50,7 @@ namespace TA_Project
             command.Connection = sqlCon;
             sa = new SqlDataAdapter(command);
             command.ExecuteNonQuery();
+            dt2 = new DataTable();
         }
         public string getName() { return "3D Scatter Chart (1)"; }
 
@@ -132,22 +133,23 @@ namespace TA_Project
             result = 0;
             excelConn(filePath);
             excelQuery = string.Format("Select [Customer-Name],[Frequency],[Last-Purchase],[Total-Purchase] FROM [{0}]", "Sheet1$");
-            string copyQuery = "delete transactionTable INSERT transactionTable SELECT * FROM dataTable";
-            sqlConnection();
-            sqlCon.Open();
-            command = new SqlCommand(copyQuery, sqlCon);
-            command.CommandText = copyQuery;
-            command.CommandType = CommandType.Text;
-            command.Connection = sqlCon;
-            sa = new SqlDataAdapter(command);
+            //string copyQuery = "delete transactionTable INSERT transactionTable SELECT * FROM dataTable";
+            //sqlConnection();
+            //sqlCon.Open();
+            //command = new SqlCommand(copyQuery, sqlCon);
+            //command.CommandText = copyQuery;
+            //command.CommandType = CommandType.Text;
+            //command.Connection = sqlCon;
+            //sa = new SqlDataAdapter(command);
             oleCon.Open();
-            ds = new DataTable();
+            dt = new DataTable();
             OleDbDataAdapter oda = new OleDbDataAdapter(excelQuery, oleCon);
             oleCon.Close();
-            oda.Fill(ds);
-            foreach (DataRow row in ds.Rows)
+            oda.Fill(dt);
+            oda.Fill(dt2);
+            foreach (DataRow row in dt.Rows)
             {
-                excelRecordsRow = ds.NewRow();
+                excelRecordsRow = dt.NewRow();
                 using (SqlCommand sqlCmd = new SqlCommand("sp_INSERT", sqlCon))
                 {
                     sqlCmd.CommandType = CommandType.StoredProcedure;
@@ -160,9 +162,9 @@ namespace TA_Project
                     result += sqlCmd.ExecuteNonQuery();
                 }
             }
-            command.ExecuteNonQuery();
+            //command.ExecuteNonQuery();
             MessageBox.Show(string.Format("{0} Rows have been affected", result), "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information); //Show how many rows were affected
-            sqlCon.Close();
+            //sqlCon.Close();
             cSSDataSet.Reset();
             dataTableTableAdapter.Fill(this.cSSDataSet.dataTable);
         }
@@ -174,6 +176,7 @@ namespace TA_Project
                 fileTextBox.Visible = true;
                 browseBtn.Visible = true;
                 welcomeLbl.Visible = false;
+                browseBtn.Focus();
             }
             else
             {
@@ -218,7 +221,10 @@ namespace TA_Project
                 openFileDialog1.RestoreDirectory = true;
                 directoryPath = openFileDialog1.FileName;
                 fileTextBox.Text = directoryPath;
-                browseBtn.Text = "OK";
+                if (fileTextBox.Text != "")
+                {
+                    browseBtn.Text = "OK";
+                }
             }
             else if (browseBtn.Text == "OK")
             {
@@ -242,6 +248,7 @@ namespace TA_Project
         private void metroTextBox1_ButtonClick(object sender, EventArgs e)
         {
             fileTextBox.Clear();
+            browseBtn.Text = "Browse..";
         }
 
         // This method will be called when the thread is started. 
@@ -291,6 +298,12 @@ namespace TA_Project
 
         private void metroButton3_Click(object sender, EventArgs e)
         {
+            chartThread();
+            metroPanel3.Visible = true;
+            metroPanel1.Visible = false;
+            metroPanel2.Visible = false;
+            metroLabel3.Text = "Process";
+
             int cltr = 0;
             int w = 2;
             int maxIter = 100;
@@ -303,7 +316,7 @@ namespace TA_Project
             Random rnd = new Random();
 
             command = new SqlCommand();
-            string query = "SELECT * FROM dataTable order by CID";
+            string query = "SELECT * FROM transactionTable order by CID";
             sqlConnection();
             command.CommandText = query;
             command.CommandType = CommandType.Text;
@@ -459,7 +472,7 @@ namespace TA_Project
                         temp1 = u[i, k];
                         custCltr[i] = k;
                     }
-                    System.Console.WriteLine("U[{0},{1}] = {2}",i,k,u[i, k]);
+                    System.Console.WriteLine("U[{0},{1}] = {2}", i, k, u[i, k]);
                 }
             }
 
@@ -620,31 +633,30 @@ namespace TA_Project
 
             sqlConnection();
             sqlCon.Open();
-            query = "delete dataTable";
+            query = "delete transactionTable";
             command.CommandText = query;
             command.CommandType = CommandType.Text;
             command.Connection = sqlCon;
-            sa = new SqlDataAdapter(command);
+            //sa = new SqlDataAdapter(command);
             command = new SqlCommand(query, sqlCon);
             command.ExecuteNonQuery();
-            query = "select * from transactionTable order by CID";
-            command.CommandText = query;
-            sa = new SqlDataAdapter(command);
-            command = new SqlCommand(query, sqlCon);
-            dt.Clear();
-            sa.Fill(dt);
-            foreach (DataRow row in dt.Rows)
+            //query = "select * from transactionTable order by CID";
+            //sa = new SqlDataAdapter(command);
+            //command = new SqlCommand(query, sqlCon);
+            //dt.Clear();
+            //sa.Fill(dt);
+            foreach (DataRow row in dt2.Rows)
             {
                 //excelRecordsRow = dt.NewRow();
                 using (SqlCommand sqlCmd = new SqlCommand("sp_INSERT", sqlCon))
                 {
                     sqlCmd.CommandType = CommandType.StoredProcedure;
-                    sqlCmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = row[1];
-                    sqlCmd.Parameters.Add("@FRQ", SqlDbType.Int).Value = row[2];
+                    sqlCmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = row[0];
+                    sqlCmd.Parameters.Add("@FRQ", SqlDbType.Int).Value = row[1];
                     sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = row[3];
-                    sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = row[4];
-                    sqlCmd.Parameters.Add("@CL", SqlDbType.Int).Value = custCltr[dt.Rows.IndexOf(row)] + 1;
-                    sqlCmd.Parameters.Add("@SGMT", SqlDbType.VarChar).Value = rfmv[custCltr[dt.Rows.IndexOf(row)]];
+                    sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = row[2];
+                    sqlCmd.Parameters.Add("@CL", SqlDbType.Int).Value = custCltr[dt2.Rows.IndexOf(row)] + 1;
+                    sqlCmd.Parameters.Add("@SGMT", SqlDbType.VarChar).Value = rfmv[custCltr[dt2.Rows.IndexOf(row)]];
                     sqlCmd.ExecuteNonQuery();
                 }
             }
@@ -656,7 +668,7 @@ namespace TA_Project
             command.ExecuteNonQuery();
             for (int i = 0; i < cltr; i++)
             {
-                string clusterQuery = "INSERT clusterResult (clusterIndex, recencyCentroid, frequencyCentroid, monetaryCentroid) VALUES (" + (i + 1) + ", '" + r[i, 0] + "', '" + f[i, 0] + "', '" + m[i, 0] + "')";
+                string clusterQuery = "INSERT clusterResult (clusterIndex, recencyDOM, frequencyDOM, monetaryDOM, rfmScore, clusterSegment) VALUES (" + (i + 1) + ", '" + r[i, 0] + "', '" + f[i, 0] + "', '" + m[i, 0] + "', '" + rfm[i] + "', '" + rfmv[custCltr[i]] + "')";
                 command.CommandText = clusterQuery;
                 command.CommandType = CommandType.Text;
                 command.Connection = sqlCon;
@@ -664,11 +676,6 @@ namespace TA_Project
                 command.ExecuteNonQuery();
             }
             sqlCon.Close();
-            metroPanel3.Visible = true;
-            metroPanel1.Visible = false;
-            metroPanel2.Visible = false;
-            metroLabel3.Text = "Process";
-            chartThread();
             Console.Out.WriteLine("Process Finished");
             var newForm = new resultPage();
             newForm.Show();
@@ -724,7 +731,7 @@ namespace TA_Project
             welcomeLbl.Visible = false;
             metroGrid1.Visible = true;
             metroGrid1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            metroGrid1.CurrentCell = metroGrid1.Rows[0].Cells[0];
+            metroGrid1.CurrentCell = metroGrid1.Rows[metroGrid1.Rows.Count - 1].Cells[0];
             metroGrid1.BeginEdit(true);
         }
 

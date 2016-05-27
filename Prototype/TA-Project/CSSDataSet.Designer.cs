@@ -835,9 +835,9 @@ namespace TA_Project.CSSDataSetTableAdapters {
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[dataTable] ([CID], [Customer Name], [Frequency], [Total purcha" +
-                "se], [Last purchase]) VALUES (@CID, @Customer_Name, @Frequency, @Total_purchase," +
-                " @Last_purchase)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[transactionTable] ([CID], [Customer Name], [Frequency], [Total" +
+                " purchase], [Last purchase]) VALUES (@CID, @Customer_Name, @Frequency, @Total_pu" +
+                "rchase, @Last_purchase)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CID", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Customer_Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Customer Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -860,7 +860,7 @@ namespace TA_Project.CSSDataSetTableAdapters {
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT CID, [Customer Name], Frequency, [Total purchase], [Last purchase] FROM db" +
-                "o.dataTable";
+                "o.transactionTable";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
