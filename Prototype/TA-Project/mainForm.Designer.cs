@@ -53,6 +53,10 @@
             this.browseBtn = new MetroFramework.Controls.MetroButton();
             this.manualRadioButton = new MetroFramework.Controls.MetroRadioButton();
             this.metroGrid1 = new MetroFramework.Controls.MetroGrid();
+            this.customerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.frequencyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalPurchaseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastPurchaseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -124,7 +128,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.clusterSizeNUD = new System.Windows.Forms.NumericUpDown();
-            this.criteriaTrackBar = new System.Windows.Forms.TrackBar();
+            this.periodTrackBar = new System.Windows.Forms.TrackBar();
             this.label49 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
@@ -140,10 +144,6 @@
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
-            this.customerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.frequencyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalPurchaseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastPurchaseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet)).BeginInit();
@@ -159,7 +159,7 @@
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clusterSizeNUD)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.criteriaTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.periodTrackBar)).BeginInit();
             this.metroPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -208,9 +208,9 @@
             // winChartViewer1
             // 
             this.winChartViewer1.ChartSizeMode = ChartDirector.WinChartSizeMode.StretchImage;
-            this.winChartViewer1.Location = new System.Drawing.Point(96, 69);
+            this.winChartViewer1.Location = new System.Drawing.Point(18, 75);
             this.winChartViewer1.Name = "winChartViewer1";
-            this.winChartViewer1.Size = new System.Drawing.Size(340, 325);
+            this.winChartViewer1.Size = new System.Drawing.Size(500, 320);
             this.winChartViewer1.TabIndex = 7;
             this.winChartViewer1.TabStop = false;
             this.metroToolTip1.SetToolTip(this.winChartViewer1, "3D Scatter Chart view of the cluster");
@@ -389,6 +389,37 @@
             this.metroGrid1.Size = new System.Drawing.Size(534, 345);
             this.metroGrid1.TabIndex = 7;
             this.metroGrid1.Visible = false;
+            // 
+            // customerNameDataGridViewTextBoxColumn
+            // 
+            this.customerNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.customerNameDataGridViewTextBoxColumn.DataPropertyName = "Customer Name";
+            this.customerNameDataGridViewTextBoxColumn.HeaderText = "Customer Name";
+            this.customerNameDataGridViewTextBoxColumn.Name = "customerNameDataGridViewTextBoxColumn";
+            this.customerNameDataGridViewTextBoxColumn.Width = 20;
+            // 
+            // frequencyDataGridViewTextBoxColumn
+            // 
+            this.frequencyDataGridViewTextBoxColumn.DataPropertyName = "Frequency";
+            this.frequencyDataGridViewTextBoxColumn.HeaderText = "Frequency";
+            this.frequencyDataGridViewTextBoxColumn.Name = "frequencyDataGridViewTextBoxColumn";
+            // 
+            // totalPurchaseDataGridViewTextBoxColumn
+            // 
+            this.totalPurchaseDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.totalPurchaseDataGridViewTextBoxColumn.DataPropertyName = "Total purchase";
+            dataGridViewCellStyle2.Format = "\"Rp. \"###,###.##\",-";
+            dataGridViewCellStyle2.NullValue = null;
+            this.totalPurchaseDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.totalPurchaseDataGridViewTextBoxColumn.HeaderText = "Total purchase";
+            this.totalPurchaseDataGridViewTextBoxColumn.Name = "totalPurchaseDataGridViewTextBoxColumn";
+            this.totalPurchaseDataGridViewTextBoxColumn.Width = 20;
+            // 
+            // lastPurchaseDataGridViewTextBoxColumn
+            // 
+            this.lastPurchaseDataGridViewTextBoxColumn.DataPropertyName = "Last purchase";
+            this.lastPurchaseDataGridViewTextBoxColumn.HeaderText = "Last purchase";
+            this.lastPurchaseDataGridViewTextBoxColumn.Name = "lastPurchaseDataGridViewTextBoxColumn";
             // 
             // metroPanel2
             // 
@@ -1139,7 +1170,7 @@
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.Window;
             this.groupBox1.Controls.Add(this.clusterSizeNUD);
-            this.groupBox1.Controls.Add(this.criteriaTrackBar);
+            this.groupBox1.Controls.Add(this.periodTrackBar);
             this.groupBox1.Controls.Add(this.label49);
             this.groupBox1.Controls.Add(this.label39);
             this.groupBox1.Controls.Add(this.label31);
@@ -1162,7 +1193,7 @@
             this.clusterSizeNUD.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.clusterSizeNUD.Location = new System.Drawing.Point(114, 52);
             this.clusterSizeNUD.Maximum = new decimal(new int[] {
-            20,
+            8,
             0,
             0,
             0});
@@ -1183,16 +1214,16 @@
             0});
             this.clusterSizeNUD.MouseDown += new System.Windows.Forms.MouseEventHandler(this.numericUpDown1_MouseDown);
             // 
-            // criteriaTrackBar
+            // periodTrackBar
             // 
-            this.criteriaTrackBar.Location = new System.Drawing.Point(21, 140);
-            this.criteriaTrackBar.Maximum = 11;
-            this.criteriaTrackBar.Name = "criteriaTrackBar";
-            this.criteriaTrackBar.Size = new System.Drawing.Size(214, 45);
-            this.criteriaTrackBar.TabIndex = 2;
-            this.criteriaTrackBar.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
-            this.criteriaTrackBar.Value = 5;
-            this.criteriaTrackBar.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
+            this.periodTrackBar.LargeChange = 2;
+            this.periodTrackBar.Location = new System.Drawing.Point(21, 140);
+            this.periodTrackBar.Maximum = 11;
+            this.periodTrackBar.Name = "periodTrackBar";
+            this.periodTrackBar.RightToLeftLayout = true;
+            this.periodTrackBar.Size = new System.Drawing.Size(214, 45);
+            this.periodTrackBar.TabIndex = 2;
+            this.periodTrackBar.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
             // 
             // label49
             // 
@@ -1237,7 +1268,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(26, 21);
             this.label5.TabIndex = 11;
-            this.label5.Text = "6";
+            this.label5.Text = "1";
             // 
             // processBtn
             // 
@@ -1349,37 +1380,6 @@
             this.lineShape1.Y1 = 26;
             this.lineShape1.Y2 = 26;
             // 
-            // customerNameDataGridViewTextBoxColumn
-            // 
-            this.customerNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.customerNameDataGridViewTextBoxColumn.DataPropertyName = "Customer Name";
-            this.customerNameDataGridViewTextBoxColumn.HeaderText = "Customer Name";
-            this.customerNameDataGridViewTextBoxColumn.Name = "customerNameDataGridViewTextBoxColumn";
-            this.customerNameDataGridViewTextBoxColumn.Width = 20;
-            // 
-            // frequencyDataGridViewTextBoxColumn
-            // 
-            this.frequencyDataGridViewTextBoxColumn.DataPropertyName = "Frequency";
-            this.frequencyDataGridViewTextBoxColumn.HeaderText = "Frequency";
-            this.frequencyDataGridViewTextBoxColumn.Name = "frequencyDataGridViewTextBoxColumn";
-            // 
-            // totalPurchaseDataGridViewTextBoxColumn
-            // 
-            this.totalPurchaseDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.totalPurchaseDataGridViewTextBoxColumn.DataPropertyName = "Total purchase";
-            dataGridViewCellStyle2.Format = "\"Rp. \"###,###.##\",-";
-            dataGridViewCellStyle2.NullValue = null;
-            this.totalPurchaseDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.totalPurchaseDataGridViewTextBoxColumn.HeaderText = "Total purchase";
-            this.totalPurchaseDataGridViewTextBoxColumn.Name = "totalPurchaseDataGridViewTextBoxColumn";
-            this.totalPurchaseDataGridViewTextBoxColumn.Width = 20;
-            // 
-            // lastPurchaseDataGridViewTextBoxColumn
-            // 
-            this.lastPurchaseDataGridViewTextBoxColumn.DataPropertyName = "Last purchase";
-            this.lastPurchaseDataGridViewTextBoxColumn.HeaderText = "Last purchase";
-            this.lastPurchaseDataGridViewTextBoxColumn.Name = "lastPurchaseDataGridViewTextBoxColumn";
-            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1389,9 +1389,9 @@
             this.BackMaxSize = 50;
             this.ClientSize = new System.Drawing.Size(580, 480);
             this.Controls.Add(this.metroLabel3);
-            this.Controls.Add(this.metroPanel1);
-            this.Controls.Add(this.metroPanel2);
             this.Controls.Add(this.metroPanel3);
+            this.Controls.Add(this.metroPanel2);
+            this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.shapeContainer1);
             this.MaximizeBox = false;
             this.Name = "mainForm";
@@ -1419,7 +1419,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clusterSizeNUD)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.criteriaTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.periodTrackBar)).EndInit();
             this.metroPanel3.ResumeLayout(false);
             this.metroPanel3.PerformLayout();
             this.ResumeLayout(false);
@@ -1532,7 +1532,7 @@
         private MetroFramework.Controls.MetroRadioButton manualRadioButton;
         private MetroFramework.Controls.MetroGrid metroGrid1;
         
-        private System.Windows.Forms.TrackBar criteriaTrackBar;
+        private System.Windows.Forms.TrackBar periodTrackBar;
         private System.Windows.Forms.NumericUpDown clusterSizeNUD;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;

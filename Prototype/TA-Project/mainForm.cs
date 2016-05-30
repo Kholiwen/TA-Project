@@ -17,16 +17,15 @@ namespace TA_Project
 {
     public partial class mainForm : MetroFramework.Forms.MetroForm
     {
-        int a = 20;
+        int a = 50;
         string directoryPath = "";
         OleDbConnection oleCon;
         SqlConnection sqlCon;
         SqlDataAdapter sa;
         SqlCommand command;
         String olesqlConn, excelQuery, sqlConn;
-        DataRow excelRecordsRow;
         DataTable dt, dt2;
-        int result = 0;
+        int result = 0, cltr = 0;
 
         public mainForm()
         {
@@ -34,8 +33,6 @@ namespace TA_Project
             label1.Font = new Font("Tahoma", 11, FontStyle.Regular);
             label3.Font = new Font("Tahoma", 11, FontStyle.Regular);
             label4.Font = new Font("Tahoma", 11, FontStyle.Regular);
-            WinChartViewer wc = new WinChartViewer();
-            createChart(winChartViewer1, 1, a);
             metroGrid1.Font = new Font("Segoe UI", 11f, FontStyle.Regular, GraphicsUnit.Pixel);
             metroPanel2.Visible = false;
             metroPanel3.Visible = false;
@@ -61,48 +58,62 @@ namespace TA_Project
         public void createChart(WinChartViewer viewer, int chartIndex, int a)
         {
             this.a = a;
+            int[] chartColor = new int[8] { 0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xff00ff, 0x55ffff, 0x888888, 0x111111 };
 
             // The random XYZ data for the first 3D scatter group
-            RanSeries r0 = new RanSeries(7);
-            double[] xData0 = r0.getSeries2(a, 100, -10, 10);
-            double[] yData0 = r0.getSeries2(a, 0, 0, 20);
-            double[] zData0 = r0.getSeries2(a, 100, -10, 10);
+            //RanSeries r0 = new RanSeries(7);
+            //double[] xData0 = r0.getSeries2(a, 100, -10, 10);
+            //double[] yData0 = r0.getSeries2(a, 0, 0, 20);
+            //double[] zData0 = r0.getSeries2(a, 100, -10, 10);
 
-            // The random XYZ data for the second 3D scatter group
-            RanSeries r1 = new RanSeries(4);
-            double[] xData1 = r1.getSeries2(100, 100, -10, 10);
-            double[] yData1 = r1.getSeries2(100, 0, 0, 20);
-            double[] zData1 = r1.getSeries2(100, 100, -10, 10);
+            //// The random XYZ data for the second 3D scatter group
+            //RanSeries r1 = new RanSeries(4);
+            //double[] xData1 = r1.getSeries2(100, 100, -10, 10);
+            //double[] yData1 = r1.getSeries2(100, 0, 0, 20);
+            //double[] zData1 = r1.getSeries2(100, 100, -10, 10);
 
-            // The random XYZ data for the third 3D scatter group
-            RanSeries r2 = new RanSeries(8);
-            double[] xData2 = r2.getSeries2(100, 100, -10, 10);
-            double[] yData2 = r2.getSeries2(100, 0, 0, 20);
-            double[] zData2 = r2.getSeries2(100, 100, -10, 10);
-
+            //// The random XYZ data for the third 3D scatter group
+            //RanSeries r2 = new RanSeries(8);
+            //double[] xData2 = r2.getSeries2(100, 100, -10, 10);
+            //double[] yData2 = r2.getSeries2(100, 0, 0, 20);
+            //double[] zData2 = r2.getSeries2(100, 100, -10, 10);
+            //RanSeries r3 = new RanSeries(9);
+            //double[] xData3 = r3.getSeries2(100, 100, -10, 10);
+            //double[] yData3 = r3.getSeries2(100, 0, 0, 20);
+            //double[] zData3 = r3.getSeries2(100, 100, -10, 10);
+            //RanSeries r4 = new RanSeries(6);
+            //double[] xData4 = r4.getSeries2(100, 100, -10, 10);
+            //double[] yData4 = r4.getSeries2(100, 0, 0, 20);
+            //double[] zData4 = r4.getSeries2(100, 100, -10, 10);
 
             // Create a ThreeDScatterChart object of size 720 x 600 pixels
-            ThreeDScatterChart c = new ThreeDScatterChart(720, 600);
-
+            ThreeDScatterChart c = new ThreeDScatterChart(640, 480);
+            for (int i = 0; i < cltr; i++)
+            {
+                RanSeries r = new RanSeries(i+1);
+                double[] xData = r.getSeries2(50, 10 * (i + 2), -30, 5 * (i + 2));
+                double[] yData = r.getSeries2(50, 50, -1, 1);
+                double[] zData = r.getSeries2(50, 15*(i+2), -11*(i+2),40);
+                c.addScatterGroup(xData, yData, zData, i + 1 + "st Cluster", Chart.GlassSphere2Shape, 12, chartColor[i]);
+            }
             // Add a title to the chart using 20 points Times New Roman Italic font
-            c.addTitle("3D Scatter Chart", "Times New Roman Italic", 20);
+            //c.addTitle("3D Scatter Chart", "Times New Roman Italic", 20);
+
+            //Data source keren\\
+            //double[] xData = r.getSeries2(a * ((i + 1) * 5), 50, -20, 1 * (i + 1));
+            //double[] yData = r.getSeries2(a * ((i + 1) * 6), 100, -5, 5 * (i + 1));
+            //double[] zData = r.getSeries2(a * ((i + 1) * 7), 20, -10, 10 * (i + 1));
 
             // Set the center of the plot region at (350, 280), and set width x depth x height to
             // 360 x 360 x 270 pixels
-            c.setPlotRegion(350, 280, 360, 360, 270);
+            c.setPlotRegion(350, 200, 360, 360, 270);
 
             // Set the elevation and rotation angles to 15 and 30 degrees
             c.setViewAngle(15, 30);
 
             // Add a legend box at (640, 180)
-            c.addLegend(600, 180);
-
-            // Add 3 scatter groups to the chart with 9 pixels glass sphere symbols of red (ff0000), green
-            // (00ff00) and blue (0000ff) colors
-            c.addScatterGroup(xData0, yData0, zData0, "1st Cluster", Chart.GlassSphere2Shape, 9, 0xff0000);
-            c.addScatterGroup(xData1, yData1, zData1, "2nd Cluster", Chart.GlassSphere2Shape, 9, 0x00ff00);
-            c.addScatterGroup(xData2, yData2, zData2, "3rd Cluster", Chart.GlassSphere2Shape, 9, 0x0000ff);
-
+            c.addLegend(600, 150);
+            
             // Output the chart
             viewer.Chart = c;
 
@@ -130,26 +141,37 @@ namespace TA_Project
 
         private void insertExcelRecords(string filePath)
         {
+            string customerHeader = "", purchasedateHeader = "", totalpurchaseHeader = "";
             result = 0;
             excelConn(filePath);
-            excelQuery = string.Format("Select [Customer-Name],[Frequency],[Last-Purchase],[Total-Purchase] FROM [{0}]", "Sheet1$");
-            //string copyQuery = "delete transactionTable INSERT transactionTable SELECT * FROM dataTable";
-            //sqlConnection();
-            //sqlCon.Open();
-            //command = new SqlCommand(copyQuery, sqlCon);
-            //command.CommandText = copyQuery;
-            //command.CommandType = CommandType.Text;
-            //command.Connection = sqlCon;
-            //sa = new SqlDataAdapter(command);
+            excelQuery = string.Format("Select * FROM [{0}]", "Sheet1$");
+            //excelQuery = string.Format("Select [Customer-Name],[Frequency],[Last-Purchase],[Total-Purchase] FROM [{0}]", "Sheet1$");
+
             oleCon.Open();
             dt = new DataTable();
             OleDbDataAdapter oda = new OleDbDataAdapter(excelQuery, oleCon);
             oleCon.Close();
             oda.Fill(dt);
+            using (var frm = new columnSelectionForm(dt))
+            {
+                var res = frm.ShowDialog();
+                if (res == DialogResult.OK)
+                {
+                    customerHeader = frm.customerHeader;
+                    purchasedateHeader = frm.purchasedateHeader;
+                    totalpurchaseHeader = frm.totalpurchaseHeader;
+                }
+            }
+            oleCon.Open();
+            excelQuery = string.Format("Select [" + customerHeader + "],[Frequency],[" + purchasedateHeader + "],[" + totalpurchaseHeader + "] FROM [{0}]", "Sheet1$");
+            oda = new OleDbDataAdapter(excelQuery, oleCon);
+            oleCon.Close();
+            dt.Rows.Clear();
+            dt.Columns.Clear();
+            oda.Fill(dt);
             oda.Fill(dt2);
             foreach (DataRow row in dt.Rows)
             {
-                excelRecordsRow = dt.NewRow();
                 using (SqlCommand sqlCmd = new SqlCommand("sp_INSERT", sqlCon))
                 {
                     sqlCmd.CommandType = CommandType.StoredProcedure;
@@ -298,13 +320,11 @@ namespace TA_Project
 
         private void metroButton3_Click(object sender, EventArgs e)
         {
-            chartThread();
             metroPanel3.Visible = true;
             metroPanel1.Visible = false;
             metroPanel2.Visible = false;
             metroLabel3.Text = "Process";
 
-            int cltr = 0;
             int w = 2;
             int maxIter = 100;
             double tc = 0.00001;
@@ -315,6 +335,7 @@ namespace TA_Project
             int ctr = 1;
             Random rnd = new Random();
 
+            chartThread();
             command = new SqlCommand();
             string query = "SELECT * FROM transactionTable order by CID";
             sqlConnection();
@@ -637,14 +658,8 @@ namespace TA_Project
             command.CommandText = query;
             command.CommandType = CommandType.Text;
             command.Connection = sqlCon;
-            //sa = new SqlDataAdapter(command);
             command = new SqlCommand(query, sqlCon);
             command.ExecuteNonQuery();
-            //query = "select * from transactionTable order by CID";
-            //sa = new SqlDataAdapter(command);
-            //command = new SqlCommand(query, sqlCon);
-            //dt.Clear();
-            //sa.Fill(dt);
             foreach (DataRow row in dt2.Rows)
             {
                 //excelRecordsRow = dt.NewRow();
@@ -668,7 +683,7 @@ namespace TA_Project
             command.ExecuteNonQuery();
             for (int i = 0; i < cltr; i++)
             {
-                string clusterQuery = "INSERT clusterResult (clusterIndex, recencyDOM, frequencyDOM, monetaryDOM, rfmScore, clusterSegment) VALUES (" + (i + 1) + ", '" + r[i, 0] + "', '" + f[i, 0] + "', '" + m[i, 0] + "', '" + rfm[i] + "', '" + rfmv[custCltr[i]] + "')";
+                string clusterQuery = "INSERT clusterResult (clusterIndex, recencyDOM, frequencyDOM, monetaryDOM, rfmScore, clusterSegment) VALUES (" + (i + 1) + ", '" + r[i, 0] + "', '" + f[i, 0] + "', '" + m[i, 0] + "', '" + rfm[i] + "', '" + rfmv[i] + "')";
                 command.CommandText = clusterQuery;
                 command.CommandType = CommandType.Text;
                 command.Connection = sqlCon;
@@ -677,9 +692,11 @@ namespace TA_Project
             }
             sqlCon.Close();
             Console.Out.WriteLine("Process Finished");
+            //metroPanel3.Visible = false;
+            //this.WindowState = FormWindowState.Minimized;
+            //mainForm.ActiveForm.ShowInTaskbar = false;
             var newForm = new resultPage();
             newForm.Show();
-            //metroPanel3.Visible = false;
         }
 
         //Trapezoid Function\\
@@ -737,7 +754,16 @@ namespace TA_Project
 
         private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
-            label5.Text = (criteriaTrackBar.Value + 1).ToString();
+            if (periodTrackBar.Value == 11)
+            {
+                label5.Text = "1";
+                label6.Text = "Year";
+            }
+            else
+            {
+                label5.Text = (periodTrackBar.Value + 1).ToString();
+                label6.Text = "Month";
+            }
         }
 
         private void metroCheckBox1_CheckedChanged(object sender, EventArgs e)
@@ -786,7 +812,7 @@ namespace TA_Project
 
         private void numericUpDown1_MouseDown(object sender, MouseEventArgs e)
         {
-            criteriaTrackBar.Focus();
+            periodTrackBar.Focus();
         }
     }
 }
