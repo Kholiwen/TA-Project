@@ -208,9 +208,9 @@
             // winChartViewer1
             // 
             this.winChartViewer1.ChartSizeMode = ChartDirector.WinChartSizeMode.StretchImage;
-            this.winChartViewer1.Location = new System.Drawing.Point(18, 75);
+            this.winChartViewer1.Location = new System.Drawing.Point(1, 41);
             this.winChartViewer1.Name = "winChartViewer1";
-            this.winChartViewer1.Size = new System.Drawing.Size(500, 320);
+            this.winChartViewer1.Size = new System.Drawing.Size(540, 356);
             this.winChartViewer1.TabIndex = 7;
             this.winChartViewer1.TabStop = false;
             this.metroToolTip1.SetToolTip(this.winChartViewer1, "3D Scatter Chart view of the cluster");
@@ -1326,9 +1326,9 @@
             // 
             // metroPanel3
             // 
-            this.metroPanel3.Controls.Add(this.winChartViewer1);
             this.metroPanel3.Controls.Add(this.metroProgressBar1);
             this.metroPanel3.Controls.Add(this.metroLabel1);
+            this.metroPanel3.Controls.Add(this.winChartViewer1);
             this.metroPanel3.HorizontalScrollbarBarColor = true;
             this.metroPanel3.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel3.HorizontalScrollbarSize = 10;

@@ -19,13 +19,29 @@ namespace TA_Project
     {
         int a = 50;
         string directoryPath = "";
+        Dictionary<string, string> rfmd;
         OleDbConnection oleCon;
         SqlConnection sqlCon;
         SqlDataAdapter sa;
         SqlCommand command;
-        String olesqlConn, excelQuery, sqlConn;
+        String olesqlConn, excelQuery, sqlConn, query;
         DataTable dt, dt2;
         int result = 0, cltr = 0;
+        int[] custCltr;
+        string[] rfmv;
+        int[,] rfmc;
+        double[,] r;
+        double[,] f;
+        double[,] m;
+        double[,] V;
+        double[,] X;
+        double[] P;
+        int w = 2;
+        int maxIter = 100;
+        double tc = 0.00001;
+        int ctr = 1;
+        Random rnd = new Random();
+        double temp1 = 0, temp2 = 0, temp3 = 0, temp4 = 0, temp5 = 0, temp6 = 0, temp7 = 0, temp8 = 0, temp9 = 0;
 
         public mainForm()
         {
@@ -88,13 +104,24 @@ namespace TA_Project
 
             // Create a ThreeDScatterChart object of size 720 x 600 pixels
             ThreeDScatterChart c = new ThreeDScatterChart(640, 480);
+
             for (int i = 0; i < cltr; i++)
             {
-                RanSeries r = new RanSeries(i+1);
-                double[] xData = r.getSeries2(50, 10 * (i + 2), -30, 5 * (i + 2));
-                double[] yData = r.getSeries2(50, 50, -1, 1);
-                double[] zData = r.getSeries2(50, 15*(i+2), -11*(i+2),40);
-                c.addScatterGroup(xData, yData, zData, i + 1 + "st Cluster", Chart.GlassSphere2Shape, 12, chartColor[i]);
+                RanSeries r = new RanSeries(i + 1);
+                double[] xData = new double[X.GetLength(0)];
+                double[] yData = new double[X.GetLength(0)];
+                double[] zData = new double[X.GetLength(0)];
+                for (int j = 0; j < X.GetLength(0) - 1; j++)
+                {
+                    if (custCltr[j] == i)
+                    {
+                        xData = r.getSeries2(1, X[j, 0], 0, 0);
+                        yData = r.getSeries2(1, X[j, 1], X[j, 1] - X[(j + 1), 1], X[j, 1] - X[(j + 1), 1]);
+                        zData = r.getSeries2(1, X[j, 2], X[j, 2] - X[(j + 1), 2], X[j, 2] - X[(j + 1), 2]);
+                        c.addScatterGroup(xData, yData, zData, "", Chart.GlassSphere2Shape, 12, chartColor[i]);
+                    }
+                }
+                c.addScatterGroup(xData, yData, zData, rfmv[i], Chart.GlassSphere2Shape, 12, chartColor[i]);
             }
             // Add a title to the chart using 20 points Times New Roman Italic font
             //c.addTitle("3D Scatter Chart", "Times New Roman Italic", 20);
@@ -106,21 +133,21 @@ namespace TA_Project
 
             // Set the center of the plot region at (350, 280), and set width x depth x height to
             // 360 x 360 x 270 pixels
-            c.setPlotRegion(350, 200, 360, 360, 270);
+            c.setPlotRegion(350, 275, 360, 360, 270);
 
             // Set the elevation and rotation angles to 15 and 30 degrees
             c.setViewAngle(15, 30);
 
             // Add a legend box at (640, 180)
-            c.addLegend(600, 150);
-            
-            // Output the chart
-            viewer.Chart = c;
+            c.addLegend(400, 10);
 
             // Set the x, y and z axis titles
-            c.xAxis().setTitle("X-Axis Place Holder");
-            c.yAxis().setTitle("Y-Axis Place Holder");
-            c.zAxis().setTitle("Z-Axis Place Holder");
+            c.xAxis().setTitle("Recency");
+            c.yAxis().setTitle("Frequency");
+            c.zAxis().setTitle("Monetary");
+
+            // Output the chart
+            viewer.Chart = c;
 
             //include tool tip for the chart
             viewer.ImageMap = c.getHTMLImageMap("clickable", "",
@@ -273,6 +300,31 @@ namespace TA_Project
             browseBtn.Text = "Browse..";
         }
 
+        private void ShowProgressBarWhileBackgroundWorkerRuns()
+        {
+            BackgroundWorker b = new BackgroundWorker();
+
+            metroPanel1.Visible = false;
+            metroPanel2.Visible = false;
+            metroPanel3.Visible = true;
+            metroLabel3.Text = "Process";
+            b.DoWork += (object sender, DoWorkEventArgs e) =>
+            {
+                fuzzyCMeans();
+                fuzzyRFM();
+                chartThread();
+            };
+
+            b.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
+            {
+                if (metroProgressBar1.Visible) metroProgressBar1.Hide();
+                var resultForm = new resultPage();
+                resultForm.Show();
+            };
+            metroProgressBar1.Show();
+            b.RunWorkerAsync();
+        }
+
         // This method will be called when the thread is started. 
         public void DoWork()
         {
@@ -318,26 +370,15 @@ namespace TA_Project
             Console.WriteLine("main thread: Worker thread has terminated.");
         }
 
-        private void metroButton3_Click(object sender, EventArgs e)
+        public void fuzzyCMeans()
         {
-            metroPanel3.Visible = true;
-            metroPanel1.Visible = false;
-            metroPanel2.Visible = false;
-            metroLabel3.Text = "Process";
-
-            int w = 2;
-            int maxIter = 100;
-            double tc = 0.00001;
-            double[] P = new double[maxIter];
+            P = new double[maxIter];
             P[0] = 0;
             cltr = Decimal.ToInt32(clusterSizeNUD.Value);
-            double[,] V = new double[cltr, 3];
-            int ctr = 1;
-            Random rnd = new Random();
+            V = new double[cltr, 3];
 
-            chartThread();
             command = new SqlCommand();
-            string query = "SELECT * FROM transactionTable order by CID";
+            query = "SELECT * FROM transactionTable order by CID";
             sqlConnection();
             command.CommandText = query;
             command.CommandType = CommandType.Text;
@@ -345,14 +386,12 @@ namespace TA_Project
             sa = new SqlDataAdapter(command);
             DataTable dt = new DataTable();
             sa.Fill(dt);
-            int[] custCltr = new int[dt.Rows.Count];
-            double[,] r = new double[cltr, 2];
-            double[,] f = new double[cltr, 2];
-            double[,] m = new double[cltr, 2];
-            string[] rfmv;
+            custCltr = new int[dt.Rows.Count];
+            r = new double[cltr, 2];
+            f = new double[cltr, 2];
+            m = new double[cltr, 2];
 
-            Dictionary<string, string> rfmd
-                   = new Dictionary<string, string>{
+            rfmd = new Dictionary<string, string>{
                 {"000","Dormant Customer 18"},{"010","Dormant Customer 12"},{"020","Dormant Customer 6"},{"030","Dormant Customer 3"},
                 {"001","Dormant Customer 17"},{"011","Dormant Customer 11"},{"021","Dormant Customer 5"},{"031","Dormant Customer 2"},
                 {"002","Dormant Customer 16"},{"012","Dormant Customer 10"},{"022","Dormant Customer 4"},{"032","Dormant Customer 1"},
@@ -375,7 +414,7 @@ namespace TA_Project
                 {"304","Typical Customer 2"},{"314","Typical Customer 1"},{"324","Superstar 2"},{"334","Superstar 1"},};
 
             //RFM criteria value input to array\\
-            int[,] rfmc = new int[3, 8];
+            rfmc = new int[3, 8];
             rfmc[0, 0] = Convert.ToInt32(recQLTlow.Text);
             rfmc[0, 1] = Convert.ToInt32(recRCNThigh.Text);
             rfmc[0, 2] = Convert.ToInt32(recLTlow.Text);
@@ -410,7 +449,7 @@ namespace TA_Project
             }
 
             //Data input\\
-            double[,] X = new double[dt.Rows.Count, 3];
+            X = new double[dt.Rows.Count, 3];
             foreach (DataRow dr in dt.Rows)
             {
                 X[dt.Rows.IndexOf(dr), 0] = Convert.ToInt32((DateTime.Now - Convert.ToDateTime(dr["Last purchase"])).TotalDays);
@@ -420,7 +459,6 @@ namespace TA_Project
             }
 
             //Fuzzy C-Means Method\\
-            double temp1 = 0, temp2 = 0, temp3 = 0, temp4 = 0, temp5 = 0, temp6 = 0, temp7 = 0, temp8 = 0, temp9 = 0;
             do
             {
                 for (int k = 0; k < cltr; k++)
@@ -493,10 +531,12 @@ namespace TA_Project
                         temp1 = u[i, k];
                         custCltr[i] = k;
                     }
-                    System.Console.WriteLine("U[{0},{1}] = {2}", i, k, u[i, k]);
                 }
             }
+        }
 
+        public void fuzzyRFM()
+        {
             //Fuzzy RFM Method\\
             double[] rfm = new double[cltr];
             double[] temp = new double[2];
@@ -691,12 +731,32 @@ namespace TA_Project
                 command.ExecuteNonQuery();
             }
             sqlCon.Close();
-            Console.Out.WriteLine("Process Finished");
+        }
+
+        private void metroButton3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dt != null)
+                {
+                    ShowProgressBarWhileBackgroundWorkerRuns();
+                }
+                else
+                {
+                    MessageBox.Show("You need to import some data first!");
+                    metroPanel2.Visible = false;
+                    metroPanel1.Visible = true;
+                }
+                Console.Out.WriteLine("Process Finished");
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex);
+            }
             //metroPanel3.Visible = false;
             //this.WindowState = FormWindowState.Minimized;
             //mainForm.ActiveForm.ShowInTaskbar = false;
-            var newForm = new resultPage();
-            newForm.Show();
+            //chartThread();
         }
 
         //Trapezoid Function\\
