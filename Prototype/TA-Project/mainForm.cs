@@ -133,7 +133,7 @@ namespace TA_Project
 
             // Set the center of the plot region at (350, 280), and set width x depth x height to
             // 360 x 360 x 270 pixels
-            c.setPlotRegion(350, 275, 360, 360, 270);
+            c.setPlotRegion(350, 225, 360, 360, 270);
 
             // Set the elevation and rotation angles to 15 and 30 degrees
             c.setViewAngle(15, 30);
@@ -318,6 +318,7 @@ namespace TA_Project
             b.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
             {
                 if (metroProgressBar1.Visible) metroProgressBar1.Hide();
+                metroLabel1.Text = "Data process has finished!";
                 var resultForm = new resultPage();
                 resultForm.Show();
             };

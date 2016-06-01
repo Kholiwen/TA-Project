@@ -29,10 +29,17 @@ namespace TA_Project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.customerHeader = customerComboBox.SelectedItem.ToString();
-            this.purchasedateHeader = purchasedateComboBox.SelectedItem.ToString();
-            this.totalpurchaseHeader = totalpurchaseComboBox.SelectedItem.ToString();
-            this.DialogResult = DialogResult.OK;
+            if (customerComboBox.SelectedItem != null && purchasedateComboBox.SelectedItem != null && totalpurchaseComboBox.SelectedItem != null)
+            {
+                this.customerHeader = customerComboBox.SelectedItem.ToString();
+                this.purchasedateHeader = purchasedateComboBox.SelectedItem.ToString();
+                this.totalpurchaseHeader = totalpurchaseComboBox.SelectedItem.ToString();
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                MessageBox.Show("Please select the header");
+            }
         }
     }
 }
