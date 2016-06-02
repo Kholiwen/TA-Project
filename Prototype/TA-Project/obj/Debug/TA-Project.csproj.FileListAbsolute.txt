@@ -91,6 +91,6 @@ E:\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csproj.GenerateResource.
 E:\New folder\Prototype\TA-Project\bin\Debug\MetroFramework.Design.pdb
 E:\New folder\Prototype\TA-Project\bin\Debug\MetroFramework.Fonts.pdb
 E:\New folder\Prototype\TA-Project\bin\Debug\netchartdir_cp.xml
-C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache
 C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.columnSelectionForm.resources
 \\192.168.1.3\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.columnSelectionForm.resources
+C:\Users\klaud\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache

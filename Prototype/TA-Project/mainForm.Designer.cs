@@ -35,11 +35,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
-            this.dataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cSSDataSet = new TA_Project.CSSDataSet();
             this.segmentStrategyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cSSDataSet1 = new TA_Project.CSSDataSet1();
-            this.dataTableTableAdapter = new TA_Project.CSSDataSetTableAdapters.dataTableTableAdapter();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.segmentStrategyTableAdapter = new TA_Project.CSSDataSet1TableAdapters.segmentStrategyTableAdapter();
             this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
@@ -53,10 +50,12 @@
             this.browseBtn = new MetroFramework.Controls.MetroButton();
             this.manualRadioButton = new MetroFramework.Controls.MetroRadioButton();
             this.metroGrid1 = new MetroFramework.Controls.MetroGrid();
+            this.transactionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.frequencyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalPurchaseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastPurchaseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cSSDataSet = new TA_Project.CSSDataSet();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -144,14 +143,15 @@
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+            this.dataTableTableAdapter = new TA_Project.CSSDataSetTableAdapters.dataTableTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTableBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.segmentStrategyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.winChartViewer1)).BeginInit();
             this.metroPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTableBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet)).BeginInit();
             this.metroPanel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -167,16 +167,6 @@
             // 
             this.metroStyleManager1.Owner = this;
             // 
-            // dataTableBindingSource
-            // 
-            this.dataTableBindingSource.DataMember = "dataTable";
-            this.dataTableBindingSource.DataSource = this.cSSDataSet;
-            // 
-            // cSSDataSet
-            // 
-            this.cSSDataSet.DataSetName = "CSSDataSet";
-            this.cSSDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // segmentStrategyBindingSource
             // 
             this.segmentStrategyBindingSource.DataMember = "segmentStrategy";
@@ -186,10 +176,6 @@
             // 
             this.cSSDataSet1.DataSetName = "CSSDataSet1";
             this.cSSDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // dataTableTableAdapter
-            // 
-            this.dataTableTableAdapter.ClearBeforeFill = true;
             // 
             // openFileDialog1
             // 
@@ -355,8 +341,8 @@
             this.metroGrid1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.metroGrid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.metroGrid1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.transactionID,
             this.customerNameDataGridViewTextBoxColumn,
-            this.frequencyDataGridViewTextBoxColumn,
             this.totalPurchaseDataGridViewTextBoxColumn,
             this.lastPurchaseDataGridViewTextBoxColumn});
             this.metroGrid1.DataSource = this.dataTableBindingSource;
@@ -389,6 +375,13 @@
             this.metroGrid1.Size = new System.Drawing.Size(534, 345);
             this.metroGrid1.TabIndex = 7;
             this.metroGrid1.Visible = false;
+            this.metroGrid1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.metroGrid1_RowEnter);
+            // 
+            // transactionID
+            // 
+            this.transactionID.DataPropertyName = "Transaction ID";
+            this.transactionID.HeaderText = "Transaction ID";
+            this.transactionID.Name = "transactionID";
             // 
             // customerNameDataGridViewTextBoxColumn
             // 
@@ -397,12 +390,6 @@
             this.customerNameDataGridViewTextBoxColumn.HeaderText = "Customer Name";
             this.customerNameDataGridViewTextBoxColumn.Name = "customerNameDataGridViewTextBoxColumn";
             this.customerNameDataGridViewTextBoxColumn.Width = 20;
-            // 
-            // frequencyDataGridViewTextBoxColumn
-            // 
-            this.frequencyDataGridViewTextBoxColumn.DataPropertyName = "Frequency";
-            this.frequencyDataGridViewTextBoxColumn.HeaderText = "Frequency";
-            this.frequencyDataGridViewTextBoxColumn.Name = "frequencyDataGridViewTextBoxColumn";
             // 
             // totalPurchaseDataGridViewTextBoxColumn
             // 
@@ -420,6 +407,16 @@
             this.lastPurchaseDataGridViewTextBoxColumn.DataPropertyName = "Last purchase";
             this.lastPurchaseDataGridViewTextBoxColumn.HeaderText = "Last purchase";
             this.lastPurchaseDataGridViewTextBoxColumn.Name = "lastPurchaseDataGridViewTextBoxColumn";
+            // 
+            // dataTableBindingSource
+            // 
+            this.dataTableBindingSource.DataMember = "dataTable";
+            this.dataTableBindingSource.DataSource = this.cSSDataSet;
+            // 
+            // cSSDataSet
+            // 
+            this.cSSDataSet.DataSetName = "CSSDataSet";
+            this.cSSDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // metroPanel2
             // 
@@ -1218,11 +1215,13 @@
             // 
             this.periodTrackBar.LargeChange = 2;
             this.periodTrackBar.Location = new System.Drawing.Point(21, 140);
-            this.periodTrackBar.Maximum = 11;
+            this.periodTrackBar.Maximum = 12;
+            this.periodTrackBar.Minimum = 1;
             this.periodTrackBar.Name = "periodTrackBar";
             this.periodTrackBar.RightToLeftLayout = true;
             this.periodTrackBar.Size = new System.Drawing.Size(214, 45);
             this.periodTrackBar.TabIndex = 2;
+            this.periodTrackBar.Value = 1;
             this.periodTrackBar.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
             // 
             // label49
@@ -1380,6 +1379,10 @@
             this.lineShape1.Y1 = 26;
             this.lineShape1.Y2 = 26;
             // 
+            // dataTableTableAdapter
+            // 
+            this.dataTableTableAdapter.ClearBeforeFill = true;
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1389,9 +1392,9 @@
             this.BackMaxSize = 50;
             this.ClientSize = new System.Drawing.Size(580, 480);
             this.Controls.Add(this.metroLabel3);
+            this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.metroPanel3);
             this.Controls.Add(this.metroPanel2);
-            this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.shapeContainer1);
             this.MaximizeBox = false;
             this.Name = "mainForm";
@@ -1399,14 +1402,14 @@
             this.Text = "      Customer Segmentation Application";
             this.Load += new System.EventHandler(this.mainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTableBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.segmentStrategyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.winChartViewer1)).EndInit();
             this.metroPanel1.ResumeLayout(false);
             this.metroPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTableBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet)).EndInit();
             this.metroPanel2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -1536,8 +1539,8 @@
         private System.Windows.Forms.NumericUpDown clusterSizeNUD;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn transactionID;
         private System.Windows.Forms.DataGridViewTextBoxColumn customerNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn frequencyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalPurchaseDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastPurchaseDataGridViewTextBoxColumn;
         

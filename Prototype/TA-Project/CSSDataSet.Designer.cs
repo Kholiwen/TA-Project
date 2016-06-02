@@ -279,11 +279,9 @@ namespace TA_Project {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class dataTableDataTable : global::System.Data.TypedTableBase<dataTableRow> {
             
-            private global::System.Data.DataColumn columnCID;
+            private global::System.Data.DataColumn columnTransaction_ID;
             
             private global::System.Data.DataColumn columnCustomer_Name;
-            
-            private global::System.Data.DataColumn columnFrequency;
             
             private global::System.Data.DataColumn columnTotal_purchase;
             
@@ -324,9 +322,9 @@ namespace TA_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CIDColumn {
+            public global::System.Data.DataColumn Transaction_IDColumn {
                 get {
-                    return this.columnCID;
+                    return this.columnTransaction_ID;
                 }
             }
             
@@ -335,14 +333,6 @@ namespace TA_Project {
             public global::System.Data.DataColumn Customer_NameColumn {
                 get {
                     return this.columnCustomer_Name;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FrequencyColumn {
-                get {
-                    return this.columnFrequency;
                 }
             }
             
@@ -399,12 +389,11 @@ namespace TA_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public dataTableRow AdddataTableRow(string CID, string Customer_Name, int Frequency, double Total_purchase, System.DateTime Last_purchase) {
+            public dataTableRow AdddataTableRow(string Transaction_ID, string Customer_Name, double Total_purchase, System.DateTime Last_purchase) {
                 dataTableRow rowdataTableRow = ((dataTableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        CID,
+                        Transaction_ID,
                         Customer_Name,
-                        Frequency,
                         Total_purchase,
                         Last_purchase};
                 rowdataTableRow.ItemArray = columnValuesArray;
@@ -429,9 +418,8 @@ namespace TA_Project {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnCID = base.Columns["CID"];
+                this.columnTransaction_ID = base.Columns["Transaction ID"];
                 this.columnCustomer_Name = base.Columns["Customer Name"];
-                this.columnFrequency = base.Columns["Frequency"];
                 this.columnTotal_purchase = base.Columns["Total purchase"];
                 this.columnLast_purchase = base.Columns["Last purchase"];
             }
@@ -439,21 +427,18 @@ namespace TA_Project {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnCID = new global::System.Data.DataColumn("CID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCID);
+                this.columnTransaction_ID = new global::System.Data.DataColumn("Transaction ID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTransaction_ID);
                 this.columnCustomer_Name = new global::System.Data.DataColumn("Customer Name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCustomer_Name);
-                this.columnFrequency = new global::System.Data.DataColumn("Frequency", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFrequency);
                 this.columnTotal_purchase = new global::System.Data.DataColumn("Total purchase", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotal_purchase);
                 this.columnLast_purchase = new global::System.Data.DataColumn("Last purchase", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLast_purchase);
-                this.columnCID.AllowDBNull = false;
-                this.columnCID.MaxLength = 10;
+                this.columnTransaction_ID.AllowDBNull = false;
+                this.columnTransaction_ID.MaxLength = 10;
                 this.columnCustomer_Name.AllowDBNull = false;
                 this.columnCustomer_Name.MaxLength = 2147483647;
-                this.columnFrequency.AllowDBNull = false;
                 this.columnTotal_purchase.AllowDBNull = false;
             }
             
@@ -597,12 +582,12 @@ namespace TA_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CID {
+            public string Transaction_ID {
                 get {
-                    return ((string)(this[this.tabledataTable.CIDColumn]));
+                    return ((string)(this[this.tabledataTable.Transaction_IDColumn]));
                 }
                 set {
-                    this[this.tabledataTable.CIDColumn] = value;
+                    this[this.tabledataTable.Transaction_IDColumn] = value;
                 }
             }
             
@@ -614,17 +599,6 @@ namespace TA_Project {
                 }
                 set {
                     this[this.tabledataTable.Customer_NameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Frequency {
-                get {
-                    return ((int)(this[this.tabledataTable.FrequencyColumn]));
-                }
-                set {
-                    this[this.tabledataTable.FrequencyColumn] = value;
                 }
             }
             
@@ -827,21 +801,19 @@ namespace TA_Project.CSSDataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "dataTable";
-            tableMapping.ColumnMappings.Add("CID", "CID");
+            tableMapping.ColumnMappings.Add("CID", "Transaction ID");
             tableMapping.ColumnMappings.Add("Customer Name", "Customer Name");
-            tableMapping.ColumnMappings.Add("Frequency", "Frequency");
             tableMapping.ColumnMappings.Add("Total purchase", "Total purchase");
             tableMapping.ColumnMappings.Add("Last purchase", "Last purchase");
+            tableMapping.ColumnMappings.Add("TID", "Transaction ID");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[transactionTable] ([CID], [Customer Name], [Frequency], [Total" +
-                " purchase], [Last purchase]) VALUES (@CID, @Customer_Name, @Frequency, @Total_pu" +
-                "rchase, @Last_purchase)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [transactionTable] ([TID], [Customer Name], [Total purchase], [Last p" +
+                "urchase]) VALUES (@TID, @Customer_Name, @Total_purchase, @Last_purchase)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CID", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TID", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Customer_Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Customer Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Frequency", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Frequency", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Total_purchase", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Total purchase", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Last_purchase", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Last purchase", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -859,8 +831,8 @@ namespace TA_Project.CSSDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT CID, [Customer Name], Frequency, [Total purchase], [Last purchase] FROM db" +
-                "o.transactionTable";
+            this._commandCollection[0].CommandText = "SELECT TID, [Customer Name], [Total purchase], [Last purchase] FROM transactionTa" +
+                "ble";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -915,47 +887,6 @@ namespace TA_Project.CSSDataSetTableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(global::System.Data.DataRow[] dataRows) {
             return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string CID, string Customer_Name, int Frequency, double Total_purchase, global::System.Nullable<global::System.DateTime> Last_purchase) {
-            if ((CID == null)) {
-                throw new global::System.ArgumentNullException("CID");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(CID));
-            }
-            if ((Customer_Name == null)) {
-                throw new global::System.ArgumentNullException("Customer_Name");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Customer_Name));
-            }
-            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(Frequency));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((double)(Total_purchase));
-            if ((Last_purchase.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(Last_purchase.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
         }
     }
     

@@ -84,6 +84,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CSSDataSet.cs">
+      <DependentUpon>CSSDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="CSSDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
