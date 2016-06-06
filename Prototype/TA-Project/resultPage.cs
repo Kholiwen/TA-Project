@@ -129,5 +129,12 @@ namespace TA_Project
                 linkLabel1.Text = "Enable Sort";
             }
         }
+
+        private void nextBtn2_Click(object sender, EventArgs e)
+        {
+            Form frm = new mainForm();
+            frm.Show();
+            this.Close();
+        }
     }
 }

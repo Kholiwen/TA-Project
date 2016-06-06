@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="CSSDataSet.cs">
       <DependentUpon>CSSDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="CSSDataSet.Designer.cs">
       <AutoGen>True</AutoGen>

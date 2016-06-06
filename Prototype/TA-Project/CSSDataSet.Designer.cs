@@ -279,8 +279,6 @@ namespace TA_Project {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class dataTableDataTable : global::System.Data.TypedTableBase<dataTableRow> {
             
-            private global::System.Data.DataColumn columnTransaction_ID;
-            
             private global::System.Data.DataColumn columnCustomer_Name;
             
             private global::System.Data.DataColumn columnTotal_purchase;
@@ -318,14 +316,6 @@ namespace TA_Project {
             protected dataTableDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Transaction_IDColumn {
-                get {
-                    return this.columnTransaction_ID;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -389,10 +379,9 @@ namespace TA_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public dataTableRow AdddataTableRow(string Transaction_ID, string Customer_Name, double Total_purchase, System.DateTime Last_purchase) {
+            public dataTableRow AdddataTableRow(string Customer_Name, double Total_purchase, System.DateTime Last_purchase) {
                 dataTableRow rowdataTableRow = ((dataTableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Transaction_ID,
                         Customer_Name,
                         Total_purchase,
                         Last_purchase};
@@ -418,7 +407,6 @@ namespace TA_Project {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnTransaction_ID = base.Columns["Transaction ID"];
                 this.columnCustomer_Name = base.Columns["Customer Name"];
                 this.columnTotal_purchase = base.Columns["Total purchase"];
                 this.columnLast_purchase = base.Columns["Last purchase"];
@@ -427,16 +415,12 @@ namespace TA_Project {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnTransaction_ID = new global::System.Data.DataColumn("Transaction ID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTransaction_ID);
                 this.columnCustomer_Name = new global::System.Data.DataColumn("Customer Name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCustomer_Name);
                 this.columnTotal_purchase = new global::System.Data.DataColumn("Total purchase", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotal_purchase);
                 this.columnLast_purchase = new global::System.Data.DataColumn("Last purchase", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLast_purchase);
-                this.columnTransaction_ID.AllowDBNull = false;
-                this.columnTransaction_ID.MaxLength = 10;
                 this.columnCustomer_Name.AllowDBNull = false;
                 this.columnCustomer_Name.MaxLength = 2147483647;
                 this.columnTotal_purchase.AllowDBNull = false;
@@ -578,17 +562,6 @@ namespace TA_Project {
             internal dataTableRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
                 this.tabledataTable = ((dataTableDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Transaction_ID {
-                get {
-                    return ((string)(this[this.tabledataTable.Transaction_IDColumn]));
-                }
-                set {
-                    this[this.tabledataTable.Transaction_IDColumn] = value;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -801,21 +774,11 @@ namespace TA_Project.CSSDataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "dataTable";
-            tableMapping.ColumnMappings.Add("CID", "Transaction ID");
             tableMapping.ColumnMappings.Add("Customer Name", "Customer Name");
             tableMapping.ColumnMappings.Add("Total purchase", "Total purchase");
             tableMapping.ColumnMappings.Add("Last purchase", "Last purchase");
             tableMapping.ColumnMappings.Add("TID", "Transaction ID");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [transactionTable] ([TID], [Customer Name], [Total purchase], [Last p" +
-                "urchase]) VALUES (@TID, @Customer_Name, @Total_purchase, @Last_purchase)";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TID", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Customer_Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Customer Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Total_purchase", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Total purchase", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Last_purchase", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Last purchase", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -831,8 +794,7 @@ namespace TA_Project.CSSDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT TID, [Customer Name], [Total purchase], [Last purchase] FROM transactionTa" +
-                "ble";
+            this._commandCollection[0].CommandText = "SELECT [Customer Name], [Total purchase], [Last purchase] FROM transactionTable";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -859,35 +821,6 @@ namespace TA_Project.CSSDataSetTableAdapters {
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(CSSDataSet.dataTableDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(CSSDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "dataTable");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
     }
     
     /// <summary>
@@ -902,8 +835,6 @@ namespace TA_Project.CSSDataSetTableAdapters {
         
         private UpdateOrderOption _updateOrder;
         
-        private dataTableTableAdapter _dataTableTableAdapter;
-        
         private bool _backupDataSetBeforeUpdate;
         
         private global::System.Data.IDbConnection _connection;
@@ -916,20 +847,6 @@ namespace TA_Project.CSSDataSetTableAdapters {
             }
             set {
                 this._updateOrder = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public dataTableTableAdapter dataTableTableAdapter {
-            get {
-                return this._dataTableTableAdapter;
-            }
-            set {
-                this._dataTableTableAdapter = value;
             }
         }
         
@@ -952,10 +869,6 @@ namespace TA_Project.CSSDataSetTableAdapters {
                 if ((this._connection != null)) {
                     return this._connection;
                 }
-                if (((this._dataTableTableAdapter != null) 
-                            && (this._dataTableTableAdapter.Connection != null))) {
-                    return this._dataTableTableAdapter.Connection;
-                }
                 return null;
             }
             set {
@@ -969,9 +882,6 @@ namespace TA_Project.CSSDataSetTableAdapters {
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
-                if ((this._dataTableTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 return count;
             }
         }
@@ -983,15 +893,6 @@ namespace TA_Project.CSSDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateUpdatedRows(CSSDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._dataTableTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.dataTable.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._dataTableTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             return result;
         }
         
@@ -1002,14 +903,6 @@ namespace TA_Project.CSSDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateInsertedRows(CSSDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._dataTableTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.dataTable.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._dataTableTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             return result;
         }
         
@@ -1020,14 +913,6 @@ namespace TA_Project.CSSDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(CSSDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._dataTableTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.dataTable.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._dataTableTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             return result;
         }
         
@@ -1067,11 +952,6 @@ namespace TA_Project.CSSDataSetTableAdapters {
             if ((dataSet.HasChanges() == false)) {
                 return 0;
             }
-            if (((this._dataTableTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._dataTableTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
                 throw new global::System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana" +
@@ -1104,15 +984,6 @@ namespace TA_Project.CSSDataSetTableAdapters {
             try {
                 // ---- Prepare for update -----------
                 //
-                if ((this._dataTableTableAdapter != null)) {
-                    revertConnections.Add(this._dataTableTableAdapter, this._dataTableTableAdapter.Connection);
-                    this._dataTableTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._dataTableTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._dataTableTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._dataTableTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._dataTableTableAdapter.Adapter);
-                    }
-                }
                 // 
                 //---- Perform updates -----------
                 //
@@ -1170,10 +1041,6 @@ namespace TA_Project.CSSDataSetTableAdapters {
             finally {
                 if (workConnOpened) {
                     workConnection.Close();
-                }
-                if ((this._dataTableTableAdapter != null)) {
-                    this._dataTableTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._dataTableTableAdapter]));
-                    this._dataTableTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

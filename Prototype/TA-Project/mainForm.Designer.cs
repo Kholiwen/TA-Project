@@ -46,11 +46,10 @@
             this.welcomeLbl = new MetroFramework.Controls.MetroLabel();
             this.fileTextBox = new MetroFramework.Controls.MetroTextBox();
             this.batchRadioButton = new MetroFramework.Controls.MetroRadioButton();
-            this.nextBtn = new MetroFramework.Controls.MetroButton();
+            this.nextBtn1 = new MetroFramework.Controls.MetroButton();
             this.browseBtn = new MetroFramework.Controls.MetroButton();
             this.manualRadioButton = new MetroFramework.Controls.MetroRadioButton();
             this.metroGrid1 = new MetroFramework.Controls.MetroGrid();
-            this.transactionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalPurchaseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastPurchaseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -139,6 +138,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
+            this.nextBtn2 = new System.Windows.Forms.Button();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
@@ -194,7 +194,7 @@
             // winChartViewer1
             // 
             this.winChartViewer1.ChartSizeMode = ChartDirector.WinChartSizeMode.StretchImage;
-            this.winChartViewer1.Location = new System.Drawing.Point(1, 41);
+            this.winChartViewer1.Location = new System.Drawing.Point(6, 41);
             this.winChartViewer1.Name = "winChartViewer1";
             this.winChartViewer1.Size = new System.Drawing.Size(540, 356);
             this.winChartViewer1.TabIndex = 7;
@@ -215,7 +215,7 @@
             this.metroPanel1.Controls.Add(this.welcomeLbl);
             this.metroPanel1.Controls.Add(this.fileTextBox);
             this.metroPanel1.Controls.Add(this.batchRadioButton);
-            this.metroPanel1.Controls.Add(this.nextBtn);
+            this.metroPanel1.Controls.Add(this.nextBtn1);
             this.metroPanel1.Controls.Add(this.browseBtn);
             this.metroPanel1.Controls.Add(this.manualRadioButton);
             this.metroPanel1.Controls.Add(this.metroGrid1);
@@ -288,15 +288,15 @@
             this.batchRadioButton.UseSelectable = true;
             this.batchRadioButton.CheckedChanged += new System.EventHandler(this.metroRadioButton1_CheckedChanged);
             // 
-            // nextBtn
+            // nextBtn1
             // 
-            this.nextBtn.Location = new System.Drawing.Point(462, 2);
-            this.nextBtn.Name = "nextBtn";
-            this.nextBtn.Size = new System.Drawing.Size(75, 23);
-            this.nextBtn.TabIndex = 1;
-            this.nextBtn.Text = "Next";
-            this.nextBtn.UseSelectable = true;
-            this.nextBtn.Click += new System.EventHandler(this.metroButton1_Click);
+            this.nextBtn1.Location = new System.Drawing.Point(462, 2);
+            this.nextBtn1.Name = "nextBtn1";
+            this.nextBtn1.Size = new System.Drawing.Size(75, 23);
+            this.nextBtn1.TabIndex = 1;
+            this.nextBtn1.Text = "Next";
+            this.nextBtn1.UseSelectable = true;
+            this.nextBtn1.Click += new System.EventHandler(this.nextBtn1_Click);
             // 
             // browseBtn
             // 
@@ -325,7 +325,6 @@
             // 
             this.metroGrid1.AllowUserToResizeRows = false;
             this.metroGrid1.AutoGenerateColumns = false;
-            this.metroGrid1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.metroGrid1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             this.metroGrid1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.metroGrid1.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -341,7 +340,6 @@
             this.metroGrid1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.metroGrid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.metroGrid1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.transactionID,
             this.customerNameDataGridViewTextBoxColumn,
             this.totalPurchaseDataGridViewTextBoxColumn,
             this.lastPurchaseDataGridViewTextBoxColumn});
@@ -377,36 +375,32 @@
             this.metroGrid1.Visible = false;
             this.metroGrid1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.metroGrid1_RowEnter);
             // 
-            // transactionID
-            // 
-            this.transactionID.DataPropertyName = "Transaction ID";
-            this.transactionID.HeaderText = "Transaction ID";
-            this.transactionID.Name = "transactionID";
-            // 
             // customerNameDataGridViewTextBoxColumn
             // 
-            this.customerNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.customerNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.customerNameDataGridViewTextBoxColumn.DataPropertyName = "Customer Name";
             this.customerNameDataGridViewTextBoxColumn.HeaderText = "Customer Name";
             this.customerNameDataGridViewTextBoxColumn.Name = "customerNameDataGridViewTextBoxColumn";
-            this.customerNameDataGridViewTextBoxColumn.Width = 20;
+            this.customerNameDataGridViewTextBoxColumn.Width = 102;
             // 
             // totalPurchaseDataGridViewTextBoxColumn
             // 
-            this.totalPurchaseDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.totalPurchaseDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.totalPurchaseDataGridViewTextBoxColumn.DataPropertyName = "Total purchase";
             dataGridViewCellStyle2.Format = "\"Rp. \"###,###.##\",-";
             dataGridViewCellStyle2.NullValue = null;
             this.totalPurchaseDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.totalPurchaseDataGridViewTextBoxColumn.HeaderText = "Total purchase";
             this.totalPurchaseDataGridViewTextBoxColumn.Name = "totalPurchaseDataGridViewTextBoxColumn";
-            this.totalPurchaseDataGridViewTextBoxColumn.Width = 20;
+            this.totalPurchaseDataGridViewTextBoxColumn.Width = 95;
             // 
             // lastPurchaseDataGridViewTextBoxColumn
             // 
+            this.lastPurchaseDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.lastPurchaseDataGridViewTextBoxColumn.DataPropertyName = "Last purchase";
             this.lastPurchaseDataGridViewTextBoxColumn.HeaderText = "Last purchase";
             this.lastPurchaseDataGridViewTextBoxColumn.Name = "lastPurchaseDataGridViewTextBoxColumn";
+            this.lastPurchaseDataGridViewTextBoxColumn.Width = 92;
             // 
             // dataTableBindingSource
             // 
@@ -1222,6 +1216,7 @@
             this.periodTrackBar.Size = new System.Drawing.Size(214, 45);
             this.periodTrackBar.TabIndex = 2;
             this.periodTrackBar.Value = 1;
+            this.periodTrackBar.Scroll += new System.EventHandler(this.periodTrackBar_Scroll);
             this.periodTrackBar.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
             // 
             // label49
@@ -1325,19 +1320,31 @@
             // 
             // metroPanel3
             // 
+            this.metroPanel3.Controls.Add(this.nextBtn2);
             this.metroPanel3.Controls.Add(this.metroProgressBar1);
             this.metroPanel3.Controls.Add(this.metroLabel1);
             this.metroPanel3.Controls.Add(this.winChartViewer1);
             this.metroPanel3.HorizontalScrollbarBarColor = true;
             this.metroPanel3.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel3.HorizontalScrollbarSize = 10;
-            this.metroPanel3.Location = new System.Drawing.Point(19, 92);
+            this.metroPanel3.Location = new System.Drawing.Point(13, 94);
             this.metroPanel3.Name = "metroPanel3";
-            this.metroPanel3.Size = new System.Drawing.Size(541, 397);
+            this.metroPanel3.Size = new System.Drawing.Size(554, 397);
             this.metroPanel3.TabIndex = 3;
             this.metroPanel3.VerticalScrollbarBarColor = true;
             this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel3.VerticalScrollbarSize = 10;
+            // 
+            // nextBtn2
+            // 
+            this.nextBtn2.BackColor = System.Drawing.SystemColors.Window;
+            this.nextBtn2.Location = new System.Drawing.Point(466, 8);
+            this.nextBtn2.Name = "nextBtn2";
+            this.nextBtn2.Size = new System.Drawing.Size(75, 23);
+            this.nextBtn2.TabIndex = 6;
+            this.nextBtn2.Text = "Next";
+            this.nextBtn2.UseVisualStyleBackColor = false;
+            this.nextBtn2.Click += new System.EventHandler(this.nextBtn2_Click);
             // 
             // metroLabel1
             // 
@@ -1392,8 +1399,8 @@
             this.BackMaxSize = 50;
             this.ClientSize = new System.Drawing.Size(580, 480);
             this.Controls.Add(this.metroLabel3);
-            this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.metroPanel3);
+            this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.metroPanel2);
             this.Controls.Add(this.shapeContainer1);
             this.MaximizeBox = false;
@@ -1530,7 +1537,7 @@
         private MetroFramework.Controls.MetroLabel welcomeLbl;
         private MetroFramework.Controls.MetroTextBox fileTextBox;
         private MetroFramework.Controls.MetroRadioButton batchRadioButton;
-        private MetroFramework.Controls.MetroButton nextBtn;
+        private MetroFramework.Controls.MetroButton nextBtn1;
         private MetroFramework.Controls.MetroButton browseBtn;
         private MetroFramework.Controls.MetroRadioButton manualRadioButton;
         private MetroFramework.Controls.MetroGrid metroGrid1;
@@ -1539,10 +1546,10 @@
         private System.Windows.Forms.NumericUpDown clusterSizeNUD;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn transactionID;
         private System.Windows.Forms.DataGridViewTextBoxColumn customerNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalPurchaseDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastPurchaseDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button nextBtn2;
         
         
     }

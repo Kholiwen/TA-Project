@@ -46,6 +46,7 @@ namespace TA_Project
         public mainForm()
         {
             InitializeComponent();
+            initCriteriaRFM();
             label1.Font = new Font("Tahoma", 11, FontStyle.Regular);
             label3.Font = new Font("Tahoma", 11, FontStyle.Regular);
             label4.Font = new Font("Tahoma", 11, FontStyle.Regular);
@@ -139,7 +140,7 @@ namespace TA_Project
             result = 0;
             excelConn(filePath);
             excelQuery = string.Format("Select * FROM [{0}]", "Sheet1$");
-            
+
             oleCon.Open();
             dt = new DataTable();
             OleDbDataAdapter oda = new OleDbDataAdapter(excelQuery, oleCon);
@@ -184,19 +185,6 @@ namespace TA_Project
             {
                 MessageBox.Show("Column header must be selected properly. Please repeat the process again.");
                 System.Console.WriteLine(e);
-            }
-        }
-
-        private void metroButton1_Click(object sender, EventArgs e)
-        {
-            if (metroGrid1.Visible == true)
-            {
-                datacollectionProcess();
-                processBtn.Focus();
-            }
-            else
-            {
-                MessageBox.Show("Database empty", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -261,12 +249,32 @@ namespace TA_Project
         {
             BackgroundWorker b = new BackgroundWorker();
 
-            int period = periodTrackBar.Value;
             metroPanel1.Visible = false;
             metroPanel2.Visible = true;
             metroPanel3.Visible = false;
             metroLabel3.Text = "Clustering Options";
 
+            b.DoWork += (object sender, DoWorkEventArgs e) =>
+            {
+
+            };
+
+            b.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
+            {
+
+            };
+            b.RunWorkerAsync();
+        }
+
+        private void ShowProgressBarWhileBackgroundWorkerRuns()
+        {
+            BackgroundWorker b = new BackgroundWorker();
+
+            int period = periodTrackBar.Value;
+            metroPanel1.Visible = false;
+            metroPanel2.Visible = false;
+            metroPanel3.Visible = true;
+            metroLabel3.Text = "Process";
             b.DoWork += (object sender, DoWorkEventArgs e) =>
             {
                 command = new SqlCommand();
@@ -333,25 +341,6 @@ namespace TA_Project
                         sqlCmd.ExecuteNonQuery();
                     }
                 }
-            };
-
-            b.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
-            {
-                backBtn1.Visible = false;
-            };
-            b.RunWorkerAsync();
-        }
-
-        private void ShowProgressBarWhileBackgroundWorkerRuns()
-        {
-            BackgroundWorker b = new BackgroundWorker();
-
-            metroPanel1.Visible = false;
-            metroPanel2.Visible = false;
-            metroPanel3.Visible = true;
-            metroLabel3.Text = "Process";
-            b.DoWork += (object sender, DoWorkEventArgs e) =>
-            {
                 fuzzyCMeans();
                 fuzzyRFM();
                 chartThread();
@@ -361,8 +350,7 @@ namespace TA_Project
             {
                 if (metroProgressBar1.Visible) metroProgressBar1.Hide();
                 metroLabel1.Text = "Data process has finished!";
-                var resultForm = new resultPage();
-                resultForm.Show();
+                nextBtn2.Visible = true;
             };
             metroProgressBar1.Show();
             b.RunWorkerAsync();
@@ -764,6 +752,19 @@ namespace TA_Project
             sqlCon.Close();
         }
 
+        private void nextBtn1_Click(object sender, EventArgs e)
+        {
+            if (metroGrid1.Visible == true)
+            {
+                datacollectionProcess();
+                processBtn.Focus();
+            }
+            else
+            {
+                MessageBox.Show("Database empty", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         private void metroButton3_Click(object sender, EventArgs e)
         {
             try
@@ -865,6 +866,35 @@ namespace TA_Project
             }
         }
 
+        public void initCriteriaRFM()
+        {
+            recLTA.Text = 18.ToString();
+            recLTlow.Text = 11.ToString();
+            recLThigh.Text = 19.ToString();
+            recQLTlow.Text = 4.ToString();
+            recQLThigh.Text = 12.ToString();
+            recRCNTlow.Text = 0.ToString();
+            recRCNThigh.Text = 5.ToString();
+
+            freVRlow.Text = (0 * periodTrackBar.Value).ToString();
+            freVRhigh.Text = (2 * periodTrackBar.Value).ToString();
+            freRlow.Text = (1 * periodTrackBar.Value).ToString();
+            freRhigh.Text = (4 * periodTrackBar.Value).ToString();
+            freOlow.Text = (3 * periodTrackBar.Value).ToString();
+            freOhigh.Text = (6 * periodTrackBar.Value).ToString();
+            freVO.Text = (5 * periodTrackBar.Value).ToString();
+
+            monVLlow.Text = (0 * periodTrackBar.Value).ToString();
+            monVLhigh.Text = (5 * periodTrackBar.Value).ToString();
+            monLlow.Text = (4 * periodTrackBar.Value).ToString();
+            monLhigh.Text = (10 * periodTrackBar.Value).ToString();
+            monMlow.Text = (9 * periodTrackBar.Value).ToString();
+            monMhigh.Text = (15 * periodTrackBar.Value).ToString();
+            monHlow.Text = (14 * periodTrackBar.Value).ToString();
+            monHhigh.Text = (20 * periodTrackBar.Value).ToString();
+            monVH.Text = (19 * periodTrackBar.Value).ToString();
+        }
+
         private void metroCheckBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (customCheckbox.Checked)
@@ -905,7 +935,9 @@ namespace TA_Project
                 panel1.Enabled = false;
                 panel2.Enabled = false;
                 panel3.Enabled = false;
-                Properties.Settings.Default.Reload();
+                recLTA.Text = Properties.Settings.Default.ToString();
+                //Properties.Settings.Default.Reload();
+                initCriteriaRFM();
             }
         }
 
@@ -924,18 +956,29 @@ namespace TA_Project
                 sqlCon.Open();
                 if (metroGrid1.Rows[t].Cells[0].Value.ToString() != "" && metroGrid1.Rows[t].Cells[1].Value.ToString() != "" && metroGrid1.Rows[t].Cells[2].Value.ToString() != "")
                 {
-                    metroGrid1.Rows[t].Cells[0].Value = DBNull.Value;
                     using (SqlCommand sqlCmd = new SqlCommand("sp_insertTRANSACTION", sqlCon))
                     {
                         sqlCmd.CommandType = CommandType.StoredProcedure;
-                        sqlCmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = Convert.ToString(metroGrid1.Rows[t].Cells[1].Value);
-                        sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = Convert.ToDecimal(metroGrid1.Rows[t].Cells[2].Value);
-                        sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = metroGrid1.Rows[t].Cells[3].Value;
+                        sqlCmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = Convert.ToString(metroGrid1.Rows[t].Cells[0].Value);
+                        sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = Convert.ToDecimal(metroGrid1.Rows[t].Cells[1].Value);
+                        sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = metroGrid1.Rows[t].Cells[2].Value;
                         sqlCmd.Parameters.Add("@CID", SqlDbType.NChar).Value = DBNull.Value;
                         result += sqlCmd.ExecuteNonQuery();
                     }
                 }
             }
+        }
+
+        private void periodTrackBar_Scroll(object sender, EventArgs e)
+        {
+            initCriteriaRFM();
+        }
+
+        private void nextBtn2_Click(object sender, EventArgs e)
+        {
+            var resultForm = new resultPage();
+            resultForm.Show();
+            this.Hide();
         }
     }
 }
