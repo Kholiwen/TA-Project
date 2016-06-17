@@ -392,7 +392,7 @@
             this.totalPurchaseDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.totalPurchaseDataGridViewTextBoxColumn.HeaderText = "Total purchase";
             this.totalPurchaseDataGridViewTextBoxColumn.Name = "totalPurchaseDataGridViewTextBoxColumn";
-            this.totalPurchaseDataGridViewTextBoxColumn.Width = 95;
+            this.totalPurchaseDataGridViewTextBoxColumn.Width = 96;
             // 
             // lastPurchaseDataGridViewTextBoxColumn
             // 
@@ -1337,12 +1337,14 @@
             // 
             // nextBtn2
             // 
+            this.nextBtn2.AutoSize = true;
             this.nextBtn2.BackColor = System.Drawing.SystemColors.Window;
+            this.nextBtn2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nextBtn2.Location = new System.Drawing.Point(466, 8);
             this.nextBtn2.Name = "nextBtn2";
-            this.nextBtn2.Size = new System.Drawing.Size(75, 23);
+            this.nextBtn2.Size = new System.Drawing.Size(84, 23);
             this.nextBtn2.TabIndex = 6;
-            this.nextBtn2.Text = "Next";
+            this.nextBtn2.Text = "View Result";
             this.nextBtn2.UseVisualStyleBackColor = false;
             this.nextBtn2.Click += new System.EventHandler(this.nextBtn2_Click);
             // 

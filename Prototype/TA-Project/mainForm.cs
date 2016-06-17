@@ -17,6 +17,7 @@ namespace TA_Project
 {
     public partial class mainForm : MetroFramework.Forms.MetroForm
     {
+        resultPage resultForm;
         Dictionary<string, string> rfmd;
         OleDbConnection oleCon;
         SqlConnection sqlCon;
@@ -341,6 +342,13 @@ namespace TA_Project
                         sqlCmd.ExecuteNonQuery();
                     }
                 }
+                query = "UPDATE transactionTable set CID = (SELECT processedTable.CID from processedTable where [transactionTable].[Customer Name] = processedTable.[Customer Name])";
+                sqlConnection();
+                sqlCon.Open();
+                command.CommandText = query;
+                command.CommandType = CommandType.Text;
+                command.Connection = sqlCon;
+                command.ExecuteNonQuery();
                 fuzzyCMeans();
                 fuzzyRFM();
                 chartThread();
@@ -976,9 +984,9 @@ namespace TA_Project
 
         private void nextBtn2_Click(object sender, EventArgs e)
         {
-            var resultForm = new resultPage();
-            resultForm.Show();
-            this.Hide();
+            resultForm = new resultPage(this);
+            resultForm.Show(this);
+            Hide();
         }
     }
 }

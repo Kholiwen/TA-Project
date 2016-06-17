@@ -86,7 +86,6 @@
   <ItemGroup>
     <Compile Include="CSSDataSet.cs">
       <DependentUpon>CSSDataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="CSSDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -148,6 +147,7 @@
       <DependentUpon>resultPage.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="CSSDataSet.xsc">
       <DependentUpon>CSSDataSet.xsd</DependentUpon>
     </None>

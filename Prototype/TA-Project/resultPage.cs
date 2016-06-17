@@ -22,10 +22,12 @@ namespace TA_Project
         int i = 1;
         string query = "SELECT * from clusterResult";
         string query2;
+        private mainForm frm;
 
-        public resultPage()
+        public resultPage(mainForm frm)
         {
             InitializeComponent();
+            this.frm = frm;
             //for (int i = 0; i < k; i++)
             //{
             //    dataGridView1.Rows[i].Cells[4].Value = rfmv[i];
@@ -130,11 +132,17 @@ namespace TA_Project
             }
         }
 
-        private void nextBtn2_Click(object sender, EventArgs e)
+        private void backBtn_Click(object sender, EventArgs e)
         {
-            Form frm = new mainForm();
-            frm.Show();
             this.Close();
+            //Application.Run(new mainForm());
+            frm.Show();
+        }
+
+        private void graphButton_Click(object sender, EventArgs e)
+        {
+            frm.Show();
+            Hide();
         }
     }
 }
