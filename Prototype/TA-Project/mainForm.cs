@@ -34,6 +34,7 @@ namespace TA_Project
         double[,] r;
         double[,] f;
         double[,] m;
+        double[,] u;
         double[,] V;
         double[,] X;
         double[] P;
@@ -43,6 +44,7 @@ namespace TA_Project
         int ctr = 1, num = 0;
         double temp1 = 0, temp2 = 0, temp3 = 0, temp4 = 0, temp5 = 0, temp6 = 0, temp7 = 0, temp8 = 0, temp9 = 0;
         Random rnd = new Random();
+        double[] chartRange;
 
         public mainForm()
         {
@@ -72,7 +74,53 @@ namespace TA_Project
         public int getNoOfCharts() { return 1; }
 
         //Main code for creating chart.
-        public void createChart(WinChartViewer viewer, int chartIndex)
+        public void createChart1(WinChartViewer viewer, int chartIndex)
+        {
+            int[] chartColor = new int[8] { 0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xff00ff, 0x55ffff, 0x888888, 0x111111 };
+
+            // Create a ThreeDScatterChart object of size 720 x 600 pixels
+            ThreeDScatterChart c = new ThreeDScatterChart(640, 480);
+
+                RanSeries r = new RanSeries(1);
+                double[] xData = new double[X.GetLength(0)];
+                double[] yData = new double[X.GetLength(0)];
+                double[] zData = new double[X.GetLength(0)];
+                for (int j = 0; j < dt.Rows.Count; j++)
+                {
+                    xData = r.getSeries2(2, V[0, 0], 0, u[j, 0] * V[0, 0]);
+                    yData = r.getSeries2(2, V[0, 1], 0, u[j, 0] * V[0, 1]);
+                    zData = r.getSeries2(2, V[0, 2], 0, u[j, 0] * V[0, 2]);
+                    c.addScatterGroup(xData, yData, zData, "", Chart.GlassSphere2Shape, 12, chartColor[6]);
+                }
+                //c.addScatterGroup(xData, yData, zData, rfmv[i], Chart.GlassSphere2Shape, 12, chartColor[i]);
+            
+            // Add a title to the chart using 20 points Times New Roman Italic font
+            //c.addTitle("3D Scatter Chart", "Times New Roman Italic", 20);
+
+            // Set the center of the plot region at (350, 225), and set width x depth x height to
+            // 360 x 360 x 270 pixels
+            c.setPlotRegion(350, 225, 360, 360, 270);
+
+            // Set the elevation and rotation angles to 15 and 30 degrees
+            c.setViewAngle(15, 30);
+
+            // Add a legend box at (640, 180)
+            c.addLegend(400, 10);
+
+            // Set the x, y and z axis titles
+            c.xAxis().setTitle("Recency");
+            c.yAxis().setTitle("Frequency");
+            c.zAxis().setTitle("Monetary");
+
+            // Output the chart
+            viewer.Chart = c;
+
+            //include tool tip for the chart
+            viewer.ImageMap = c.getHTMLImageMap("clickable", "",
+                "title='(x={x|p}, y={y|p}, z={z|p}'");
+        }
+
+        public void createChart2(WinChartViewer viewer, int chartIndex)
         {
             int[] chartColor = new int[8] { 0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xff00ff, 0x55ffff, 0x888888, 0x111111 };
 
@@ -246,26 +294,21 @@ namespace TA_Project
             browseBtn.Text = "Browse..";
         }
 
-        private void datacollectionProcess()
-        {
-            BackgroundWorker b = new BackgroundWorker();
+        //private void datacollectionProcess()
+        //{
+        //    BackgroundWorker b = new BackgroundWorker();
 
-            metroPanel1.Visible = false;
-            metroPanel2.Visible = true;
-            metroPanel3.Visible = false;
-            metroLabel3.Text = "Clustering Options";
+        //    b.DoWork += (object sender, DoWorkEventArgs e) =>
+        //    {
 
-            b.DoWork += (object sender, DoWorkEventArgs e) =>
-            {
+        //    };
 
-            };
+        //    b.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
+        //    {
 
-            b.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
-            {
-
-            };
-            b.RunWorkerAsync();
-        }
+        //    };
+        //    b.RunWorkerAsync();
+        //}
 
         private void ShowProgressBarWhileBackgroundWorkerRuns()
         {
@@ -351,7 +394,6 @@ namespace TA_Project
                 command.ExecuteNonQuery();
                 fuzzyCMeans();
                 fuzzyRFM();
-                chartThread();
             };
 
             b.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
@@ -365,48 +407,47 @@ namespace TA_Project
         }
 
         // This method will be called when the thread is started. 
-        public void DoWork()
-        {
-            while (!_shouldStop)
-            {
-                Console.WriteLine("worker thread: working...");
-                createChart(winChartViewer1, 1);
-            }
-            Console.WriteLine("worker thread: terminating gracefully.");
-        }
-        public void RequestStop()
-        {
-            _shouldStop = true;
-        }
+        //public void DoWork()
+        //{
+        //    while (!_shouldStop)
+        //    {
+        //        Console.WriteLine("worker thread: working...");
+        //        createChart(winChartViewer1, 1);
+        //    }
+        //    Console.WriteLine("worker thread: terminating gracefully.");
+        //}
+        //public void RequestStop()
+        //{
+        //    _shouldStop = true;
+        //}
         // Volatile is used as hint to the compiler that this data 
         // member will be accessed by multiple threads. 
-        private volatile bool _shouldStop;
+        //private volatile bool _shouldStop;
 
-        public void chartThread()
-        {
+        //public void chartThread()
+        //{
+        //    // Create the thread object. This does not start the thread.
+        //    Thread workerThread = new Thread(new System.Threading.ThreadStart(DoWork));
 
-            // Create the thread object. This does not start the thread.
-            Thread workerThread = new Thread(new System.Threading.ThreadStart(DoWork));
+        //    // Start the worker thread.
+        //    workerThread.Start();
+        //    Console.WriteLine("main thread: Starting worker thread...");
 
-            // Start the worker thread.
-            workerThread.Start();
-            Console.WriteLine("main thread: Starting worker thread...");
+        //    // Loop until worker thread activates. 
+        //    while (!workerThread.IsAlive) ;
 
-            // Loop until worker thread activates. 
-            while (!workerThread.IsAlive) ;
+        //    // Put the main thread to sleep for 1 millisecond to 
+        //    // allow the worker thread to do some work:
+        //    Thread.Sleep(1000);
 
-            // Put the main thread to sleep for 1 millisecond to 
-            // allow the worker thread to do some work:
-            Thread.Sleep(1000);
+        //    // Request that the worker thread stop itself:
+        //    RequestStop();
 
-            // Request that the worker thread stop itself:
-            RequestStop();
-
-            // Use the Join method to block the current thread  
-            // until the object's thread terminates.
-            workerThread.Join();
-            Console.WriteLine("main thread: Worker thread has terminated.");
-        }
+        //    // Use the Join method to block the current thread  
+        //    // until the object's thread terminates.
+        //    workerThread.Join();
+        //    Console.WriteLine("main thread: Worker thread has terminated.");
+        //}
 
         public void fuzzyCMeans()
         {
@@ -428,6 +469,7 @@ namespace TA_Project
             r = new double[cltr, 2];
             f = new double[cltr, 2];
             m = new double[cltr, 2];
+            chartRange = new double[dt.Rows.Count];
 
             rfmd = new Dictionary<string, string>{
                 {"000","Dormant Customer 18"},{"010","Dormant Customer 12"},{"020","Dormant Customer 6"},{"030","Dormant Customer 3"},
@@ -477,7 +519,7 @@ namespace TA_Project
             rfmc[2, 7] = Convert.ToInt32(monHhigh.Text + "000000");
 
             //Random number generation\\
-            double[,] u = new double[dt.Rows.Count, cltr];
+            u = new double[dt.Rows.Count, cltr];
             for (int k = 0; k < cltr; k++)
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
@@ -489,6 +531,7 @@ namespace TA_Project
             //Fuzzy C-Means Method\\
             do
             {
+                //Cluster Centroid Function\\
                 for (int k = 0; k < cltr; k++)
                 {
                     for (int j = 0; j < 3; j++)
@@ -504,7 +547,7 @@ namespace TA_Project
                     }
                 }
 
-                //Objective Function
+                //Objective Function\\
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     for (int k = 0; k < cltr; k++)
@@ -520,7 +563,7 @@ namespace TA_Project
                 P[ctr] += temp4;
                 temp4 = 0;
 
-                //Membership degree\\
+                //Membership Degree Function\\
 
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
@@ -545,6 +588,7 @@ namespace TA_Project
                         temp9 = 0;
                     }
                 }
+                createChart1(winChartViewer1, 1);
                 ctr++;
             } while (ctr < maxIter && Math.Abs((P[ctr - 1] - P[ctr - 2])) > tc);
 
@@ -556,6 +600,7 @@ namespace TA_Project
                     if (temp1 < u[i, k])
                     {
                         temp1 = u[i, k];
+                        //chartRange[i] = u[i, k];
                         custCltr[i] = k;
                     }
                 }
@@ -719,6 +764,7 @@ namespace TA_Project
                 }
             }
 
+            createChart2(winChartViewer1, 1);
             delQuery = "delete processedTable";
             sqlConnection();
             sqlCon.Open();
@@ -760,11 +806,33 @@ namespace TA_Project
             sqlCon.Close();
         }
 
+        //Trapezoid Function\\
+        public double trapValue(double V, int a, int b, int c, int d)
+        {
+            if (V >= a && V <= b)
+            {
+                return (V - a) / (b - a);
+            }
+            else if (V >= b && V <= c)
+            {
+                return 1;
+            }
+            else if (V >= c && V <= d)
+            {
+                return (d - V) / (d - c);
+            }
+            else return 0;
+        }
+
         private void nextBtn1_Click(object sender, EventArgs e)
         {
             if (metroGrid1.Visible == true)
             {
-                datacollectionProcess();
+                //datacollectionProcess();
+                metroPanel1.Visible = false;
+                metroPanel2.Visible = true;
+                metroPanel3.Visible = false;
+                metroLabel3.Text = "Clustering Options";
                 processBtn.Focus();
             }
             else
@@ -793,24 +861,6 @@ namespace TA_Project
             {
                 System.Console.WriteLine(ex);
             }
-        }
-
-        //Trapezoid Function\\
-        public double trapValue(double V, int a, int b, int c, int d)
-        {
-            if (V >= a && V <= b)
-            {
-                return (V - a) / (b - a);
-            }
-            else if (V >= b && V <= c)
-            {
-                return 1;
-            }
-            else if (V >= c && V <= d)
-            {
-                return (d - V) / (d - c);
-            }
-            else return 0;
         }
 
         public double downlinearValue(double V, int a, int b)
@@ -956,25 +1006,25 @@ namespace TA_Project
 
         private void metroGrid1_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (metroGrid1.Rows.Count > 1)
-            {
-                int t = metroGrid1.Rows.Count - 2;
-                result = 0;
-                sqlConnection();
-                sqlCon.Open();
-                if (metroGrid1.Rows[t].Cells[0].Value.ToString() != "" && metroGrid1.Rows[t].Cells[1].Value.ToString() != "" && metroGrid1.Rows[t].Cells[2].Value.ToString() != "")
-                {
-                    using (SqlCommand sqlCmd = new SqlCommand("sp_insertTRANSACTION", sqlCon))
-                    {
-                        sqlCmd.CommandType = CommandType.StoredProcedure;
-                        sqlCmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = Convert.ToString(metroGrid1.Rows[t].Cells[0].Value);
-                        sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = Convert.ToDecimal(metroGrid1.Rows[t].Cells[1].Value);
-                        sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = metroGrid1.Rows[t].Cells[2].Value;
-                        sqlCmd.Parameters.Add("@CID", SqlDbType.NChar).Value = DBNull.Value;
-                        result += sqlCmd.ExecuteNonQuery();
-                    }
-                }
-            }
+            //if (metroGrid1.Rows.Count > 1)
+            //{
+            //    int t = metroGrid1.Rows.Count - 2;
+            //    result = 0;
+            //    sqlConnection();
+            //    sqlCon.Open();
+            //    if (metroGrid1.Rows[t].Cells[0].Value.ToString() != "" && metroGrid1.Rows[t].Cells[1].Value.ToString() != "" && metroGrid1.Rows[t].Cells[2].Value.ToString() != "")
+            //    {
+            //        using (SqlCommand sqlCmd = new SqlCommand("sp_insertTRANSACTION", sqlCon))
+            //        {
+            //            sqlCmd.CommandType = CommandType.StoredProcedure;
+            //            sqlCmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = Convert.ToString(metroGrid1.Rows[t].Cells[0].Value);
+            //            sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = Convert.ToDecimal(metroGrid1.Rows[t].Cells[1].Value);
+            //            sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = metroGrid1.Rows[t].Cells[2].Value;
+            //            sqlCmd.Parameters.Add("@CID", SqlDbType.NChar).Value = DBNull.Value;
+            //            result += sqlCmd.ExecuteNonQuery();
+            //        }
+            //    }
+            //}
         }
 
         private void periodTrackBar_Scroll(object sender, EventArgs e)
