@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="CSSDataSet.cs">
       <DependentUpon>CSSDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="CSSDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -111,6 +112,11 @@
     </Compile>
     <Compile Include="columnSelectionForm.Designer.cs">
       <DependentUpon>columnSelectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSSDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CSSDataSet3.xsd</DependentUpon>
     </Compile>
     <Compile Include="resultPage.cs">
       <SubType>Form</SubType>
@@ -180,6 +186,17 @@
     </None>
     <None Include="CSSDataSet2.xss">
       <DependentUpon>CSSDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="CSSDataSet3.xsc">
+      <DependentUpon>CSSDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="CSSDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CSSDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CSSDataSet3.xss">
+      <DependentUpon>CSSDataSet3.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

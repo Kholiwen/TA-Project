@@ -34,10 +34,10 @@
   <xs:element name="CSSDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="CSSDataSet" msprop:Generator_UserDSName="CSSDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="dataTable" msprop:Generator_TableClassName="dataTableDataTable" msprop:Generator_TableVarName="tabledataTable" msprop:Generator_TablePropName="dataTable" msprop:Generator_RowDeletingName="dataTableRowDeleting" msprop:Generator_RowChangingName="dataTableRowChanging" msprop:Generator_RowEvHandlerName="dataTableRowChangeEventHandler" msprop:Generator_RowDeletedName="dataTableRowDeleted" msprop:Generator_UserTableName="dataTable" msprop:Generator_RowChangedName="dataTableRowChanged" msprop:Generator_RowEvArgName="dataTableRowChangeEvent" msprop:Generator_RowClassName="dataTableRow">
+        <xs:element name="dataTable" msprop:Generator_TableClassName="dataTableDataTable" msprop:Generator_TableVarName="tabledataTable" msprop:Generator_RowChangedName="dataTableRowChanged" msprop:Generator_TablePropName="dataTable" msprop:Generator_RowDeletingName="dataTableRowDeleting" msprop:Generator_RowChangingName="dataTableRowChanging" msprop:Generator_RowEvHandlerName="dataTableRowChangeEventHandler" msprop:Generator_RowDeletedName="dataTableRowDeleted" msprop:Generator_RowClassName="dataTableRow" msprop:Generator_UserTableName="dataTable" msprop:Generator_RowEvArgName="dataTableRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Customer_x0020_Name" msprop:Generator_ColumnVarNameInTable="columnCustomer_Name" msprop:Generator_ColumnPropNameInRow="Customer_Name" msprop:Generator_ColumnPropNameInTable="Customer_NameColumn" msprop:Generator_UserColumnName="Customer Name">
+              <xs:element name="Customer_x0020_Name" msprop:Generator_ColumnVarNameInTable="columnCustomer_Name" msprop:Generator_ColumnPropNameInRow="Customer_Name" msprop:Generator_ColumnPropNameInTable="Customer_NameColumn" msprop:Generator_UserColumnName="Customer Name" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />

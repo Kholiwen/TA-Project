@@ -25,7 +25,7 @@ namespace TA_Project
         SqlCommand command;
         String olesqlConn, excelQuery, sqlConn, query, delQuery;
         DataTable dt;
-        int result = 0, cltr = 0;
+        int result = 0, cltr = 0, t = 1;
         int[] custCltr;
         string[] rfmv;
         string[] custName;
@@ -67,6 +67,7 @@ namespace TA_Project
             command.Connection = sqlCon;
             sa = new SqlDataAdapter(command);
             command.ExecuteNonQuery();
+            dt = new DataTable();
         }
         public string getName() { return "3D Scatter Chart (1)"; }
 
@@ -81,19 +82,19 @@ namespace TA_Project
             // Create a ThreeDScatterChart object of size 720 x 600 pixels
             ThreeDScatterChart c = new ThreeDScatterChart(640, 480);
 
-                RanSeries r = new RanSeries(1);
-                double[] xData = new double[X.GetLength(0)];
-                double[] yData = new double[X.GetLength(0)];
-                double[] zData = new double[X.GetLength(0)];
-                for (int j = 0; j < dt.Rows.Count; j++)
-                {
-                    xData = r.getSeries2(2, V[0, 0], 0, u[j, 0] * V[0, 0]);
-                    yData = r.getSeries2(2, V[0, 1], 0, u[j, 0] * V[0, 1]);
-                    zData = r.getSeries2(2, V[0, 2], 0, u[j, 0] * V[0, 2]);
-                    c.addScatterGroup(xData, yData, zData, "", Chart.GlassSphere2Shape, 12, chartColor[6]);
-                }
-                //c.addScatterGroup(xData, yData, zData, rfmv[i], Chart.GlassSphere2Shape, 12, chartColor[i]);
-            
+            RanSeries r = new RanSeries(1);
+            double[] xData = new double[X.GetLength(0)];
+            double[] yData = new double[X.GetLength(0)];
+            double[] zData = new double[X.GetLength(0)];
+            for (int j = 0; j < dt.Rows.Count; j++)
+            {
+                xData = r.getSeries2(2, V[0, 0], 0, u[j, 0] * V[0, 0]);
+                yData = r.getSeries2(2, V[0, 1], 0, u[j, 0] * V[0, 1]);
+                zData = r.getSeries2(2, V[0, 2], 0, u[j, 0] * V[0, 2]);
+                c.addScatterGroup(xData, yData, zData, "", Chart.GlassSphere2Shape, 12, chartColor[6]);
+            }
+            //c.addScatterGroup(xData, yData, zData, rfmv[i], Chart.GlassSphere2Shape, 12, chartColor[i]);
+
             // Add a title to the chart using 20 points Times New Roman Italic font
             //c.addTitle("3D Scatter Chart", "Times New Roman Italic", 20);
 
@@ -191,7 +192,6 @@ namespace TA_Project
             excelQuery = string.Format("Select * FROM [{0}]", "Sheet1$");
 
             oleCon.Open();
-            dt = new DataTable();
             OleDbDataAdapter oda = new OleDbDataAdapter(excelQuery, oleCon);
             oleCon.Close();
             oda.Fill(dt);
@@ -239,6 +239,8 @@ namespace TA_Project
 
         private void mainForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'cSSDataSet3.transactionTable' table. You can move, or remove it, as needed.
+            this.transactionTableTableAdapter.Fill(this.cSSDataSet3.transactionTable);
             // TODO: This line of code loads data into the 'cSSDataSet1.custClass' table. You can move, or remove it, as needed.
             this.segmentStrategyTableAdapter.Fill(this.cSSDataSet1.segmentStrategy);
             // TODO: This line of code loads data into the 'cSSDataSet.dataTable' table. You can move, or remove it, as needed.
@@ -329,7 +331,6 @@ namespace TA_Project
                 command.CommandType = CommandType.Text;
                 command.Connection = sqlCon;
                 sa = new SqlDataAdapter(command);
-                dt = new DataTable();
                 sa.Fill(dt);
 
                 custName = new string[dt.Rows.Count];
@@ -891,23 +892,30 @@ namespace TA_Project
 
         private void metroRadioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            fileTextBox.Visible = true;
-            browseBtn.Visible = true;
-            welcomeLbl.Visible = false;
-            browseBtn.Focus();
-            metroGrid1.ReadOnly = true;
-        }
-
-        private void metroRadioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-            fileTextBox.Visible = false;
-            browseBtn.Visible = false;
-            welcomeLbl.Visible = false;
-            metroGrid1.ReadOnly = false;
-            metroGrid1.Visible = true;
-            metroGrid1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            metroGrid1.CurrentCell = metroGrid1.Rows[metroGrid1.Rows.Count - 1].Cells[0];
-            metroGrid1.BeginEdit(true);
+            if (batchRadioButton.Checked == true)
+            {
+                metroGrid2.Visible = true;
+                metroGrid1.Visible = false;
+                fileTextBox.Visible = true;
+                browseBtn.Visible = true;
+                welcomeLbl.Visible = false;
+                browseBtn.Focus();
+                metroGrid2.ReadOnly = true;
+                cSSDataSet.Reset();
+                transactionTableTableAdapter.Fill(this.cSSDataSet3.transactionTable);
+            }
+            else
+            {
+                metroGrid2.Visible = false;
+                metroGrid1.Visible = true;
+                fileTextBox.Visible = false;
+                browseBtn.Visible = false;
+                welcomeLbl.Visible = false;
+                metroGrid1.ReadOnly = false;
+                metroGrid1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                metroGrid1.CurrentCell = metroGrid1.Rows[metroGrid1.Rows.Count - 1].Cells[0];
+                metroGrid1.BeginEdit(true);
+            }
         }
 
         private void trackBar1_ValueChanged(object sender, EventArgs e)
@@ -1006,25 +1014,37 @@ namespace TA_Project
 
         private void metroGrid1_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            //if (metroGrid1.Rows.Count > 1)
-            //{
-            //    int t = metroGrid1.Rows.Count - 2;
-            //    result = 0;
-            //    sqlConnection();
-            //    sqlCon.Open();
-            //    if (metroGrid1.Rows[t].Cells[0].Value.ToString() != "" && metroGrid1.Rows[t].Cells[1].Value.ToString() != "" && metroGrid1.Rows[t].Cells[2].Value.ToString() != "")
-            //    {
-            //        using (SqlCommand sqlCmd = new SqlCommand("sp_insertTRANSACTION", sqlCon))
-            //        {
-            //            sqlCmd.CommandType = CommandType.StoredProcedure;
-            //            sqlCmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = Convert.ToString(metroGrid1.Rows[t].Cells[0].Value);
-            //            sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = Convert.ToDecimal(metroGrid1.Rows[t].Cells[1].Value);
-            //            sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = metroGrid1.Rows[t].Cells[2].Value;
-            //            sqlCmd.Parameters.Add("@CID", SqlDbType.NChar).Value = DBNull.Value;
-            //            result += sqlCmd.ExecuteNonQuery();
-            //        }
-            //    }
-            //}
+            if (manualRadioButton.Checked == true)
+            {
+                if (metroGrid1.Rows.Count > t)
+                {
+                    result = 0;
+                    sqlConnection();
+                    sqlCon.Open();
+                    if (metroGrid1.Rows[t-1].Cells[0].Value.ToString() != "" && metroGrid1.Rows[t-1].Cells[1].Value.ToString() != "" && metroGrid1.Rows[t-1].Cells[2].Value.ToString() != "")
+                    {
+                        using (SqlCommand sqlCmd = new SqlCommand("sp_insertTRANSACTION", sqlCon))
+                        {
+                            sqlCmd.CommandType = CommandType.StoredProcedure;
+                            sqlCmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = Convert.ToString(metroGrid1.Rows[t-1].Cells[0].Value);
+                            sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = Convert.ToDecimal(metroGrid1.Rows[t-1].Cells[1].Value);
+                            sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = metroGrid1.Rows[t-1].Cells[2].Value;
+                            sqlCmd.Parameters.Add("@CID", SqlDbType.NChar).Value = DBNull.Value;
+                            result += sqlCmd.ExecuteNonQuery();
+                        }
+                    }
+                    t++;
+                }
+                delQuery = "select * from transactionTable";
+                sqlConnection();
+                sqlCon.Open();
+                command = new SqlCommand(delQuery, sqlCon);
+                command.CommandText = delQuery;
+                command.CommandType = CommandType.Text;
+                command.Connection = sqlCon;
+                sa = new SqlDataAdapter(command);
+                sa.Fill(dt);
+            }
         }
 
         private void periodTrackBar_Scroll(object sender, EventArgs e)
