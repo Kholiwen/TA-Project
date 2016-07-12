@@ -32,8 +32,8 @@
             <Mappings>
               <Mapping SourceColumn="TID" DataSetColumn="TID" />
               <Mapping SourceColumn="Customer Name" DataSetColumn="Customer Name" />
-              <Mapping SourceColumn="Total purchase" DataSetColumn="Total purchase" />
-              <Mapping SourceColumn="Last purchase" DataSetColumn="Last purchase" />
+              <Mapping SourceColumn="Total Purchase" DataSetColumn="Total Purchase" />
+              <Mapping SourceColumn="Last Purchase" DataSetColumn="Last Purchase" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -62,8 +62,8 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Total_x0020_purchase" msprop:Generator_ColumnVarNameInTable="columnTotal_purchase" msprop:Generator_ColumnPropNameInRow="Total_purchase" msprop:Generator_ColumnPropNameInTable="Total_purchaseColumn" msprop:Generator_UserColumnName="Total purchase" type="xs:double" />
-              <xs:element name="Last_x0020_purchase" msprop:Generator_ColumnVarNameInTable="columnLast_purchase" msprop:Generator_ColumnPropNameInRow="Last_purchase" msprop:Generator_ColumnPropNameInTable="Last_purchaseColumn" msprop:Generator_UserColumnName="Last purchase" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Total_x0020_Purchase" msprop:Generator_ColumnVarNameInTable="columnTotal_Purchase" msprop:Generator_ColumnPropNameInRow="Total_Purchase" msprop:Generator_ColumnPropNameInTable="Total_PurchaseColumn" msprop:Generator_UserColumnName="Total Purchase" type="xs:double" />
+              <xs:element name="Last_x0020_Purchase" msprop:Generator_ColumnVarNameInTable="columnLast_Purchase" msprop:Generator_ColumnPropNameInRow="Last_Purchase" msprop:Generator_ColumnPropNameInTable="Last_PurchaseColumn" msprop:Generator_UserColumnName="Last Purchase" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

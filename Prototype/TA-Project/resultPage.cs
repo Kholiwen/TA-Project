@@ -136,6 +136,7 @@ namespace TA_Project
         {
             this.Close();
             //Application.Run(new mainForm());
+            frm = new mainForm();
             frm.Show();
         }
 
@@ -143,6 +144,15 @@ namespace TA_Project
         {
             frm.Show();
             Hide();
+        }
+
+        private void dataGridView2_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string custID = dataGridView2.Rows[dataGridView2.CurrentCell.RowIndex].Cells[dataGridView2.CurrentCell.ColumnIndex].Value.ToString();
+            string custName = dataGridView2.Rows[dataGridView2.CurrentCell.RowIndex].Cells[dataGridView2.CurrentCell.ColumnIndex + 1].Value.ToString();
+            var custdetFrm = new customerDetail(custID);
+            custdetFrm.Text = custName;
+            custdetFrm.Show();
         }
     }
 }

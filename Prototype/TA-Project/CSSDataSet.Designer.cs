@@ -24,7 +24,7 @@ namespace TA_Project {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class CSSDataSet : global::System.Data.DataSet {
         
-        private dataTableDataTable tabledataTable;
+        private transactionTableDataTable tabletransactionTable;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -54,8 +54,8 @@ namespace TA_Project {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["dataTable"] != null)) {
-                    base.Tables.Add(new dataTableDataTable(ds.Tables["dataTable"]));
+                if ((ds.Tables["transactionTable"] != null)) {
+                    base.Tables.Add(new transactionTableDataTable(ds.Tables["transactionTable"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace TA_Project {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public dataTableDataTable dataTable {
+        public transactionTableDataTable transactionTable {
             get {
-                return this.tabledataTable;
+                return this.tabletransactionTable;
             }
         }
         
@@ -152,8 +152,8 @@ namespace TA_Project {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["dataTable"] != null)) {
-                    base.Tables.Add(new dataTableDataTable(ds.Tables["dataTable"]));
+                if ((ds.Tables["transactionTable"] != null)) {
+                    base.Tables.Add(new transactionTableDataTable(ds.Tables["transactionTable"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace TA_Project {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tabledataTable = ((dataTableDataTable)(base.Tables["dataTable"]));
+            this.tabletransactionTable = ((transactionTableDataTable)(base.Tables["transactionTable"]));
             if ((initTable == true)) {
-                if ((this.tabledataTable != null)) {
-                    this.tabledataTable.InitVars();
+                if ((this.tabletransactionTable != null)) {
+                    this.tabletransactionTable.InitVars();
                 }
             }
         }
@@ -204,13 +204,13 @@ namespace TA_Project {
             this.Namespace = "http://tempuri.org/CSSDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tabledataTable = new dataTableDataTable();
-            base.Tables.Add(this.tabledataTable);
+            this.tabletransactionTable = new transactionTableDataTable();
+            base.Tables.Add(this.tabletransactionTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializedataTable() {
+        private bool ShouldSerializetransactionTable() {
             return false;
         }
         
@@ -270,14 +270,14 @@ namespace TA_Project {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void dataTableRowChangeEventHandler(object sender, dataTableRowChangeEvent e);
+        public delegate void transactionTableRowChangeEventHandler(object sender, transactionTableRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class dataTableDataTable : global::System.Data.TypedTableBase<dataTableRow> {
+        public partial class transactionTableDataTable : global::System.Data.TypedTableBase<transactionTableRow> {
             
             private global::System.Data.DataColumn columnCustomer_Name;
             
@@ -287,8 +287,8 @@ namespace TA_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public dataTableDataTable() {
-                this.TableName = "dataTable";
+            public transactionTableDataTable() {
+                this.TableName = "transactionTable";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -296,7 +296,7 @@ namespace TA_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal dataTableDataTable(global::System.Data.DataTable table) {
+            internal transactionTableDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -313,7 +313,7 @@ namespace TA_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected dataTableDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected transactionTableDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -353,47 +353,47 @@ namespace TA_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public dataTableRow this[int index] {
+            public transactionTableRow this[int index] {
                 get {
-                    return ((dataTableRow)(this.Rows[index]));
+                    return ((transactionTableRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event dataTableRowChangeEventHandler dataTableRowChanging;
+            public event transactionTableRowChangeEventHandler transactionTableRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event dataTableRowChangeEventHandler dataTableRowChanged;
+            public event transactionTableRowChangeEventHandler transactionTableRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event dataTableRowChangeEventHandler dataTableRowDeleting;
+            public event transactionTableRowChangeEventHandler transactionTableRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event dataTableRowChangeEventHandler dataTableRowDeleted;
+            public event transactionTableRowChangeEventHandler transactionTableRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AdddataTableRow(dataTableRow row) {
+            public void AddtransactionTableRow(transactionTableRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public dataTableRow AdddataTableRow(string Customer_Name, double Total_purchase, System.DateTime Last_purchase) {
-                dataTableRow rowdataTableRow = ((dataTableRow)(this.NewRow()));
+            public transactionTableRow AddtransactionTableRow(string Customer_Name, double Total_purchase, System.DateTime Last_purchase) {
+                transactionTableRow rowtransactionTableRow = ((transactionTableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Customer_Name,
                         Total_purchase,
                         Last_purchase};
-                rowdataTableRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowdataTableRow);
-                return rowdataTableRow;
+                rowtransactionTableRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowtransactionTableRow);
+                return rowtransactionTableRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                dataTableDataTable cln = ((dataTableDataTable)(base.Clone()));
+                transactionTableDataTable cln = ((transactionTableDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -401,7 +401,7 @@ namespace TA_Project {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new dataTableDataTable();
+                return new transactionTableDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -421,34 +421,35 @@ namespace TA_Project {
                 base.Columns.Add(this.columnTotal_purchase);
                 this.columnLast_purchase = new global::System.Data.DataColumn("Last purchase", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLast_purchase);
+                this.columnCustomer_Name.AllowDBNull = false;
                 this.columnCustomer_Name.MaxLength = 2147483647;
                 this.columnTotal_purchase.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public dataTableRow NewdataTableRow() {
-                return ((dataTableRow)(this.NewRow()));
+            public transactionTableRow NewtransactionTableRow() {
+                return ((transactionTableRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new dataTableRow(builder);
+                return new transactionTableRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(dataTableRow);
+                return typeof(transactionTableRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.dataTableRowChanged != null)) {
-                    this.dataTableRowChanged(this, new dataTableRowChangeEvent(((dataTableRow)(e.Row)), e.Action));
+                if ((this.transactionTableRowChanged != null)) {
+                    this.transactionTableRowChanged(this, new transactionTableRowChangeEvent(((transactionTableRow)(e.Row)), e.Action));
                 }
             }
             
@@ -456,8 +457,8 @@ namespace TA_Project {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.dataTableRowChanging != null)) {
-                    this.dataTableRowChanging(this, new dataTableRowChangeEvent(((dataTableRow)(e.Row)), e.Action));
+                if ((this.transactionTableRowChanging != null)) {
+                    this.transactionTableRowChanging(this, new transactionTableRowChangeEvent(((transactionTableRow)(e.Row)), e.Action));
                 }
             }
             
@@ -465,8 +466,8 @@ namespace TA_Project {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.dataTableRowDeleted != null)) {
-                    this.dataTableRowDeleted(this, new dataTableRowChangeEvent(((dataTableRow)(e.Row)), e.Action));
+                if ((this.transactionTableRowDeleted != null)) {
+                    this.transactionTableRowDeleted(this, new transactionTableRowChangeEvent(((transactionTableRow)(e.Row)), e.Action));
                 }
             }
             
@@ -474,14 +475,14 @@ namespace TA_Project {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.dataTableRowDeleting != null)) {
-                    this.dataTableRowDeleting(this, new dataTableRowChangeEvent(((dataTableRow)(e.Row)), e.Action));
+                if ((this.transactionTableRowDeleting != null)) {
+                    this.transactionTableRowDeleting(this, new transactionTableRowChangeEvent(((transactionTableRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemovedataTableRow(dataTableRow row) {
+            public void RemovetransactionTableRow(transactionTableRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -508,7 +509,7 @@ namespace TA_Project {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "dataTableDataTable";
+                attribute2.FixedValue = "transactionTableDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -552,30 +553,25 @@ namespace TA_Project {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class dataTableRow : global::System.Data.DataRow {
+        public partial class transactionTableRow : global::System.Data.DataRow {
             
-            private dataTableDataTable tabledataTable;
+            private transactionTableDataTable tabletransactionTable;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal dataTableRow(global::System.Data.DataRowBuilder rb) : 
+            internal transactionTableRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tabledataTable = ((dataTableDataTable)(this.Table));
+                this.tabletransactionTable = ((transactionTableDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Customer_Name {
                 get {
-                    try {
-                        return ((string)(this[this.tabledataTable.Customer_NameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Customer Name\' in table \'dataTable\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tabletransactionTable.Customer_NameColumn]));
                 }
                 set {
-                    this[this.tabledataTable.Customer_NameColumn] = value;
+                    this[this.tabletransactionTable.Customer_NameColumn] = value;
                 }
             }
             
@@ -583,10 +579,10 @@ namespace TA_Project {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public double Total_purchase {
                 get {
-                    return ((double)(this[this.tabledataTable.Total_purchaseColumn]));
+                    return ((double)(this[this.tabletransactionTable.Total_purchaseColumn]));
                 }
                 set {
-                    this[this.tabledataTable.Total_purchaseColumn] = value;
+                    this[this.tabletransactionTable.Total_purchaseColumn] = value;
                 }
             }
             
@@ -595,39 +591,27 @@ namespace TA_Project {
             public System.DateTime Last_purchase {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tabledataTable.Last_purchaseColumn]));
+                        return ((global::System.DateTime)(this[this.tabletransactionTable.Last_purchaseColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Last purchase\' in table \'dataTable\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Last purchase\' in table \'transactionTable\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabledataTable.Last_purchaseColumn] = value;
+                    this[this.tabletransactionTable.Last_purchaseColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCustomer_NameNull() {
-                return this.IsNull(this.tabledataTable.Customer_NameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCustomer_NameNull() {
-                this[this.tabledataTable.Customer_NameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsLast_purchaseNull() {
-                return this.IsNull(this.tabledataTable.Last_purchaseColumn);
+                return this.IsNull(this.tabletransactionTable.Last_purchaseColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetLast_purchaseNull() {
-                this[this.tabledataTable.Last_purchaseColumn] = global::System.Convert.DBNull;
+                this[this.tabletransactionTable.Last_purchaseColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -635,22 +619,22 @@ namespace TA_Project {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class dataTableRowChangeEvent : global::System.EventArgs {
+        public class transactionTableRowChangeEvent : global::System.EventArgs {
             
-            private dataTableRow eventRow;
+            private transactionTableRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public dataTableRowChangeEvent(dataTableRow row, global::System.Data.DataRowAction action) {
+            public transactionTableRowChangeEvent(transactionTableRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public dataTableRow Row {
+            public transactionTableRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -678,7 +662,7 @@ namespace TA_Project.CSSDataSetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class dataTableTableAdapter : global::System.ComponentModel.Component {
+    public partial class transactionTableTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -692,7 +676,7 @@ namespace TA_Project.CSSDataSetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public dataTableTableAdapter() {
+        public transactionTableTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -789,11 +773,10 @@ namespace TA_Project.CSSDataSetTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "dataTable";
+            tableMapping.DataSetTable = "transactionTable";
             tableMapping.ColumnMappings.Add("Customer Name", "Customer Name");
             tableMapping.ColumnMappings.Add("Total purchase", "Total purchase");
             tableMapping.ColumnMappings.Add("Last purchase", "Last purchase");
-            tableMapping.ColumnMappings.Add("TID", "Transaction ID");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -810,7 +793,8 @@ namespace TA_Project.CSSDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT [Customer Name], [Total purchase], [Last purchase] FROM transactionTable";
+            this._commandCollection[0].CommandText = "SELECT        [Customer Name], [Total purchase], [Last purchase]\r\nFROM           " +
+                " transactionTable\r\nORDER BY TID";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -818,7 +802,7 @@ namespace TA_Project.CSSDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(CSSDataSet.dataTableDataTable dataTable) {
+        public virtual int Fill(CSSDataSet.transactionTableDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -831,9 +815,9 @@ namespace TA_Project.CSSDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual CSSDataSet.dataTableDataTable GetData() {
+        public virtual CSSDataSet.transactionTableDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            CSSDataSet.dataTableDataTable dataTable = new CSSDataSet.dataTableDataTable();
+            CSSDataSet.transactionTableDataTable dataTable = new CSSDataSet.transactionTableDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

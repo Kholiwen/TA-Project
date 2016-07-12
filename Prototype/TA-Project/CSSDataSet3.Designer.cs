@@ -283,9 +283,9 @@ namespace TA_Project {
             
             private global::System.Data.DataColumn columnCustomer_Name;
             
-            private global::System.Data.DataColumn columnTotal_purchase;
+            private global::System.Data.DataColumn columnTotal_Purchase;
             
-            private global::System.Data.DataColumn columnLast_purchase;
+            private global::System.Data.DataColumn columnLast_Purchase;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -338,17 +338,17 @@ namespace TA_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Total_purchaseColumn {
+            public global::System.Data.DataColumn Total_PurchaseColumn {
                 get {
-                    return this.columnTotal_purchase;
+                    return this.columnTotal_Purchase;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Last_purchaseColumn {
+            public global::System.Data.DataColumn Last_PurchaseColumn {
                 get {
-                    return this.columnLast_purchase;
+                    return this.columnLast_Purchase;
                 }
             }
             
@@ -389,13 +389,13 @@ namespace TA_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public transactionTableRow AddtransactionTableRow(string TID, string Customer_Name, double Total_purchase, System.DateTime Last_purchase) {
+            public transactionTableRow AddtransactionTableRow(string TID, string Customer_Name, double Total_Purchase, System.DateTime Last_Purchase) {
                 transactionTableRow rowtransactionTableRow = ((transactionTableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         TID,
                         Customer_Name,
-                        Total_purchase,
-                        Last_purchase};
+                        Total_Purchase,
+                        Last_Purchase};
                 rowtransactionTableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtransactionTableRow);
                 return rowtransactionTableRow;
@@ -420,8 +420,8 @@ namespace TA_Project {
             internal void InitVars() {
                 this.columnTID = base.Columns["TID"];
                 this.columnCustomer_Name = base.Columns["Customer Name"];
-                this.columnTotal_purchase = base.Columns["Total purchase"];
-                this.columnLast_purchase = base.Columns["Last purchase"];
+                this.columnTotal_Purchase = base.Columns["Total Purchase"];
+                this.columnLast_Purchase = base.Columns["Last Purchase"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -431,15 +431,15 @@ namespace TA_Project {
                 base.Columns.Add(this.columnTID);
                 this.columnCustomer_Name = new global::System.Data.DataColumn("Customer Name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCustomer_Name);
-                this.columnTotal_purchase = new global::System.Data.DataColumn("Total purchase", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTotal_purchase);
-                this.columnLast_purchase = new global::System.Data.DataColumn("Last purchase", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLast_purchase);
+                this.columnTotal_Purchase = new global::System.Data.DataColumn("Total Purchase", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotal_Purchase);
+                this.columnLast_Purchase = new global::System.Data.DataColumn("Last Purchase", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLast_Purchase);
                 this.columnTID.AllowDBNull = false;
                 this.columnTID.MaxLength = 10;
                 this.columnCustomer_Name.AllowDBNull = false;
                 this.columnCustomer_Name.MaxLength = 2147483647;
-                this.columnTotal_purchase.AllowDBNull = false;
+                this.columnTotal_Purchase.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -604,41 +604,41 @@ namespace TA_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public double Total_purchase {
+            public double Total_Purchase {
                 get {
-                    return ((double)(this[this.tabletransactionTable.Total_purchaseColumn]));
+                    return ((double)(this[this.tabletransactionTable.Total_PurchaseColumn]));
                 }
                 set {
-                    this[this.tabletransactionTable.Total_purchaseColumn] = value;
+                    this[this.tabletransactionTable.Total_PurchaseColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime Last_purchase {
+            public System.DateTime Last_Purchase {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tabletransactionTable.Last_purchaseColumn]));
+                        return ((global::System.DateTime)(this[this.tabletransactionTable.Last_PurchaseColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Last purchase\' in table \'transactionTable\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Last Purchase\' in table \'transactionTable\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletransactionTable.Last_purchaseColumn] = value;
+                    this[this.tabletransactionTable.Last_PurchaseColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsLast_purchaseNull() {
-                return this.IsNull(this.tabletransactionTable.Last_purchaseColumn);
+            public bool IsLast_PurchaseNull() {
+                return this.IsNull(this.tabletransactionTable.Last_PurchaseColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetLast_purchaseNull() {
-                this[this.tabletransactionTable.Last_purchaseColumn] = global::System.Convert.DBNull;
+            public void SetLast_PurchaseNull() {
+                this[this.tabletransactionTable.Last_PurchaseColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -803,8 +803,8 @@ namespace TA_Project.CSSDataSet3TableAdapters {
             tableMapping.DataSetTable = "transactionTable";
             tableMapping.ColumnMappings.Add("TID", "TID");
             tableMapping.ColumnMappings.Add("Customer Name", "Customer Name");
-            tableMapping.ColumnMappings.Add("Total purchase", "Total purchase");
-            tableMapping.ColumnMappings.Add("Last purchase", "Last purchase");
+            tableMapping.ColumnMappings.Add("Total Purchase", "Total Purchase");
+            tableMapping.ColumnMappings.Add("Last Purchase", "Last Purchase");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;

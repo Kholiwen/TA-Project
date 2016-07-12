@@ -84,10 +84,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CSSDataSet.cs">
-      <DependentUpon>CSSDataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="CSSDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -113,10 +109,20 @@
     <Compile Include="columnSelectionForm.Designer.cs">
       <DependentUpon>columnSelectionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CSSDataSet3.cs">
+      <DependentUpon>CSSDataSet3.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CSSDataSet3.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CSSDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="customerDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="customerDetail.Designer.cs">
+      <DependentUpon>customerDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="resultPage.cs">
       <SubType>Form</SubType>
@@ -135,6 +141,9 @@
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="columnSelectionForm.resx">
       <DependentUpon>columnSelectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="customerDetail.resx">
+      <DependentUpon>customerDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.cs</DependentUpon>

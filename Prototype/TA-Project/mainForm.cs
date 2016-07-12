@@ -53,7 +53,7 @@ namespace TA_Project
             label1.Font = new Font("Tahoma", 11, FontStyle.Regular);
             label3.Font = new Font("Tahoma", 11, FontStyle.Regular);
             label4.Font = new Font("Tahoma", 11, FontStyle.Regular);
-            metroGrid1.Font = new Font("Segoe UI", 11f, FontStyle.Regular, GraphicsUnit.Pixel);
+            manualInputGrid.Font = new Font("Segoe UI", 11f, FontStyle.Regular, GraphicsUnit.Pixel);
             metroPanel2.Visible = false;
             metroPanel3.Visible = false;
             browseBtn.Focus();
@@ -194,6 +194,7 @@ namespace TA_Project
             oleCon.Open();
             OleDbDataAdapter oda = new OleDbDataAdapter(excelQuery, oleCon);
             oleCon.Close();
+            dt = new DataTable();
             oda.Fill(dt);
             using (var frm = new columnSelectionForm(dt))
             {
@@ -227,8 +228,9 @@ namespace TA_Project
                     }
                 }
                 MessageBox.Show(string.Format("Data has been imported successfully! ({0})", result), "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information); //Show how many rows were affected
-                cSSDataSet.Reset();
-                dataTableTableAdapter.Fill(this.cSSDataSet.dataTable);
+                cSSDataSet3.Reset();
+                transactionTableTableAdapter.Fill(this.cSSDataSet3.transactionTable);
+                t = batchInputGrid.Rows.Count;
             }
             catch (Exception e)
             {
@@ -239,12 +241,13 @@ namespace TA_Project
 
         private void mainForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'cSSDataSet.transactionTable' table. You can move, or remove it, as needed.
+            this.transactionTableTableAdapter1.Fill(this.cSSDataSet.transactionTable);
             // TODO: This line of code loads data into the 'cSSDataSet3.transactionTable' table. You can move, or remove it, as needed.
             this.transactionTableTableAdapter.Fill(this.cSSDataSet3.transactionTable);
             // TODO: This line of code loads data into the 'cSSDataSet1.custClass' table. You can move, or remove it, as needed.
             this.segmentStrategyTableAdapter.Fill(this.cSSDataSet1.segmentStrategy);
             // TODO: This line of code loads data into the 'cSSDataSet.dataTable' table. You can move, or remove it, as needed.
-            this.dataTableTableAdapter.Fill(this.cSSDataSet.dataTable);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -279,7 +282,6 @@ namespace TA_Project
                     {
                         insertExcelRecords(directoryPath);
                     }
-                    metroGrid1.Visible = true;
                 }
                 catch (Exception ex)
                 {
@@ -327,6 +329,7 @@ namespace TA_Project
                 query = "SELECT * FROM transactionTable order by [Customer Name]";
                 sqlConnection();
                 sqlCon.Open();
+                dt = new DataTable();
                 command.CommandText = query;
                 command.CommandType = CommandType.Text;
                 command.Connection = sqlCon;
@@ -827,41 +830,16 @@ namespace TA_Project
 
         private void nextBtn1_Click(object sender, EventArgs e)
         {
-            if (metroGrid1.Visible == true)
-            {
-                //datacollectionProcess();
-                metroPanel1.Visible = false;
-                metroPanel2.Visible = true;
-                metroPanel3.Visible = false;
-                metroLabel3.Text = "Clustering Options";
-                processBtn.Focus();
-            }
-            else
+            if (dt.Rows.Count == 0)
             {
                 MessageBox.Show("Database empty", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-
-        private void metroButton3_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (dt != null)
-                {
-                    ShowProgressBarWhileBackgroundWorkerRuns();
-                }
-                else
-                {
-                    MessageBox.Show("You need to import some data first!");
-                    metroPanel2.Visible = false;
-                    metroPanel1.Visible = true;
-                }
-                Console.Out.WriteLine("Process Finished");
-            }
-            catch (Exception ex)
-            {
-                System.Console.WriteLine(ex);
-            }
+            //datacollectionProcess();
+            metroPanel1.Visible = false;
+            metroPanel2.Visible = true;
+            metroPanel3.Visible = false;
+            metroLabel3.Text = "Clustering Options";
+            processBtn.Focus();
         }
 
         public double downlinearValue(double V, int a, int b)
@@ -890,31 +868,71 @@ namespace TA_Project
             else return 1;
         }
 
-        private void metroRadioButton1_CheckedChanged(object sender, EventArgs e)
+        private void batchRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (batchRadioButton.Checked == true)
             {
-                metroGrid2.Visible = true;
-                metroGrid1.Visible = false;
+                batchInputGrid.Visible = true;
+                manualInputGrid.Visible = false;
                 fileTextBox.Visible = true;
                 browseBtn.Visible = true;
                 welcomeLbl.Visible = false;
                 browseBtn.Focus();
-                metroGrid2.ReadOnly = true;
-                cSSDataSet.Reset();
+                batchInputGrid.ReadOnly = true;
+                cSSDataSet3.Reset();
                 transactionTableTableAdapter.Fill(this.cSSDataSet3.transactionTable);
             }
-            else
+        }
+
+        private void manualRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (manualRadioButton.Checked == true)
             {
-                metroGrid2.Visible = false;
-                metroGrid1.Visible = true;
+                batchInputGrid.Visible = false;
+                manualInputGrid.Visible = true;
                 fileTextBox.Visible = false;
                 browseBtn.Visible = false;
                 welcomeLbl.Visible = false;
-                metroGrid1.ReadOnly = false;
-                metroGrid1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                metroGrid1.CurrentCell = metroGrid1.Rows[metroGrid1.Rows.Count - 1].Cells[0];
-                metroGrid1.BeginEdit(true);
+                manualInputGrid.ReadOnly = false;
+                manualInputGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                cSSDataSet.Reset();
+                transactionTableTableAdapter1.Fill(this.cSSDataSet.transactionTable);
+                manualInputGrid.CurrentCell = manualInputGrid.Rows[manualInputGrid.Rows.Count - 1].Cells[0];
+                manualInputGrid.BeginEdit(true);
+                manualInputGrid.Rows[manualInputGrid.Rows.Count - 1].Cells[0].ToolTipText = "Click here to start data input";
+                //manualInputGrid.Rows[manualInputGrid.Rows.Count - 1].Cells[0].Value = "Type customer name..";
+            }
+        }
+
+        private void metroGrid1_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (manualInputGrid.Rows.Count > t)
+            {
+                result = 0;
+                sqlConnection();
+                sqlCon.Open();
+                if (manualInputGrid.Rows[t - 1].Cells[0].Value.ToString() != "" && manualInputGrid.Rows[t - 1].Cells[1].Value.ToString() != "" && manualInputGrid.Rows[t - 1].Cells[2].Value.ToString() != "")
+                {
+                    using (SqlCommand sqlCmd = new SqlCommand("sp_insertTRANSACTION", sqlCon))
+                    {
+                        sqlCmd.CommandType = CommandType.StoredProcedure;
+                        sqlCmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = Convert.ToString(manualInputGrid.Rows[t - 1].Cells[0].Value);
+                        sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = Convert.ToDecimal(manualInputGrid.Rows[t - 1].Cells[1].Value);
+                        sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = manualInputGrid.Rows[t - 1].Cells[2].Value;
+                        sqlCmd.Parameters.Add("@CID", SqlDbType.NChar).Value = DBNull.Value;
+                        result += sqlCmd.ExecuteNonQuery();
+                    }
+                }
+                t++;
+                query = "SELECT * FROM transactionTable order by [Customer Name]";
+                sqlConnection();
+                sqlCon.Open();
+                dt = new DataTable();
+                command.CommandText = query;
+                command.CommandType = CommandType.Text;
+                command.Connection = sqlCon;
+                sa = new SqlDataAdapter(command);
+                sa.Fill(dt);
             }
         }
 
@@ -932,36 +950,7 @@ namespace TA_Project
             }
         }
 
-        public void initCriteriaRFM()
-        {
-            recLTA.Text = 18.ToString();
-            recLTlow.Text = 11.ToString();
-            recLThigh.Text = 19.ToString();
-            recQLTlow.Text = 4.ToString();
-            recQLThigh.Text = 12.ToString();
-            recRCNTlow.Text = 0.ToString();
-            recRCNThigh.Text = 5.ToString();
-
-            freVRlow.Text = (0 * periodTrackBar.Value).ToString();
-            freVRhigh.Text = (2 * periodTrackBar.Value).ToString();
-            freRlow.Text = (1 * periodTrackBar.Value).ToString();
-            freRhigh.Text = (4 * periodTrackBar.Value).ToString();
-            freOlow.Text = (3 * periodTrackBar.Value).ToString();
-            freOhigh.Text = (6 * periodTrackBar.Value).ToString();
-            freVO.Text = (5 * periodTrackBar.Value).ToString();
-
-            monVLlow.Text = (0 * periodTrackBar.Value).ToString();
-            monVLhigh.Text = (5 * periodTrackBar.Value).ToString();
-            monLlow.Text = (4 * periodTrackBar.Value).ToString();
-            monLhigh.Text = (10 * periodTrackBar.Value).ToString();
-            monMlow.Text = (9 * periodTrackBar.Value).ToString();
-            monMhigh.Text = (15 * periodTrackBar.Value).ToString();
-            monHlow.Text = (14 * periodTrackBar.Value).ToString();
-            monHhigh.Text = (20 * periodTrackBar.Value).ToString();
-            monVH.Text = (19 * periodTrackBar.Value).ToString();
-        }
-
-        private void metroCheckBox1_CheckedChanged(object sender, EventArgs e)
+        private void customCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             if (customCheckbox.Checked)
             {
@@ -969,7 +958,6 @@ namespace TA_Project
                 panel2.Enabled = true;
                 panel3.Enabled = true;
 
-                //Properties.Settings.Default.Save();
                 recLTA.Text = "";
                 recLTlow.Text = "";
                 recLThigh.Text = "";
@@ -1002,49 +990,42 @@ namespace TA_Project
                 panel2.Enabled = false;
                 panel3.Enabled = false;
                 recLTA.Text = Properties.Settings.Default.ToString();
-                //Properties.Settings.Default.Reload();
                 initCriteriaRFM();
             }
+        }
+
+        public void initCriteriaRFM()
+        {
+            recLTA.Text = 18.ToString();
+            recLTlow.Text = 11.ToString();
+            recLThigh.Text = 19.ToString();
+            recQLTlow.Text = 4.ToString();
+            recQLThigh.Text = 12.ToString();
+            recRCNTlow.Text = 0.ToString();
+            recRCNThigh.Text = 5.ToString();
+
+            freVRlow.Text = (0 * periodTrackBar.Value).ToString();
+            freVRhigh.Text = (2 * periodTrackBar.Value).ToString();
+            freRlow.Text = (1 * periodTrackBar.Value).ToString();
+            freRhigh.Text = (4 * periodTrackBar.Value).ToString();
+            freOlow.Text = (3 * periodTrackBar.Value).ToString();
+            freOhigh.Text = (6 * periodTrackBar.Value).ToString();
+            freVO.Text = (5 * periodTrackBar.Value).ToString();
+
+            monVLlow.Text = (0 * periodTrackBar.Value).ToString();
+            monVLhigh.Text = (5 * periodTrackBar.Value).ToString();
+            monLlow.Text = (4 * periodTrackBar.Value).ToString();
+            monLhigh.Text = (10 * periodTrackBar.Value).ToString();
+            monMlow.Text = (9 * periodTrackBar.Value).ToString();
+            monMhigh.Text = (15 * periodTrackBar.Value).ToString();
+            monHlow.Text = (14 * periodTrackBar.Value).ToString();
+            monHhigh.Text = (20 * periodTrackBar.Value).ToString();
+            monVH.Text = (19 * periodTrackBar.Value).ToString();
         }
 
         private void numericUpDown1_MouseDown(object sender, MouseEventArgs e)
         {
             periodTrackBar.Focus();
-        }
-
-        private void metroGrid1_RowEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            if (manualRadioButton.Checked == true)
-            {
-                if (metroGrid1.Rows.Count > t)
-                {
-                    result = 0;
-                    sqlConnection();
-                    sqlCon.Open();
-                    if (metroGrid1.Rows[t-1].Cells[0].Value.ToString() != "" && metroGrid1.Rows[t-1].Cells[1].Value.ToString() != "" && metroGrid1.Rows[t-1].Cells[2].Value.ToString() != "")
-                    {
-                        using (SqlCommand sqlCmd = new SqlCommand("sp_insertTRANSACTION", sqlCon))
-                        {
-                            sqlCmd.CommandType = CommandType.StoredProcedure;
-                            sqlCmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = Convert.ToString(metroGrid1.Rows[t-1].Cells[0].Value);
-                            sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = Convert.ToDecimal(metroGrid1.Rows[t-1].Cells[1].Value);
-                            sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = metroGrid1.Rows[t-1].Cells[2].Value;
-                            sqlCmd.Parameters.Add("@CID", SqlDbType.NChar).Value = DBNull.Value;
-                            result += sqlCmd.ExecuteNonQuery();
-                        }
-                    }
-                    t++;
-                }
-                delQuery = "select * from transactionTable";
-                sqlConnection();
-                sqlCon.Open();
-                command = new SqlCommand(delQuery, sqlCon);
-                command.CommandText = delQuery;
-                command.CommandType = CommandType.Text;
-                command.Connection = sqlCon;
-                sa = new SqlDataAdapter(command);
-                sa.Fill(dt);
-            }
         }
 
         private void periodTrackBar_Scroll(object sender, EventArgs e)
@@ -1058,5 +1039,32 @@ namespace TA_Project
             resultForm.Show(this);
             Hide();
         }
+
+        private void processBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dt.Rows.Count != 0)
+                {
+                    ShowProgressBarWhileBackgroundWorkerRuns();
+                }
+                else
+                {
+                    MessageBox.Show("You need to import some data first!");
+                    metroPanel2.Visible = false;
+                    metroPanel1.Visible = true;
+                }
+                Console.Out.WriteLine("Process Finished");
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex);
+            }
+        }
+
+        //private void manualInputGrid_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        //{
+        //    manualInputGrid.Rows[manualInputGrid.Rows.Count - 1].Cells[0].Value = "";
+        //}
     }
 }

@@ -124,3 +124,4 @@ C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\bin\Debug\SqlServer
 C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x86\SqlServerSpatial110.dll
 C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.exe
 C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.pdb
+C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.customerDetail.resources
