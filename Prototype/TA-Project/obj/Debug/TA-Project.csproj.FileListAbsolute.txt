@@ -125,3 +125,20 @@ C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\bin\Debug\SqlServer
 C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.exe
 C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.pdb
 C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.customerDetail.resources
+C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.exe.config
+C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.exe
+C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.pdb
+C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x64\msvcr100.dll
+C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x64\SqlServerSpatial110.dll
+C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x86\msvcr100.dll
+C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\bin\Debug\SqlServerTypes\x86\SqlServerSpatial110.dll
+C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.exe
+C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.pdb
+C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache
+C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.columnSelectionForm.resources
+C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.customerDetail.resources
+C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.mainForm.resources
+C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.Properties.Resources.resources
+C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.resultPage.resources
+C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csproj.GenerateResource.Cache
+C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.mainMenu.resources

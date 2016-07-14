@@ -229,6 +229,7 @@ namespace TA_Project
                 }
                 MessageBox.Show(string.Format("Data has been imported successfully! ({0})", result), "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information); //Show how many rows were affected
                 cSSDataSet3.Reset();
+                nextBtn1.Focus();
                 transactionTableTableAdapter.Fill(this.cSSDataSet3.transactionTable);
                 t = batchInputGrid.Rows.Count;
             }
@@ -404,7 +405,8 @@ namespace TA_Project
             {
                 if (metroProgressBar1.Visible) metroProgressBar1.Hide();
                 metroLabel1.Text = "Data process has finished!";
-                nextBtn2.Visible = true;
+                viewResultBtn.Visible = true;
+                viewResultBtn.Focus();
             };
             metroProgressBar1.Show();
             b.RunWorkerAsync();
@@ -1033,7 +1035,7 @@ namespace TA_Project
             initCriteriaRFM();
         }
 
-        private void nextBtn2_Click(object sender, EventArgs e)
+        private void viewResultBtn_Click(object sender, EventArgs e)
         {
             resultForm = new resultPage(this);
             resultForm.Show(this);
@@ -1060,6 +1062,11 @@ namespace TA_Project
             {
                 System.Console.WriteLine(ex);
             }
+        }
+
+        private void mainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
         }
 
         //private void manualInputGrid_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)

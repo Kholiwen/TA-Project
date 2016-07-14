@@ -40,10 +40,22 @@ namespace TA_Project
 
         private void customerDetail_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'cSSDataSet4.transactionTable' table. You can move, or remove it, as needed.
             metroGrid1.AutoGenerateColumns = true;
             metroGrid1.DataSource = ds.Tables[0];
-            metroGrid1.DataMember = "TableName";
+            metroGrid1.Columns[2].DefaultCellStyle.Format = "'Rp.' ###,###,###.00',-'";
+            metroGrid1.Columns[3].DefaultCellStyle.Format = "dd MMM yyyy";
+            metroGrid1.Columns[1].MinimumWidth = 200;
+            metroGrid1.Columns[2].MinimumWidth = 110;
+        }
+
+        private void customerDetail_Deactivate(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void customerDetail_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

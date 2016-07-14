@@ -28,6 +28,7 @@ namespace TA_Project
         {
             InitializeComponent();
             this.frm = frm;
+            graphButton.Focus();
             //for (int i = 0; i < k; i++)
             //{
             //    dataGridView1.Rows[i].Cells[4].Value = rfmv[i];
@@ -50,7 +51,14 @@ namespace TA_Project
             ds2.Clear();
             sa.Fill(ds2, "processedTable");
             dataGridView2.DataSource = ds2.Tables[0].DefaultView;
-            metroTabPage1.Text = "Customer List - " + ds1.Tables[0].Rows[i-1][5];
+            metroTabPage1.Text = "Customer List - " + ds1.Tables[0].Rows[i - 1][5];
+            dataGridView1.Columns[5].MinimumWidth = 100;
+            dataGridView1.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            dataGridView2.Columns[3].DefaultCellStyle.Format = "'Rp.' ###,###,###.00',-'";
+            dataGridView2.Columns[4].DefaultCellStyle.Format = "dd MMM yyyy";
+            dataGridView2.Columns[1].MinimumWidth = 225;
+            dataGridView2.Columns[3].MinimumWidth = 115;
+            dataGridView2.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             DataGridViewLinkColumn dgvlc = new DataGridViewLinkColumn();
             dataGridView1.Columns.Add(dgvlc);
             dgvlc.HeaderText = "Strategy";
@@ -153,6 +161,11 @@ namespace TA_Project
             var custdetFrm = new customerDetail(custID);
             custdetFrm.Text = custName;
             custdetFrm.Show();
+        }
+
+        private void resultPage_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
         }
     }
 }
