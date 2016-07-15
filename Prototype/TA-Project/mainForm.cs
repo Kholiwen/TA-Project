@@ -18,7 +18,7 @@ namespace TA_Project
     public partial class mainForm : MetroFramework.Forms.MetroForm
     {
         resultPage resultForm;
-        Dictionary<string, string> rfmd;
+        Dictionary<string, string> rfmd, segmentD;
         OleDbConnection oleCon;
         SqlConnection sqlCon;
         SqlDataAdapter sa;
@@ -28,7 +28,7 @@ namespace TA_Project
         int result = 0, cltr = 0, t = 1;
         int[] custCltr;
         string[] rfmv;
-        string[] custName;
+        string[] custName,custID;
         string directoryPath = "";
         int[,] rfmc;
         double[,] r;
@@ -58,7 +58,7 @@ namespace TA_Project
             metroPanel3.Visible = false;
             browseBtn.Focus();
 
-            delQuery = "delete transactionTable delete processedTable";
+            delQuery = "delete [transaction] delete customer";
             sqlConnection();
             sqlCon.Open();
             command = new SqlCommand(delQuery, sqlCon);
@@ -186,7 +186,7 @@ namespace TA_Project
 
         private void insertExcelRecords(string filePath)
         {
-            string customerHeader = "", purchasedateHeader = "", totalpurchaseHeader = "";
+            string customerIDHeader = "", customerHeader = "", purchasedateHeader = "", totalpurchaseHeader = "";
             result = 0;
             excelConn(filePath);
             excelQuery = string.Format("Select * FROM [{0}]", "Sheet1$");
@@ -201,6 +201,7 @@ namespace TA_Project
                 var res = frm.ShowDialog();
                 if (res == DialogResult.OK)
                 {
+                    customerIDHeader = frm.customerIDHeader;
                     customerHeader = frm.customerHeader;
                     purchasedateHeader = frm.purchasedateHeader;
                     totalpurchaseHeader = frm.totalpurchaseHeader;
@@ -209,28 +210,31 @@ namespace TA_Project
             try
             {
                 oleCon.Open();
-                excelQuery = string.Format("Select [" + customerHeader + "],[" + purchasedateHeader + "],[" + totalpurchaseHeader + "] FROM [{0}]", "Sheet1$");
+                excelQuery = string.Format("Select [" + customerIDHeader + "],[" + customerHeader + "],[" + purchasedateHeader + "],[" + totalpurchaseHeader + "] FROM [{0}]", "Sheet1$");
                 oda = new OleDbDataAdapter(excelQuery, oleCon);
                 oleCon.Close();
                 dt.Rows.Clear();
                 dt.Columns.Clear();
                 oda.Fill(dt);
+                metroProgressBar2.Maximum = dt.Rows.Count;
                 foreach (DataRow row in dt.Rows)
                 {
                     using (SqlCommand sqlCmd = new SqlCommand("sp_insertTRANSACTION", sqlCon))
                     {
                         sqlCmd.CommandType = CommandType.StoredProcedure;
-                        sqlCmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = row[0];
-                        sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = row[2];
-                        sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = row[1];
-                        sqlCmd.Parameters.Add("@CID", SqlDbType.NChar).Value = DBNull.Value;
+                        sqlCmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = row[1];
+                        sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = row[3];
+                        sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = row[2];
+                        sqlCmd.Parameters.Add("@CID", SqlDbType.NChar).Value = row[0];
                         result += sqlCmd.ExecuteNonQuery();
                     }
+                    metroProgressBar2.Value += 1;
                 }
                 MessageBox.Show(string.Format("Data has been imported successfully! ({0})", result), "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information); //Show how many rows were affected
                 cSSDataSet3.Reset();
                 nextBtn1.Focus();
-                transactionTableTableAdapter.Fill(this.cSSDataSet3.transactionTable);
+                metroProgressBar2.Hide();
+                transactionTableAdapter.Fill(this.cSSDataSet3.transaction);
                 t = batchInputGrid.Rows.Count;
             }
             catch (Exception e)
@@ -242,61 +246,13 @@ namespace TA_Project
 
         private void mainForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'cSSDataSet.transactionTable' table. You can move, or remove it, as needed.
-            this.transactionTableTableAdapter1.Fill(this.cSSDataSet.transactionTable);
-            // TODO: This line of code loads data into the 'cSSDataSet3.transactionTable' table. You can move, or remove it, as needed.
-            this.transactionTableTableAdapter.Fill(this.cSSDataSet3.transactionTable);
+            // TODO: This line of code loads data into the 'cSSDataSet.transaction' table. You can move, or remove it, as needed.
+            this.transactionTableAdapter1.Fill(this.cSSDataSet.transaction);
+            // TODO: This line of code loads data into the 'cSSDataSet3.transaction' table. You can move, or remove it, as needed.
+            this.transactionTableAdapter.Fill(this.cSSDataSet3.transaction);
             // TODO: This line of code loads data into the 'cSSDataSet1.custClass' table. You can move, or remove it, as needed.
             this.segmentStrategyTableAdapter.Fill(this.cSSDataSet1.segmentStrategy);
             // TODO: This line of code loads data into the 'cSSDataSet.dataTable' table. You can move, or remove it, as needed.
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            metroPanel1.Visible = true;
-            metroLabel3.Text = "Data Input";
-            metroPanel2.Visible = false;
-            metroPanel3.Visible = false;
-        }
-
-        private void metroButton2_Click(object sender, EventArgs e)
-        {
-            if (browseBtn.Text == "Browse..")
-            {
-                OpenFileDialog openFileDialog1 = new OpenFileDialog();
-                openFileDialog1.ShowDialog();
-                openFileDialog1.Filter = "txt files (*.txt)|*.txt|Excel Files (*.xls,*.xlsx)|*.xls;*.xlsx";
-                openFileDialog1.FilterIndex = 2;
-                openFileDialog1.RestoreDirectory = true;
-                directoryPath = openFileDialog1.FileName;
-                fileTextBox.Text = directoryPath;
-                if (fileTextBox.Text != "")
-                {
-                    browseBtn.Text = "OK";
-                }
-            }
-            else if (browseBtn.Text == "OK")
-            {
-                try
-                {
-                    if (fileTextBox.Text != "")
-                    {
-                        insertExcelRecords(directoryPath);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
-                }
-                fileTextBox.Text = "";
-                browseBtn.Text = "Browse..";
-            }
-        }
-
-        private void metroTextBox1_ButtonClick(object sender, EventArgs e)
-        {
-            fileTextBox.Clear();
-            browseBtn.Text = "Browse..";
         }
 
         //private void datacollectionProcess()
@@ -315,6 +271,22 @@ namespace TA_Project
         //    b.RunWorkerAsync();
         //}
 
+        private void batchdataimportProcess()
+        {
+            BackgroundWorker b = new BackgroundWorker();
+
+            b.DoWork += (object sender, DoWorkEventArgs e) =>
+            {
+            };
+
+            b.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
+            {
+                batchInputGrid.Visible = true;
+            };
+
+            b.RunWorkerAsync();
+        }
+
         private void ShowProgressBarWhileBackgroundWorkerRuns()
         {
             BackgroundWorker b = new BackgroundWorker();
@@ -327,7 +299,7 @@ namespace TA_Project
             b.DoWork += (object sender, DoWorkEventArgs e) =>
             {
                 command = new SqlCommand();
-                query = "SELECT * FROM transactionTable order by [Customer Name]";
+                query = "SELECT * FROM [transaction] order by [CID]";
                 sqlConnection();
                 sqlCon.Open();
                 dt = new DataTable();
@@ -337,66 +309,76 @@ namespace TA_Project
                 sa = new SqlDataAdapter(command);
                 sa.Fill(dt);
 
-                custName = new string[dt.Rows.Count];
+                custName = new string[1];
+                custID = new string[1];
                 DateTime date = date = Convert.ToDateTime(dt.Rows[0][3]);
                 int frq = 1;
                 double mntry = Convert.ToInt64(dt.Rows[0][2]);
                 int idx = 0;
 
                 //Data input\\
-                X = new double[dt.Rows.Count, 3];
+                X = new double[dt.Rows.Count, 4];
                 DataRow dr;
+                dr = dt.Rows[0];
                 for (int i = 0; i < dt.Rows.Count - 1; i++)
                 {
-                    dr = dt.Rows[i];
                     if (Convert.ToInt32((DateTime.Now - Convert.ToDateTime(dr[3])).TotalDays) <= period * 30)
                     {
-                        custName[idx] = dr[1].ToString();
-                        if (dr[1].ToString() == dt.Rows[dt.Rows.IndexOf(dr) + 1][1].ToString())
+                        custName[idx] = dr.Table.Rows[i][1].ToString();
+                        custID[idx] = dr.Table.Rows[i][4].ToString();
+                        if (custID[idx] == dt.Rows[i + 1][4].ToString())
                         {
                             if (Convert.ToInt32((DateTime.Now - Convert.ToDateTime(dt.Rows[dt.Rows.IndexOf(dr) + 1][3])).TotalDays) <= period * 30)
                             {
-                                if (Convert.ToDateTime(dr[3]) > Convert.ToDateTime(dt.Rows[dt.Rows.IndexOf(dr) + 1][3]))
+                                if (Convert.ToDateTime(dt.Rows[i + 1][3]) > Convert.ToDateTime(dr.Table.Rows[i][3]))
                                 {
-                                    date = Convert.ToDateTime(dt.Rows[dt.Rows.IndexOf(dr) + 1][3]);
+                                    date = Convert.ToDateTime(dt.Rows[i + 1][3]);
                                 }
                                 frq += 1;
-                                mntry += Convert.ToInt64(dt.Rows[dt.Rows.IndexOf(dr) + 1][2]);
+                                mntry += Convert.ToInt64(dt.Rows[i + 1][2]);
                             }
                         }
-                        else if (dr[1].ToString() != dt.Rows[dt.Rows.IndexOf(dr) + 1][1].ToString())
+                        else if (custID[idx] != dt.Rows[i + 1][4].ToString())
                         {
-                            X[idx, 0] = Convert.ToInt32((DateTime.Now - date).TotalDays);
+                            X[idx, 0] = Convert.ToInt32((DateTime.Now - date).TotalDays) - 1;
                             X[idx, 1] = frq;
                             X[idx, 2] = mntry;
                             idx += 1;
+                            Array.Resize(ref custName, idx + 1);
+                            Array.Resize(ref custID, idx + 1);
                             frq = 1;
-                            mntry = Convert.ToInt64(dt.Rows[dt.Rows.IndexOf(dr) + 1][2]);
+                            mntry = Convert.ToInt64(dt.Rows[i + 1][2]);
+                            date = Convert.ToDateTime(dt.Rows[i + 1][3]);
                         }
                     }
                 }
                 num = Enumerable.Range(0, X.GetLength(0)).Count(i => X[i, 0] != 0);
                 for (int i = 0; i < num; i++)
                 {
-                    using (SqlCommand sqlCmd = new SqlCommand("sp_INSERT", sqlCon))
-                    {
-                        sqlCmd.CommandType = CommandType.StoredProcedure;
-                        sqlCmd.Parameters.Add("@NAME", SqlDbType.VarChar).Value = custName[i];
-                        sqlCmd.Parameters.Add("@FRQ", SqlDbType.Int).Value = X[i, 1];
-                        sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = X[i, 2];
-                        sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = DateTime.Now.AddDays(-X[i, 0]);
-                        sqlCmd.Parameters.Add("@CL", SqlDbType.Int).Value = 0;
-                        sqlCmd.Parameters.Add("@SGMT", SqlDbType.VarChar).Value = "";
-                        sqlCmd.ExecuteNonQuery();
-                    }
+                    string customerQuery = "INSERT customer (CID, [Customer Name], Frequency, [Total purchase], [Last purchase], clusterIndex) VALUES ('" + custID[i] + "', '" + custName[i].Replace("'"," ") + "', '" + X[i, 1] + "', '" + X[i, 2] + "', '" + DateTime.Now.AddDays(-X[i, 0]) +"', '" + 0 + "')";
+                    command.CommandText = customerQuery;
+                    command.CommandType = CommandType.Text;
+                    command.Connection = sqlCon;
+                    command = new SqlCommand(customerQuery, sqlCon);
+                    command.ExecuteNonQuery();
+                        
+                    //using (SqlCommand sqlCmd = new SqlCommand("sp_INSERT", sqlCon))
+                    //{//sqlCmd.CommandType = CommandType.StoredProcedure;
+                        //sqlCmd.Parameters.Add("@NAME", SqlDbType.VarChar).Value = custName[i];
+                        //sqlCmd.Parameters.Add("@FRQ", SqlDbType.Int).Value = X[i, 1];
+                        //sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = X[i, 2];
+                        //sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = DateTime.Now.AddDays(-X[i, 0]);
+                        //sqlCmd.Parameters.Add("@CL", SqlDbType.Int).Value = 0;
+                        //sqlCmd.ExecuteNonQuery();
+                    //}
                 }
-                query = "UPDATE transactionTable set CID = (SELECT processedTable.CID from processedTable where [transactionTable].[Customer Name] = processedTable.[Customer Name])";
-                sqlConnection();
-                sqlCon.Open();
-                command.CommandText = query;
-                command.CommandType = CommandType.Text;
-                command.Connection = sqlCon;
-                command.ExecuteNonQuery();
+                //query = "UPDATE [transaction] set CID = (SELECT customer.CID from customer where [transaction].[Customer Name] = [customer].[Customer Name])";
+                //sqlConnection();
+                //sqlCon.Open();
+                //command.CommandText = query;
+                //command.CommandType = CommandType.Text;
+                //command.Connection = sqlCon;
+                //command.ExecuteNonQuery();
                 fuzzyCMeans();
                 fuzzyRFM();
             };
@@ -463,7 +445,7 @@ namespace TA_Project
             V = new double[cltr, 3];
 
             command = new SqlCommand();
-            query = "SELECT * FROM processedTable order by CID";
+            query = "SELECT * FROM customer order by CID";
             sqlConnection();
             command.CommandText = query;
             command.CommandType = CommandType.Text;
@@ -476,6 +458,8 @@ namespace TA_Project
             f = new double[cltr, 2];
             m = new double[cltr, 2];
             chartRange = new double[dt.Rows.Count];
+            segmentD = new Dictionary<string, string>{{"Superstar","1"},{"Golden","2"},{"Typical","3"},{"Occasional","4"},
+                {"Everyday","5"},{"Dormant","6"}};
 
             rfmd = new Dictionary<string, string>{
                 {"000","Dormant Customer 18"},{"010","Dormant Customer 12"},{"020","Dormant Customer 6"},{"030","Dormant Customer 3"},
@@ -771,7 +755,7 @@ namespace TA_Project
             }
 
             createChart2(winChartViewer1, 1);
-            delQuery = "delete processedTable";
+            delQuery = "delete customer";
             sqlConnection();
             sqlCon.Open();
             command = new SqlCommand(delQuery, sqlCon);
@@ -782,17 +766,22 @@ namespace TA_Project
             command.ExecuteNonQuery();
             for (int i = 0; i < num; i++)
             {
-                using (SqlCommand sqlCmd = new SqlCommand("sp_INSERT", sqlCon))
-                {
-                    sqlCmd.CommandType = CommandType.StoredProcedure;
-                    sqlCmd.Parameters.Add("@NAME", SqlDbType.VarChar).Value = custName[i];
-                    sqlCmd.Parameters.Add("@FRQ", SqlDbType.Int).Value = X[i, 1];
-                    sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = X[i, 2];
-                    sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = DateTime.Now.AddDays(-X[i, 0]);
-                    sqlCmd.Parameters.Add("@CL", SqlDbType.Int).Value = custCltr[i] + 1;
-                    sqlCmd.Parameters.Add("@SGMT", SqlDbType.VarChar).Value = rfmv[custCltr[i]];
-                    sqlCmd.ExecuteNonQuery();
-                }
+                string customerQuery = "INSERT customer (CID, [Customer Name], Frequency, [Total purchase], [Last purchase], clusterIndex) VALUES ('" + custID[i] + "', '" + custName[i] + "', '" + X[i, 1] + "', '" + X[i, 2] + "', '" + DateTime.Now.AddDays(-X[i, 0]) + "', '" + (custCltr[i] + 1) + "')";
+                command.CommandText = customerQuery;
+                command.CommandType = CommandType.Text;
+                command.Connection = sqlCon;
+                command = new SqlCommand(customerQuery, sqlCon);
+                command.ExecuteNonQuery();
+                //using (SqlCommand sqlCmd = new SqlCommand("sp_INSERT", sqlCon))
+                //{
+                //    sqlCmd.CommandType = CommandType.StoredProcedure;
+                //    sqlCmd.Parameters.Add("@NAME", SqlDbType.VarChar).Value = custName[i];
+                //    sqlCmd.Parameters.Add("@FRQ", SqlDbType.Int).Value = X[i, 1];
+                //    sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = X[i, 2];
+                //    sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = DateTime.Now.AddDays(-X[i, 0]);
+                //    sqlCmd.Parameters.Add("@CL", SqlDbType.Int).Value = custCltr[i] + 1;
+                //    sqlCmd.ExecuteNonQuery();
+                //}
             }
             string delClusterQuery = "delete clusterResult";
             command.CommandText = delClusterQuery;
@@ -802,7 +791,7 @@ namespace TA_Project
             command.ExecuteNonQuery();
             for (int i = 0; i < cltr; i++)
             {
-                string clusterQuery = "INSERT clusterResult (clusterIndex, recencyDOM, frequencyDOM, monetaryDOM, rfmScore, clusterSegment) VALUES (" + (i + 1) + ", '" + r[i, 0] + "', '" + f[i, 0] + "', '" + m[i, 0] + "', '" + rfm[i] + "', '" + rfmv[i] + "')";
+                string clusterQuery = "INSERT clusterResult (clusterIndex, recencyDOM, frequencyDOM, monetaryDOM, rfmScore, clusterSegment, segmentID) VALUES (" + (i + 1) + ", '" + r[i, 0] + "', '" + f[i, 0] + "', '" + m[i, 0] + "', '" + rfm[i] + "', '" + rfmv[i] + "', '"+ Convert.ToInt32(segmentD[rfmv[i].Split(' ')[0]]) +"')";
                 command.CommandText = clusterQuery;
                 command.CommandType = CommandType.Text;
                 command.Connection = sqlCon;
@@ -874,7 +863,6 @@ namespace TA_Project
         {
             if (batchRadioButton.Checked == true)
             {
-                batchInputGrid.Visible = true;
                 manualInputGrid.Visible = false;
                 fileTextBox.Visible = true;
                 browseBtn.Visible = true;
@@ -882,7 +870,11 @@ namespace TA_Project
                 browseBtn.Focus();
                 batchInputGrid.ReadOnly = true;
                 cSSDataSet3.Reset();
-                transactionTableTableAdapter.Fill(this.cSSDataSet3.transactionTable);
+                transactionTableAdapter.Fill(this.cSSDataSet3.transaction);
+                if (dt.Rows.Count != 0)
+                {
+                    batchInputGrid.Visible = true;
+                }
             }
         }
 
@@ -898,11 +890,46 @@ namespace TA_Project
                 manualInputGrid.ReadOnly = false;
                 manualInputGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 cSSDataSet.Reset();
-                transactionTableTableAdapter1.Fill(this.cSSDataSet.transactionTable);
+                transactionTableAdapter1.Fill(this.cSSDataSet.transaction);
                 manualInputGrid.CurrentCell = manualInputGrid.Rows[manualInputGrid.Rows.Count - 1].Cells[0];
                 manualInputGrid.BeginEdit(true);
                 manualInputGrid.Rows[manualInputGrid.Rows.Count - 1].Cells[0].ToolTipText = "Click here to start data input";
                 //manualInputGrid.Rows[manualInputGrid.Rows.Count - 1].Cells[0].Value = "Type customer name..";
+            }
+        }
+
+        private void browseBtn_Click(object sender, EventArgs e)
+        {
+            if (browseBtn.Text == "Browse..")
+            {
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                openFileDialog1.ShowDialog();
+                openFileDialog1.Filter = "txt files (*.txt)|*.txt|Excel Files (*.xls,*.xlsx)|*.xls;*.xlsx";
+                openFileDialog1.FilterIndex = 2;
+                openFileDialog1.RestoreDirectory = true;
+                directoryPath = openFileDialog1.FileName;
+                fileTextBox.Text = directoryPath;
+                if (fileTextBox.Text != "")
+                {
+                    browseBtn.Text = "OK";
+                }
+            }
+            else if (browseBtn.Text == "OK")
+            {
+                try
+                {
+                    if (fileTextBox.Text != "")
+                    {
+                        insertExcelRecords(directoryPath);
+                        //batchdataimportProcess();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                }
+                fileTextBox.Text = "";
+                browseBtn.Text = "Browse..";
             }
         }
 
@@ -926,7 +953,7 @@ namespace TA_Project
                     }
                 }
                 t++;
-                query = "SELECT * FROM transactionTable order by [Customer Name]";
+                query = "SELECT * FROM [transaction] order by [Customer Name]";
                 sqlConnection();
                 sqlCon.Open();
                 dt = new DataTable();
@@ -936,6 +963,20 @@ namespace TA_Project
                 sa = new SqlDataAdapter(command);
                 sa.Fill(dt);
             }
+        }
+
+        private void fileTextBox_ButtonClick(object sender, EventArgs e)
+        {
+            fileTextBox.Clear();
+            browseBtn.Text = "Browse..";
+        }
+
+        private void backBtn1_Click(object sender, EventArgs e)
+        {
+            metroPanel1.Visible = true;
+            metroLabel3.Text = "Data Input";
+            metroPanel2.Visible = false;
+            metroPanel3.Visible = false;
         }
 
         private void trackBar1_ValueChanged(object sender, EventArgs e)

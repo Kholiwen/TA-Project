@@ -7,13 +7,13 @@
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="CSSConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="CSSConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.TA_Project.Properties.Settings.GlobalReference.Default.CSSConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="transactionTableTableAdapter" GeneratorDataComponentClassName="transactionTableTableAdapter" Name="transactionTable" UserDataComponentName="transactionTableTableAdapter">
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="transactionTableAdapter" GeneratorDataComponentClassName="transactionTableAdapter" Name="transaction" UserDataComponentName="transactionTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="CSSConnectionString (Settings)" DbObjectName="CSS.dbo.transactionTable" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="CSSConnectionString (Settings)" DbObjectName="CSS.dbo.[transaction]" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        [Customer Name], [Total purchase], [Last purchase]
-FROM            transactionTable
+FROM            [transaction]
 ORDER BY TID</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -35,7 +35,7 @@ ORDER BY TID</CommandText>
   <xs:element name="CSSDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="CSSDataSet" msprop:Generator_UserDSName="CSSDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="transactionTable" msprop:Generator_TableClassName="transactionTableDataTable" msprop:Generator_TableVarName="tabletransactionTable" msprop:Generator_RowChangedName="transactionTableRowChanged" msprop:Generator_TablePropName="transactionTable" msprop:Generator_RowDeletingName="transactionTableRowDeleting" msprop:Generator_RowChangingName="transactionTableRowChanging" msprop:Generator_RowEvHandlerName="transactionTableRowChangeEventHandler" msprop:Generator_RowDeletedName="transactionTableRowDeleted" msprop:Generator_RowClassName="transactionTableRow" msprop:Generator_UserTableName="transactionTable" msprop:Generator_RowEvArgName="transactionTableRowChangeEvent">
+        <xs:element name="transaction" msprop:Generator_TableClassName="transactionDataTable" msprop:Generator_TableVarName="tabletransaction" msprop:Generator_TablePropName="transaction" msprop:Generator_RowDeletingName="transactionRowDeleting" msprop:Generator_RowChangingName="transactionRowChanging" msprop:Generator_RowEvHandlerName="transactionRowChangeEventHandler" msprop:Generator_RowDeletedName="transactionRowDeleted" msprop:Generator_UserTableName="transaction" msprop:Generator_RowChangedName="transactionRowChanged" msprop:Generator_RowEvArgName="transactionRowChangeEvent" msprop:Generator_RowClassName="transactionRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Customer_x0020_Name" msprop:Generator_ColumnVarNameInTable="columnCustomer_Name" msprop:Generator_ColumnPropNameInRow="Customer_Name" msprop:Generator_ColumnPropNameInTable="Customer_NameColumn" msprop:Generator_UserColumnName="Customer Name">

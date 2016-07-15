@@ -77,10 +77,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(350, 355);
+            this.ControlBox = false;
             this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.aboutButton);
             this.Controls.Add(this.lastBtn);
             this.Controls.Add(this.startBtn);
+            this.MaximizeBox = false;
             this.Name = "mainMenu";
             this.Resizable = false;
             this.Load += new System.EventHandler(this.mainMenu_Load);

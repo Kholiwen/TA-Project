@@ -279,7 +279,11 @@ namespace TA_Project {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class segmentStrategyDataTable : global::System.Data.TypedTableBase<segmentStrategyRow> {
             
-            private global::System.Data.DataColumn columncType;
+            private global::System.Data.DataColumn columnsegmentID;
+            
+            private global::System.Data.DataColumn columnsegmentName;
+            
+            private global::System.Data.DataColumn columnStrategy;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -316,9 +320,25 @@ namespace TA_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn cTypeColumn {
+            public global::System.Data.DataColumn segmentIDColumn {
                 get {
-                    return this.columncType;
+                    return this.columnsegmentID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn segmentNameColumn {
+                get {
+                    return this.columnsegmentName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn StrategyColumn {
+                get {
+                    return this.columnStrategy;
                 }
             }
             
@@ -359,13 +379,22 @@ namespace TA_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public segmentStrategyRow AddsegmentStrategyRow(string cType) {
+            public segmentStrategyRow AddsegmentStrategyRow(short segmentID, string segmentName, string Strategy) {
                 segmentStrategyRow rowsegmentStrategyRow = ((segmentStrategyRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        cType};
+                        segmentID,
+                        segmentName,
+                        Strategy};
                 rowsegmentStrategyRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowsegmentStrategyRow);
                 return rowsegmentStrategyRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public segmentStrategyRow FindBysegmentID(short segmentID) {
+                return ((segmentStrategyRow)(this.Rows.Find(new object[] {
+                            segmentID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -385,15 +414,27 @@ namespace TA_Project {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columncType = base.Columns["cType"];
+                this.columnsegmentID = base.Columns["segmentID"];
+                this.columnsegmentName = base.Columns["segmentName"];
+                this.columnStrategy = base.Columns["Strategy"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columncType = new global::System.Data.DataColumn("cType", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncType);
-                this.columncType.MaxLength = 50;
+                this.columnsegmentID = new global::System.Data.DataColumn("segmentID", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsegmentID);
+                this.columnsegmentName = new global::System.Data.DataColumn("segmentName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsegmentName);
+                this.columnStrategy = new global::System.Data.DataColumn("Strategy", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStrategy);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnsegmentID}, true));
+                this.columnsegmentID.AllowDBNull = false;
+                this.columnsegmentID.Unique = true;
+                this.columnsegmentName.AllowDBNull = false;
+                this.columnsegmentName.MaxLength = 50;
+                this.columnStrategy.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -536,30 +577,52 @@ namespace TA_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string cType {
+            public short segmentID {
+                get {
+                    return ((short)(this[this.tablesegmentStrategy.segmentIDColumn]));
+                }
+                set {
+                    this[this.tablesegmentStrategy.segmentIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string segmentName {
+                get {
+                    return ((string)(this[this.tablesegmentStrategy.segmentNameColumn]));
+                }
+                set {
+                    this[this.tablesegmentStrategy.segmentNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Strategy {
                 get {
                     try {
-                        return ((string)(this[this.tablesegmentStrategy.cTypeColumn]));
+                        return ((string)(this[this.tablesegmentStrategy.StrategyColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'cType\' in table \'segmentStrategy\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Strategy\' in table \'segmentStrategy\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablesegmentStrategy.cTypeColumn] = value;
+                    this[this.tablesegmentStrategy.StrategyColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IscTypeNull() {
-                return this.IsNull(this.tablesegmentStrategy.cTypeColumn);
+            public bool IsStrategyNull() {
+                return this.IsNull(this.tablesegmentStrategy.StrategyColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetcTypeNull() {
-                this[this.tablesegmentStrategy.cTypeColumn] = global::System.Convert.DBNull;
+            public void SetStrategyNull() {
+                this[this.tablesegmentStrategy.StrategyColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -722,13 +785,36 @@ namespace TA_Project.CSSDataSet1TableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "segmentStrategy";
-            tableMapping.ColumnMappings.Add("cType", "cType");
+            tableMapping.ColumnMappings.Add("segmentID", "segmentID");
+            tableMapping.ColumnMappings.Add("segmentName", "segmentName");
+            tableMapping.ColumnMappings.Add("Strategy", "Strategy");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[segmentStrategy] WHERE (([segmentID] = @Original_segmentID) AN" +
+                "D ([segmentName] = @Original_segmentName))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_segmentID", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "segmentID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_segmentName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "segmentName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[segmentStrategy] ([segmentID], [segmentName], [Strategy]) VALU" +
+                "ES (@segmentID, @segmentName, @Strategy)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cType", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@segmentID", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "segmentID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@segmentName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "segmentName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Strategy", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Strategy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[segmentStrategy] SET [segmentID] = @segmentID, [segmentName] = @seg" +
+                "mentName, [Strategy] = @Strategy WHERE (([segmentID] = @Original_segmentID) AND " +
+                "([segmentName] = @Original_segmentName))";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@segmentID", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "segmentID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@segmentName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "segmentName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Strategy", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Strategy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_segmentID", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "segmentID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_segmentName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "segmentName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -744,7 +830,7 @@ namespace TA_Project.CSSDataSet1TableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT cType FROM dbo.segmentStrategy";
+            this._commandCollection[0].CommandText = "SELECT segmentID, segmentName, Strategy\r\n FROM dbo.segmentStrategy";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
