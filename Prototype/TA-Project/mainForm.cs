@@ -25,6 +25,7 @@ namespace TA_Project
         SqlCommand command;
         String olesqlConn, excelQuery, sqlConn, query, delQuery;
         DataTable dt;
+        int dataCtr;
         int result = 0, cltr = 0, t = 1;
         int[] custCltr;
         string[] rfmv;
@@ -209,6 +210,7 @@ namespace TA_Project
             }
             try
             {
+                dataCtr = dt.Rows.Count;
                 oleCon.Open();
                 excelQuery = string.Format("Select [" + customerIDHeader + "],[" + customerHeader + "],[" + purchasedateHeader + "],[" + totalpurchaseHeader + "] FROM [{0}]", "Sheet1$");
                 oda = new OleDbDataAdapter(excelQuery, oleCon);
@@ -231,10 +233,15 @@ namespace TA_Project
                     metroProgressBar2.Value += 1;
                 }
                 MessageBox.Show(string.Format("Data has been imported successfully! ({0})", result), "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information); //Show how many rows were affected
-                cSSDataSet3.Reset();
+                if (dt.Rows.Count != 0)
+                {
+                    cSSDataSet3.Reset();
+                    batchInputGrid.Visible = true;
+                    transactionTableAdapter.Fill(this.cSSDataSet3.transaction);
+                    dataCtr += dt.Rows.Count;
+                }
                 nextBtn1.Focus();
                 metroProgressBar2.Hide();
-                transactionTableAdapter.Fill(this.cSSDataSet3.transaction);
                 t = batchInputGrid.Rows.Count;
             }
             catch (Exception e)
@@ -271,21 +278,20 @@ namespace TA_Project
         //    b.RunWorkerAsync();
         //}
 
-        private void batchdataimportProcess()
-        {
-            BackgroundWorker b = new BackgroundWorker();
+        //private void batchdataimportProcess()
+        //{
+        //    BackgroundWorker b = new BackgroundWorker();
 
-            b.DoWork += (object sender, DoWorkEventArgs e) =>
-            {
-            };
+        //    b.DoWork += (object sender, DoWorkEventArgs e) =>
+        //    {
+        //    };
 
-            b.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
-            {
-                batchInputGrid.Visible = true;
-            };
+        //    b.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
+        //    {
+        //    };
 
-            b.RunWorkerAsync();
-        }
+        //    b.RunWorkerAsync();
+        //}
 
         private void ShowProgressBarWhileBackgroundWorkerRuns()
         {
@@ -869,10 +875,13 @@ namespace TA_Project
                 welcomeLbl.Visible = false;
                 browseBtn.Focus();
                 batchInputGrid.ReadOnly = true;
-                cSSDataSet3.Reset();
-                transactionTableAdapter.Fill(this.cSSDataSet3.transaction);
                 if (dt.Rows.Count != 0)
                 {
+                    if (dataCtr != dt.Rows.Count)
+                    {
+                        cSSDataSet3.Reset();
+                        transactionTableAdapter.Fill(this.cSSDataSet3.transaction);
+                    }
                     batchInputGrid.Visible = true;
                 }
             }

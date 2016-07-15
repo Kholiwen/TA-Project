@@ -24,7 +24,8 @@
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        TID, [Customer Name], [Total purchase], [Last purchase]
-FROM            [transaction]</CommandText>
+FROM            [transaction]
+order by TID</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -46,7 +47,7 @@ FROM            [transaction]</CommandText>
   <xs:element name="CSSDataSet3" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="CSSDataSet3" msprop:Generator_UserDSName="CSSDataSet3">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="transaction" msprop:Generator_TableClassName="transactionDataTable" msprop:Generator_TableVarName="tabletransaction" msprop:Generator_RowChangedName="transactionRowChanged" msprop:Generator_TablePropName="transaction" msprop:Generator_RowDeletingName="transactionRowDeleting" msprop:Generator_RowChangingName="transactionRowChanging" msprop:Generator_RowEvHandlerName="transactionRowChangeEventHandler" msprop:Generator_RowDeletedName="transactionRowDeleted" msprop:Generator_RowClassName="transactionRow" msprop:Generator_UserTableName="transaction" msprop:Generator_RowEvArgName="transactionRowChangeEvent">
+        <xs:element name="transaction" msprop:Generator_TableClassName="transactionDataTable" msprop:Generator_TableVarName="tabletransaction" msprop:Generator_TablePropName="transaction" msprop:Generator_RowDeletingName="transactionRowDeleting" msprop:Generator_RowChangingName="transactionRowChanging" msprop:Generator_RowEvHandlerName="transactionRowChangeEventHandler" msprop:Generator_RowDeletedName="transactionRowDeleted" msprop:Generator_UserTableName="transaction" msprop:Generator_RowChangedName="transactionRowChanged" msprop:Generator_RowEvArgName="transactionRowChangeEvent" msprop:Generator_RowClassName="transactionRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="TID" msprop:Generator_ColumnVarNameInTable="columnTID" msprop:Generator_ColumnPropNameInRow="TID" msprop:Generator_ColumnPropNameInTable="TIDColumn" msprop:Generator_UserColumnName="TID">
