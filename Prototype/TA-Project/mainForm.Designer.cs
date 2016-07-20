@@ -46,8 +46,9 @@
             this.segmentStrategyTableAdapter = new TA_Project.CSSDataSet1TableAdapters.segmentStrategyTableAdapter();
             this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
             this.winChartViewer1 = new ChartDirector.WinChartViewer();
-            this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
+            this.clusterProgressBar = new MetroFramework.Controls.MetroProgressBar();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.batchProgressBar = new MetroFramework.Controls.MetroProgressBar();
             this.welcomeLbl = new MetroFramework.Controls.MetroLabel();
             this.fileTextBox = new MetroFramework.Controls.MetroTextBox();
             this.batchRadioButton = new MetroFramework.Controls.MetroRadioButton();
@@ -157,7 +158,9 @@
             this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             this.transactionTableAdapter1 = new TA_Project.CSSDataSetTableAdapters.transactionTableAdapter();
             this.transactionTableAdapter = new TA_Project.CSSDataSet3TableAdapters.transactionTableAdapter();
-            this.metroProgressBar2 = new MetroFramework.Controls.MetroProgressBar();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.batchLabel = new System.Windows.Forms.Label();
+            this.timerLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.segmentStrategyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet1)).BeginInit();
@@ -218,18 +221,20 @@
             this.winChartViewer1.TabStop = false;
             this.metroToolTip1.SetToolTip(this.winChartViewer1, "3D Scatter Chart view of the cluster");
             // 
-            // metroProgressBar1
+            // clusterProgressBar
             // 
-            this.metroProgressBar1.Location = new System.Drawing.Point(124, 30);
-            this.metroProgressBar1.Name = "metroProgressBar1";
-            this.metroProgressBar1.ProgressBarStyle = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.metroProgressBar1.Size = new System.Drawing.Size(289, 22);
-            this.metroProgressBar1.TabIndex = 6;
-            this.metroToolTip1.SetToolTip(this.metroProgressBar1, "Data is being processed");
+            this.clusterProgressBar.Location = new System.Drawing.Point(124, 30);
+            this.clusterProgressBar.Name = "clusterProgressBar";
+            this.clusterProgressBar.ProgressBarStyle = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.clusterProgressBar.Size = new System.Drawing.Size(289, 22);
+            this.clusterProgressBar.TabIndex = 6;
+            this.metroToolTip1.SetToolTip(this.clusterProgressBar, "Data is being processed");
             // 
             // metroPanel1
             // 
-            this.metroPanel1.Controls.Add(this.metroProgressBar2);
+            this.metroPanel1.Controls.Add(this.timerLabel);
+            this.metroPanel1.Controls.Add(this.batchLabel);
+            this.metroPanel1.Controls.Add(this.batchProgressBar);
             this.metroPanel1.Controls.Add(this.welcomeLbl);
             this.metroPanel1.Controls.Add(this.fileTextBox);
             this.metroPanel1.Controls.Add(this.batchRadioButton);
@@ -241,13 +246,21 @@
             this.metroPanel1.HorizontalScrollbarBarColor = true;
             this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel1.HorizontalScrollbarSize = 10;
-            this.metroPanel1.Location = new System.Drawing.Point(13, 91);
+            this.metroPanel1.Location = new System.Drawing.Point(10, 91);
             this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(554, 384);
+            this.metroPanel1.Size = new System.Drawing.Size(560, 384);
             this.metroPanel1.TabIndex = 0;
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
+            // 
+            // batchProgressBar
+            // 
+            this.batchProgressBar.Location = new System.Drawing.Point(7, 359);
+            this.batchProgressBar.Name = "batchProgressBar";
+            this.batchProgressBar.Size = new System.Drawing.Size(545, 5);
+            this.batchProgressBar.TabIndex = 9;
+            this.batchProgressBar.Visible = false;
             // 
             // welcomeLbl
             // 
@@ -274,7 +287,7 @@
             this.fileTextBox.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.fileTextBox.CustomButton.UseSelectable = true;
             this.fileTextBox.Lines = new string[0];
-            this.fileTextBox.Location = new System.Drawing.Point(190, 2);
+            this.fileTextBox.Location = new System.Drawing.Point(197, 2);
             this.fileTextBox.MaxLength = 32767;
             this.fileTextBox.Name = "fileTextBox";
             this.fileTextBox.PasswordChar = '\0';
@@ -298,7 +311,7 @@
             // batchRadioButton
             // 
             this.batchRadioButton.AutoSize = true;
-            this.batchRadioButton.Location = new System.Drawing.Point(3, 6);
+            this.batchRadioButton.Location = new System.Drawing.Point(10, 6);
             this.batchRadioButton.Name = "batchRadioButton";
             this.batchRadioButton.Size = new System.Drawing.Size(84, 15);
             this.batchRadioButton.TabIndex = 3;
@@ -309,7 +322,7 @@
             // 
             // nextBtn1
             // 
-            this.nextBtn1.Location = new System.Drawing.Point(462, 2);
+            this.nextBtn1.Location = new System.Drawing.Point(475, 2);
             this.nextBtn1.Name = "nextBtn1";
             this.nextBtn1.Size = new System.Drawing.Size(75, 23);
             this.nextBtn1.TabIndex = 1;
@@ -319,7 +332,7 @@
             // 
             // browseBtn
             // 
-            this.browseBtn.Location = new System.Drawing.Point(373, 2);
+            this.browseBtn.Location = new System.Drawing.Point(381, 2);
             this.browseBtn.Name = "browseBtn";
             this.browseBtn.Size = new System.Drawing.Size(75, 23);
             this.browseBtn.TabIndex = 6;
@@ -331,7 +344,7 @@
             // manualRadioButton
             // 
             this.manualRadioButton.AutoSize = true;
-            this.manualRadioButton.Location = new System.Drawing.Point(93, 6);
+            this.manualRadioButton.Location = new System.Drawing.Point(100, 6);
             this.manualRadioButton.Name = "manualRadioButton";
             this.manualRadioButton.Size = new System.Drawing.Size(94, 15);
             this.manualRadioButton.TabIndex = 4;
@@ -374,7 +387,7 @@
             this.batchInputGrid.EnableHeadersVisualStyles = false;
             this.batchInputGrid.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.batchInputGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.batchInputGrid.Location = new System.Drawing.Point(4, 31);
+            this.batchInputGrid.Location = new System.Drawing.Point(0, 31);
             this.batchInputGrid.Name = "batchInputGrid";
             this.batchInputGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -388,7 +401,7 @@
             this.batchInputGrid.RowHeadersVisible = false;
             this.batchInputGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.batchInputGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.batchInputGrid.Size = new System.Drawing.Size(545, 353);
+            this.batchInputGrid.Size = new System.Drawing.Size(560, 330);
             this.batchInputGrid.TabIndex = 8;
             this.batchInputGrid.Visible = false;
             // 
@@ -476,7 +489,7 @@
             this.manualInputGrid.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.manualInputGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.manualInputGrid.HighLightPercentage = 0.5F;
-            this.manualInputGrid.Location = new System.Drawing.Point(4, 31);
+            this.manualInputGrid.Location = new System.Drawing.Point(0, 31);
             this.manualInputGrid.Name = "manualInputGrid";
             this.manualInputGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -490,7 +503,7 @@
             this.manualInputGrid.RowHeadersVisible = false;
             this.manualInputGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.manualInputGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.manualInputGrid.Size = new System.Drawing.Size(545, 345);
+            this.manualInputGrid.Size = new System.Drawing.Size(560, 345);
             this.manualInputGrid.TabIndex = 7;
             this.manualInputGrid.Visible = false;
             this.manualInputGrid.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.metroGrid1_RowEnter);
@@ -1443,7 +1456,7 @@
             // metroPanel3
             // 
             this.metroPanel3.Controls.Add(this.viewResultBtn);
-            this.metroPanel3.Controls.Add(this.metroProgressBar1);
+            this.metroPanel3.Controls.Add(this.clusterProgressBar);
             this.metroPanel3.Controls.Add(this.metroLabel1);
             this.metroPanel3.Controls.Add(this.winChartViewer1);
             this.metroPanel3.HorizontalScrollbarBarColor = true;
@@ -1506,8 +1519,8 @@
             // lineShape1
             // 
             this.lineShape1.Name = "lineShape1";
-            this.lineShape1.X1 = 2;
-            this.lineShape1.X2 = 542;
+            this.lineShape1.X1 = -5;
+            this.lineShape1.X2 = 539;
             this.lineShape1.Y1 = 26;
             this.lineShape1.Y2 = 26;
             // 
@@ -1519,12 +1532,31 @@
             // 
             this.transactionTableAdapter.ClearBeforeFill = true;
             // 
-            // metroProgressBar2
+            // timer1
             // 
-            this.metroProgressBar2.Location = new System.Drawing.Point(8, 27);
-            this.metroProgressBar2.Name = "metroProgressBar2";
-            this.metroProgressBar2.Size = new System.Drawing.Size(541, 3);
-            this.metroProgressBar2.TabIndex = 9;
+            this.timer1.Interval = 50;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // batchLabel
+            // 
+            this.batchLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.batchLabel.Location = new System.Drawing.Point(395, 369);
+            this.batchLabel.Name = "batchLabel";
+            this.batchLabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.batchLabel.Size = new System.Drawing.Size(156, 19);
+            this.batchLabel.TabIndex = 11;
+            this.batchLabel.Text = "batchLabel";
+            this.batchLabel.Visible = false;
+            // 
+            // timerLabel
+            // 
+            this.timerLabel.AutoSize = true;
+            this.timerLabel.Location = new System.Drawing.Point(7, 370);
+            this.timerLabel.Name = "timerLabel";
+            this.timerLabel.Size = new System.Drawing.Size(55, 13);
+            this.timerLabel.TabIndex = 12;
+            this.timerLabel.Text = "timerLabel";
+            this.timerLabel.Visible = false;
             // 
             // mainForm
             // 
@@ -1588,7 +1620,7 @@
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private MetroFramework.Controls.MetroPanel metroPanel3;
         private ChartDirector.WinChartViewer winChartViewer1;
-        private MetroFramework.Controls.MetroProgressBar metroProgressBar1;
+        private MetroFramework.Controls.MetroProgressBar clusterProgressBar;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroPanel metroPanel1;
         private MetroFramework.Controls.MetroPanel metroPanel2;
@@ -1698,7 +1730,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn customerNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalpurchaseDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastpurchaseDataGridView;
-        private MetroFramework.Controls.MetroProgressBar metroProgressBar2;
+        private MetroFramework.Controls.MetroProgressBar batchProgressBar;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label batchLabel;
+        private System.Windows.Forms.Label timerLabel;
     }
 }
 

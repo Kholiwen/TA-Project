@@ -29,7 +29,7 @@ namespace TA_Project
         int result = 0, cltr = 0, t = 1;
         int[] custCltr;
         string[] rfmv;
-        string[] custName,custID;
+        string[] custName, custID;
         string directoryPath = "";
         int[,] rfmc;
         double[,] r;
@@ -46,11 +46,13 @@ namespace TA_Project
         double temp1 = 0, temp2 = 0, temp3 = 0, temp4 = 0, temp5 = 0, temp6 = 0, temp7 = 0, temp8 = 0, temp9 = 0;
         Random rnd = new Random();
         double[] chartRange;
+        DateTime timeStart;
 
         public mainForm()
         {
             InitializeComponent();
             initCriteriaRFM();
+            t = batchInputGrid.Rows.Count;
             label1.Font = new Font("Tahoma", 11, FontStyle.Regular);
             label3.Font = new Font("Tahoma", 11, FontStyle.Regular);
             label4.Font = new Font("Tahoma", 11, FontStyle.Regular);
@@ -58,7 +60,6 @@ namespace TA_Project
             metroPanel2.Visible = false;
             metroPanel3.Visible = false;
             browseBtn.Focus();
-
             delQuery = "delete [transaction] delete customer";
             sqlConnection();
             sqlCon.Open();
@@ -69,6 +70,16 @@ namespace TA_Project
             sa = new SqlDataAdapter(command);
             command.ExecuteNonQuery();
             dt = new DataTable();
+            //query = "SELECT * FROM [CSS].[dbo].[transaction] order by [Customer Name]";
+            //sqlConnection();
+            //sqlCon.Open();
+            //command = new SqlCommand(query, sqlCon);
+            //command.CommandText = query;
+            //command.CommandType = CommandType.Text;
+            //command.Connection = sqlCon;
+            //sa = new SqlDataAdapter(command);
+            //sa.Fill(dt);
+            sqlCon.Close();
         }
         public string getName() { return "3D Scatter Chart (1)"; }
 
@@ -84,10 +95,11 @@ namespace TA_Project
             ThreeDScatterChart c = new ThreeDScatterChart(640, 480);
 
             RanSeries r = new RanSeries(1);
-            double[] xData = new double[X.GetLength(0)];
-            double[] yData = new double[X.GetLength(0)];
-            double[] zData = new double[X.GetLength(0)];
-            for (int j = 0; j < dt.Rows.Count; j++)
+            double[] xData = new double[num / 2];
+            double[] yData = new double[num / 2];
+            double[] zData = new double[num / 2];
+
+            for (int j = 0; j < num / 2; j++)
             {
                 xData = r.getSeries2(2, V[0, 0], 0, u[j, 0] * V[0, 0]);
                 yData = r.getSeries2(2, V[0, 1], 0, u[j, 0] * V[0, 1]);
@@ -107,7 +119,7 @@ namespace TA_Project
             c.setViewAngle(15, 30);
 
             // Add a legend box at (640, 180)
-            c.addLegend(400, 10);
+            //c.addLegend(400, 10);
 
             // Set the x, y and z axis titles
             c.xAxis().setTitle("Recency");
@@ -120,57 +132,65 @@ namespace TA_Project
             //include tool tip for the chart
             viewer.ImageMap = c.getHTMLImageMap("clickable", "",
                 "title='(x={x|p}, y={y|p}, z={z|p}'");
+
         }
 
         public void createChart2(WinChartViewer viewer, int chartIndex)
         {
-            int[] chartColor = new int[8] { 0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xff00ff, 0x55ffff, 0x888888, 0x111111 };
-
-            // Create a ThreeDScatterChart object of size 720 x 600 pixels
-            ThreeDScatterChart c = new ThreeDScatterChart(640, 480);
-
-            for (int i = 0; i < cltr; i++)
+            try
             {
-                RanSeries r = new RanSeries(i + 1);
-                double[] xData = new double[X.GetLength(0)];
-                double[] yData = new double[X.GetLength(0)];
-                double[] zData = new double[X.GetLength(0)];
-                for (int j = 0; j < num; j++)
+                int[] chartColor = new int[8] { 0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xff00ff, 0x55ffff, 0x888888, 0x111111 };
+
+                // Create a ThreeDScatterChart object of size 720 x 600 pixels
+                ThreeDScatterChart c = new ThreeDScatterChart(640, 480);
+
+                for (int i = 0; i < cltr; i++)
                 {
-                    if (custCltr[j] == i)
+                    RanSeries r = new RanSeries(i + 1);
+                    double[] xData = new double[num / 2];
+                    double[] yData = new double[num / 2];
+                    double[] zData = new double[num / 2];
+                    for (int j = 0; j < num / 2; j++)
                     {
-                        xData = r.getSeries2(1, X[j, 0], 0, 0);
-                        yData = r.getSeries2(1, X[j, 1], 0, 0);
-                        zData = r.getSeries2(1, X[j, 2], 0, 0);
-                        c.addScatterGroup(xData, yData, zData, "", Chart.GlassSphere2Shape, 12, chartColor[i]);
+                        if (custCltr[j] == i)
+                        {
+                            xData = r.getSeries2(1, X[j, 0], 0, 0);
+                            yData = r.getSeries2(1, X[j, 1], 0, 0);
+                            zData = r.getSeries2(1, X[j, 2], 0, 0);
+                            c.addScatterGroup(xData, yData, zData, "", Chart.GlassSphere2Shape, 12, chartColor[i]);
+                        }
                     }
+                    c.addScatterGroup(xData, yData, zData, rfmv[i], Chart.GlassSphere2Shape, 12, chartColor[i]);
                 }
-                c.addScatterGroup(xData, yData, zData, rfmv[i], Chart.GlassSphere2Shape, 12, chartColor[i]);
+                // Add a title to the chart using 20 points Times New Roman Italic font
+                //c.addTitle("3D Scatter Chart", "Times New Roman Italic", 20);
+
+                // Set the center of the plot region at (350, 225), and set width x depth x height to
+                // 360 x 360 x 270 pixels
+                c.setPlotRegion(350, 225, 360, 360, 270);
+
+                // Set the elevation and rotation angles to 15 and 30 degrees
+                c.setViewAngle(15, 30);
+
+                // Add a legend box at (640, 180)
+                c.addLegend(400, 10);
+
+                // Set the x, y and z axis titles
+                c.xAxis().setTitle("Recency");
+                c.yAxis().setTitle("Frequency");
+                c.zAxis().setTitle("Monetary");
+
+                // Output the chart
+                viewer.Chart = c;
+
+                //include tool tip for the chart
+                viewer.ImageMap = c.getHTMLImageMap("clickable", "",
+                    "title='(x={x|p}, y={y|p}, z={z|p}'");
             }
-            // Add a title to the chart using 20 points Times New Roman Italic font
-            //c.addTitle("3D Scatter Chart", "Times New Roman Italic", 20);
-
-            // Set the center of the plot region at (350, 225), and set width x depth x height to
-            // 360 x 360 x 270 pixels
-            c.setPlotRegion(350, 225, 360, 360, 270);
-
-            // Set the elevation and rotation angles to 15 and 30 degrees
-            c.setViewAngle(15, 30);
-
-            // Add a legend box at (640, 180)
-            c.addLegend(400, 10);
-
-            // Set the x, y and z axis titles
-            c.xAxis().setTitle("Recency");
-            c.yAxis().setTitle("Frequency");
-            c.zAxis().setTitle("Monetary");
-
-            // Output the chart
-            viewer.Chart = c;
-
-            //include tool tip for the chart
-            viewer.ImageMap = c.getHTMLImageMap("clickable", "",
-                "title='(x={x|p}, y={y|p}, z={z|p}'");
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void excelConn(string filePath)
@@ -210,6 +230,7 @@ namespace TA_Project
             }
             try
             {
+                timeStart = DateTime.Now;
                 dataCtr = dt.Rows.Count;
                 oleCon.Open();
                 excelQuery = string.Format("Select [" + customerIDHeader + "],[" + customerHeader + "],[" + purchasedateHeader + "],[" + totalpurchaseHeader + "] FROM [{0}]", "Sheet1$");
@@ -218,31 +239,11 @@ namespace TA_Project
                 dt.Rows.Clear();
                 dt.Columns.Clear();
                 oda.Fill(dt);
-                metroProgressBar2.Maximum = dt.Rows.Count;
-                foreach (DataRow row in dt.Rows)
-                {
-                    using (SqlCommand sqlCmd = new SqlCommand("sp_insertTRANSACTION", sqlCon))
-                    {
-                        sqlCmd.CommandType = CommandType.StoredProcedure;
-                        sqlCmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = row[1];
-                        sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = row[3];
-                        sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = row[2];
-                        sqlCmd.Parameters.Add("@CID", SqlDbType.NChar).Value = row[0];
-                        result += sqlCmd.ExecuteNonQuery();
-                    }
-                    metroProgressBar2.Value += 1;
-                }
-                MessageBox.Show(string.Format("Data has been imported successfully! ({0})", result), "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information); //Show how many rows were affected
-                if (dt.Rows.Count != 0)
-                {
-                    cSSDataSet3.Reset();
-                    batchInputGrid.Visible = true;
-                    transactionTableAdapter.Fill(this.cSSDataSet3.transaction);
-                    dataCtr += dt.Rows.Count;
-                }
-                nextBtn1.Focus();
-                metroProgressBar2.Hide();
-                t = batchInputGrid.Rows.Count;
+                batchProgressBar.Maximum = dt.Rows.Count;
+                sqlConnection();
+                sqlCon.Open();
+                batchimportProcess();
+
             }
             catch (Exception e)
             {
@@ -278,22 +279,64 @@ namespace TA_Project
         //    b.RunWorkerAsync();
         //}
 
-        //private void batchdataimportProcess()
-        //{
-        //    BackgroundWorker b = new BackgroundWorker();
+        private void batchimportProcess()
+        {
+            BackgroundWorker b = new BackgroundWorker();
+            b.DoWork += (object sender, DoWorkEventArgs e) =>
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    using (SqlCommand sqlCmd = new SqlCommand("sp_insertTRANSACTION", sqlCon))
+                    {
+                        sqlCmd.CommandType = CommandType.StoredProcedure;
+                        sqlCmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = row[1];
+                        sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = row[3];
+                        sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = row[2];
+                        sqlCmd.Parameters.Add("@CID", SqlDbType.NChar).Value = row[0];
+                        result += sqlCmd.ExecuteNonQuery();
+                    }
+                    getResult(result.ToString());
+                }
+            };
 
-        //    b.DoWork += (object sender, DoWorkEventArgs e) =>
-        //    {
-        //    };
+            b.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
+            {
+                timer1.Stop();
+                nextBtn1.Focus();
+                batchProgressBar.Hide();
+                MessageBox.Show(string.Format("Data has been imported successfully! ({0})", result), "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information); //Show how many rows were affected
+                if (dt.Rows.Count != 0)
+                {
+                    cSSDataSet3.Reset();
+                    batchInputGrid.Visible = true;
+                    transactionTableAdapter.Fill(this.cSSDataSet3.transaction);
+                    dataCtr += dt.Rows.Count;
+                }
+                t = batchInputGrid.Rows.Count;
+            };
 
-        //    b.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
-        //    {
-        //    };
-
-        //    b.RunWorkerAsync();
-        //}
-
-        private void ShowProgressBarWhileBackgroundWorkerRuns()
+            timer1.Start();
+            batchProgressBar.Visible = true;
+            timerLabel.Visible = true;
+            batchLabel.Visible = true;
+            batchProgressBar.Value = result;
+            b.RunWorkerAsync();
+        }
+        delegate void getResultCallback(string result);
+        private void getResult(string result)
+        {
+            if (this.batchLabel.InvokeRequired)
+            {
+                getResultCallback d = new getResultCallback(getResult);
+                this.Invoke(d, new object[] { result });
+            }
+            else
+            {
+                this.batchProgressBar.Value = Convert.ToInt32(result);
+                this.batchLabel.Text = String.Format("{0} {1}", " records imported".ToString(), result.ToString());
+            }
+        }
+        private void processThread()
         {
             BackgroundWorker b = new BackgroundWorker();
 
@@ -305,7 +348,7 @@ namespace TA_Project
             b.DoWork += (object sender, DoWorkEventArgs e) =>
             {
                 command = new SqlCommand();
-                query = "SELECT * FROM [transaction] order by [CID]";
+                query = "SELECT * FROM [CSS].[dbo].[transaction] order by [CID]";
                 sqlConnection();
                 sqlCon.Open();
                 dt = new DataTable();
@@ -323,18 +366,18 @@ namespace TA_Project
                 int idx = 0;
 
                 //Data input\\
-                X = new double[dt.Rows.Count, 4];
+                X = new double[dt.Rows.Count, 3];
                 DataRow dr;
                 dr = dt.Rows[0];
                 for (int i = 0; i < dt.Rows.Count - 1; i++)
                 {
-                    if (Convert.ToInt32((DateTime.Now - Convert.ToDateTime(dr[3])).TotalDays) <= period * 30)
+                    if (Convert.ToInt32((DateTime.Now - Convert.ToDateTime(dr.Table.Rows[i][3])).TotalDays) <= period * 30)
                     {
                         custName[idx] = dr.Table.Rows[i][1].ToString();
                         custID[idx] = dr.Table.Rows[i][4].ToString();
                         if (custID[idx] == dt.Rows[i + 1][4].ToString())
                         {
-                            if (Convert.ToInt32((DateTime.Now - Convert.ToDateTime(dt.Rows[dt.Rows.IndexOf(dr) + 1][3])).TotalDays) <= period * 30)
+                            if (Convert.ToInt32((DateTime.Now - Convert.ToDateTime(dt.Rows[i + 1][3])).TotalDays) <= period * 30)
                             {
                                 if (Convert.ToDateTime(dt.Rows[i + 1][3]) > Convert.ToDateTime(dr.Table.Rows[i][3]))
                                 {
@@ -361,87 +404,28 @@ namespace TA_Project
                 num = Enumerable.Range(0, X.GetLength(0)).Count(i => X[i, 0] != 0);
                 for (int i = 0; i < num; i++)
                 {
-                    string customerQuery = "INSERT customer (CID, [Customer Name], Frequency, [Total purchase], [Last purchase], clusterIndex) VALUES ('" + custID[i] + "', '" + custName[i].Replace("'"," ") + "', '" + X[i, 1] + "', '" + X[i, 2] + "', '" + DateTime.Now.AddDays(-X[i, 0]) +"', '" + 0 + "')";
+                    string customerQuery = "INSERT customer (CID, [Customer Name], Frequency, [Total purchase], [Last purchase], clusterIndex) VALUES ('" + custID[i] + "', '" + custName[i].Replace("'", " ") + "', '" + X[i, 1] + "', '" + X[i, 2] + "', '" + DateTime.Now.AddDays(-X[i, 0]) + "', '" + 0 + "')";
                     command.CommandText = customerQuery;
                     command.CommandType = CommandType.Text;
                     command.Connection = sqlCon;
                     command = new SqlCommand(customerQuery, sqlCon);
                     command.ExecuteNonQuery();
-                        
-                    //using (SqlCommand sqlCmd = new SqlCommand("sp_INSERT", sqlCon))
-                    //{//sqlCmd.CommandType = CommandType.StoredProcedure;
-                        //sqlCmd.Parameters.Add("@NAME", SqlDbType.VarChar).Value = custName[i];
-                        //sqlCmd.Parameters.Add("@FRQ", SqlDbType.Int).Value = X[i, 1];
-                        //sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = X[i, 2];
-                        //sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = DateTime.Now.AddDays(-X[i, 0]);
-                        //sqlCmd.Parameters.Add("@CL", SqlDbType.Int).Value = 0;
-                        //sqlCmd.ExecuteNonQuery();
-                    //}
                 }
-                //query = "UPDATE [transaction] set CID = (SELECT customer.CID from customer where [transaction].[Customer Name] = [customer].[Customer Name])";
-                //sqlConnection();
-                //sqlCon.Open();
-                //command.CommandText = query;
-                //command.CommandType = CommandType.Text;
-                //command.Connection = sqlCon;
-                //command.ExecuteNonQuery();
                 fuzzyCMeans();
                 fuzzyRFM();
+                sqlCon.Close();
             };
 
             b.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
             {
-                if (metroProgressBar1.Visible) metroProgressBar1.Hide();
+                if (clusterProgressBar.Visible) clusterProgressBar.Hide();
                 metroLabel1.Text = "Data process has finished!";
                 viewResultBtn.Visible = true;
                 viewResultBtn.Focus();
             };
-            metroProgressBar1.Show();
+            clusterProgressBar.Show();
             b.RunWorkerAsync();
         }
-
-        // This method will be called when the thread is started. 
-        //public void DoWork()
-        //{
-        //    while (!_shouldStop)
-        //    {
-        //        Console.WriteLine("worker thread: working...");
-        //        createChart(winChartViewer1, 1);
-        //    }
-        //    Console.WriteLine("worker thread: terminating gracefully.");
-        //}
-        //public void RequestStop()
-        //{
-        //    _shouldStop = true;
-        //}
-        // Volatile is used as hint to the compiler that this data 
-        // member will be accessed by multiple threads. 
-        //private volatile bool _shouldStop;
-
-        //public void chartThread()
-        //{
-        //    // Create the thread object. This does not start the thread.
-        //    Thread workerThread = new Thread(new System.Threading.ThreadStart(DoWork));
-
-        //    // Start the worker thread.
-        //    workerThread.Start();
-        //    Console.WriteLine("main thread: Starting worker thread...");
-
-        //    // Loop until worker thread activates. 
-        //    while (!workerThread.IsAlive) ;
-
-        //    // Put the main thread to sleep for 1 millisecond to 
-        //    // allow the worker thread to do some work:
-        //    Thread.Sleep(1000);
-
-        //    // Request that the worker thread stop itself:
-        //    RequestStop();
-
-        //    // Use the Join method to block the current thread  
-        //    // until the object's thread terminates.
-        //    workerThread.Join();
-        //    Console.WriteLine("main thread: Worker thread has terminated.");
-        //}
 
         public void fuzzyCMeans()
         {
@@ -772,22 +756,12 @@ namespace TA_Project
             command.ExecuteNonQuery();
             for (int i = 0; i < num; i++)
             {
-                string customerQuery = "INSERT customer (CID, [Customer Name], Frequency, [Total purchase], [Last purchase], clusterIndex) VALUES ('" + custID[i] + "', '" + custName[i] + "', '" + X[i, 1] + "', '" + X[i, 2] + "', '" + DateTime.Now.AddDays(-X[i, 0]) + "', '" + (custCltr[i] + 1) + "')";
+                string customerQuery = "INSERT customer (CID, [Customer Name], Frequency, [Total purchase], [Last purchase], clusterIndex) VALUES ('" + custID[i] + "', '" + custName[i].Replace("'", " ") + "', '" + X[i, 1] + "', '" + X[i, 2] + "', '" + DateTime.Now.AddDays(-X[i, 0]) + "', '" + (custCltr[i] + 1) + "')";
                 command.CommandText = customerQuery;
                 command.CommandType = CommandType.Text;
                 command.Connection = sqlCon;
                 command = new SqlCommand(customerQuery, sqlCon);
                 command.ExecuteNonQuery();
-                //using (SqlCommand sqlCmd = new SqlCommand("sp_INSERT", sqlCon))
-                //{
-                //    sqlCmd.CommandType = CommandType.StoredProcedure;
-                //    sqlCmd.Parameters.Add("@NAME", SqlDbType.VarChar).Value = custName[i];
-                //    sqlCmd.Parameters.Add("@FRQ", SqlDbType.Int).Value = X[i, 1];
-                //    sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = X[i, 2];
-                //    sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = DateTime.Now.AddDays(-X[i, 0]);
-                //    sqlCmd.Parameters.Add("@CL", SqlDbType.Int).Value = custCltr[i] + 1;
-                //    sqlCmd.ExecuteNonQuery();
-                //}
             }
             string delClusterQuery = "delete clusterResult";
             command.CommandText = delClusterQuery;
@@ -797,7 +771,7 @@ namespace TA_Project
             command.ExecuteNonQuery();
             for (int i = 0; i < cltr; i++)
             {
-                string clusterQuery = "INSERT clusterResult (clusterIndex, recencyDOM, frequencyDOM, monetaryDOM, rfmScore, clusterSegment, segmentID) VALUES (" + (i + 1) + ", '" + r[i, 0] + "', '" + f[i, 0] + "', '" + m[i, 0] + "', '" + rfm[i] + "', '" + rfmv[i] + "', '"+ Convert.ToInt32(segmentD[rfmv[i].Split(' ')[0]]) +"')";
+                string clusterQuery = "INSERT clusterResult (clusterIndex, recencyDOM, frequencyDOM, monetaryDOM, rfmScore, clusterSegment, segmentID) VALUES (" + (i + 1) + ", '" + r[i, 0] + "', '" + f[i, 0] + "', '" + m[i, 0] + "', '" + rfm[i] + "', '" + rfmv[i] + "', '" + Convert.ToInt32(segmentD[rfmv[i].Split(' ')[0]]) + "')";
                 command.CommandText = clusterQuery;
                 command.CommandType = CommandType.Text;
                 command.Connection = sqlCon;
@@ -930,7 +904,6 @@ namespace TA_Project
                     if (fileTextBox.Text != "")
                     {
                         insertExcelRecords(directoryPath);
-                        //batchdataimportProcess();
                     }
                 }
                 catch (Exception ex)
@@ -944,9 +917,10 @@ namespace TA_Project
 
         private void metroGrid1_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (manualInputGrid.Rows.Count > t)
+            if (manualInputGrid.Rows.Count > t + 1)
             {
                 result = 0;
+                query = "SELECT * FROM [CSS].[dbo].[transaction] order by [Customer Name]";
                 sqlConnection();
                 sqlCon.Open();
                 if (manualInputGrid.Rows[t - 1].Cells[0].Value.ToString() != "" && manualInputGrid.Rows[t - 1].Cells[1].Value.ToString() != "" && manualInputGrid.Rows[t - 1].Cells[2].Value.ToString() != "")
@@ -962,15 +936,13 @@ namespace TA_Project
                     }
                 }
                 t++;
-                query = "SELECT * FROM [transaction] order by [Customer Name]";
-                sqlConnection();
-                sqlCon.Open();
                 dt = new DataTable();
                 command.CommandText = query;
                 command.CommandType = CommandType.Text;
                 command.Connection = sqlCon;
                 sa = new SqlDataAdapter(command);
                 sa.Fill(dt);
+                sqlCon.Close();
             }
         }
 
@@ -1098,7 +1070,7 @@ namespace TA_Project
             {
                 if (dt.Rows.Count != 0)
                 {
-                    ShowProgressBarWhileBackgroundWorkerRuns();
+                    processThread();
                 }
                 else
                 {
@@ -1117,6 +1089,29 @@ namespace TA_Project
         private void mainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             System.Windows.Forms.Application.Exit();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            TimeSpan timeSpan;
+            double second,minute,hour;
+            timeSpan=DateTime.Now-timeStart;
+            second=timeSpan.TotalSeconds;
+            minute=timeSpan.Minutes;
+            hour=timeSpan.TotalHours;
+            timerLabel.Text = "";
+            if (hour >= 1)
+            {
+                timerLabel.Text = hour + " hours " + minute + " minutes " + String.Format("{0}{1}", timeSpan.Seconds, " seconds");
+            } 
+            else if (minute >= 1)
+            {
+                timerLabel.Text = minute + " minutes " + String.Format("{0:0}.{1:000}{2}",timeSpan.Seconds, timeSpan.Milliseconds, " seconds");
+            }
+            else if (second > 0)
+            {
+                timerLabel.Text = String.Format("{0:0.000}{1}",second , " seconds");
+            }
         }
 
         //private void manualInputGrid_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)

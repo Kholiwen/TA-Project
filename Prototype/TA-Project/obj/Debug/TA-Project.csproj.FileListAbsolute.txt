@@ -112,7 +112,6 @@ E:\TA\Prototype\TA-Project\obj\Debug\TA-Project.csproj.GenerateResource.Cache
 C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\bin\Debug\TA-Project.exe.config
 C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.exe
 C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.pdb
-C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache
 C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.columnSelectionForm.resources
 C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.mainForm.resources
 C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.Properties.Resources.resources

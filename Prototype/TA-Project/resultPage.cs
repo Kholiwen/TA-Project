@@ -20,14 +20,15 @@ namespace TA_Project
         DataSet ds1 = new DataSet();
         DataSet ds2 = new DataSet();
         int i = 1;
-        string query = "SELECT * from clusterResult";
+        string query = "SELECT clusterIndex, recencyDOM, frequencyDOM, monetaryDOM, rfmScore, clusterSegment from clusterResult";
         string query2;
-        private mainForm frm;
+        private mainForm MainForm;
+        private mainMenu MainMenu;
 
         public resultPage(mainForm frm)
         {
             InitializeComponent();
-            this.frm = frm;
+            this.MainForm = frm;
             graphButton.Focus();
             //for (int i = 0; i < k; i++)
             //{
@@ -84,6 +85,7 @@ namespace TA_Project
             dataGridView1.Columns[2].Width = 70;
             dataGridView1.Columns[3].Width = 70;
             dataGridView1.Columns[4].Width = 80;
+            dataGridView1.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[1].HeaderText = "Recency Score";
             dataGridView1.Columns[2].HeaderText = "Frequency Score";
             dataGridView1.Columns[3].HeaderText = "Monetary Score";
@@ -114,7 +116,7 @@ namespace TA_Project
             ds2.Clear();
             sa.Fill(ds2, "customer");
             dataGridView2.DataSource = ds2.Tables[0].DefaultView;
-            metroTabPage1.Text = "Customer List - " + ds1.Tables[0].Rows[i-1][5];
+            metroTabPage1.Text = "Customer List - " + ds1.Tables[0].Rows[i - 1][5];
             sqlCon.Close();
         }
 
@@ -142,15 +144,15 @@ namespace TA_Project
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
             //Application.Run(new mainForm());
-            frm = new mainForm();
-            frm.Show();
+            MainMenu = new mainMenu();
+            MainMenu.Show();
+            Hide();
         }
 
         private void graphButton_Click(object sender, EventArgs e)
         {
-            frm.Show();
+            MainForm.Show();
             Hide();
         }
 
@@ -165,7 +167,7 @@ namespace TA_Project
 
         private void resultPage_FormClosing(object sender, FormClosingEventArgs e)
         {
-            System.Windows.Forms.Application.Exit();
+            System.Environment.Exit(1);
         }
     }
 }
