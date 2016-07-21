@@ -52,10 +52,5 @@ namespace TA_Project
         {
             this.Close();
         }
-
-        private void customerDetail_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
     }
 }

@@ -95,7 +95,6 @@
             this.Resizable = false;
             this.Deactivate += new System.EventHandler(this.customerDetail_Deactivate);
             this.Load += new System.EventHandler(this.customerDetail_Load);
-            this.Click += new System.EventHandler(this.customerDetail_Click);
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).EndInit();
             this.ResumeLayout(false);
 

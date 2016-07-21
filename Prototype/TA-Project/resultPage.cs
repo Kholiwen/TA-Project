@@ -158,11 +158,12 @@ namespace TA_Project
 
         private void dataGridView2_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string custID = dataGridView2.Rows[dataGridView2.CurrentCell.RowIndex].Cells[dataGridView2.CurrentCell.ColumnIndex].Value.ToString();
-            string custName = dataGridView2.Rows[dataGridView2.CurrentCell.RowIndex].Cells[dataGridView2.CurrentCell.ColumnIndex + 1].Value.ToString();
+            string custID = dataGridView2.Rows[dataGridView2.CurrentCell.RowIndex].Cells[0].Value.ToString();
+            string custName = dataGridView2.Rows[dataGridView2.CurrentCell.RowIndex].Cells[1].Value.ToString();
             var custdetFrm = new customerDetail(custID);
             custdetFrm.Text = custName;
             custdetFrm.Show();
+            custdetFrm.Focus();
         }
 
         private void resultPage_FormClosing(object sender, FormClosingEventArgs e)

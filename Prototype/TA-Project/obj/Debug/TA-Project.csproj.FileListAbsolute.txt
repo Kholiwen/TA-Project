@@ -142,3 +142,4 @@ C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project
 C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.mainMenu.resources
 C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache
 C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.mainMenu.resources
+C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache
