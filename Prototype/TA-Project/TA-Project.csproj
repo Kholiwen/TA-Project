@@ -122,17 +122,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CSSDataSet3.xsd</DependentUpon>
     </Compile>
+    <Compile Include="CSSDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CSSDataSet4.xsd</DependentUpon>
+    </Compile>
     <Compile Include="customerDetail.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="customerDetail.Designer.cs">
       <DependentUpon>customerDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="mainMenu.cs">
+    <Compile Include="History.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="mainMenu.Designer.cs">
-      <DependentUpon>mainMenu.cs</DependentUpon>
+    <Compile Include="History.Designer.cs">
+      <DependentUpon>History.cs</DependentUpon>
     </Compile>
     <Compile Include="resultPage.cs">
       <SubType>Form</SubType>
@@ -156,11 +161,11 @@
     <EmbeddedResource Include="customerDetail.resx">
       <DependentUpon>customerDetail.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="History.resx">
+      <DependentUpon>History.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mainMenu.resx">
-      <DependentUpon>mainMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -221,6 +226,17 @@
     <None Include="CSSDataSet3.xss">
       <DependentUpon>CSSDataSet3.xsd</DependentUpon>
     </None>
+    <None Include="CSSDataSet4.xsc">
+      <DependentUpon>CSSDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="CSSDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CSSDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CSSDataSet4.xss">
+      <DependentUpon>CSSDataSet4.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -236,9 +252,6 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Robot-logo-resized.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -261,6 +274,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\Data.xml" />
+    <Resource Include="Resources\chart.png" />
     <Content Include="SqlServerTypes\readme.htm" />
   </ItemGroup>
   <ItemGroup>

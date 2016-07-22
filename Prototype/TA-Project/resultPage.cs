@@ -23,7 +23,6 @@ namespace TA_Project
         string query = "SELECT clusterIndex, recencyDOM, frequencyDOM, monetaryDOM, rfmScore, clusterSegment from clusterResult";
         string query2;
         private mainForm MainForm;
-        private mainMenu MainMenu;
 
         public resultPage(mainForm frm)
         {
@@ -145,8 +144,8 @@ namespace TA_Project
         private void backBtn_Click(object sender, EventArgs e)
         {
             //Application.Run(new mainForm());
-            MainMenu = new mainMenu();
-            MainMenu.Show();
+            MainForm = new mainForm();
+            MainForm.Show();
             Hide();
         }
 

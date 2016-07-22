@@ -46,7 +46,7 @@ namespace TA_Project
         double temp1 = 0, temp2 = 0, temp3 = 0, temp4 = 0, temp5 = 0, temp6 = 0, temp7 = 0, temp8 = 0, temp9 = 0;
         Random rnd = new Random();
         double[] chartRange;
-        DateTime timeStart;
+        DateTime dataimporttimeStart, fuzzycmeanstimeStart, fuzzyrfmtimeStart;
 
         public mainForm()
         {
@@ -230,7 +230,7 @@ namespace TA_Project
             }
             try
             {
-                timeStart = DateTime.Now;
+                dataimporttimeStart = DateTime.Now;
                 dataCtr = dt.Rows.Count;
                 oleCon.Open();
                 excelQuery = string.Format("Select [" + customerIDHeader + "],[" + customerHeader + "],[" + purchasedateHeader + "],[" + totalpurchaseHeader + "] FROM [{0}]", "Sheet1$");
@@ -254,6 +254,8 @@ namespace TA_Project
 
         private void mainForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'cSSDataSet4.historyIndex' table. You can move, or remove it, as needed.
+            this.historyIndexTableAdapter.Fill(this.cSSDataSet4.historyIndex);
             // TODO: This line of code loads data into the 'cSSDataSet.transaction' table. You can move, or remove it, as needed.
             this.transactionTableAdapter1.Fill(this.cSSDataSet.transaction);
             // TODO: This line of code loads data into the 'cSSDataSet3.transaction' table. You can move, or remove it, as needed.
@@ -333,10 +335,11 @@ namespace TA_Project
             else
             {
                 this.batchProgressBar.Value = Convert.ToInt32(result);
-                this.batchLabel.Text = String.Format("{0} {1}", " records imported".ToString(), result.ToString());
+                this.batchLabel.Text = String.Format("{0} {1}", " records imported", result.ToString());
             }
         }
-        private void processThread()
+
+        private void fuzzycmeansprocessThread()
         {
             BackgroundWorker b = new BackgroundWorker();
 
@@ -344,7 +347,8 @@ namespace TA_Project
             metroPanel1.Visible = false;
             metroPanel2.Visible = false;
             metroPanel3.Visible = true;
-            metroLabel3.Text = "Process";
+            this.Text = "Process";
+
             b.DoWork += (object sender, DoWorkEventArgs e) =>
             {
                 command = new SqlCommand();
@@ -412,21 +416,51 @@ namespace TA_Project
                     command.ExecuteNonQuery();
                 }
                 fuzzyCMeans();
-                fuzzyRFM();
                 sqlCon.Close();
             };
 
             b.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
             {
-                if (clusterProgressBar.Visible) clusterProgressBar.Hide();
-                metroLabel1.Text = "Data process has finished!";
-                viewResultBtn.Visible = true;
-                viewResultBtn.Focus();
+                clusterProgressBar.Hide();
+                rfmprocessBtn.Visible = true;
+                rfmprocessBtn.Focus();
+                fuzzycmeansTimerLabel.Location = new Point (163,9);
+                timer2.Stop();
             };
-            clusterProgressBar.Show();
+
+            timer2.Start();
+            clusterProgressBar.Enabled = true;
+            
             b.RunWorkerAsync();
+
         }
 
+        private void fuzzyrfmprocessThread()
+        {
+            BackgroundWorker b = new BackgroundWorker();
+            timer3.Start();
+
+            b.DoWork += (object sender, DoWorkEventArgs e) =>
+            {
+                fuzzyRFM();
+            };
+
+            b.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
+            {
+                timer3.Stop();
+                viewResultBtn.Visible = true;
+                viewResultBtn.Focus();
+                rfmprogressBar.ProgressBarStyle = ProgressBarStyle.Continuous;
+                rfmprogressBar.Visible = false;
+                fuzzyrfmTimerLabel.Location = new Point(163, 37);
+            };
+
+            rfmprogressBar.ProgressBarStyle = ProgressBarStyle.Marquee;
+            rfmprogressBar.Enabled = true;
+            fuzzyrfmTimerLabel.Visible = true;
+
+            b.RunWorkerAsync();
+        }
         public void fuzzyCMeans()
         {
             P = new double[maxIter];
@@ -735,7 +769,6 @@ namespace TA_Project
                 }
                 rfm[k] = Math.Pow((r[k, 0] * f[k, 0] * m[k, 0]), 1 - g) * Math.Pow(1 - (((1 - r[k, 0]) * (1 - f[k, 0]) * (1 - m[k, 0]))), 0.5);
             }
-
             rfmv = new string[cltr];
             {
                 for (int i = 0; i < cltr; i++)
@@ -805,11 +838,11 @@ namespace TA_Project
             {
                 MessageBox.Show("Database empty", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            this.Text = "     Clustering Options";
             //datacollectionProcess();
             metroPanel1.Visible = false;
             metroPanel2.Visible = true;
             metroPanel3.Visible = false;
-            metroLabel3.Text = "Clustering Options";
             processBtn.Focus();
         }
 
@@ -954,8 +987,8 @@ namespace TA_Project
 
         private void backBtn1_Click(object sender, EventArgs e)
         {
+            MetroFramework.Forms.MetroForm.ActiveForm.Text = "     Customer Segmentation Application";
             metroPanel1.Visible = true;
-            metroLabel3.Text = "Data Input";
             metroPanel2.Visible = false;
             metroPanel3.Visible = false;
         }
@@ -1070,7 +1103,8 @@ namespace TA_Project
             {
                 if (dt.Rows.Count != 0)
                 {
-                    processThread();
+                    fuzzycmeanstimeStart = DateTime.Now;
+                    fuzzycmeansprocessThread();
                 }
                 else
                 {
@@ -1086,6 +1120,13 @@ namespace TA_Project
             }
         }
 
+        private void rfmprocessBtn_Click(object sender, EventArgs e)
+        {
+            fuzzyrfmtimeStart = DateTime.Now;
+            rfmprocessBtn.Visible = false;
+            fuzzyrfmprocessThread();
+        }
+
         private void mainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             System.Windows.Forms.Application.Exit();
@@ -1095,7 +1136,7 @@ namespace TA_Project
         {
             TimeSpan timeSpan;
             double second,minute,hour;
-            timeSpan=DateTime.Now-timeStart;
+            timeSpan = DateTime.Now - dataimporttimeStart;
             second=timeSpan.TotalSeconds;
             minute=timeSpan.Minutes;
             hour=timeSpan.TotalHours;
@@ -1114,6 +1155,80 @@ namespace TA_Project
             }
         }
 
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            TimeSpan timeSpan;
+            double second, minute, hour;
+            timeSpan = DateTime.Now - fuzzycmeanstimeStart;
+            second = timeSpan.TotalSeconds;
+            minute = timeSpan.Minutes;
+            hour = timeSpan.TotalHours;
+            timerLabel.Text = "";
+            if (hour >= 1)
+            {
+                fuzzycmeansTimerLabel.Text = hour + " hours " + minute + " minutes " + String.Format("{0}{1}", timeSpan.Seconds, " seconds");
+            }
+            else if (minute >= 1)
+            {
+                fuzzycmeansTimerLabel.Text = minute + " minutes " + String.Format("{0:0}.{1:000}{2}", timeSpan.Seconds, timeSpan.Milliseconds, " seconds");
+            }
+            else if (second > 0)
+            {
+                fuzzycmeansTimerLabel.Text = String.Format("{0:0.000}{1}", second, " seconds");
+            }
+        }
+
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            TimeSpan timeSpan;
+            double second, minute, hour;
+            timeSpan = DateTime.Now - fuzzyrfmtimeStart;
+            second = timeSpan.TotalSeconds;
+            minute = timeSpan.Minutes;
+            hour = timeSpan.TotalHours;
+            timerLabel.Text = "";
+            if (hour >= 1)
+            {
+                fuzzyrfmTimerLabel.Text = hour + " hours " + minute + " minutes " + String.Format("{0}{1}", timeSpan.Seconds, " seconds");
+            }
+            else if (minute >= 1)
+            {
+                fuzzyrfmTimerLabel.Text = minute + " minutes " + String.Format("{0:0}.{1:000}{2}", timeSpan.Seconds, timeSpan.Milliseconds, " seconds");
+            }
+            else if (second > 0)
+            {
+                fuzzyrfmTimerLabel.Text = String.Format("{0:0.000}{1}", second, " seconds");
+            }
+        }
+
+        private void historyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exit_Click(object sender, EventArgs e)
+        {
+            metroPanel4.Visible = true;
+            metroPanel3.Visible = false;
+            metroPanel2.Visible = false;
+            metroPanel1.Visible = false;
+        }
+
+        private void about_Click(object sender, EventArgs e)
+        {
+            metroPanel1.Visible = true;
+            metroPanel4.Visible = false;
+            metroPanel2.Visible = false;
+            metroPanel1.Visible = false;
+        }
+
+        private void metroGrid1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            History his = new History();
+            his.Show();
+            this.Hide();
+        }
         //private void manualInputGrid_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         //{
         //    manualInputGrid.Rows[manualInputGrid.Rows.Count - 1].Cells[0].Value = "";

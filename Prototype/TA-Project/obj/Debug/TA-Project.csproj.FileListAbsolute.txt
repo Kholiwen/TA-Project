@@ -139,7 +139,8 @@ C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project
 C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.Properties.Resources.resources
 C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.resultPage.resources
 C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csproj.GenerateResource.Cache
-C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.mainMenu.resources
-C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache
 C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.mainMenu.resources
 C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache
+C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.History.resources
+C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.g.resources
+C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache

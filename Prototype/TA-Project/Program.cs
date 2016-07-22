@@ -16,7 +16,7 @@ namespace TA_Project
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new mainMenu());
+            Application.Run(new mainForm());
         }
     }
 }
