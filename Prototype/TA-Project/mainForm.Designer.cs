@@ -170,24 +170,24 @@
             this.transactionTableAdapter = new TA_Project.CSSDataSet3TableAdapters.transactionTableAdapter();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.mainMenu = new System.Windows.Forms.MenuStrip();
-            this.MenuStrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.about = new System.Windows.Forms.ToolStripMenuItem();
-            this.exit = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataInputToolstrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.historyToolstrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.historyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metroGrid1 = new MetroFramework.Controls.MetroGrid();
-            this.cSSDataSet4 = new TA_Project.CSSDataSet4();
-            this.historyIndexBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.historyIndexTableAdapter = new TA_Project.CSSDataSet4TableAdapters.historyIndexTableAdapter();
             this.historyIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.processDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clusterSizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalRecordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.periodDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.historyIndexBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cSSDataSet4 = new TA_Project.CSSDataSet4();
+            this.historyIndexTableAdapter = new TA_Project.CSSDataSet4TableAdapters.historyIndexTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.segmentStrategyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet1)).BeginInit();
@@ -211,8 +211,8 @@
             this.mainMenu.SuspendLayout();
             this.metroPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.historyIndexBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet4)).BeginInit();
             this.SuspendLayout();
             // 
             // metroStyleManager1
@@ -619,7 +619,7 @@
             this.metroPanel2.HorizontalScrollbarBarColor = true;
             this.metroPanel2.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel2.HorizontalScrollbarSize = 9;
-            this.metroPanel2.Location = new System.Drawing.Point(15, 61);
+            this.metroPanel2.Location = new System.Drawing.Point(15, 97);
             this.metroPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.metroPanel2.Name = "metroPanel2";
             this.metroPanel2.Size = new System.Drawing.Size(555, 414);
@@ -1699,9 +1699,9 @@
             this.mainMenu.BackColor = System.Drawing.Color.Transparent;
             this.mainMenu.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("mainMenu.BackgroundImage")));
             this.mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuStrip,
-            this.historyToolStripMenuItem,
-            this.exitToolStripMenuItem});
+            this.MenuToolStrip,
+            this.aboutToolStrip,
+            this.exitToolStrip});
             this.mainMenu.Location = new System.Drawing.Point(0, 30);
             this.mainMenu.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
             this.mainMenu.Name = "mainMenu";
@@ -1711,28 +1711,41 @@
             this.mainMenu.TabIndex = 6;
             this.mainMenu.Text = "mainMenu";
             // 
-            // MenuStrip
+            // MenuToolStrip
             // 
-            this.MenuStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.about,
-            this.exit});
-            this.MenuStrip.Name = "MenuStrip";
-            this.MenuStrip.Size = new System.Drawing.Size(50, 19);
-            this.MenuStrip.Text = "Menu";
+            this.MenuToolStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dataInputToolstrip,
+            this.historyToolstrip});
+            this.MenuToolStrip.Name = "MenuToolStrip";
+            this.MenuToolStrip.Size = new System.Drawing.Size(50, 19);
+            this.MenuToolStrip.Text = "Menu";
             // 
-            // about
+            // dataInputToolstrip
             // 
-            this.about.Name = "about";
-            this.about.Size = new System.Drawing.Size(152, 22);
-            this.about.Text = "Data Input";
-            this.about.Click += new System.EventHandler(this.about_Click);
+            this.dataInputToolstrip.Name = "dataInputToolstrip";
+            this.dataInputToolstrip.Size = new System.Drawing.Size(152, 22);
+            this.dataInputToolstrip.Text = "Data Input";
+            this.dataInputToolstrip.Click += new System.EventHandler(this.dataInputToolstrip_Click);
             // 
-            // exit
+            // historyToolstrip
             // 
-            this.exit.Name = "exit";
-            this.exit.Size = new System.Drawing.Size(152, 22);
-            this.exit.Text = "History";
-            this.exit.Click += new System.EventHandler(this.exit_Click);
+            this.historyToolstrip.Name = "historyToolstrip";
+            this.historyToolstrip.Size = new System.Drawing.Size(152, 22);
+            this.historyToolstrip.Text = "History";
+            this.historyToolstrip.Click += new System.EventHandler(this.historyToolstrip_Click);
+            // 
+            // aboutToolStrip
+            // 
+            this.aboutToolStrip.Name = "aboutToolStrip";
+            this.aboutToolStrip.Size = new System.Drawing.Size(52, 19);
+            this.aboutToolStrip.Text = "About";
+            // 
+            // exitToolStrip
+            // 
+            this.exitToolStrip.Name = "exitToolStrip";
+            this.exitToolStrip.Size = new System.Drawing.Size(37, 19);
+            this.exitToolStrip.Text = "Exit";
+            this.exitToolStrip.Click += new System.EventHandler(this.exitToolStrip_Click);
             // 
             // metroLabel2
             // 
@@ -1754,13 +1767,6 @@
             this.timer3.Interval = 50;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
-            // historyToolStripMenuItem
-            // 
-            this.historyToolStripMenuItem.Name = "historyToolStripMenuItem";
-            this.historyToolStripMenuItem.Size = new System.Drawing.Size(52, 19);
-            this.historyToolStripMenuItem.Text = "About";
-            this.historyToolStripMenuItem.Click += new System.EventHandler(this.historyToolStripMenuItem_Click);
-            // 
             // metroPanel4
             // 
             this.metroPanel4.Controls.Add(this.metroGrid1);
@@ -1774,12 +1780,6 @@
             this.metroPanel4.VerticalScrollbarBarColor = true;
             this.metroPanel4.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel4.VerticalScrollbarSize = 10;
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(37, 19);
-            this.exitToolStripMenuItem.Text = "Exit";
             // 
             // metroGrid1
             // 
@@ -1834,28 +1834,17 @@
             this.metroGrid1.TabIndex = 2;
             this.metroGrid1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.metroGrid1_CellDoubleClick);
             // 
-            // cSSDataSet4
-            // 
-            this.cSSDataSet4.DataSetName = "CSSDataSet4";
-            this.cSSDataSet4.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // historyIndexBindingSource
-            // 
-            this.historyIndexBindingSource.DataMember = "historyIndex";
-            this.historyIndexBindingSource.DataSource = this.cSSDataSet4;
-            // 
-            // historyIndexTableAdapter
-            // 
-            this.historyIndexTableAdapter.ClearBeforeFill = true;
-            // 
             // historyIDDataGridViewTextBoxColumn
             // 
+            this.historyIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.historyIDDataGridViewTextBoxColumn.DataPropertyName = "historyID";
             this.historyIDDataGridViewTextBoxColumn.HeaderText = "historyID";
             this.historyIDDataGridViewTextBoxColumn.Name = "historyIDDataGridViewTextBoxColumn";
+            this.historyIDDataGridViewTextBoxColumn.Width = 76;
             // 
             // processDateDataGridViewTextBoxColumn
             // 
+            this.processDateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.processDateDataGridViewTextBoxColumn.DataPropertyName = "processDate";
             this.processDateDataGridViewTextBoxColumn.HeaderText = "processDate";
             this.processDateDataGridViewTextBoxColumn.Name = "processDateDataGridViewTextBoxColumn";
@@ -1878,6 +1867,20 @@
             this.periodDataGridViewTextBoxColumn.HeaderText = "period";
             this.periodDataGridViewTextBoxColumn.Name = "periodDataGridViewTextBoxColumn";
             // 
+            // historyIndexBindingSource
+            // 
+            this.historyIndexBindingSource.DataMember = "historyIndex";
+            this.historyIndexBindingSource.DataSource = this.cSSDataSet4;
+            // 
+            // cSSDataSet4
+            // 
+            this.cSSDataSet4.DataSetName = "CSSDataSet4";
+            this.cSSDataSet4.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // historyIndexTableAdapter
+            // 
+            this.historyIndexTableAdapter.ClearBeforeFill = true;
+            // 
             // mainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1889,8 +1892,8 @@
             this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.mainMenu);
             this.Controls.Add(this.metroPanel2);
-            this.Controls.Add(this.metroPanel3);
             this.Controls.Add(this.metroPanel1);
+            this.Controls.Add(this.metroPanel3);
             this.Controls.Add(this.shapeContainer1);
             this.DisplayHeader = false;
             this.HelpButton = true;
@@ -1934,8 +1937,8 @@
             this.mainMenu.PerformLayout();
             this.metroPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.historyIndexBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2064,9 +2067,9 @@
         private System.Windows.Forms.Label batchLabel;
         private System.Windows.Forms.Label timerLabel;
         private System.Windows.Forms.MenuStrip mainMenu;
-        private System.Windows.Forms.ToolStripMenuItem MenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem about;
-        private System.Windows.Forms.ToolStripMenuItem exit;
+        private System.Windows.Forms.ToolStripMenuItem MenuToolStrip;
+        private System.Windows.Forms.ToolStripMenuItem dataInputToolstrip;
+        private System.Windows.Forms.ToolStripMenuItem historyToolstrip;
         private MetroFramework.Controls.MetroLabel metroLabel2;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape2;
         private MetroFramework.Controls.MetroProgressBar rfmprogressBar;
@@ -2078,10 +2081,10 @@
         private System.Windows.Forms.Timer timer2;
         private MetroFramework.Controls.MetroLabel fuzzyrfmTimerLabel;
         private System.Windows.Forms.Timer timer3;
-        private System.Windows.Forms.ToolStripMenuItem historyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStrip;
         private MetroFramework.Controls.MetroPanel metroPanel4;
         private MetroFramework.Controls.MetroGrid metroGrid1;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStrip;
         private CSSDataSet4 cSSDataSet4;
         private System.Windows.Forms.BindingSource historyIndexBindingSource;
         private CSSDataSet4TableAdapters.historyIndexTableAdapter historyIndexTableAdapter;

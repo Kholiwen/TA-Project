@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ChartDirector;
 using System.Threading;
+using System.Drawing.Imaging;
 
 namespace TA_Project
 {
@@ -59,6 +60,7 @@ namespace TA_Project
             manualInputGrid.Font = new Font("Segoe UI", 11f, FontStyle.Regular, GraphicsUnit.Pixel);
             metroPanel2.Visible = false;
             metroPanel3.Visible = false;
+            metroPanel4.Visible = false;
             browseBtn.Focus();
             delQuery = "delete [transaction] delete customer";
             sqlConnection();
@@ -228,28 +230,19 @@ namespace TA_Project
                     totalpurchaseHeader = frm.totalpurchaseHeader;
                 }
             }
-            try
-            {
-                dataimporttimeStart = DateTime.Now;
-                dataCtr = dt.Rows.Count;
-                oleCon.Open();
-                excelQuery = string.Format("Select [" + customerIDHeader + "],[" + customerHeader + "],[" + purchasedateHeader + "],[" + totalpurchaseHeader + "] FROM [{0}]", "Sheet1$");
-                oda = new OleDbDataAdapter(excelQuery, oleCon);
-                oleCon.Close();
-                dt.Rows.Clear();
-                dt.Columns.Clear();
-                oda.Fill(dt);
-                batchProgressBar.Maximum = dt.Rows.Count;
-                sqlConnection();
-                sqlCon.Open();
-                batchimportProcess();
-
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Column header must be selected properly. Please repeat the process again.");
-                System.Console.WriteLine(e);
-            }
+            dataimporttimeStart = DateTime.Now;
+            dataCtr = dt.Rows.Count;
+            oleCon.Open();
+            excelQuery = string.Format("Select [" + customerIDHeader + "],[" + customerHeader + "],[" + purchasedateHeader + "],[" + totalpurchaseHeader + "] FROM [{0}]", "Sheet1$");
+            oda = new OleDbDataAdapter(excelQuery, oleCon);
+            oleCon.Close();
+            dt.Rows.Clear();
+            dt.Columns.Clear();
+            oda.Fill(dt);
+            batchProgressBar.Maximum = dt.Rows.Count;
+            sqlConnection();
+            sqlCon.Open();
+            batchimportProcess();
         }
 
         private void mainForm_Load(object sender, EventArgs e)
@@ -284,25 +277,41 @@ namespace TA_Project
         private void batchimportProcess()
         {
             BackgroundWorker b = new BackgroundWorker();
+            b.WorkerSupportsCancellation = true;
+            if (b.CancellationPending) return;
             b.DoWork += (object sender, DoWorkEventArgs e) =>
             {
-                foreach (DataRow row in dt.Rows)
+                if (b.CancellationPending) return;
+                try
                 {
-                    using (SqlCommand sqlCmd = new SqlCommand("sp_insertTRANSACTION", sqlCon))
+                    foreach (DataRow row in dt.Rows)
                     {
-                        sqlCmd.CommandType = CommandType.StoredProcedure;
-                        sqlCmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = row[1];
-                        sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = row[3];
-                        sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = row[2];
-                        sqlCmd.Parameters.Add("@CID", SqlDbType.NChar).Value = row[0];
-                        result += sqlCmd.ExecuteNonQuery();
+                        using (SqlCommand sqlCmd = new SqlCommand("sp_insertTRANSACTION", sqlCon))
+                        {
+                            sqlCmd.CommandType = CommandType.StoredProcedure;
+                            sqlCmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = row[1];
+                            sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = row[3];
+                            sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = row[2];
+                            sqlCmd.Parameters.Add("@CID", SqlDbType.NChar).Value = row[0];
+                            result += sqlCmd.ExecuteNonQuery();
+                        }
+                        getResult(result.ToString());
                     }
-                    getResult(result.ToString());
+                }
+                catch (Exception ex)
+                {
+                    b.Dispose();
+                    b.CancelAsync();
+                    MessageBox.Show("Column header must be selected properly. Please repeat the process again.");
+                    System.Console.WriteLine(ex);
+                    e.Cancel = true;
+                    timer1.Stop();
                 }
             };
 
             b.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
             {
+                if (b.CancellationPending) return;
                 timer1.Stop();
                 nextBtn1.Focus();
                 batchProgressBar.Hide();
@@ -424,13 +433,13 @@ namespace TA_Project
                 clusterProgressBar.Hide();
                 rfmprocessBtn.Visible = true;
                 rfmprocessBtn.Focus();
-                fuzzycmeansTimerLabel.Location = new Point (163,9);
+                fuzzycmeansTimerLabel.Location = new Point(163, 9);
                 timer2.Stop();
             };
 
             timer2.Start();
             clusterProgressBar.Enabled = true;
-            
+
             b.RunWorkerAsync();
 
         }
@@ -941,7 +950,7 @@ namespace TA_Project
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                    MessageBox.Show("Could not read file from disk. " + ex.Message);
                 }
                 fileTextBox.Text = "";
                 browseBtn.Text = "Browse..";
@@ -950,7 +959,7 @@ namespace TA_Project
 
         private void metroGrid1_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (manualInputGrid.Rows.Count > t + 1)
+            if (manualInputGrid.Rows.Count > t)
             {
                 result = 0;
                 query = "SELECT * FROM [CSS].[dbo].[transaction] order by [Customer Name]";
@@ -983,11 +992,11 @@ namespace TA_Project
         {
             fileTextBox.Clear();
             browseBtn.Text = "Browse..";
+            browseBtn.Focus();
         }
 
         private void backBtn1_Click(object sender, EventArgs e)
         {
-            MetroFramework.Forms.MetroForm.ActiveForm.Text = "     Customer Segmentation Application";
             metroPanel1.Visible = true;
             metroPanel2.Visible = false;
             metroPanel3.Visible = false;
@@ -1103,8 +1112,43 @@ namespace TA_Project
             {
                 if (dt.Rows.Count != 0)
                 {
-                    fuzzycmeanstimeStart = DateTime.Now;
-                    fuzzycmeansprocessThread();
+                    if (dt.Rows.Count != t - 1)
+                    {
+                        MessageBox.Show("Wait for the import process finish first!");
+                    }
+                    else if (dt.Rows.Count == t - 1)
+                    {
+                        fuzzycmeanstimeStart = DateTime.Now;
+                        using (SqlCommand sqlCmd = new SqlCommand("sp_insertHistory", sqlCon))
+                        {
+                            sqlCmd.CommandType = CommandType.StoredProcedure;
+                            sqlCmd.Parameters.Add("@PROCDT", SqlDbType.DateTime).Value = fuzzycmeanstimeStart;
+                            sqlCmd.Parameters.Add("@CLTR", SqlDbType.Int).Value = clusterSizeNUD.Value;
+                            sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Int).Value = t;
+                            sqlCmd.Parameters.Add("@PERIOD", SqlDbType.Int).Value = periodTrackBar.Value;
+                            result += sqlCmd.ExecuteNonQuery();
+                        }
+                        query = "SELECT TOP 1 * FROM [CSS].[dbo].[historyIndex] order by historyID DESC";
+                        sqlConnection();
+                        sqlCon.Open();
+                        dt = new DataTable();
+                        command.CommandText = query;
+                        command.CommandType = CommandType.Text;
+                        command.Connection = sqlCon;
+                        sa = new SqlDataAdapter(command);
+                        sa.Fill(dt);
+                        sqlCon.Close();
+                        Rectangle bounds = this.Bounds;
+                        using (Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height))
+                        {
+                            using (Graphics g = Graphics.FromImage(bitmap))
+                            {
+                                g.CopyFromScreen(new Point(bounds.Left, bounds.Top), Point.Empty, bounds.Size);
+                            }
+                            bitmap.Save("../Screenshot/" + dt.Rows[0][0].ToString() + "_Criteria" + ".jpg", ImageFormat.Jpeg);
+                        }
+                        fuzzycmeansprocessThread();
+                    }
                 }
                 else
                 {
@@ -1129,29 +1173,37 @@ namespace TA_Project
 
         private void mainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            System.Windows.Forms.Application.Exit();
+            if (dt.Rows.Count != 0)
+            {
+                if (MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
+                    e.Cancel = true;
+                else
+                {
+                    Environment.Exit(0);
+                }
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             TimeSpan timeSpan;
-            double second,minute,hour;
+            double second, minute, hour;
             timeSpan = DateTime.Now - dataimporttimeStart;
-            second=timeSpan.TotalSeconds;
-            minute=timeSpan.Minutes;
-            hour=timeSpan.TotalHours;
+            second = timeSpan.TotalSeconds;
+            minute = timeSpan.Minutes;
+            hour = timeSpan.TotalHours;
             timerLabel.Text = "";
             if (hour >= 1)
             {
                 timerLabel.Text = hour + " hours " + minute + " minutes " + String.Format("{0}{1}", timeSpan.Seconds, " seconds");
-            } 
+            }
             else if (minute >= 1)
             {
-                timerLabel.Text = minute + " minutes " + String.Format("{0:0}.{1:000}{2}",timeSpan.Seconds, timeSpan.Milliseconds, " seconds");
+                timerLabel.Text = minute + " minutes " + String.Format("{0:0}.{1:000}{2}", timeSpan.Seconds, timeSpan.Milliseconds, " seconds");
             }
             else if (second > 0)
             {
-                timerLabel.Text = String.Format("{0:0.000}{1}",second , " seconds");
+                timerLabel.Text = String.Format("{0:0.000}{1}", second, " seconds");
             }
         }
 
@@ -1201,33 +1253,43 @@ namespace TA_Project
             }
         }
 
-        private void historyToolStripMenuItem_Click(object sender, EventArgs e)
+        private void dataInputToolstrip_Click(object sender, EventArgs e)
         {
-
+            metroPanel1.Visible = true;
+            metroPanel4.Visible = false;
+            metroPanel2.Visible = false;
+            metroPanel3.Visible = false;
         }
 
-        private void exit_Click(object sender, EventArgs e)
+        private void historyToolstrip_Click(object sender, EventArgs e)
         {
+            historyIndexTableAdapter.Fill(this.cSSDataSet4.historyIndex);
             metroPanel4.Visible = true;
             metroPanel3.Visible = false;
             metroPanel2.Visible = false;
             metroPanel1.Visible = false;
         }
 
-        private void about_Click(object sender, EventArgs e)
-        {
-            metroPanel1.Visible = true;
-            metroPanel4.Visible = false;
-            metroPanel2.Visible = false;
-            metroPanel1.Visible = false;
-        }
-
         private void metroGrid1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
             History his = new History();
             his.Show();
             this.Hide();
+        }
+
+        private void exitToolStrip_Click(object sender, EventArgs e)
+        {
+            if (dt.Rows.Count != 0)
+            {
+                if (MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    Environment.Exit(0);
+                }
+            }
+            else
+            {
+                System.Windows.Forms.Application.Exit();
+            }
         }
         //private void manualInputGrid_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         //{
