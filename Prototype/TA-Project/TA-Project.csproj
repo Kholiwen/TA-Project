@@ -84,6 +84,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
     <Compile Include="CSSDataSet.cs">
       <DependentUpon>CSSDataSet.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -133,6 +139,12 @@
     <Compile Include="customerDetail.Designer.cs">
       <DependentUpon>customerDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="fuzzyResultForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fuzzyResultForm.Designer.cs">
+      <DependentUpon>fuzzyResultForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="History.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,12 +172,24 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="strategyViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="strategyViewForm.Designer.cs">
+      <DependentUpon>strategyViewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="timerClass.cs" />
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="columnSelectionForm.resx">
       <DependentUpon>columnSelectionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="customerDetail.resx">
       <DependentUpon>customerDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fuzzyResultForm.resx">
+      <DependentUpon>fuzzyResultForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="History.resx">
       <DependentUpon>History.cs</DependentUpon>
@@ -188,6 +212,9 @@
     </Compile>
     <EmbeddedResource Include="resultPage.resx">
       <DependentUpon>resultPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="strategyViewForm.resx">
+      <DependentUpon>strategyViewForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />

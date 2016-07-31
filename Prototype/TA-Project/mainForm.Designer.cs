@@ -158,6 +158,7 @@
             this.customCheckbox = new MetroFramework.Controls.MetroCheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
+            this.viewFuzzyBtn = new System.Windows.Forms.Button();
             this.viewResultBtn = new System.Windows.Forms.Button();
             this.fuzzyrfmTimerLabel = new MetroFramework.Controls.MetroLabel();
             this.fuzzycmeansTimerLabel = new MetroFramework.Controls.MetroLabel();
@@ -166,7 +167,6 @@
             this.rfmprogressBar = new MetroFramework.Controls.MetroProgressBar();
             this.rfmprocessBtn = new MetroFramework.Controls.MetroButton();
             this.transactionTableAdapter1 = new TA_Project.CSSDataSetTableAdapters.transactionTableAdapter();
-            this.transactionTableAdapter = new TA_Project.CSSDataSet3TableAdapters.transactionTableAdapter();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.MenuToolStrip = new System.Windows.Forms.ToolStripMenuItem();
@@ -179,14 +179,15 @@
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
             this.metroGrid1 = new MetroFramework.Controls.MetroGrid();
+            this.historyIndexBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cSSDataSet4 = new TA_Project.CSSDataSet4();
+            this.historyIndexTableAdapter = new TA_Project.CSSDataSet4TableAdapters.historyIndexTableAdapter();
+            this.transactionTableAdapter = new TA_Project.CSSDataSet3TableAdapters.transactionTableAdapter();
             this.historyIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.processDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clusterSizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalRecordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.periodDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.historyIndexBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cSSDataSet4 = new TA_Project.CSSDataSet4();
-            this.historyIndexTableAdapter = new TA_Project.CSSDataSet4TableAdapters.historyIndexTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.segmentStrategyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet1)).BeginInit();
@@ -245,10 +246,10 @@
             // winChartViewer1
             // 
             this.winChartViewer1.ChartSizeMode = ChartDirector.WinChartSizeMode.StretchImage;
-            this.winChartViewer1.Location = new System.Drawing.Point(6, 79);
+            this.winChartViewer1.Location = new System.Drawing.Point(6, 77);
             this.winChartViewer1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.winChartViewer1.Name = "winChartViewer1";
-            this.winChartViewer1.Size = new System.Drawing.Size(540, 357);
+            this.winChartViewer1.Size = new System.Drawing.Size(540, 350);
             this.winChartViewer1.TabIndex = 7;
             this.winChartViewer1.TabStop = false;
             this.metroToolTip1.SetToolTip(this.winChartViewer1, "3D Scatter Chart view of the cluster");
@@ -291,6 +292,7 @@
             // timerLabel
             // 
             this.timerLabel.AutoSize = true;
+            this.timerLabel.Enabled = false;
             this.timerLabel.Location = new System.Drawing.Point(6, 370);
             this.timerLabel.Name = "timerLabel";
             this.timerLabel.Size = new System.Drawing.Size(55, 13);
@@ -300,6 +302,7 @@
             // 
             // batchLabel
             // 
+            this.batchLabel.Enabled = false;
             this.batchLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.batchLabel.Location = new System.Drawing.Point(396, 370);
             this.batchLabel.Name = "batchLabel";
@@ -311,6 +314,7 @@
             // 
             // batchProgressBar
             // 
+            this.batchProgressBar.Enabled = false;
             this.batchProgressBar.Location = new System.Drawing.Point(6, 358);
             this.batchProgressBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.batchProgressBar.Name = "batchProgressBar";
@@ -320,14 +324,14 @@
             // 
             // welcomeLbl
             // 
-            this.welcomeLbl.AutoSize = true;
             this.welcomeLbl.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.welcomeLbl.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.welcomeLbl.Location = new System.Drawing.Point(75, 150);
+            this.welcomeLbl.Location = new System.Drawing.Point(-9, 150);
             this.welcomeLbl.Name = "welcomeLbl";
-            this.welcomeLbl.Size = new System.Drawing.Size(390, 25);
+            this.welcomeLbl.Size = new System.Drawing.Size(579, 25);
             this.welcomeLbl.TabIndex = 6;
-            this.welcomeLbl.Text = "Welcome to Customer Segmentation System";
+            this.welcomeLbl.Text = "Welcome to Customer Segmentation Application";
+            this.welcomeLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // fileTextBox
             // 
@@ -377,6 +381,7 @@
             this.batchRadioButton.TabStop = true;
             this.batchRadioButton.Text = "Batch input";
             this.batchRadioButton.UseSelectable = true;
+            this.batchRadioButton.Visible = false;
             this.batchRadioButton.CheckedChanged += new System.EventHandler(this.batchRadioButton_CheckedChanged);
             // 
             // nextBtn1
@@ -388,6 +393,7 @@
             this.nextBtn1.TabIndex = 1;
             this.nextBtn1.Text = "Next";
             this.nextBtn1.UseSelectable = true;
+            this.nextBtn1.Visible = false;
             this.nextBtn1.Click += new System.EventHandler(this.nextBtn1_Click);
             // 
             // browseBtn
@@ -413,6 +419,7 @@
             this.manualRadioButton.TabStop = true;
             this.manualRadioButton.Text = "Manual Input";
             this.manualRadioButton.UseSelectable = true;
+            this.manualRadioButton.Visible = false;
             this.manualRadioButton.CheckedChanged += new System.EventHandler(this.manualRadioButton_CheckedChanged);
             // 
             // batchInputGrid
@@ -492,7 +499,7 @@
             dataGridViewCellStyle7.Format = "\"Rp.\" ###,###,###.00\",-\"";
             dataGridViewCellStyle7.NullValue = null;
             this.totalpurchaseDataGridView.DefaultCellStyle = dataGridViewCellStyle7;
-            this.totalpurchaseDataGridView.HeaderText = "Total Purchase";
+            this.totalpurchaseDataGridView.HeaderText = "Purchase Amount";
             this.totalpurchaseDataGridView.MinimumWidth = 145;
             this.totalpurchaseDataGridView.Name = "totalpurchaseDataGridView";
             this.totalpurchaseDataGridView.Width = 145;
@@ -504,7 +511,7 @@
             dataGridViewCellStyle8.Format = "dd MMM yyyy";
             dataGridViewCellStyle8.NullValue = null;
             this.lastpurchaseDataGridView.DefaultCellStyle = dataGridViewCellStyle8;
-            this.lastpurchaseDataGridView.HeaderText = "Last Purchase";
+            this.lastpurchaseDataGridView.HeaderText = "Purchase Date";
             this.lastpurchaseDataGridView.Name = "lastpurchaseDataGridView";
             // 
             // transactionBindingSource
@@ -584,7 +591,7 @@
             // 
             this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumn1.DataPropertyName = "Total purchase";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Total Purchase";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Purchase Amount";
             this.dataGridViewTextBoxColumn1.MinimumWidth = 150;
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.Width = 150;
@@ -596,7 +603,7 @@
             dataGridViewCellStyle12.Format = "dd-MM-yy";
             dataGridViewCellStyle12.NullValue = null;
             this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle12;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Last Purchase";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Purchase Date";
             this.dataGridViewTextBoxColumn2.MinimumWidth = 120;
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.Width = 120;
@@ -618,7 +625,7 @@
             this.metroPanel2.HorizontalScrollbarBarColor = true;
             this.metroPanel2.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel2.HorizontalScrollbarSize = 9;
-            this.metroPanel2.Location = new System.Drawing.Point(13, 85);
+            this.metroPanel2.Location = new System.Drawing.Point(11, 84);
             this.metroPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.metroPanel2.Name = "metroPanel2";
             this.metroPanel2.Size = new System.Drawing.Size(555, 414);
@@ -706,7 +713,7 @@
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(24, 266);
+            this.label39.Location = new System.Drawing.Point(24, 263);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(83, 13);
             this.label39.TabIndex = 13;
@@ -1555,6 +1562,7 @@
             // 
             // metroPanel3
             // 
+            this.metroPanel3.Controls.Add(this.viewFuzzyBtn);
             this.metroPanel3.Controls.Add(this.viewResultBtn);
             this.metroPanel3.Controls.Add(this.fuzzyrfmTimerLabel);
             this.metroPanel3.Controls.Add(this.fuzzycmeansTimerLabel);
@@ -1576,18 +1584,34 @@
             this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel3.VerticalScrollbarSize = 9;
             // 
+            // viewFuzzyBtn
+            // 
+            this.viewFuzzyBtn.AutoSize = true;
+            this.viewFuzzyBtn.BackColor = System.Drawing.SystemColors.Window;
+            this.viewFuzzyBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.viewFuzzyBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.viewFuzzyBtn.Location = new System.Drawing.Point(6, 55);
+            this.viewFuzzyBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.viewFuzzyBtn.Name = "viewFuzzyBtn";
+            this.viewFuzzyBtn.Size = new System.Drawing.Size(173, 23);
+            this.viewFuzzyBtn.TabIndex = 6;
+            this.viewFuzzyBtn.Text = "View Fuzzy C-Means Result";
+            this.viewFuzzyBtn.UseVisualStyleBackColor = false;
+            this.viewFuzzyBtn.Visible = false;
+            this.viewFuzzyBtn.Click += new System.EventHandler(this.viewFuzzyBtn_Click);
+            // 
             // viewResultBtn
             // 
             this.viewResultBtn.AutoSize = true;
             this.viewResultBtn.BackColor = System.Drawing.SystemColors.Window;
             this.viewResultBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.viewResultBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewResultBtn.Location = new System.Drawing.Point(403, 56);
+            this.viewResultBtn.Location = new System.Drawing.Point(185, 55);
             this.viewResultBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.viewResultBtn.Name = "viewResultBtn";
-            this.viewResultBtn.Size = new System.Drawing.Size(125, 23);
+            this.viewResultBtn.Size = new System.Drawing.Size(165, 23);
             this.viewResultBtn.TabIndex = 6;
-            this.viewResultBtn.Text = "View Result";
+            this.viewResultBtn.Text = "View Segmentation Result";
             this.viewResultBtn.UseVisualStyleBackColor = false;
             this.viewResultBtn.Visible = false;
             this.viewResultBtn.Click += new System.EventHandler(this.viewResultBtn_Click);
@@ -1595,7 +1619,7 @@
             // fuzzyrfmTimerLabel
             // 
             this.fuzzyrfmTimerLabel.AutoSize = true;
-            this.fuzzyrfmTimerLabel.Location = new System.Drawing.Point(392, 37);
+            this.fuzzyrfmTimerLabel.Location = new System.Drawing.Point(393, 32);
             this.fuzzyrfmTimerLabel.Name = "fuzzyrfmTimerLabel";
             this.fuzzyrfmTimerLabel.Size = new System.Drawing.Size(124, 19);
             this.fuzzyrfmTimerLabel.TabIndex = 9;
@@ -1614,7 +1638,7 @@
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(13, 37);
+            this.metroLabel3.Location = new System.Drawing.Point(13, 30);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(120, 19);
             this.metroLabel3.TabIndex = 8;
@@ -1632,7 +1656,7 @@
             // rfmprogressBar
             // 
             this.rfmprogressBar.Enabled = false;
-            this.rfmprogressBar.Location = new System.Drawing.Point(174, 42);
+            this.rfmprogressBar.Location = new System.Drawing.Point(174, 37);
             this.rfmprogressBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rfmprogressBar.Name = "rfmprogressBar";
             this.rfmprogressBar.Size = new System.Drawing.Size(212, 10);
@@ -1641,7 +1665,7 @@
             // rfmprocessBtn
             // 
             this.rfmprocessBtn.BackColor = System.Drawing.SystemColors.Window;
-            this.rfmprocessBtn.Location = new System.Drawing.Point(393, 34);
+            this.rfmprocessBtn.Location = new System.Drawing.Point(394, 30);
             this.rfmprocessBtn.Name = "rfmprocessBtn";
             this.rfmprocessBtn.Size = new System.Drawing.Size(123, 23);
             this.rfmprocessBtn.TabIndex = 10;
@@ -1653,10 +1677,6 @@
             // transactionTableAdapter1
             // 
             this.transactionTableAdapter1.ClearBeforeFill = true;
-            // 
-            // transactionTableAdapter
-            // 
-            this.transactionTableAdapter.ClearBeforeFill = true;
             // 
             // timer1
             // 
@@ -1708,6 +1728,7 @@
             this.aboutToolStrip.Name = "aboutToolStrip";
             this.aboutToolStrip.Size = new System.Drawing.Size(52, 19);
             this.aboutToolStrip.Text = "About";
+            this.aboutToolStrip.Click += new System.EventHandler(this.aboutToolStrip_Click);
             // 
             // exitToolStrip
             // 
@@ -1719,6 +1740,8 @@
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
+            this.metroLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.metroLabel2.Enabled = false;
             this.metroLabel2.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.metroLabel2.Location = new System.Drawing.Point(50, 5);
             this.metroLabel2.Name = "metroLabel2";
@@ -1806,50 +1829,6 @@
             this.metroGrid1.TabIndex = 2;
             this.metroGrid1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.metroGrid1_CellDoubleClick);
             // 
-            // historyIDDataGridViewTextBoxColumn
-            // 
-            this.historyIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.historyIDDataGridViewTextBoxColumn.DataPropertyName = "historyID";
-            this.historyIDDataGridViewTextBoxColumn.HeaderText = "historyID";
-            this.historyIDDataGridViewTextBoxColumn.Name = "historyIDDataGridViewTextBoxColumn";
-            this.historyIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.historyIDDataGridViewTextBoxColumn.Width = 76;
-            // 
-            // processDateDataGridViewTextBoxColumn
-            // 
-            this.processDateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.processDateDataGridViewTextBoxColumn.DataPropertyName = "processDate";
-            this.processDateDataGridViewTextBoxColumn.HeaderText = "processDate";
-            this.processDateDataGridViewTextBoxColumn.Name = "processDateDataGridViewTextBoxColumn";
-            this.processDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // clusterSizeDataGridViewTextBoxColumn
-            // 
-            this.clusterSizeDataGridViewTextBoxColumn.DataPropertyName = "clusterSize";
-            this.clusterSizeDataGridViewTextBoxColumn.HeaderText = "clusterSize";
-            this.clusterSizeDataGridViewTextBoxColumn.Name = "clusterSizeDataGridViewTextBoxColumn";
-            this.clusterSizeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // totalRecordDataGridViewTextBoxColumn
-            // 
-            this.totalRecordDataGridViewTextBoxColumn.DataPropertyName = "totalRecord";
-            dataGridViewCellStyle2.Format = "## records";
-            dataGridViewCellStyle2.NullValue = null;
-            this.totalRecordDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.totalRecordDataGridViewTextBoxColumn.HeaderText = "totalRecord";
-            this.totalRecordDataGridViewTextBoxColumn.Name = "totalRecordDataGridViewTextBoxColumn";
-            this.totalRecordDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // periodDataGridViewTextBoxColumn
-            // 
-            this.periodDataGridViewTextBoxColumn.DataPropertyName = "period";
-            dataGridViewCellStyle3.Format = "## months";
-            dataGridViewCellStyle3.NullValue = null;
-            this.periodDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.periodDataGridViewTextBoxColumn.HeaderText = "period";
-            this.periodDataGridViewTextBoxColumn.Name = "periodDataGridViewTextBoxColumn";
-            this.periodDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // historyIndexBindingSource
             // 
             this.historyIndexBindingSource.DataMember = "historyIndex";
@@ -1864,6 +1843,54 @@
             // 
             this.historyIndexTableAdapter.ClearBeforeFill = true;
             // 
+            // transactionTableAdapter
+            // 
+            this.transactionTableAdapter.ClearBeforeFill = true;
+            // 
+            // historyIDDataGridViewTextBoxColumn
+            // 
+            this.historyIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.historyIDDataGridViewTextBoxColumn.DataPropertyName = "historyID";
+            this.historyIDDataGridViewTextBoxColumn.HeaderText = "History ID";
+            this.historyIDDataGridViewTextBoxColumn.Name = "historyIDDataGridViewTextBoxColumn";
+            this.historyIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.historyIDDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // processDateDataGridViewTextBoxColumn
+            // 
+            this.processDateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.processDateDataGridViewTextBoxColumn.DataPropertyName = "processDate";
+            this.processDateDataGridViewTextBoxColumn.HeaderText = "Process Date";
+            this.processDateDataGridViewTextBoxColumn.Name = "processDateDataGridViewTextBoxColumn";
+            this.processDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // clusterSizeDataGridViewTextBoxColumn
+            // 
+            this.clusterSizeDataGridViewTextBoxColumn.DataPropertyName = "clusterSize";
+            this.clusterSizeDataGridViewTextBoxColumn.HeaderText = "Cluster Size";
+            this.clusterSizeDataGridViewTextBoxColumn.Name = "clusterSizeDataGridViewTextBoxColumn";
+            this.clusterSizeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // totalRecordDataGridViewTextBoxColumn
+            // 
+            this.totalRecordDataGridViewTextBoxColumn.DataPropertyName = "totalRecord";
+            dataGridViewCellStyle2.Format = "## records";
+            dataGridViewCellStyle2.NullValue = null;
+            this.totalRecordDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.totalRecordDataGridViewTextBoxColumn.HeaderText = "Total Records";
+            this.totalRecordDataGridViewTextBoxColumn.Name = "totalRecordDataGridViewTextBoxColumn";
+            this.totalRecordDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // periodDataGridViewTextBoxColumn
+            // 
+            this.periodDataGridViewTextBoxColumn.DataPropertyName = "period";
+            dataGridViewCellStyle3.Format = "## months";
+            dataGridViewCellStyle3.NullValue = null;
+            this.periodDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.periodDataGridViewTextBoxColumn.HeaderText = "Period";
+            this.periodDataGridViewTextBoxColumn.Name = "periodDataGridViewTextBoxColumn";
+            this.periodDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // mainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1872,11 +1899,11 @@
             this.BackMaxSize = 45;
             this.ClientSize = new System.Drawing.Size(579, 481);
             this.Controls.Add(this.metroLabel2);
+            this.Controls.Add(this.mainMenu);
             this.Controls.Add(this.metroPanel4);
             this.Controls.Add(this.metroPanel2);
             this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.metroPanel3);
-            this.Controls.Add(this.mainMenu);
             this.DisplayHeader = false;
             this.HelpButton = true;
             this.MainMenuStrip = this.mainMenu;
@@ -2034,13 +2061,6 @@
         private CSSDataSet cSSDataSet;
         private System.Windows.Forms.BindingSource transactionBindingSource1;
         private CSSDataSetTableAdapters.transactionTableAdapter transactionTableAdapter1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn customerNameDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn customerNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn totalpurchaseDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lastpurchaseDataGridView;
         private MetroFramework.Controls.MetroProgressBar batchProgressBar;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label batchLabel;
@@ -2066,6 +2086,14 @@
         private CSSDataSet4 cSSDataSet4;
         private System.Windows.Forms.BindingSource historyIndexBindingSource;
         private CSSDataSet4TableAdapters.historyIndexTableAdapter historyIndexTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn customerNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalpurchaseDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lastpurchaseDataGridView;
+        private System.Windows.Forms.Button viewFuzzyBtn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn customerNameDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn historyIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn processDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn clusterSizeDataGridViewTextBoxColumn;

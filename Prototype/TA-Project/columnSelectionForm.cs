@@ -44,5 +44,13 @@ namespace TA_Project
                 MessageBox.Show("Please select the header");
             }
         }
+
+        private void totalpurchaseComboBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                button1.Focus();
+            }
+        }
     }
 }

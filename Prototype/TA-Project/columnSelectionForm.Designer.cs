@@ -78,9 +78,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(24, 182);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 13);
+            this.label3.Size = new System.Drawing.Size(91, 13);
             this.label3.TabIndex = 0;
-            this.label3.Text = "Total Purchase";
+            this.label3.Text = "Purchase Amount";
             // 
             // totalpurchaseComboBox
             // 
@@ -89,6 +89,7 @@
             this.totalpurchaseComboBox.Name = "totalpurchaseComboBox";
             this.totalpurchaseComboBox.Size = new System.Drawing.Size(173, 21);
             this.totalpurchaseComboBox.TabIndex = 2;
+            this.totalpurchaseComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.totalpurchaseComboBox_KeyPress);
             // 
             // button1
             // 
@@ -140,6 +141,7 @@
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.AeroShadow;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Column Header Selection";
             this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center;
             this.TopMost = true;

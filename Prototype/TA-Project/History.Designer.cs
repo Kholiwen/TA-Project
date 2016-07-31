@@ -51,7 +51,7 @@
             this.historyDetailPanel.HorizontalScrollbarSize = 10;
             this.historyDetailPanel.Location = new System.Drawing.Point(15, 40);
             this.historyDetailPanel.Name = "historyDetailPanel";
-            this.historyDetailPanel.Size = new System.Drawing.Size(770, 240);
+            this.historyDetailPanel.Size = new System.Drawing.Size(606, 206);
             this.historyDetailPanel.TabIndex = 0;
             this.historyDetailPanel.VerticalScrollbarBarColor = true;
             this.historyDetailPanel.VerticalScrollbarHighlightOnWheel = false;
@@ -63,7 +63,7 @@
             this.historyDetailGrid.AllowUserToDeleteRows = false;
             this.historyDetailGrid.AllowUserToResizeRows = false;
             this.historyDetailGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.historyDetailGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.historyDetailGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.historyDetailGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
@@ -101,15 +101,15 @@
             this.historyDetailGrid.RowHeadersVisible = false;
             this.historyDetailGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.historyDetailGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.historyDetailGrid.Size = new System.Drawing.Size(770, 240);
+            this.historyDetailGrid.Size = new System.Drawing.Size(606, 206);
             this.historyDetailGrid.TabIndex = 2;
             // 
             // criteriaPictureBox
             // 
             this.criteriaPictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.criteriaPictureBox.Location = new System.Drawing.Point(15, 286);
+            this.criteriaPictureBox.Location = new System.Drawing.Point(15, 252);
             this.criteriaPictureBox.Name = "criteriaPictureBox";
-            this.criteriaPictureBox.Size = new System.Drawing.Size(350, 300);
+            this.criteriaPictureBox.Size = new System.Drawing.Size(299, 250);
             this.criteriaPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.criteriaPictureBox.TabIndex = 1;
             this.criteriaPictureBox.TabStop = false;
@@ -117,20 +117,23 @@
             // 
             // chartPictureBox
             // 
-            this.chartPictureBox.Location = new System.Drawing.Point(380, 286);
+            this.chartPictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chartPictureBox.Location = new System.Drawing.Point(320, 252);
             this.chartPictureBox.Name = "chartPictureBox";
-            this.chartPictureBox.Size = new System.Drawing.Size(405, 300);
+            this.chartPictureBox.Size = new System.Drawing.Size(301, 250);
             this.chartPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.chartPictureBox.TabIndex = 1;
             this.chartPictureBox.TabStop = false;
+            this.chartPictureBox.Click += new System.EventHandler(this.chartPictureBox_Click);
             // 
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.metroLabel1.Location = new System.Drawing.Point(54, 5);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(64, 25);
+            this.metroLabel1.Size = new System.Drawing.Size(69, 25);
             this.metroLabel1.TabIndex = 2;
             this.metroLabel1.Text = "History";
             // 
@@ -141,9 +144,9 @@
             this.BackImage = ((System.Drawing.Image)(resources.GetObject("$this.BackImage")));
             this.BackImagePadding = new System.Windows.Forms.Padding(8, 7, 0, 0);
             this.BackMaxSize = 45;
-            this.ClientSize = new System.Drawing.Size(800, 600);
-            this.Controls.Add(this.metroLabel1);
+            this.ClientSize = new System.Drawing.Size(640, 514);
             this.Controls.Add(this.chartPictureBox);
+            this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.criteriaPictureBox);
             this.Controls.Add(this.historyDetailPanel);
             this.DisplayHeader = false;
