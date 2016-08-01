@@ -52,5 +52,13 @@ namespace TA_Project
         {
             this.Close();
         }
+
+        private void customerDetail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Escape)
+            {
+                this.Hide();
+            }
+        }
     }
 }

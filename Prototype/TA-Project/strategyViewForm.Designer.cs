@@ -80,6 +80,7 @@
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.Resizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.strategyViewForm_KeyPress);
             this.ResumeLayout(false);
 
         }

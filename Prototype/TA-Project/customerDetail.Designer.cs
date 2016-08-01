@@ -95,6 +95,7 @@
             this.Resizable = false;
             this.Deactivate += new System.EventHandler(this.customerDetail_Deactivate);
             this.Load += new System.EventHandler(this.customerDetail_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.customerDetail_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).EndInit();
             this.ResumeLayout(false);
 

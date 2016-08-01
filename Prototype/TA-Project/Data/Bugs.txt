@@ -1,3 +1,0 @@
-- same segment result - pending
-- runtime error - fixed
-- SQL CID return more than one value - solution parse space

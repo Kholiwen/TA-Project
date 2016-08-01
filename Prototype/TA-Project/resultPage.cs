@@ -63,8 +63,8 @@ namespace TA_Project
             dataGridView3.Columns[4].MinimumWidth = 150;
             for (int k = 0; k < cltr; k++)
             {
-                query2 = "SELECT CID, [Customer Name], Frequency, [Total Purchase], [Last Purchase] from [CSS].[DBO].customer where clusterIndex=" + (k + 1) + " ORDER BY [Total Purchase] DESC";
-                query3 = "SELECT CID, [Customer Name], Frequency, [Total Purchase], [Last Purchase] from customer";
+                query2 = "SELECT CID, [Customer Name], Frequency, [Total Purchase], [Last Purchase] from [CSS].[dbo].customer where clusterIndex=" + (k + 1) + " ORDER BY [Total Purchase] DESC";
+                query3 = "SELECT CID, [Customer Name], Frequency, [Total Purchase], [Last Purchase] from [CSS].[dbo].customer";
                 command = new SqlCommand(query2, sqlCon);
                 command.CommandText = query2;
                 command.CommandType = CommandType.Text;

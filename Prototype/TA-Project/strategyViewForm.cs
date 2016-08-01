@@ -41,6 +41,7 @@ namespace TA_Project
             }
             listView1.Items.Add("• Send promotion catalog monthly");
             sqlCon.Close();
+            closeBtn.Focus();
         }
         private void sqlConnection()
         {
@@ -51,6 +52,14 @@ namespace TA_Project
         private void closeBtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void strategyViewForm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Escape)
+            {
+                this.Hide();
+            }
         }
     }
 }

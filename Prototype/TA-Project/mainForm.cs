@@ -89,9 +89,9 @@ namespace TA_Project
             ThreeDScatterChart c = new ThreeDScatterChart(640, 480);
 
             RanSeries r = new RanSeries(1 + 1);
-            Double[] xData = new double[num];
-            Double[] yData = new double[num];
-            Double[] zData = new double[num];
+            Double[] xData = new Double[num];
+            Double[] yData = new Double[num];
+            Double[] zData = new Double[num];
 
             for (int k = 0; k < cltr; k++)
             {
@@ -99,7 +99,7 @@ namespace TA_Project
                 yData = r.getSeries2(1, V[k, 1], 0, 0);
                 zData = r.getSeries2(1, V[k, 2], 0, 0);
                 c.addScatterGroup(xData, yData, zData, "", Chart.GlassSphere2Shape, 18, chartColor[k]);
-                for (int i = 0; i < num; i++)
+                for (int i = 0; i < num/2; i++)
                 {
                     if (custCltr[i] == k)
                     {
@@ -140,64 +140,6 @@ namespace TA_Project
 
         }
 
-        public void createChart2(WinChartViewer viewer, int chartIndex)
-        {
-            try
-            {
-                int[] chartColor = new int[8] { 0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xff00ff, 0x55ffff, 0x888888, 0x111111 };
-
-                // Create a ThreeDScatterChart object of size 720 x 600 pixels
-                ThreeDScatterChart c = new ThreeDScatterChart(640, 480);
-
-                for (int i = 0; i < cltr; i++)
-                {
-                    RanSeries r = new RanSeries(i + 1);
-                    double[] xData = new double[num];
-                    double[] yData = new double[num];
-                    double[] zData = new double[num];
-                    for (int j = 0; j < num; j++)
-                    {
-                        if (custCltr[j] == i)
-                        {
-                            xData = r.getSeries2(1, X[j, 0], 0, 0);
-                            yData = r.getSeries2(1, X[j, 1], 0, 0);
-                            zData = r.getSeries2(1, X[j, 2], 0, 0);
-                            c.addScatterGroup(xData, yData, zData, "", Chart.GlassSphere2Shape, 12, chartColor[i]);
-                        }
-                    }
-                    c.addScatterGroup(xData, yData, zData, rfmv[i], Chart.GlassSphere2Shape, 12, chartColor[i]);
-                }
-                // Add a title to the chart using 20 points Times New Roman Italic font
-                //c.addTitle("3D Scatter Chart", "Times New Roman Italic", 20);
-
-                // Set the center of the plot region at (350, 225), and set width x depth x height to
-                // 360 x 360 x 270 pixels
-                c.setPlotRegion(350, 225, 360, 360, 270);
-
-                // Set the elevation and rotation angles to 15 and 30 degrees
-                c.setViewAngle(15, 30);
-
-                // Add a legend box at (640, 180)
-                c.addLegend(400, 10);
-
-                // Set the x, y and z axis titles
-                c.xAxis().setTitle("Recency");
-                c.yAxis().setTitle("Frequency");
-                c.zAxis().setTitle("Monetary");
-
-                // Output the chart
-                viewer.Chart = c;
-
-                //include tool tip for the chart
-                viewer.ImageMap = c.getHTMLImageMap("clickable", "",
-                    "title='(x={x|p}, y={y|p}, z={z|p}'");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
         private void excelConn(string filePath)
         {
             olesqlConn = string.Format(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0 Xml;HDR=YES;""", filePath).ToString();
@@ -222,30 +164,51 @@ namespace TA_Project
             oleCon.Close();
             dt = new DataTable();
             oda.Fill(dt);
-            using (var frm = new columnSelectionForm(dt))
+            try
             {
-                var res = frm.ShowDialog();
-                if (res == DialogResult.OK)
+                using (var frm = new columnSelectionForm(dt))
                 {
-                    customerIDHeader = frm.customerIDHeader;
-                    customerHeader = frm.customerHeader;
-                    purchasedateHeader = frm.purchasedateHeader;
-                    totalpurchaseHeader = frm.totalpurchaseHeader;
+                    var res = frm.ShowDialog();
+                    if (res == DialogResult.OK)
+                    {
+                        customerIDHeader = frm.customerIDHeader;
+                        customerHeader = frm.customerHeader;
+                        purchasedateHeader = frm.purchasedateHeader;
+                        totalpurchaseHeader = frm.totalpurchaseHeader;
+                    }
+                }
+                manualRadioButton.Enabled = false;
+                browseBtn.Enabled = false;
+                dataimporttimeStart = DateTime.Now - timeSpan;
+                dataCtr = dt.Rows.Count;
+                oleCon.Open();
+                excelQuery = string.Format("Select [" + customerIDHeader + "],[" + customerHeader + "],[" + purchasedateHeader + "],[" + totalpurchaseHeader + "] FROM [{0}]", "Sheet1$");
+                oda = new OleDbDataAdapter(excelQuery, oleCon);
+                oleCon.Close();
+                dt = new DataTable();
+                oda.Fill(dt);
+                batchProgressBar.Maximum = dt.Rows.Count;
+                sqlConnection();
+                sqlCon.Open();
+                DateTime dateValue;
+                if (DateTime.TryParse(dt.Rows[0][2].ToString(), out dateValue))
+                {
+                    batchimportProcess();
+                }
+                else
+                {
+                    System.Console.WriteLine(dateValue);
+                    MessageBox.Show("Column header must be selected properly. Please repeat the process again.");
+                    manualRadioButton.Enabled = true;
+                    browseBtn.Enabled = true;
                 }
             }
-            dataimporttimeStart = DateTime.Now-timeSpan;
-            dataCtr = dt.Rows.Count;
-            oleCon.Open();
-            excelQuery = string.Format("Select [" + customerIDHeader + "],[" + customerHeader + "],[" + purchasedateHeader + "],[" + totalpurchaseHeader + "] FROM [{0}]", "Sheet1$");
-            oda = new OleDbDataAdapter(excelQuery, oleCon);
-            oleCon.Close();
-            dt.Rows.Clear();
-            dt.Columns.Clear();
-            oda.Fill(dt);
-            batchProgressBar.Maximum = dt.Rows.Count;
-            sqlConnection();
-            sqlCon.Open();
-            batchimportProcess();
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex);
+                manualRadioButton.Enabled = true;
+                browseBtn.Enabled = true;
+            }
         }
 
         private void mainForm_Load(object sender, EventArgs e)
@@ -280,32 +243,20 @@ namespace TA_Project
         private void batchimportProcess()
         {
             BackgroundWorker b = new BackgroundWorker();
-            b.WorkerSupportsCancellation = true;
-            if (b.CancellationPending) return;
             b.DoWork += (object sender, DoWorkEventArgs e) =>
             {
-                try
+                foreach (DataRow row in dt.Rows)
                 {
-                    foreach (DataRow row in dt.Rows)
+                    using (SqlCommand sqlCmd = new SqlCommand("sp_insertTRANSACTION", sqlCon))
                     {
-                        using (SqlCommand sqlCmd = new SqlCommand("sp_insertTRANSACTION", sqlCon))
-                        {
-                            sqlCmd.CommandType = CommandType.StoredProcedure;
-                            sqlCmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = row[1];
-                            sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = row[3];
-                            sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = row[2];
-                            sqlCmd.Parameters.Add("@CID", SqlDbType.NChar).Value = row[0];
-                            result += sqlCmd.ExecuteNonQuery();
-                        }
-                        getResult(result.ToString());
+                        sqlCmd.CommandType = CommandType.StoredProcedure;
+                        sqlCmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = row[1];
+                        sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = row[3];
+                        sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = row[2];
+                        sqlCmd.Parameters.Add("@CID", SqlDbType.NChar).Value = row[0];
+                        result += sqlCmd.ExecuteNonQuery();
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Column header must be selected properly. Please repeat the process again.");
-                    System.Console.WriteLine(ex);
-                    e.Cancel = true;
-                    timer1.Stop();
+                    getResult(result.ToString());
                 }
             };
 
@@ -314,9 +265,9 @@ namespace TA_Project
                 timer1.Stop();
                 nextBtn1.Focus();
                 batchProgressBar.Hide();
-                MessageBox.Show(string.Format("Data has been imported successfully! ({0})", result), "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information); //Show how many rows were affected
                 if (dt.Rows.Count != 0)
                 {
+                    MessageBox.Show(string.Format("Data has been imported successfully! ({0})", result), "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     //cSSDataSet3.Reset();
                     transactionTableAdapter.Fill(this.cSSDataSet3.transaction);
                     batchInputGrid.Visible = true;
@@ -345,7 +296,7 @@ namespace TA_Project
             else
             {
                 this.batchProgressBar.Value = Convert.ToInt32(result);
-                this.batchLabel.Text = String.Format("{0} {1}", " records imported:", (Convert.ToInt32(result)+t-1).ToString());
+                this.batchLabel.Text = String.Format("{0} {1}", " records imported:", (Convert.ToInt32(result) + t - 1).ToString());
             }
         }
 
@@ -657,10 +608,14 @@ namespace TA_Project
                         temp9 = 0;
                     }
                 }
-                createChart1(winChartViewer1, 1);
+                //if (ctr / 50 > 0)
+                //{
+                //    createChart1(winChartViewer1, 1);
+                //}
                 ctr++;
             } while (ctr < maxIter && Math.Abs((P[ctr - 1] - P[ctr - 2])) > tc);
-
+            createChart1(winChartViewer1, 1);
+            MPC(PC());
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 temp1 = 0;
@@ -676,6 +631,23 @@ namespace TA_Project
             }
         }
 
+        public double PC()
+        {
+            double temp = 0;
+            for (int i = 0; i < num; i++)
+            {
+                for (int j = 0; j < cltr; j++)
+                {
+                    temp = Math.Pow(u[i, j], 2);
+                }
+            }
+            return (1 / num) * temp; 
+        }
+        public double MPCScore;
+        public void MPC(double PC)
+        {
+            MPCScore = 1-(cltr/(cltr-1))*(1-PC); 
+        }
         public void fuzzyRFM()
         {
             //Fuzzy RFM Method\\
@@ -831,9 +803,6 @@ namespace TA_Project
                     rfmv[i] = rfmd[r[i, 1].ToString() + f[i, 1].ToString() + m[i, 1].ToString()];
                 }
             }
-
-            createChart2(winChartViewer1, 1);
-            delQuery = "delete customer";
             sqlConnection();
             sqlCon.Open();
             command = new SqlCommand(delQuery, sqlCon);
@@ -988,8 +957,6 @@ namespace TA_Project
                     if (fileTextBox.Text != "")
                     {
                         insertExcelRecords(directoryPath);
-                        manualRadioButton.Enabled = false;
-                        browseBtn.Enabled = false;
                     }
                 }
                 catch (Exception ex)
@@ -1122,16 +1089,15 @@ namespace TA_Project
             freVO.Text = (5 * periodTrackBar.Value).ToString();
             freVRlow.Text = (0 + Convert.ToInt32(freRlow.Text) - 1).ToString();
 
-            monVLlow.Text = (0 * periodTrackBar.Value).ToString();
-            monVLhigh.Text = (5 * periodTrackBar.Value).ToString();
-            monLlow.Text = (4 * periodTrackBar.Value).ToString();
-            monLhigh.Text = (10 * periodTrackBar.Value).ToString();
-            monMlow.Text = (9 * periodTrackBar.Value).ToString();
-            monMhigh.Text = (15 * periodTrackBar.Value).ToString();
-            monHlow.Text = (14 * periodTrackBar.Value).ToString();
-            monHhigh.Text = (20 * periodTrackBar.Value).ToString();
-            monVH.Text = (19 * periodTrackBar.Value).ToString();
-            monVLlow.Text = (0 + Convert.ToInt32(monLlow.Text) - 4).ToString();
+            monVLhigh.Text = (2 * periodTrackBar.Value).ToString();
+            monLlow.Text = (1 * periodTrackBar.Value).ToString();
+            monLhigh.Text = (4 * periodTrackBar.Value).ToString();
+            monMlow.Text = (3 * periodTrackBar.Value).ToString();
+            monMhigh.Text = (6 * periodTrackBar.Value).ToString();
+            monHlow.Text = (5 * periodTrackBar.Value).ToString();
+            monHhigh.Text = (8 * periodTrackBar.Value).ToString();
+            monVH.Text = (7 * periodTrackBar.Value).ToString();
+            monVLlow.Text = (0 + Convert.ToInt32(monLlow.Text) - 1).ToString();
         }
 
         private void numericUpDown1_MouseDown(object sender, MouseEventArgs e)
@@ -1363,12 +1329,12 @@ namespace TA_Project
         private void aboutToolStrip_Click(object sender, EventArgs e)
         {
             About ab = new About();
-            ab.ShowDialog();    
+            ab.ShowDialog();
         }
 
         private void viewFuzzyBtn_Click(object sender, EventArgs e)
         {
-            fuzzyResultForm frf = new fuzzyResultForm(ref V,ctr,cltr);
+            fuzzyResultForm frf = new fuzzyResultForm(ref V, ctr, cltr);
             frf.Show();
         }
         //private void manualInputGrid_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)

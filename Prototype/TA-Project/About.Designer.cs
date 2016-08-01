@@ -189,6 +189,7 @@
             this.Padding = new System.Windows.Forms.Padding(0, 30, 0, 20);
             this.Resizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.About_KeyPress);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.About_MouseClick);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

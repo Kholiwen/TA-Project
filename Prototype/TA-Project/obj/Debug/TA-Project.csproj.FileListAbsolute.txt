@@ -163,3 +163,4 @@ C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project
 C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.pictureScaleForm.resources
 C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.strategyViewForm.resources
 C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.fuzzyResultForm.resources
+C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache
