@@ -157,10 +157,14 @@ C:\Users\Pricilia Jessica\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA
 C:\Users\Pricilia Jessica\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.Properties.Resources.resources
 C:\Users\Pricilia Jessica\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.resultPage.resources
 C:\Users\Pricilia Jessica\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csproj.GenerateResource.Cache
-C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.History.resources
 C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.pictureScaleForm.resources
 C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.About.resources
 C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.pictureScaleForm.resources
 C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.strategyViewForm.resources
 C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.fuzzyResultForm.resources
 C:\Users\patricia\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache
+C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.About.resources
+C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.fuzzyResultForm.resources
+C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.strategyViewForm.resources
+C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache
+C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Project.history.resources

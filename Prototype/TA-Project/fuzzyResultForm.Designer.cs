@@ -31,6 +31,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.iterationLabel = new MetroFramework.Controls.MetroLabel();
+            this.MPCLabel = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,15 +66,26 @@
             this.iterationLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.iterationLabel.Location = new System.Drawing.Point(20, 269);
             this.iterationLabel.Name = "iterationLabel";
-            this.iterationLabel.Size = new System.Drawing.Size(122, 25);
+            this.iterationLabel.Size = new System.Drawing.Size(125, 25);
             this.iterationLabel.TabIndex = 2;
             this.iterationLabel.Text = "Total Iteration: ";
+            // 
+            // MPCLabel
+            // 
+            this.MPCLabel.AutoSize = true;
+            this.MPCLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.MPCLabel.Location = new System.Drawing.Point(191, 269);
+            this.MPCLabel.Name = "MPCLabel";
+            this.MPCLabel.Size = new System.Drawing.Size(104, 25);
+            this.MPCLabel.TabIndex = 2;
+            this.MPCLabel.Text = "MPC Score: ";
             // 
             // fuzzyResultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(400, 300);
+            this.Controls.Add(this.MPCLabel);
             this.Controls.Add(this.iterationLabel);
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.dataGridView1);
@@ -95,5 +107,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroLabel iterationLabel;
+        private MetroFramework.Controls.MetroLabel MPCLabel;
     }
 }

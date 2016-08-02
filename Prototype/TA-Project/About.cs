@@ -27,16 +27,6 @@ namespace TA_Project
             pictureBox2.ImageLocation = "../../resources/Hardy.jpg";
         }
 
-        private void About_MouseClick(object sender, MouseEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void panel1_MouseClick(object sender, MouseEventArgs e)
-        {
-            this.Hide();
-        }
-
         private void About_KeyPress(object sender, KeyPressEventArgs e)
         {
 

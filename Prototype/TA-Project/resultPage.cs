@@ -150,6 +150,7 @@ namespace TA_Project
             dataGridView1.Columns[3].HeaderText = "Monetary Score";
             dataGridView1.Columns[4].HeaderText = "RFM Score";
             dataGridView1.Columns[5].HeaderText = "Cluster Segment";
+            this.metroTabControl1.SelectedTab = metroTabPage1;
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -187,6 +188,7 @@ namespace TA_Project
             sa.Fill(dt);
             dataGridView2.DataSource = ds2.Tables[0].DefaultView;
             metroTabPage1.Text = "Customer List - " + ds1.Tables[0].Rows[i - 1][5];
+            metroTabControl1.SelectedTab = metroTabPage1;
             sqlCon.Close();
         }
 

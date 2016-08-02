@@ -19,6 +19,7 @@ namespace TA_Project
     public partial class mainForm : MetroFramework.Forms.MetroForm
     {
         resultPage resultForm;
+        About ab;
         Dictionary<string, string> rfmd, segmentD;
         OleDbConnection oleCon;
         SqlConnection sqlCon;
@@ -445,7 +446,7 @@ namespace TA_Project
                 sa.Fill(dt);
                 for (int i = 0; i < cltr; i++)
                 {
-                    string historyQuery = "INSERT historyDetail ([historyID] ,[clusterIndex],[recencyCentroid],[frequencyCentroid],[monetaryCentroid] ,[recencyDOM],[frequencyDOM],[monetaryDOM],[rfmScore] ,[clusterSegment]) VALUES ('" + dt.Rows[0][0].ToString() + "', '" + (i + 1) + "', '" + V[i, 0] + "', '" + V[i, 1] + "', '" + V[i, 2] + "', '" + r[i, 0] + "', '" + f[i, 0] + "', '" + m[i, 0] + "', '" + rfm[i] + "', '" + rfmv[i] + "')";
+                    string historyQuery = "INSERT historyDetail ([historyID] ,[clusterIndex],[recencyCentroid],[frequencyCentroid],[monetaryCentroid] ,[recencyDOM],[frequencyDOM],[monetaryDOM],[rfmScore] ,[clusterSegment], [mpcScore]) VALUES ('" + dt.Rows[0][0].ToString() + "', '" + (i + 1) + "', '" + V[i, 0] + "', '" + V[i, 1] + "', '" + V[i, 2] + "', '" + r[i, 0] + "', '" + f[i, 0] + "', '" + m[i, 0] + "', '" + rfm[i] + "', '" + rfmv[i] + "', '" + MPCScore + "')";
                     command.CommandText = historyQuery;
                     command.CommandType = CommandType.Text;
                     command.Connection = sqlCon;
@@ -532,6 +533,7 @@ namespace TA_Project
             rfmc[2, 6] = Convert.ToInt32(monVH.Text + "000000");
             rfmc[2, 7] = Convert.ToInt32(monHhigh.Text + "000000");
 
+            createChart1(winChartViewer1, 1);
             //Random number generation\\
             u = new double[dt.Rows.Count, cltr];
             for (int k = 0; k < cltr; k++)
@@ -608,10 +610,10 @@ namespace TA_Project
                         temp9 = 0;
                     }
                 }
-                //if (ctr / 50 > 0)
-                //{
-                //    createChart1(winChartViewer1, 1);
-                //}
+                if (ctr % 50 == 0)
+                {
+                    createChart1(winChartViewer1, 1);
+                }
                 ctr++;
             } while (ctr < maxIter && Math.Abs((P[ctr - 1] - P[ctr - 2])) > tc);
             createChart1(winChartViewer1, 1);
@@ -633,20 +635,22 @@ namespace TA_Project
 
         public double PC()
         {
-            double temp = 0;
-            for (int i = 0; i < num; i++)
+            temp1 =0;
+            for (int k = 0; k < cltr; k++)
             {
-                for (int j = 0; j < cltr; j++)
+                temp2 = 0;
+                for (int i = 0; i < num; i++)
                 {
-                    temp = Math.Pow(u[i, j], 2);
+                    temp2 += Math.Pow(u[i, k], 2);
                 }
+                temp1 += temp2;
             }
-            return (1 / num) * temp; 
+            return ((float)1 / num) * temp1; 
         }
         public double MPCScore;
         public void MPC(double PC)
         {
-            MPCScore = 1-(cltr/(cltr-1))*(1-PC); 
+            MPCScore = 1-((float)cltr/(cltr-1))*(1-PC); 
         }
         public void fuzzyRFM()
         {
@@ -803,6 +807,7 @@ namespace TA_Project
                     rfmv[i] = rfmd[r[i, 1].ToString() + f[i, 1].ToString() + m[i, 1].ToString()];
                 }
             }
+            delQuery = "delete customer";
             sqlConnection();
             sqlCon.Open();
             command = new SqlCommand(delQuery, sqlCon);
@@ -858,7 +863,7 @@ namespace TA_Project
 
         private void nextBtn1_Click(object sender, EventArgs e)
         {
-            this.Text = "     Clustering Options";
+            titleLabel.Text = "Options";
             //datacollectionProcess();
             metroPanel1.Visible = false;
             metroPanel2.Visible = true;
@@ -1008,6 +1013,7 @@ namespace TA_Project
 
         private void backBtn1_Click(object sender, EventArgs e)
         {
+            titleLabel.Text = "Data Input";
             metroPanel1.Visible = true;
             metroPanel2.Visible = false;
             metroPanel3.Visible = false;
@@ -1139,6 +1145,7 @@ namespace TA_Project
                     }
                     else if (dt.Rows.Count == t - 1)
                     {
+                        titleLabel.Text = "Process";
                         fuzzycmeanstimeStart = DateTime.Now;
                         using (SqlCommand sqlCmd = new SqlCommand("sp_insertHistory", sqlCon))
                         {
@@ -1242,15 +1249,15 @@ namespace TA_Project
             timerLabel.Text = "";
             if (hour >= 1)
             {
-                fuzzycmeansTimerLabel.Text = hour + " hours " + minute + " minutes " + String.Format("{0}{1}", timeSpan.Seconds, " seconds");
+                fuzzycmeansTimerLabel.Text = hour + " hours " + minute + " minutes " + String.Format("{0}{1}", timeSpan.Seconds, " seconds" + " ("+ctr+")");
             }
             else if (minute >= 1)
             {
-                fuzzycmeansTimerLabel.Text = minute + " minutes " + String.Format("{0:0}.{1:000}{2}", timeSpan.Seconds, timeSpan.Milliseconds, " seconds");
+                fuzzycmeansTimerLabel.Text = minute + " minutes " + String.Format("{0:0}.{1:000}{2}", timeSpan.Seconds, timeSpan.Milliseconds, " seconds" + " (" + ctr + ")");
             }
             else if (second > 0)
             {
-                fuzzycmeansTimerLabel.Text = String.Format("{0:0.000}{1}", second, " seconds");
+                fuzzycmeansTimerLabel.Text = String.Format("{0:0.000}{1}", second, " seconds" + " (" + ctr + ")");
             }
         }
 
@@ -1279,6 +1286,7 @@ namespace TA_Project
 
         private void dataInputToolstrip_Click(object sender, EventArgs e)
         {
+            titleLabel.Text = "Data Input";
             metroPanel1.Visible = true;
             batchRadioButton.Visible = true;
             manualRadioButton.Visible = true;
@@ -1291,11 +1299,13 @@ namespace TA_Project
 
         private void historyToolstrip_Click(object sender, EventArgs e)
         {
+            titleLabel.Text = "History";
             historyIndexTableAdapter.Fill(this.cSSDataSet4.historyIndex);
             metroPanel4.Visible = true;
             metroPanel3.Visible = false;
             metroPanel2.Visible = false;
             metroPanel1.Visible = false;
+            metroGrid1.Focus();
             for (int i = 0; i < metroGrid1.Rows.Count; i++)
             {
                 if (Convert.ToInt32(metroGrid1.Rows[i].Cells[4].Value) == 1)
@@ -1307,7 +1317,7 @@ namespace TA_Project
 
         private void metroGrid1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            History his = new History(metroGrid1.SelectedCells);
+            history his = new history(metroGrid1.SelectedCells);
             his.Show();
         }
 
@@ -1328,13 +1338,13 @@ namespace TA_Project
 
         private void aboutToolStrip_Click(object sender, EventArgs e)
         {
-            About ab = new About();
+            ab = new About();
             ab.ShowDialog();
         }
 
         private void viewFuzzyBtn_Click(object sender, EventArgs e)
         {
-            fuzzyResultForm frf = new fuzzyResultForm(ref V, ctr, cltr);
+            fuzzyResultForm frf = new fuzzyResultForm(ref V, ctr, cltr, MPCScore);
             frf.Show();
         }
         //private void manualInputGrid_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)

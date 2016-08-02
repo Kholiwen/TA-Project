@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace TA_Project
 {
-    public partial class History : MetroFramework.Forms.MetroForm
+    public partial class history : MetroFramework.Forms.MetroForm
     {
         SqlConnection sqlCon;
         SqlDataAdapter sa;
@@ -21,7 +21,7 @@ namespace TA_Project
         String sqlConn, query, query2;
         DataGridViewSelectedCellCollection dgvsc;
 
-        public History(DataGridViewSelectedCellCollection dgvsc)
+        public history(DataGridViewSelectedCellCollection dgvsc)
         {
             InitializeComponent();
             metroLabel1.Text = "History - " + dgvsc[0].Value;
@@ -36,7 +36,7 @@ namespace TA_Project
             command.Connection = sqlCon;
             sa = new SqlDataAdapter(command);
             sa.Fill(dt);
-            query2 = "SELECT [clusterIndex] ,[recencyCentroid],[frequencyCentroid],[monetaryCentroid],[recencyDOM],[frequencyDOM],[monetaryDOM],[rfmScore],[clusterSegment] from [CSS].[dbo].historyDetail where historyID ='" + dgvsc[0].Value.ToString() + "'";
+            query2 = "SELECT [clusterIndex] ,[recencyCentroid],[frequencyCentroid],[monetaryCentroid],[recencyDOM],[frequencyDOM],[monetaryDOM],[rfmScore],[clusterSegment],[mpcScore] from [CSS].[dbo].historyDetail where historyID ='" + dgvsc[0].Value.ToString() + "'";
             command = new SqlCommand(query2, sqlCon);
             command.CommandText = query2;
             command.CommandType = CommandType.Text;
@@ -84,6 +84,7 @@ namespace TA_Project
             criteriaPictureBox.ImageLocation = criteriaFilePath;
             string chartFilePath = "../screenshot/" + dgvsc[0].Value.ToString() + "_Chart.jpg";
             chartPictureBox.ImageLocation = chartFilePath;
+            MPCLabel.Text = "MPC Score: " + ds.Tables[0].Rows[0][9].ToString();
         }
 
         private void sqlConnection()

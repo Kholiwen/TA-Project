@@ -46,11 +46,12 @@
             // 
             // listView1
             // 
+            this.listView1.Enabled = false;
             this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.Location = new System.Drawing.Point(23, 48);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(314, 114);
-            this.listView1.TabIndex = 1;
+            this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;
             // 
@@ -59,7 +60,7 @@
             this.closeBtn.Location = new System.Drawing.Point(143, 168);
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(75, 23);
-            this.closeBtn.TabIndex = 2;
+            this.closeBtn.TabIndex = 1;
             this.closeBtn.Text = "Close";
             this.closeBtn.UseSelectable = true;
             this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);

@@ -12,10 +12,11 @@ namespace TA_Project
 {
     public partial class fuzzyResultForm : MetroFramework.Forms.MetroForm
     {
-        public fuzzyResultForm(ref Double[,] V, int iter, int cltr)
+        public fuzzyResultForm(ref Double[,] V, int iter, int cltr, Double mpcScore)
         {
             InitializeComponent();
             iterationLabel.Text = "Total Iteration: " + iter;
+            MPCLabel.Text = "MPC Score: " + String.Format("{0:0.00000000}",mpcScore);
             dataGridView1.ColumnCount = 4;
             dataGridView1.Columns[0].Name = "Cluster";
             dataGridView1.Columns[1].Name = "Recency Centroid";

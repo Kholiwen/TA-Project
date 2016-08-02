@@ -1,6 +1,6 @@
 ﻿namespace TA_Project
 {
-    partial class History
+    partial class history
     {
         /// <summary>
         /// Required designer variable.
@@ -31,12 +31,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(History));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(history));
             this.historyDetailPanel = new MetroFramework.Controls.MetroPanel();
             this.historyDetailGrid = new MetroFramework.Controls.MetroGrid();
             this.criteriaPictureBox = new System.Windows.Forms.PictureBox();
             this.chartPictureBox = new System.Windows.Forms.PictureBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.MPCLabel = new MetroFramework.Controls.MetroLabel();
             this.historyDetailPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.historyDetailGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.criteriaPictureBox)).BeginInit();
@@ -63,6 +64,7 @@
             this.historyDetailGrid.AllowUserToDeleteRows = false;
             this.historyDetailGrid.AllowUserToResizeRows = false;
             this.historyDetailGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.historyDetailGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.historyDetailGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.historyDetailGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -137,7 +139,17 @@
             this.metroLabel1.TabIndex = 2;
             this.metroLabel1.Text = "History";
             // 
-            // History
+            // MPCLabel
+            // 
+            this.MPCLabel.AutoSize = true;
+            this.MPCLabel.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.MPCLabel.Location = new System.Drawing.Point(16, 486);
+            this.MPCLabel.Name = "MPCLabel";
+            this.MPCLabel.Size = new System.Drawing.Size(65, 15);
+            this.MPCLabel.TabIndex = 2;
+            this.MPCLabel.Text = "MPC Score:";
+            // 
+            // history
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -146,13 +158,14 @@
             this.BackMaxSize = 45;
             this.ClientSize = new System.Drawing.Size(640, 514);
             this.Controls.Add(this.chartPictureBox);
+            this.Controls.Add(this.MPCLabel);
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.criteriaPictureBox);
             this.Controls.Add(this.historyDetailPanel);
             this.DisplayHeader = false;
             this.HelpButton = true;
             this.MaximizeBox = false;
-            this.Name = "History";
+            this.Name = "history";
             this.Padding = new System.Windows.Forms.Padding(0, 30, 0, 0);
             this.Resizable = false;
             this.historyDetailPanel.ResumeLayout(false);
@@ -171,5 +184,6 @@
         private System.Windows.Forms.PictureBox chartPictureBox;
         private MetroFramework.Controls.MetroGrid historyDetailGrid;
         private MetroFramework.Controls.MetroLabel metroLabel1;
+        private MetroFramework.Controls.MetroLabel MPCLabel;
     }
 }

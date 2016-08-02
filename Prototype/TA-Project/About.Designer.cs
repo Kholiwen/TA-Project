@@ -52,7 +52,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(358, 193);
             this.panel1.TabIndex = 0;
-            this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseClick);
             // 
             // pictureBox2
             // 
@@ -190,7 +189,6 @@
             this.Resizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.About_KeyPress);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.About_MouseClick);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
