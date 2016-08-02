@@ -25,7 +25,7 @@ namespace TA_Project
         SqlConnection sqlCon;
         SqlDataAdapter sa;
         SqlCommand command;
-        DataTable dt;
+        DataTable dt, dt2;
         String olesqlConn, excelQuery, sqlConn, query, delQuery;
         int dataCtr;
         int result = 0, cltr = 0;
@@ -245,7 +245,8 @@ namespace TA_Project
                 sqlConnection();
                 sqlCon.Open();
                 DateTime dateValue;
-                if (DateTime.TryParse(dt.Rows[0][2].ToString(), out dateValue))
+                float floatValue;
+                if (DateTime.TryParse(dt.Rows[0][2].ToString(), out dateValue) && float.TryParse(dt.Rows[0][3].ToString(), out floatValue))
                 {
                     batchimportProcess();
                 }
@@ -317,9 +318,9 @@ namespace TA_Project
                 nextBtn1.Focus();
                 if (dt.Rows.Count != 0)
                 {
-                    dataCtr += dt.Rows.Count;
                     MessageBox.Show(string.Format("Data has been imported successfully! ({0})", result), "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     //cSSDataSet3.Reset();
+                    dataCtr += dt.Rows.Count;
                     transactionTableAdapter.Fill(this.cSSDataSet3.transaction);
                     batchInputGrid.Visible = true;
                 }
@@ -416,7 +417,7 @@ namespace TA_Project
                         }
                         else if (custID[idx] != dt.Rows[i + 1][4].ToString())
                         {
-                            X[idx, 0] = Convert.ToInt32((dateCutOff- date).TotalDays) - 1;
+                            X[idx, 0] = Convert.ToInt32((dateCutOff - date).TotalDays) - 1;
                             X[idx, 1] = frq;
                             X[idx, 2] = mntry;
                             idx += 1;
@@ -1053,7 +1054,7 @@ namespace TA_Project
 
         private void metroGrid1_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (manualInputGrid.Rows.Count > dataCtr+1)
+            if (manualInputGrid.Rows.Count > dataCtr + 1)
             {
                 result = 0;
                 query = "SELECT * FROM [CSS].[dbo].[transaction] order by customerName";
@@ -1208,20 +1209,20 @@ namespace TA_Project
                 query = "SELECT * FROM [CSS].[dbo].[transaction]";
                 sqlConnection();
                 sqlCon.Open();
-                dt = new DataTable();
+                dt2 = new DataTable();
                 command.CommandText = query;
                 command.CommandType = CommandType.Text;
                 command.Connection = sqlCon;
                 sa = new SqlDataAdapter(command);
-                sa.Fill(dt);
+                sa.Fill(dt2);
 
-                if (dt.Rows.Count != 0)
+                if (dt2.Rows.Count != 0)
                 {
-                    if (dt.Rows.Count != dataCtr)
+                    if (dt2.Rows.Count != dataCtr)
                     {
                         MessageBox.Show("Wait for the import process finish first!");
                     }
-                    else if (dt.Rows.Count == dataCtr)
+                    else if (dt2.Rows.Count == dataCtr)
                     {
                         titleLabel.Text = "Process";
                         mainMenu.Visible = false;
