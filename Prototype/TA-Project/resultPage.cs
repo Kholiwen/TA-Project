@@ -63,8 +63,8 @@ namespace TA_Project
             dataGridView3.Columns[4].MinimumWidth = 150;
             for (int k = 0; k < cltr; k++)
             {
-                query2 = "SELECT CID, [Customer Name], Frequency, [Total Purchase], [Last Purchase] from [CSS].[dbo].customer where clusterIndex=" + (k + 1) + " ORDER BY [Total Purchase] DESC";
-                query3 = "SELECT CID, [Customer Name], Frequency, [Total Purchase], [Last Purchase] from [CSS].[dbo].customer";
+                query2 = "SELECT CID, customerName, Frequency, totalPurchase, lastPurchase from [CSS].[dbo].customer where clusterIndex=" + (k + 1) + " ORDER BY totalPurchase DESC";
+                query3 = "SELECT CID, customerName, Frequency, totalPurchase, lastPurchase from [CSS].[dbo].customer";
                 command = new SqlCommand(query2, sqlCon);
                 command.CommandText = query2;
                 command.CommandType = CommandType.Text;
@@ -92,7 +92,7 @@ namespace TA_Project
             dataGridView3.Columns[2].DefaultCellStyle.Format = "'Rp.' ###,###,###',-'";
             dataGridView3.Columns[3].DefaultCellStyle.Format = "'Rp.' ###,###,###',-'";
             dataGridView3.Columns[5].DefaultCellStyle.Format = "##.00'%'";
-            query2 = "SELECT CID, [Customer Name], Frequency, [Total Purchase], [Last Purchase] from customer where clusterIndex=" + i;
+            query2 = "SELECT CID, customerName, Frequency, totalPurchase, lastPurchase from customer where clusterIndex=" + i;
             command = new SqlCommand(query2, sqlCon);
             command.CommandText = query2;
             command.CommandType = CommandType.Text;
@@ -176,7 +176,7 @@ namespace TA_Project
             if (!dataGridView1.Focused) return;
             i = dataGridView1.CurrentCell.RowIndex + 1;
             sqlCon.Open();
-            query2 = "SELECT CID, [Customer Name], Frequency, [Total Purchase], [Last Purchase] from customer where clusterIndex=" + i;
+            query2 = "SELECT CID, customerName, Frequency, totalPurchase, lastPurchase from customer where clusterIndex=" + i;
             command = new SqlCommand(query2, sqlCon);
             command.CommandText = query2;
             command.CommandType = CommandType.Text;

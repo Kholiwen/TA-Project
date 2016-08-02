@@ -24,7 +24,7 @@ namespace TA_Project
             InitializeComponent();
             this.Text = custID;
             sqlConnection();
-            sa = new SqlDataAdapter("SELECT TID, [Customer Name], [Total purchase], [Last purchase] FROM [transaction] where CID='"+custID+"'",sqlCon);
+            sa = new SqlDataAdapter("SELECT TID, customerName, purchaseAmount, purchaseDate FROM [transaction] where CID='"+custID+"'",sqlCon);
             metroGrid1.Focus();
             // Create an instance of a DataSet, and retrieve data from the Authors table.
             ds = new DataSet("Customer Details");

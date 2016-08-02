@@ -37,7 +37,6 @@
             this.criteriaPictureBox = new System.Windows.Forms.PictureBox();
             this.chartPictureBox = new System.Windows.Forms.PictureBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.MPCLabel = new MetroFramework.Controls.MetroLabel();
             this.historyDetailPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.historyDetailGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.criteriaPictureBox)).BeginInit();
@@ -139,16 +138,6 @@
             this.metroLabel1.TabIndex = 2;
             this.metroLabel1.Text = "History";
             // 
-            // MPCLabel
-            // 
-            this.MPCLabel.AutoSize = true;
-            this.MPCLabel.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.MPCLabel.Location = new System.Drawing.Point(16, 486);
-            this.MPCLabel.Name = "MPCLabel";
-            this.MPCLabel.Size = new System.Drawing.Size(65, 15);
-            this.MPCLabel.TabIndex = 2;
-            this.MPCLabel.Text = "MPC Score:";
-            // 
             // history
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -158,7 +147,6 @@
             this.BackMaxSize = 45;
             this.ClientSize = new System.Drawing.Size(640, 514);
             this.Controls.Add(this.chartPictureBox);
-            this.Controls.Add(this.MPCLabel);
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.criteriaPictureBox);
             this.Controls.Add(this.historyDetailPanel);
@@ -184,6 +172,5 @@
         private System.Windows.Forms.PictureBox chartPictureBox;
         private MetroFramework.Controls.MetroGrid historyDetailGrid;
         private MetroFramework.Controls.MetroLabel metroLabel1;
-        private MetroFramework.Controls.MetroLabel MPCLabel;
     }
 }

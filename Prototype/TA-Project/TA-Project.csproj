@@ -90,15 +90,6 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="CSSDataSet.cs">
-      <DependentUpon>CSSDataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CSSDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CSSDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="CSSDataSet1.cs">
       <DependentUpon>CSSDataSet1.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -218,17 +209,6 @@
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
-    <None Include="CSSDataSet.xsc">
-      <DependentUpon>CSSDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="CSSDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>CSSDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="CSSDataSet.xss">
-      <DependentUpon>CSSDataSet.xsd</DependentUpon>
-    </None>
     <None Include="CSSDataSet1.xsc">
       <DependentUpon>CSSDataSet1.xsd</DependentUpon>
     </None>
