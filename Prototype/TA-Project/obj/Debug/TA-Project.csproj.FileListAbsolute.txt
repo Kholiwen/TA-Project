@@ -103,7 +103,6 @@ E:\TA\Prototype\TA-Project\bin\Debug\SqlServerTypes\x86\msvcr100.dll
 E:\TA\Prototype\TA-Project\bin\Debug\SqlServerTypes\x86\SqlServerSpatial110.dll
 E:\TA\Prototype\TA-Project\bin\Debug\TA-Project.exe
 E:\TA\Prototype\TA-Project\bin\Debug\TA-Project.pdb
-E:\TA\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache
 E:\TA\Prototype\TA-Project\obj\Debug\TA_Project.columnSelectionForm.resources
 E:\TA\Prototype\TA-Project\obj\Debug\TA_Project.mainForm.resources
 E:\TA\Prototype\TA-Project\obj\Debug\TA_Project.Properties.Resources.resources
@@ -167,3 +166,10 @@ C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA_Projec
 C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.csproj.GenerateResource.Cache
 C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.exe
 C:\Users\Xu Li Wen\Documents\TA-Project\Prototype\TA-Project\obj\Debug\TA-Project.pdb
+E:\TA\Prototype\TA-Project\obj\Debug\TA_Project.About.resources
+E:\TA\Prototype\TA-Project\obj\Debug\TA_Project.customerDetail.resources
+E:\TA\Prototype\TA-Project\obj\Debug\TA_Project.fuzzyResultForm.resources
+E:\TA\Prototype\TA-Project\obj\Debug\TA_Project.history.resources
+E:\TA\Prototype\TA-Project\obj\Debug\TA_Project.pictureScaleForm.resources
+E:\TA\Prototype\TA-Project\obj\Debug\TA_Project.strategyViewForm.resources
+E:\TA\Prototype\TA-Project\obj\Debug\TA-Project.csprojResolveAssemblyReference.cache

@@ -34,7 +34,7 @@
             this.purchasedateComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.totalpurchaseComboBox = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.confirmButton = new System.Windows.Forms.Button();
             this.customerIDComboBox = new System.Windows.Forms.ComboBox();
             this.custID = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -55,6 +55,7 @@
             this.customerComboBox.Name = "customerComboBox";
             this.customerComboBox.Size = new System.Drawing.Size(173, 21);
             this.customerComboBox.TabIndex = 0;
+            this.customerComboBox.Click += new System.EventHandler(this.customerComboBox_Click);
             // 
             // label2
             // 
@@ -72,6 +73,7 @@
             this.purchasedateComboBox.Name = "purchasedateComboBox";
             this.purchasedateComboBox.Size = new System.Drawing.Size(173, 21);
             this.purchasedateComboBox.TabIndex = 1;
+            this.purchasedateComboBox.Click += new System.EventHandler(this.purchasedateComboBox_Click);
             // 
             // label3
             // 
@@ -89,17 +91,18 @@
             this.totalpurchaseComboBox.Name = "totalpurchaseComboBox";
             this.totalpurchaseComboBox.Size = new System.Drawing.Size(173, 21);
             this.totalpurchaseComboBox.TabIndex = 2;
+            this.totalpurchaseComboBox.Click += new System.EventHandler(this.totalpurchaseComboBox_Click);
             this.totalpurchaseComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.totalpurchaseComboBox_KeyPress);
             // 
-            // button1
+            // confirmButton
             // 
-            this.button1.Location = new System.Drawing.Point(27, 218);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(291, 31);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Confirm";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.confirmButton.Location = new System.Drawing.Point(27, 218);
+            this.confirmButton.Name = "confirmButton";
+            this.confirmButton.Size = new System.Drawing.Size(291, 31);
+            this.confirmButton.TabIndex = 3;
+            this.confirmButton.Text = "Confirm";
+            this.confirmButton.UseVisualStyleBackColor = true;
+            this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
             // 
             // customerIDComboBox
             // 
@@ -108,6 +111,7 @@
             this.customerIDComboBox.Name = "customerIDComboBox";
             this.customerIDComboBox.Size = new System.Drawing.Size(173, 21);
             this.customerIDComboBox.TabIndex = 0;
+            this.customerIDComboBox.Click += new System.EventHandler(this.customerIDComboBox_Click);
             // 
             // custID
             // 
@@ -123,7 +127,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(341, 262);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.confirmButton);
             this.Controls.Add(this.totalpurchaseComboBox);
             this.Controls.Add(this.purchasedateComboBox);
             this.Controls.Add(this.customerIDComboBox);
@@ -157,7 +161,7 @@
         private System.Windows.Forms.ComboBox purchasedateComboBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox totalpurchaseComboBox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button confirmButton;
         private System.Windows.Forms.ComboBox customerIDComboBox;
         private System.Windows.Forms.Label custID;
     }

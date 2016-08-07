@@ -20,42 +20,42 @@ namespace TA_Project
     {
         resultPage resultForm;
         About ab;
-        Dictionary<string, string> rfmd, segmentD;
+        Dictionary<String, String> rfmd, segmentD;
         OleDbConnection oleCon;
         SqlConnection sqlCon;
         SqlDataAdapter sa;
         SqlCommand command;
         DataTable dt, dt2;
         String olesqlConn, excelQuery, sqlConn, query, delQuery;
+        String[] rfmv;
+        String[] custName, custID;
+        String directoryPath = ""; Double[] rfm;
+        Double[,] r;
+        Double[,] f;
+        Double[,] m;
+        Double[,] u;
+        Double[,] V;
+        Double[,] X;
+        Double[] P;
+        Double tc = 0.00001;
+        Double temp1 = 0, temp2 = 0, temp3 = 0, temp4 = 0, temp5 = 0, temp6 = 0, temp7 = 0, temp8 = 0, temp9 = 0, temp10 = 0;
+        Double[] chartRange;
         int dataCtr;
         int result = 0, cltr = 0;
-        int[] custCltr;
-        string[] rfmv;
-        string[] custName, custID;
-        string directoryPath = "";
         int[,] rfmc;
-        double[] rfm;
-        double[,] r;
-        double[,] f;
-        double[,] m;
-        double[,] u;
-        double[,] V;
-        double[,] X;
-        double[] P;
+        int[] custCltr;
         int w = 2;
         int maxIter = 1500;
-        double tc = 0.00001;
         int ctr = 1, num = 0;
-        double temp1 = 0, temp2 = 0, temp3 = 0, temp4 = 0, temp5 = 0, temp6 = 0, temp7 = 0, temp8 = 0, temp9 = 0, temp10 = 0;
         Random rnd = new Random();
-        double[] chartRange;
         TimeSpan timeSpan;
-        DateTime dataimporttimeStart, fuzzycmeanstimeStart, fuzzyrfmtimeStart;
+        DateTime dataimporttimeStart, fuzzycmeanstimeStart, fuzzyrfmtimeStart, dateCutOff;
 
         public mainForm()
         {
             InitializeComponent();
             initCriteriaRFM();
+
             label1.Font = new Font("Tahoma", 11, FontStyle.Regular);
             label3.Font = new Font("Tahoma", 11, FontStyle.Regular);
             label4.Font = new Font("Tahoma", 11, FontStyle.Regular);
@@ -67,6 +67,7 @@ namespace TA_Project
             metroPanel3.Visible = false;
             metroPanel4.Visible = false;
             browseBtn.Focus();
+
             delQuery = "delete [transaction] delete customer";
             sqlConnection();
             sqlCon.Open();
@@ -75,21 +76,15 @@ namespace TA_Project
             command.CommandType = CommandType.Text;
             command.Connection = sqlCon;
             sa = new SqlDataAdapter(command);
-            command.ExecuteNonQuery();
             dt = new DataTable();
+            command.ExecuteNonQuery();
             sqlCon.Close();
         }
-        public string getName() { return "3D Scatter Chart (1)"; }
 
-        //Number of charts produced
-        public int getNoOfCharts() { return 1; }
-
-        //Main code for creating chart.
         public void createChart1(WinChartViewer viewer, int chartIndex)
         {
             int[] chartColor = new int[8] { 0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xff00ff, 0x55ffff, 0x888888, 0x111111 };
 
-            // Create a ThreeDScatterChart object of size 720 x 600 pixels
             ThreeDScatterChart c = new ThreeDScatterChart(640, 480);
 
             RanSeries r = new RanSeries(1 + 1);
@@ -115,40 +110,21 @@ namespace TA_Project
                 }
             }
 
-            //c.addScatterGroup(xData, yData, zData, rfmv[i], Chart.GlassSphere2Shape, 12, chartColor[i]);
-
-            // Add a title to the chart using 20 points Times New Roman Italic font
-            //c.addTitle("3D Scatter Chart", "Times New Roman Italic", 20);
-
-            // Set the center of the plot region at (350, 225), and set width x depth x height to
-            // 360 x 360 x 270 pixels
             c.setPlotRegion(350, 225, 360, 360, 270);
-
-            // Set the elevation and rotation angles to 15 and 30 degrees
             c.setViewAngle(15, 30);
-
-            // Add a legend box at (640, 180)
-            //c.addLegend(400, 10);
-
-            // Set the x, y and z axis titles
             c.xAxis().setTitle("Recency");
             c.yAxis().setTitle("Frequency");
             c.zAxis().setTitle("Monetary");
-
-            // Output the chart
             viewer.Chart = c;
 
-            //include tool tip for the chart
             viewer.ImageMap = c.getHTMLImageMap("clickable", "",
                 "title='(x={x|p}, y={y|p}, z={z|p}'");
-
         }
 
         public void createChart2(WinChartViewer viewer, int chartIndex)
         {
             int[] chartColor = new int[8] { 0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xff00ff, 0x55ffff, 0x888888, 0x111111 };
 
-            // Create a ThreeDScatterChart object of size 720 x 600 pixels
             ThreeDScatterChart c = new ThreeDScatterChart(640, 480);
 
             for (int i = 0; i < cltr; i++)
@@ -169,35 +145,20 @@ namespace TA_Project
                 }
                 c.addScatterGroup(xData, yData, zData, rfmv[i], Chart.GlassSphere2Shape, 12, chartColor[i]);
             }
-            // Add a title to the chart using 20 points Times New Roman Italic font
-            //c.addTitle("3D Scatter Chart", "Times New Roman Italic", 20);
-
-            // Set the center of the plot region at (350, 225), and set width x depth x height to
-            // 360 x 360 x 270 pixels
             c.setPlotRegion(350, 225, 360, 360, 270);
-
-            // Set the elevation and rotation angles to 15 and 30 degrees
             c.setViewAngle(15, 30);
-
-            // Add a legend box at (640, 180)
             c.addLegend(400, 10);
-
-            // Set the x, y and z axis titles
             c.xAxis().setTitle("Recency");
             c.yAxis().setTitle("Frequency");
             c.zAxis().setTitle("Monetary");
-
-            // Output the chart
             viewer.Chart = c;
-
-            //include tool tip for the chart
             viewer.ImageMap = c.getHTMLImageMap("clickable", "",
                 "title='(x={x|p}, y={y|p}, z={z|p}'");
         }
 
-        private void excelConn(string filePath)
+        private void excelConn(String filePath)
         {
-            olesqlConn = string.Format(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0 Xml;HDR=YES;""", filePath).ToString();
+            olesqlConn = String.Format(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0 Xml;HDR=YES;""", filePath).ToString();
             oleCon = new OleDbConnection(olesqlConn);
         }
 
@@ -207,12 +168,12 @@ namespace TA_Project
             sqlCon = new SqlConnection(sqlConn);
         }
 
-        private void insertExcelRecords(string filePath)
+        private void insertExcelRecords(String filePath)
         {
-            string customerIDHeader = "", customerHeader = "", purchasedateHeader = "", totalpurchaseHeader = "";
+            String customerIDHeader = "", customerHeader = "", purchasedateHeader = "", purchaseAmountHeader = "";
             result = 0;
             excelConn(filePath);
-            excelQuery = string.Format("Select * FROM [{0}]", "Sheet1$");
+            excelQuery = String.Format("Select * FROM [{0}]", "Sheet1$");
 
             oleCon.Open();
             OleDbDataAdapter oda = new OleDbDataAdapter(excelQuery, oleCon);
@@ -229,14 +190,14 @@ namespace TA_Project
                         customerIDHeader = frm.customerIDHeader;
                         customerHeader = frm.customerHeader;
                         purchasedateHeader = frm.purchasedateHeader;
-                        totalpurchaseHeader = frm.totalpurchaseHeader;
+                        purchaseAmountHeader = frm.purchaseAmountHeader;
                     }
                 }
                 manualRadioButton.Enabled = false;
                 browseBtn.Enabled = false;
                 dataimporttimeStart = DateTime.Now - timeSpan;
                 oleCon.Open();
-                excelQuery = string.Format("Select [" + customerIDHeader + "],[" + customerHeader + "],[" + purchasedateHeader + "],[" + totalpurchaseHeader + "] FROM [{0}]", "Sheet1$");
+                excelQuery = String.Format("Select [" + customerIDHeader + "],[" + customerHeader + "],[" + purchasedateHeader + "],[" + purchaseAmountHeader + "] FROM [{0}]", "Sheet1$");
                 oda = new OleDbDataAdapter(excelQuery, oleCon);
                 oleCon.Close();
                 dt = new DataTable();
@@ -268,29 +229,10 @@ namespace TA_Project
 
         private void mainForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'cSSDataSet3.transaction' table. You can move, or remove it, as needed.
-            this.transactionTableAdapter.Fill(this.cSSDataSet3.transaction);
-            // TODO: This line of code loads data into the 'cSSDataSet4.historyIndex' table. You can move, or remove it, as needed.
-            this.historyIndexTableAdapter.Fill(this.cSSDataSet4.historyIndex);
-            // TODO: This line of code loads data into the 'cSSDataSet1.custClass' table. You can move, or remove it, as needed.
             this.segmentStrategyTableAdapter.Fill(this.cSSDataSet1.segmentStrategy);
+            this.transactionTableAdapter.Fill(this.cSSDataSet3.transaction);
+            this.historyIndexTableAdapter.Fill(this.cSSDataSet4.historyIndex);
         }
-
-        //private void datacollectionProcess()
-        //{
-        //    BackgroundWorker b = new BackgroundWorker();
-
-        //    b.DoWork += (object sender, DoWorkEventArgs e) =>
-        //    {
-
-        //    };
-
-        //    b.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
-        //    {
-
-        //    };
-        //    b.RunWorkerAsync();
-        //}
 
         private void batchimportProcess()
         {
@@ -318,8 +260,7 @@ namespace TA_Project
                 nextBtn1.Focus();
                 if (dt.Rows.Count != 0)
                 {
-                    MessageBox.Show(string.Format("Data has been imported successfully! ({0})", result), "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //cSSDataSet3.Reset();
+                    MessageBox.Show(String.Format("Data has been imported successfully! ({0})", result), "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     dataCtr += dt.Rows.Count;
                     transactionTableAdapter.Fill(this.cSSDataSet3.transaction);
                     batchInputGrid.Visible = true;
@@ -336,8 +277,8 @@ namespace TA_Project
             batchProgressBar.Value = result;
             b.RunWorkerAsync();
         }
-        delegate void getResultCallback(string result);
-        private void getResult(string result)
+        delegate void getResultCallback(String result);
+        private void getResult(String result)
         {
             if (this.batchLabel.InvokeRequired)
             {
@@ -354,8 +295,8 @@ namespace TA_Project
         private void fuzzycmeansprocessThread()
         {
             BackgroundWorker b = new BackgroundWorker();
-
-            int period = periodTrackBar.Value;
+            int period = 0;
+            int ctr = periodTrackBar.Value;
             metroPanel1.Visible = false;
             metroPanel2.Visible = false;
             metroPanel3.Visible = true;
@@ -363,49 +304,50 @@ namespace TA_Project
 
             b.DoWork += (object sender, DoWorkEventArgs e) =>
             {
-                query = "SELECT * FROM [CSS].[dbo].[transaction] order by purchaseDate DESC";
+                query = "SELECT TOP 1 * FROM [CSS].[dbo].[transaction] order by purchaseDate DESC";
                 sqlConnection();
                 sqlCon.Open();
-                dt = new DataTable();
+                command = new SqlCommand();
                 command.CommandText = query;
                 command.CommandType = CommandType.Text;
                 command.Connection = sqlCon;
                 sa = new SqlDataAdapter(command);
+                dt = new DataTable();
                 sa.Fill(dt);
-                DateTime dateCutOff = new DateTime();
                 dateCutOff = Convert.ToDateTime(dt.Rows[0][3].ToString());
 
-                command = new SqlCommand();
                 query = "SELECT * FROM [CSS].[dbo].[transaction] order by [CID]";
-                sqlConnection();
-                sqlCon.Open();
-                dt = new DataTable();
                 command.CommandText = query;
                 command.CommandType = CommandType.Text;
                 command.Connection = sqlCon;
                 sa = new SqlDataAdapter(command);
+                dt = new DataTable();
                 sa.Fill(dt);
 
-                custName = new string[1];
-                custID = new string[1];
+                custName = new String[1];
+                custID = new String[1];
                 DateTime date = date = Convert.ToDateTime(dt.Rows[0][3]);
+                Double mntry = Convert.ToInt64(dt.Rows[0][2]);
                 int frq = 1;
-                double mntry = Convert.ToInt64(dt.Rows[0][2]);
                 int idx = 0;
 
                 //Data input\\
-                X = new double[dt.Rows.Count, 3];
+                X = new Double[dt.Rows.Count, 3];
                 DataRow dr;
                 dr = dt.Rows[0];
+                for (int i = 0; i < ctr; i++)
+                {
+                    period += DateTime.DaysInMonth(Convert.ToDateTime(dt.Rows[0][3]).Year, Convert.ToDateTime(dt.Rows[0][3]).Month-i);
+                }
                 for (int i = 0; i < dt.Rows.Count - 1; i++)
                 {
-                    if (Convert.ToInt32((dateCutOff - Convert.ToDateTime(dr.Table.Rows[i][3])).TotalDays) <= period * 30)
+                    if (Convert.ToInt32((dateCutOff - Convert.ToDateTime(dr.Table.Rows[i][3])).TotalDays) <= period)
                     {
                         custName[idx] = dr.Table.Rows[i][1].ToString();
                         custID[idx] = dr.Table.Rows[i][4].ToString();
                         if (custID[idx] == dt.Rows[i + 1][4].ToString())
                         {
-                            if (Convert.ToInt32((dateCutOff - Convert.ToDateTime(dt.Rows[i + 1][3])).TotalDays) <= period * 30)
+                            if (Convert.ToInt32((dateCutOff - Convert.ToDateTime(dt.Rows[i + 1][3])).TotalDays) <= period)
                             {
                                 if (Convert.ToDateTime(dt.Rows[i + 1][3]) > Convert.ToDateTime(dr.Table.Rows[i][3]))
                                 {
@@ -417,7 +359,7 @@ namespace TA_Project
                         }
                         else if (custID[idx] != dt.Rows[i + 1][4].ToString())
                         {
-                            X[idx, 0] = Convert.ToInt32((dateCutOff - date).TotalDays) - 1;
+                            X[idx, 0] = Convert.ToInt32((dateCutOff - date).TotalDays);
                             X[idx, 1] = frq;
                             X[idx, 2] = mntry;
                             idx += 1;
@@ -432,7 +374,7 @@ namespace TA_Project
                 num = Enumerable.Range(0, X.GetLength(0)).Count(i => X[i, 0] != 0);
                 for (int i = 0; i < num; i++)
                 {
-                    string customerQuery = "INSERT customer (CID, customerName, Frequency, totalPurchase, lastPurchase, clusterIndex) VALUES ('" + custID[i] + "', '" + custName[i].Replace("'", " ") + "', '" + X[i, 1] + "', '" + X[i, 2] + "', '" + DateTime.Now.AddDays(-X[i, 0]) + "', '" + 0 + "')";
+                    String customerQuery = "INSERT customer (CID, customerName, Frequency, totalPurchase, lastPurchase, clusterIndex) VALUES ('" + custID[i] + "', '" + custName[i].Replace("'", " ") + "', '" + X[i, 1] + "', '" + X[i, 2] + "', '" + dateCutOff.AddDays(-X[i, 0]) + "', '" + 0 + "')";
                     command.CommandText = customerQuery;
                     command.CommandType = CommandType.Text;
                     command.Connection = sqlCon;
@@ -440,11 +382,11 @@ namespace TA_Project
                     command.ExecuteNonQuery();
                 }
                 fuzzyCMeans();
-                sqlCon.Close();
             };
 
             b.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
             {
+                sqlCon.Open();
                 clusterProgressBar.Hide();
                 rfmprocessBtn.Visible = true;
                 rfmprocessBtn.Focus();
@@ -452,26 +394,23 @@ namespace TA_Project
                 fuzzycmeansTimerLabel.Location = new Point(163, 9);
                 timer2.Stop();
                 query = "SELECT TOP 1 * FROM [CSS].[dbo].[historyIndex] order by historyID DESC";
-                sqlConnection();
-                sqlCon.Open();
-                dt = new DataTable();
                 command.CommandText = query;
                 command.CommandType = CommandType.Text;
                 command.Connection = sqlCon;
                 sa = new SqlDataAdapter(command);
+                dt = new DataTable();
                 sa.Fill(dt);
                 query = "UPDATE [CSS].[dbo].historyIndex set fuzzyProcessTime ='" + timeSpan + "', MPCScore='" + MPCScore + "', fuzzyRFMTime=null where historyID ='" + dt.Rows[0][0].ToString() + "'";
                 command.CommandText = query;
                 command.CommandType = CommandType.Text;
                 command.Connection = sqlCon;
                 command.ExecuteNonQuery();
+                sqlCon.Close();
             };
 
             timer2.Start();
             clusterProgressBar.Enabled = true;
-
             b.RunWorkerAsync();
-
         }
 
         private void fuzzyrfmprocessThread()
@@ -528,7 +467,7 @@ namespace TA_Project
                 sa.Fill(dt);
                 for (int i = 0; i < cltr; i++)
                 {
-                    string historyQuery = "INSERT historyDetail ([historyID] ,[clusterIndex],[recencyCentroid],[frequencyCentroid],[monetaryCentroid] ,[recencyDOM],[frequencyDOM],[monetaryDOM],[rfmScore] ,[clusterSegment]) VALUES ('" + dt.Rows[0][0].ToString() + "', '" + (i + 1) + "', '" + V[i, 0] + "', '" + V[i, 1] + "', '" + V[i, 2] + "', '" + r[i, 0] + "', '" + f[i, 0] + "', '" + m[i, 0] + "', '" + rfm[i] + "', '" + rfmv[i] + "')";
+                    String historyQuery = "INSERT historyDetail ([historyID] ,[clusterIndex],[recencyCentroid],[frequencyCentroid],[monetaryCentroid] ,[recencyDOM],[frequencyDOM],[monetaryDOM],[rfmScore] ,[clusterSegment]) VALUES ('" + dt.Rows[0][0].ToString() + "', '" + (i + 1) + "', '" + V[i, 0] + "', '" + V[i, 1] + "', '" + V[i, 2] + "', '" + r[i, 0] + "', '" + f[i, 0] + "', '" + m[i, 0] + "', '" + rfm[i] + "', '" + rfmv[i] + "')";
                     command.CommandText = historyQuery;
                     command.CommandType = CommandType.Text;
                     command.Connection = sqlCon;
@@ -546,10 +485,10 @@ namespace TA_Project
         }
         public void fuzzyCMeans()
         {
-            P = new double[maxIter];
+            P = new Double[maxIter];
             P[0] = 0;
             cltr = Decimal.ToInt32(clusterSizeNUD.Value);
-            V = new double[cltr, 3];
+            V = new Double[cltr, 3];
 
             command = new SqlCommand();
             query = "SELECT * FROM customer order by CID";
@@ -561,14 +500,14 @@ namespace TA_Project
             dt = new DataTable();
             sa.Fill(dt);
             custCltr = new int[dt.Rows.Count];
-            r = new double[cltr, 2];
-            f = new double[cltr, 2];
-            m = new double[cltr, 2];
-            chartRange = new double[dt.Rows.Count];
-            segmentD = new Dictionary<string, string>{{"Superstar","1"},{"Golden","2"},{"Typical","3"},{"Occasional","4"},
+            r = new Double[cltr, 2];
+            f = new Double[cltr, 2];
+            m = new Double[cltr, 2];
+            chartRange = new Double[dt.Rows.Count];
+            segmentD = new Dictionary<String, String>{{"Superstar","1"},{"Golden","2"},{"Typical","3"},{"Occasional","4"},
                 {"Everyday","5"},{"Dormant","6"}};
 
-            rfmd = new Dictionary<string, string>{
+            rfmd = new Dictionary<String, String>{
                 {"000","Dormant Customer 18"},{"010","Dormant Customer 12"},{"020","Dormant Customer 6"},{"030","Dormant Customer 3"},
                 {"001","Dormant Customer 17"},{"011","Dormant Customer 11"},{"021","Dormant Customer 5"},{"031","Dormant Customer 2"},
                 {"002","Dormant Customer 16"},{"012","Dormant Customer 10"},{"022","Dormant Customer 4"},{"032","Dormant Customer 1"},
@@ -616,7 +555,7 @@ namespace TA_Project
             rfmc[2, 7] = Convert.ToInt32(monHhigh.Text + "000000");
 
             //Random number generation\\
-            u = new double[dt.Rows.Count, cltr];
+            u = new Double[dt.Rows.Count, cltr];
             for (int k = 0; k < cltr; k++)
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
@@ -714,7 +653,7 @@ namespace TA_Project
             }
         }
 
-        public double PC()
+        public Double PC()
         {
             temp1 = 0;
             for (int k = 0; k < cltr; k++)
@@ -728,17 +667,17 @@ namespace TA_Project
             }
             return ((float)1 / num) * temp1;
         }
-        public double MPCScore;
-        public void MPC(double PC)
+        public Double MPCScore;
+        public void MPC(Double PC)
         {
             MPCScore = 1 - ((float)cltr / (cltr - 1)) * (1 - PC);
         }
         public void fuzzyRFM()
         {
             //Fuzzy RFM Method\\
-            rfm = new double[cltr];
-            double[] temp = new double[2];
-            double g = 0.5;
+            rfm = new Double[cltr];
+            Double[] temp = new Double[2];
+            Double g = 0.5;
 
             for (int k = 0; k < cltr; k++)
             {
@@ -881,7 +820,7 @@ namespace TA_Project
                 }
                 rfm[k] = Math.Pow((r[k, 0] * f[k, 0] * m[k, 0]), 1 - g) * Math.Pow(1 - (((1 - r[k, 0]) * (1 - f[k, 0]) * (1 - m[k, 0]))), 0.5);
             }
-            rfmv = new string[cltr];
+            rfmv = new String[cltr];
             {
                 for (int i = 0; i < cltr; i++)
                 {
@@ -900,14 +839,14 @@ namespace TA_Project
             command.ExecuteNonQuery();
             for (int i = 0; i < num; i++)
             {
-                string customerQuery = "INSERT customer (CID, customerName, Frequency, totalPurchase, lastPurchase, clusterIndex) VALUES ('" + custID[i] + "', '" + custName[i].Replace("'", " ") + "', '" + X[i, 1] + "', '" + X[i, 2] + "', '" + DateTime.Now.AddDays(-X[i, 0]) + "', '" + (custCltr[i] + 1) + "')";
+                String customerQuery = "INSERT customer (CID, customerName, Frequency, totalPurchase, lastPurchase, clusterIndex) VALUES ('" + custID[i] + "', '" + custName[i].Replace("'", " ") + "', '" + X[i, 1] + "', '" + X[i, 2] + "', '" + dateCutOff.AddDays(-X[i, 0]) + "', '" + (custCltr[i] + 1) + "')";
                 command.CommandText = customerQuery;
                 command.CommandType = CommandType.Text;
                 command.Connection = sqlCon;
                 command = new SqlCommand(customerQuery, sqlCon);
                 command.ExecuteNonQuery();
             }
-            string delClusterQuery = "delete clusterResult";
+            String delClusterQuery = "delete clusterResult";
             command.CommandText = delClusterQuery;
             command.CommandType = CommandType.Text;
             command.Connection = sqlCon;
@@ -915,7 +854,7 @@ namespace TA_Project
             command.ExecuteNonQuery();
             for (int i = 0; i < cltr; i++)
             {
-                string clusterQuery = "INSERT clusterResult (clusterIndex, recencyDOM, frequencyDOM, monetaryDOM, rfmScore, clusterSegment, segmentID) VALUES (" + (i + 1) + ", '" + r[i, 0] + "', '" + f[i, 0] + "', '" + m[i, 0] + "', '" + rfm[i] + "', '" + rfmv[i] + "', '" + Convert.ToInt32(segmentD[rfmv[i].Split(' ')[0]]) + "')";
+                String clusterQuery = "INSERT clusterResult (clusterIndex, recencyDOM, frequencyDOM, monetaryDOM, rfmScore, clusterSegment, segmentID) VALUES (" + (i + 1) + ", '" + r[i, 0] + "', '" + f[i, 0] + "', '" + m[i, 0] + "', '" + rfm[i] + "', '" + rfmv[i] + "', '" + Convert.ToInt32(segmentD[rfmv[i].Split(' ')[0]]) + "')";
                 command.CommandText = clusterQuery;
                 command.CommandType = CommandType.Text;
                 command.Connection = sqlCon;
@@ -926,7 +865,7 @@ namespace TA_Project
         }
 
         //Trapezoid Function\\
-        public double trapValue(double V, int a, int b, int c, int d)
+        public Double trapValue(Double V, int a, int b, int c, int d)
         {
             if (V >= a && V <= b)
             {
@@ -953,7 +892,7 @@ namespace TA_Project
             processBtn.Focus();
         }
 
-        public double downlinearValue(double V, int a, int b)
+        public Double downlinearValue(Double V, int a, int b)
         {
             if (V <= a)
             {
@@ -966,7 +905,7 @@ namespace TA_Project
             else return 0;
         }
 
-        public double uplinearValue(double V, int a, int b)
+        public Double uplinearValue(Double V, int a, int b)
         {
             if (V <= a)
             {
@@ -1301,7 +1240,7 @@ namespace TA_Project
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            double second, minute, hour;
+            Double second, minute, hour;
             timeSpan = DateTime.Now - dataimporttimeStart;
             second = timeSpan.TotalSeconds;
             minute = timeSpan.Minutes;
@@ -1323,7 +1262,7 @@ namespace TA_Project
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            double second, minute, hour;
+            Double second, minute, hour;
             timeSpan = DateTime.Now - fuzzycmeanstimeStart;
             second = timeSpan.TotalSeconds;
             minute = timeSpan.Minutes;
@@ -1345,7 +1284,7 @@ namespace TA_Project
 
         private void timer3_Tick(object sender, EventArgs e)
         {
-            double second, minute, hour;
+            Double second, minute, hour;
             timeSpan = DateTime.Now - fuzzyrfmtimeStart;
             second = timeSpan.TotalSeconds;
             minute = timeSpan.Minutes;

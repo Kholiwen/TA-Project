@@ -42,6 +42,8 @@ namespace TA_Project
         {
             metroGrid1.AutoGenerateColumns = true;
             metroGrid1.DataSource = ds.Tables[0];
+            metroGrid1.Columns[2].HeaderText = "Purchase Amount";
+            metroGrid1.Columns[3].HeaderText = "Purchase Date";
             metroGrid1.Columns[2].DefaultCellStyle.Format = "'Rp.' ###,###,###.00',-'";
             metroGrid1.Columns[3].DefaultCellStyle.Format = "dd MMM yyyy";
             metroGrid1.Columns[1].MinimumWidth = 200;

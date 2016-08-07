@@ -16,7 +16,7 @@ namespace TA_Project
         public string customerIDHeader { get; set; }
         public string customerHeader { get; set; }
         public string purchasedateHeader { get; set; }
-        public string totalpurchaseHeader { get; set; }
+        public string purchaseAmountHeader { get; set; }
         public columnSelectionForm(DataTable dt)
         {
             InitializeComponent();
@@ -29,27 +29,47 @@ namespace TA_Project
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void totalpurchaseComboBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                confirmButton.Focus();
+            }
+        }
+
+        private void customerIDComboBox_Click(object sender, EventArgs e)
+        {
+            customerIDComboBox.DroppedDown = true;
+        }
+
+        private void customerComboBox_Click(object sender, EventArgs e)
+        {
+            customerComboBox.DroppedDown = true;
+        }
+
+        private void purchasedateComboBox_Click(object sender, EventArgs e)
+        {
+            purchasedateComboBox.DroppedDown = true;
+        }
+
+        private void totalpurchaseComboBox_Click(object sender, EventArgs e)
+        {
+            totalpurchaseComboBox.DroppedDown = true;
+        }
+
+        private void confirmButton_Click(object sender, EventArgs e)
         {
             if (customerComboBox.SelectedItem != null && purchasedateComboBox.SelectedItem != null && totalpurchaseComboBox.SelectedItem != null)
             {
                 this.customerIDHeader = customerIDComboBox.SelectedItem.ToString();
                 this.customerHeader = customerComboBox.SelectedItem.ToString();
                 this.purchasedateHeader = purchasedateComboBox.SelectedItem.ToString();
-                this.totalpurchaseHeader = totalpurchaseComboBox.SelectedItem.ToString();
+                this.purchaseAmountHeader = totalpurchaseComboBox.SelectedItem.ToString();
                 this.DialogResult = DialogResult.OK;
             }
             else
             {
                 MessageBox.Show("Please select the header");
-            }
-        }
-
-        private void totalpurchaseComboBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)13)
-            {
-                button1.Focus();
             }
         }
     }
