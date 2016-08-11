@@ -31,10 +31,6 @@ namespace TA_Project
             InitializeComponent();
             this.MainForm = frm;
             dataGridView1.Focus();
-            //for (int i = 0; i < k; i++)
-            //{
-            //    dataGridView1.Rows[i].Cells[4].Value = rfmv[i];
-            //}
             sqlConnection();
             sqlCon.Open();
             query = "SELECT clusterIndex, recencyDOM, frequencyDOM, monetaryDOM, rfmScore, clusterSegment, segmentID from clusterResult";
@@ -110,7 +106,7 @@ namespace TA_Project
             dataGridView2.Columns[1].MinimumWidth = 225;
             dataGridView2.Columns[2].Width = 40;
             dataGridView2.Columns[3].MinimumWidth = 115;
-            dataGridView2.Columns[0].Width= 50;
+            dataGridView2.Columns[0].Width = 50;
             dataGridView2.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView2.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView2.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -133,7 +129,6 @@ namespace TA_Project
             {
                 dgvc.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
-            //dataGridView1.ColumnHeadersHeight = this.dataGridView1.ColumnHeadersHeight * 2;
             dataGridView1.ColumnHeadersHeight = 25;
             dataGridView1.Columns[0].HeaderText = "Cluster";
             dataGridView1.Columns[0].Width = 30;
@@ -166,37 +161,53 @@ namespace TA_Project
             sqlConn = TA_Project.Properties.Settings.Default.CSSConnectionString;
             sqlCon = new SqlConnection(sqlConn);
         }
-        private void resultPage_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'cSSDataSet2.clusterResult' table. You can move, or remove it, as needed
-        }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (!dataGridView1.Focused) return;
-            i = dataGridView1.CurrentCell.RowIndex + 1;
-            sqlCon.Open();
-            query2 = "SELECT CID, customerName, Frequency, totalPurchase, lastPurchase from customer where clusterIndex=" + i;
-            command = new SqlCommand(query2, sqlCon);
-            command.CommandText = query2;
-            command.CommandType = CommandType.Text;
-            command.Connection = sqlCon;
-            sa = new SqlDataAdapter(command);
-            ds2.Clear();
-            dt.Clear();
-            sa.Fill(ds2, "customer");
-            sa.Fill(dt);
-            dataGridView2.DataSource = ds2.Tables[0].DefaultView;
-            metroTabPage1.Text = "Customer List - " + ds1.Tables[0].Rows[i - 1][5];
-            metroTabControl1.SelectedTab = metroTabPage1;
-            sqlCon.Close();
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                sqlCon.Open();
+                query2 = "SELECT CID, customerName, Frequency, totalPurchase, lastPurchase from customer";
+                command = new SqlCommand(query2, sqlCon);
+                command.CommandText = query2;
+                command.CommandType = CommandType.Text;
+                command.Connection = sqlCon;
+                sa = new SqlDataAdapter(command);
+                ds2.Clear();
+                dt.Clear();
+                sa.Fill(ds2, "customer");
+                sa.Fill(dt);
+                dataGridView2.DataSource = ds2.Tables[0].DefaultView;
+                metroTabPage1.Text = "Customer List - All Customer";
+                metroTabControl1.SelectedTab = metroTabPage1;
+                sqlCon.Close();
+            }
+            else
+            {
+                i = dataGridView1.CurrentCell.RowIndex + 1;
+                sqlCon.Open();
+                query2 = "SELECT CID, customerName, Frequency, totalPurchase, lastPurchase from customer where clusterIndex=" + i;
+                command = new SqlCommand(query2, sqlCon);
+                command.CommandText = query2;
+                command.CommandType = CommandType.Text;
+                command.Connection = sqlCon;
+                sa = new SqlDataAdapter(command);
+                ds2.Clear();
+                dt.Clear();
+                sa.Fill(ds2, "customer");
+                sa.Fill(dt);
+                dataGridView2.DataSource = ds2.Tables[0].DefaultView;
+                metroTabPage1.Text = "Customer List - " + ds1.Tables[0].Rows[i - 1][5];
+                metroTabControl1.SelectedTab = metroTabPage1;
+                sqlCon.Close();
+            }
         }
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            //Application.Run(new mainForm());
             MainForm = new mainForm();
             MainForm.Show();
+            //MainForm.setActivePanel = true;
             Hide();
         }
 

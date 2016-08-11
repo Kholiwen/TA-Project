@@ -209,7 +209,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Segmentation Result";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.resultPage_FormClosing);
-            this.Load += new System.EventHandler(this.resultPage_Load);
             this.metroTabControl1.ResumeLayout(false);
             this.metroTabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
