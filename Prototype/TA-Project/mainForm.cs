@@ -47,6 +47,7 @@ namespace TA_Project
         int w = 2;
         int maxIter = 1500;
         int ctr, num = 0;
+        int selectedRowIndex;
         Random rnd = new Random();
         TimeSpan timeSpan;
         DateTime dataimporttimeStart, fuzzycmeanstimeStart, fuzzyrfmtimeStart, dateCutOff;
@@ -108,20 +109,33 @@ namespace TA_Project
                 yData = r.getSeries2(1, V[k, 1], 0, 0);
                 zData = r.getSeries2(1, V[k, 2], 0, 0);
                 c.addScatterGroup(xData, yData, zData, "", Chart.GlassSphere2Shape, 18, chartColor[k]);
-                for (int i = 0; i < num / 2; i++)
-                {
-                    if (custCltr[i] == k)
-                    {
-                        xData = r.getSeries2(1, X[i, 0] * temp10, 0, 0);
-                        yData = r.getSeries2(1, X[i, 1] * temp10, 0, 0);
-                        zData = r.getSeries2(1, X[i, 2] * temp10, 0, 0);
-                        c.addScatterGroup(xData, yData, zData, "", Chart.GlassSphere2Shape, 12, chartColor[k]);
-                    }
-                }
                 if (viewFuzzyBtn.Visible == true)
                 {
+                    for (int i = 0; i < num / 2; i++)
+                    {
+                        if (custCltr[i] == k)
+                        {
+                            xData = r.getSeries2(1, X[i, 0], 0, 0);
+                            yData = r.getSeries2(1, X[i, 1], 0, 0);
+                            zData = r.getSeries2(1, X[i, 2], 0, 0);
+                            c.addScatterGroup(xData, yData, zData, "", Chart.GlassSphere2Shape, 12, chartColor[k]);
+                        }
+                    }
                     c.addScatterGroup(xData, yData, zData, rfmv[k], Chart.GlassSphere2Shape, 12, chartColor[k]);
                     c.addLegend(400, 10);
+                }
+                else
+                {
+                    for (int i = 0; i < num / 2; i++)
+                    {
+                        if (custCltr[i] == k)
+                        {
+                            xData = r.getSeries2(1, X[i, 0] * temp10, 0, 0);
+                            yData = r.getSeries2(1, X[i, 1] * temp10, 0, 0);
+                            zData = r.getSeries2(1, X[i, 2] * temp10, 0, 0);
+                            c.addScatterGroup(xData, yData, zData, "", Chart.GlassSphere2Shape, 12, chartColor[k]);
+                        }
+                    }
                 }
             }
             c.setPlotRegion(350, 225, 360, 360, 270);
@@ -129,7 +143,7 @@ namespace TA_Project
             c.xAxis().setTitle("Recency");
             c.yAxis().setTitle("Frequency");
             c.zAxis().setTitle("Monetary");
-            
+
             viewer.Chart = c;
             viewer.ImageMap = c.getHTMLImageMap("clickable", "",
                 "title='(x={x|p}, y={y|p}, z={z|p}'");
@@ -149,60 +163,68 @@ namespace TA_Project
 
         private void insertExcelRecords(String filePath)
         {
-            String customerIDHeader = "", customerHeader = "", purchasedateHeader = "", purchaseAmountHeader = "";
-            result = 0;
-            excelConn(filePath);
-            excelQuery = String.Format("Select * FROM [{0}]", "Sheet1$");
-
-            oleCon.Open();
-            OleDbDataAdapter oda = new OleDbDataAdapter(excelQuery, oleCon);
-            oleCon.Close();
-            dt = new DataTable();
-            oda.Fill(dt);
             try
             {
-                using (var frm = new columnSelectionForm(dt))
-                {
-                    var res = frm.ShowDialog();
-                    if (res == DialogResult.OK)
-                    {
-                        customerIDHeader = frm.customerIDHeader;
-                        customerHeader = frm.customerHeader;
-                        purchasedateHeader = frm.purchasedateHeader;
-                        purchaseAmountHeader = frm.purchaseAmountHeader;
-                    }
-                }
-                manualRadioButton.Enabled = false;
-                browseBtn.Enabled = false;
-                dataimporttimeStart = DateTime.Now - timeSpan;
+                String customerIDHeader = "", customerHeader = "", purchasedateHeader = "", purchaseAmountHeader = "";
+                result = 0;
+                excelConn(filePath);
+                excelQuery = String.Format("Select * FROM [{0}]", "Sheet1$");
+
                 oleCon.Open();
-                excelQuery = String.Format("Select [" + customerIDHeader + "],[" + customerHeader + "],[" + purchasedateHeader + "],[" + purchaseAmountHeader + "] FROM [{0}]", "Sheet1$");
-                oda = new OleDbDataAdapter(excelQuery, oleCon);
+                OleDbDataAdapter oda = new OleDbDataAdapter(excelQuery, oleCon);
                 oleCon.Close();
                 dt = new DataTable();
                 oda.Fill(dt);
-                batchProgressBar.Maximum = dt.Rows.Count;
-                sqlConnection();
-                sqlCon.Open();
-                DateTime dateValue;
-                float floatValue;
-                if (DateTime.TryParse(dt.Rows[0][2].ToString(), out dateValue) && float.TryParse(dt.Rows[0][3].ToString(), out floatValue))
+                try
                 {
-                    batchimportProcess();
+                    using (var frm = new columnSelectionForm(dt))
+                    {
+                        var res = frm.ShowDialog();
+                        if (res == DialogResult.OK)
+                        {
+                            customerIDHeader = frm.customerIDHeader;
+                            customerHeader = frm.customerHeader;
+                            purchasedateHeader = frm.purchasedateHeader;
+                            purchaseAmountHeader = frm.purchaseAmountHeader;
+                        }
+                    }
+                    manualRadioButton.Enabled = false;
+                    browseBtn.Enabled = false;
+                    dataimporttimeStart = DateTime.Now - timeSpan;
+                    oleCon.Open();
+                    excelQuery = String.Format("Select [" + customerIDHeader + "],[" + customerHeader + "],[" + purchasedateHeader + "],[" + purchaseAmountHeader + "] FROM [{0}]", "Sheet1$");
+                    oda = new OleDbDataAdapter(excelQuery, oleCon);
+                    oleCon.Close();
+                    dt = new DataTable();
+                    oda.Fill(dt);
+                    batchProgressBar.Maximum = dt.Rows.Count;
+                    sqlConnection();
+                    sqlCon.Open();
+                    DateTime dateValue;
+                    float floatValue;
+                    if (DateTime.TryParse(dt.Rows[0][2].ToString(), out dateValue) && float.TryParse(dt.Rows[0][3].ToString(), out floatValue))
+                    {
+                        batchimportProcess();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Column header must be selected properly. Please repeat the process again.");
+                        manualRadioButton.Enabled = true;
+                        browseBtn.Enabled = true;
+                        browseBtn.Focus();
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Column header must be selected properly. Please repeat the process again.");
+                    System.Console.WriteLine("Exception Message: " + ex);
                     manualRadioButton.Enabled = true;
                     browseBtn.Enabled = true;
-                    browseBtn.Focus();
                 }
             }
-            catch (Exception ex)
+            catch (OleDbException e)
             {
-                System.Console.WriteLine(ex);
-                manualRadioButton.Enabled = true;
-                browseBtn.Enabled = true;
+                MessageBox.Show("Please close the file and repeat the process again.");
+                System.Console.WriteLine("OleDbException Message: " + e);
             }
         }
 
@@ -912,10 +934,9 @@ namespace TA_Project
         {
             if (batchRadioButton.Checked == true)
             {
-                manualInputGrid.Visible = false;
+                manualInputGrid.EndEdit();
                 fileTextBox.Visible = true;
                 browseBtn.Visible = true;
-                welcomeLbl.Visible = false;
                 browseBtn.Focus();
                 batchInputGrid.ReadOnly = true;
                 if (dt.Rows.Count != 0)
@@ -939,10 +960,18 @@ namespace TA_Project
                 browseBtn.Visible = false;
                 welcomeLbl.Visible = false;
                 manualInputGrid.ReadOnly = false;
-                manualInputGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                transactionTableAdapter.Fill(this.cSSDataSet3.transaction);
+                if (dt.Rows.Count != 0)
+                {
+                    if (dataCtr != dt.Rows.Count)
+                    {
+                        transactionTableAdapter.Fill(this.cSSDataSet3.transaction);
+                    }
+                }
                 manualInputGrid.CurrentCell = manualInputGrid.Rows[manualInputGrid.Rows.Count - 1].Cells[0];
-                manualInputGrid.BeginEdit(true);
+                if (manualInputGrid != null)
+                {
+                    manualInputGrid.BeginEdit(true);
+                }
                 manualInputGrid.Rows[manualInputGrid.Rows.Count - 1].Cells[0].ToolTipText = "Click here to start data input";
             }
         }
@@ -974,7 +1003,7 @@ namespace TA_Project
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Could not read file from disk. " + ex.Message);
+                    MessageBox.Show("Could not read file from disk. " + "Exception Message: " + ex.Message);
                 }
                 fileTextBox.Text = "";
                 browseBtn.Text = "Browse..";
@@ -984,49 +1013,93 @@ namespace TA_Project
 
         private void manualInputGrid_CellValueChanged_1(object sender, DataGridViewCellEventArgs e)
         {
-            if (manualInputGrid.Rows.Count > 0)
+            if (manualRadioButton.Checked == true)
             {
-                if (manualInputGrid.Rows[dataCtr].Cells[0].Value.ToString() != "")
+                if (manualInputGrid.Rows.Count > 0)
                 {
-                    query = "SELECT customerName FROM [CSS].[dbo].[transaction] where CID='" + manualInputGrid.Rows[dataCtr].Cells[0].Value.ToString() + "'";
-                    dt = new DataTable();
-                    command.CommandText = query;
-                    command.CommandType = CommandType.Text;
-                    command.Connection = sqlCon;
-                    sa = new SqlDataAdapter(command);
-                    sa.Fill(dt);
-                    manualInputGrid.Rows[dataCtr].Cells[1].Value = dt.Rows[0][0].ToString();
+                    if (manualInputGrid.Rows[dataCtr].Cells[0].Value != null)
+                    {
+                        query = "SELECT customerName FROM [CSS].[dbo].[transaction] where CID='" + manualInputGrid.Rows[dataCtr].Cells[0].Value.ToString() + "'";
+                        dt = new DataTable();
+                        command.CommandText = query;
+                        command.CommandType = CommandType.Text;
+                        command.Connection = sqlCon;
+                        sa = new SqlDataAdapter(command);
+                        sa.Fill(dt);
+                        if (dt.Rows.Count > 0)
+                        {
+                            manualInputGrid.Rows[dataCtr].Cells[1].Value = dt.Rows[0][0].ToString();
+                        }
+                    }
                 }
             }
         }
 
         private void manualInputGrid_RowEnter_1(object sender, DataGridViewCellEventArgs e)
         {
-            if (manualInputGrid.Rows.Count > dataCtr + 1)
+            if (manualRadioButton.Checked == true)
             {
-                result = 0;
-                query = "SELECT * FROM [CSS].[dbo].[transaction] order by customerName";
-                sqlCon.Open();
-                if (manualInputGrid.Rows[dataCtr].Cells[0].Value.ToString() != "" && manualInputGrid.Rows[dataCtr].Cells[1].Value.ToString() != "" && manualInputGrid.Rows[dataCtr].Cells[2].Value.ToString() != "" && manualInputGrid.Rows[dataCtr].Cells[3].Value.ToString() != "")
+                if (manualInputGrid.Rows.Count > dataCtr + 1)
                 {
-                    using (SqlCommand sqlCmd = new SqlCommand("sp_insertTRANSACTION", sqlCon))
+                    result = 0;
+                    if (manualInputGrid.Rows[dataCtr].Cells[0].Value.ToString() != "" && manualInputGrid.Rows[dataCtr].Cells[1].Value.ToString() != "" && manualInputGrid.Rows[dataCtr].Cells[2].Value.ToString() != "" && manualInputGrid.Rows[dataCtr].Cells[3].Value.ToString() != "")
                     {
-                        sqlCmd.CommandType = CommandType.StoredProcedure;
-                        sqlCmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = Convert.ToString(manualInputGrid.Rows[dataCtr].Cells[1].Value);
-                        sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = Convert.ToDecimal(manualInputGrid.Rows[dataCtr].Cells[2].Value);
-                        sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = manualInputGrid.Rows[dataCtr].Cells[3].Value;
-                        sqlCmd.Parameters.Add("@CID", SqlDbType.NChar).Value = Convert.ToString(manualInputGrid.Rows[dataCtr].Cells[0].Value);
-                        result += sqlCmd.ExecuteNonQuery();
+                        if (sqlCon.State == ConnectionState.Closed)
+                        {
+                            sqlCon.Open();
+                        }
+                        query = "SELECT * FROM [CSS].[dbo].[transaction] order by customerName";
+                        using (SqlCommand sqlCmd = new SqlCommand("sp_insertTRANSACTION", sqlCon))
+                        {
+                            sqlCmd.CommandType = CommandType.StoredProcedure;
+                            sqlCmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = Convert.ToString(manualInputGrid.Rows[dataCtr].Cells[1].Value);
+                            sqlCmd.Parameters.Add("@TOTAL", SqlDbType.Float).Value = Convert.ToDecimal(manualInputGrid.Rows[dataCtr].Cells[2].Value);
+                            sqlCmd.Parameters.Add("@DT", SqlDbType.Date).Value = manualInputGrid.Rows[dataCtr].Cells[3].Value;
+                            sqlCmd.Parameters.Add("@CID", SqlDbType.NChar).Value = Convert.ToString(manualInputGrid.Rows[dataCtr].Cells[0].Value);
+                            result += sqlCmd.ExecuteNonQuery();
+                        }
+                        dataCtr += 1;
                     }
-                    dataCtr += 1;
+                    dt = new DataTable();
+                    command.CommandText = query;
+                    command.CommandType = CommandType.Text;
+                    command.Connection = sqlCon;
+                    sa = new SqlDataAdapter(command);
+                    sa.Fill(dt);
+                    sqlCon.Close();
                 }
-                dt = new DataTable();
-                command.CommandText = query;
-                command.CommandType = CommandType.Text;
-                command.Connection = sqlCon;
-                sa = new SqlDataAdapter(command);
-                sa.Fill(dt);
-                sqlCon.Close();
+            }
+        }
+
+        private void manualInputGrid_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            if (manualRadioButton.Checked == true)
+            {
+                if (manualInputGrid.Rows.Count > 0)
+                {
+                    if (sqlCon.State == ConnectionState.Closed)
+                    {
+                        sqlCon.Open();
+                    }
+                    query = "DELETE [CSS].[dbo].[transaction] where TID='" + dt.Rows[selectedRowIndex][0].ToString().Trim() + "'";
+                    command.CommandText = query;
+                    command.CommandType = CommandType.Text;
+                    command.Connection = sqlCon;
+                    command.ExecuteNonQuery();
+                    sqlCon.Close();
+                    dataCtr -= 1;
+                }
+            }
+        }
+
+        private void manualInputGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            if (manualRadioButton.Checked == true)
+            {
+                if (manualInputGrid.Rows.Count > 1)
+                {
+                    selectedRowIndex = manualInputGrid.CurrentCell.RowIndex;
+                }
             }
         }
 
@@ -1231,7 +1304,7 @@ namespace TA_Project
                 metroPanel3.Visible = false;
                 mainMenu.Visible = true;
                 titleLabel.Text = "Options";
-                System.Console.WriteLine(ex);
+                System.Console.WriteLine("Exception Message: " + ex);
             }
         }
 

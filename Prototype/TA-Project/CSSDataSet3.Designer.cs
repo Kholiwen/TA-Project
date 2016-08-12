@@ -822,7 +822,7 @@ namespace TA_Project.CSSDataSet3TableAdapters {
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        CID, customerName, purchaseAmount, purchaseDate\r\nFROM            [t" +
-                "ransaction]\r\nORDER BY CID";
+                "ransaction]\r\nORDER BY TID";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

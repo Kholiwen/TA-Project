@@ -18,7 +18,7 @@ namespace TA_Project
             metroTextBox1.AppendText("Hardy Septian Deli\n");
             metroTextBox1.AppendText("Tempat Lahir\t: Medan\n");
             metroTextBox1.AppendText("Tanggal Lahir\t: 21 Sept 1994\n");
-            metroTextBox1.AppendText("Universitas\t: STMIK Mikroskil\n");
+            metroTextBox1.AppendText("Universitas\t: STMIK Mikroskil");
             metroTextBox2.AppendText("Klaudius Raymond Natio\n");
             metroTextBox2.AppendText("Tempat Lahir\t: Jakarta\n");
             metroTextBox2.AppendText("Tanggal Lahir\t: 03 Juni 1988\n");
