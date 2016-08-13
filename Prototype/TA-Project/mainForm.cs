@@ -72,23 +72,26 @@ namespace TA_Project
             delQuery = "delete [CSS].[dbo].[transaction]";
             sqlConnection();
             sqlCon.Open();
-            //command = new SqlCommand(delQuery, sqlCon);
-            //command.CommandText = delQuery;
-            //command.CommandType = CommandType.Text;
-            //command.Connection = sqlCon;
-            //sa = new SqlDataAdapter(command);
-            //dt = new DataTable();
-            //command.ExecuteNonQuery();
-            //Database Intact Startup\\
-            query = "SELECT * FROM [CSS].[dbo].[transaction]";
-            command = new SqlCommand();
-            command.CommandText = query;
+
+            command = new SqlCommand(delQuery, sqlCon);
+            command.CommandText = delQuery;
             command.CommandType = CommandType.Text;
             command.Connection = sqlCon;
             sa = new SqlDataAdapter(command);
             dt = new DataTable();
-            sa.Fill(dt);
-            dataCtr = dt.Rows.Count;
+            command.ExecuteNonQuery();
+
+            //Database Intact Startup\\
+            //query = "SELECT * FROM [CSS].[dbo].[transaction]";
+            //command = new SqlCommand();
+            //command.CommandText = query;
+            //command.CommandType = CommandType.Text;
+            //command.Connection = sqlCon;
+            //sa = new SqlDataAdapter(command);
+            //dt = new DataTable();
+            //sa.Fill(dt);
+            //dataCtr = dt.Rows.Count;
+
             sqlCon.Close();
         }
 
@@ -934,7 +937,7 @@ namespace TA_Project
         {
             if (batchRadioButton.Checked == true)
             {
-                manualInputGrid.EndEdit();
+                manualInputGrid.Visible = false;
                 fileTextBox.Visible = true;
                 browseBtn.Visible = true;
                 browseBtn.Focus();
@@ -1042,7 +1045,7 @@ namespace TA_Project
                 if (manualInputGrid.Rows.Count > dataCtr + 1)
                 {
                     result = 0;
-                    if (manualInputGrid.Rows[dataCtr].Cells[0].Value.ToString() != "" && manualInputGrid.Rows[dataCtr].Cells[1].Value.ToString() != "" && manualInputGrid.Rows[dataCtr].Cells[2].Value.ToString() != "" && manualInputGrid.Rows[dataCtr].Cells[3].Value.ToString() != "")
+                    if (manualInputGrid.Rows[dataCtr].Cells[0].Value != null && manualInputGrid.Rows[dataCtr].Cells[1].Value != null && manualInputGrid.Rows[dataCtr].Cells[2].Value.ToString() != null && manualInputGrid.Rows[dataCtr].Cells[3].Value != null)
                     {
                         if (sqlCon.State == ConnectionState.Closed)
                         {
@@ -1081,12 +1084,15 @@ namespace TA_Project
                     {
                         sqlCon.Open();
                     }
-                    query = "DELETE [CSS].[dbo].[transaction] where TID='" + dt.Rows[selectedRowIndex][0].ToString().Trim() + "'";
-                    command.CommandText = query;
-                    command.CommandType = CommandType.Text;
-                    command.Connection = sqlCon;
-                    command.ExecuteNonQuery();
-                    sqlCon.Close();
+                    if (manualInputGrid.Rows[selectedRowIndex].Cells[0].Value != null)
+                    {
+                        query = "DELETE [CSS].[dbo].[transaction] where TID='" + dt.Rows[selectedRowIndex][0].ToString().Trim() + "'";
+                        command.CommandText = query;
+                        command.CommandType = CommandType.Text;
+                        command.Connection = sqlCon;
+                        command.ExecuteNonQuery();
+                        sqlCon.Close();
+                    }
                     dataCtr -= 1;
                 }
             }

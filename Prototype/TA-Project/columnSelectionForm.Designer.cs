@@ -50,6 +50,7 @@
             // 
             // customerComboBox
             // 
+            this.customerComboBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.customerComboBox.FormattingEnabled = true;
             this.customerComboBox.Location = new System.Drawing.Point(145, 109);
             this.customerComboBox.Name = "customerComboBox";
@@ -68,6 +69,7 @@
             // 
             // purchasedateComboBox
             // 
+            this.purchasedateComboBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.purchasedateComboBox.FormattingEnabled = true;
             this.purchasedateComboBox.Location = new System.Drawing.Point(145, 144);
             this.purchasedateComboBox.Name = "purchasedateComboBox";
@@ -86,6 +88,7 @@
             // 
             // totalpurchaseComboBox
             // 
+            this.totalpurchaseComboBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.totalpurchaseComboBox.FormattingEnabled = true;
             this.totalpurchaseComboBox.Location = new System.Drawing.Point(145, 179);
             this.totalpurchaseComboBox.Name = "totalpurchaseComboBox";
@@ -106,6 +109,7 @@
             // 
             // customerIDComboBox
             // 
+            this.customerIDComboBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.customerIDComboBox.FormattingEnabled = true;
             this.customerIDComboBox.Location = new System.Drawing.Point(145, 74);
             this.customerIDComboBox.Name = "customerIDComboBox";

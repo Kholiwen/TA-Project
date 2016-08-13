@@ -33,7 +33,7 @@ namespace TA_Project
             dataGridView1.Focus();
             sqlConnection();
             sqlCon.Open();
-            query = "SELECT clusterIndex, recencyDOM, frequencyDOM, monetaryDOM, rfmScore, clusterSegment, segmentID from clusterResult";
+            query = "SELECT clusterIndex, recencyDOM, frequencyDOM, monetaryDOM, rfmScore, clusterSegment, segmentID from clusterResult order by clusterIndex";
             command = new SqlCommand(query, sqlCon);
             command.CommandText = query;
             command.CommandType = CommandType.Text;
@@ -87,7 +87,7 @@ namespace TA_Project
             dataGridView3.Columns[1].DefaultCellStyle.Format = " ### 'customers'";
             dataGridView3.Columns[2].DefaultCellStyle.Format = "'Rp.' ###,###,###',-'";
             dataGridView3.Columns[3].DefaultCellStyle.Format = "'Rp.' ###,###,###',-'";
-            dataGridView3.Columns[5].DefaultCellStyle.Format = "##.00'%'";
+            dataGridView3.Columns[5].DefaultCellStyle.Format = "#0.00'%'";
             query2 = "SELECT CID, customerName, Frequency, totalPurchase, lastPurchase from customer where clusterIndex=" + i;
             command = new SqlCommand(query2, sqlCon);
             command.CommandText = query2;

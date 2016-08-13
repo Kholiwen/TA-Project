@@ -37,7 +37,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -45,6 +44,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
             this.segmentStrategyBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -72,10 +72,6 @@
             this.transactionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cSSDataSet3 = new TA_Project.CSSDataSet3();
             this.manualInputGrid = new MetroFramework.Controls.MetroGrid();
-            this.cIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.customerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.purchaseAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.purchaseDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.clusterSizeNUD = new System.Windows.Forms.NumericUpDown();
@@ -191,6 +187,10 @@
             this.cSSDataSet4 = new TA_Project.CSSDataSet4();
             this.historyIndexTableAdapter = new TA_Project.CSSDataSet4TableAdapters.historyIndexTableAdapter();
             this.transactionTableAdapter = new TA_Project.CSSDataSet3TableAdapters.transactionTableAdapter();
+            this.cIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.customerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.purchaseAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.purchaseDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.segmentStrategyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cSSDataSet1)).BeginInit();
@@ -593,48 +593,6 @@
             this.manualInputGrid.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.manualInputGrid_RowEnter_1);
             this.manualInputGrid.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.manualInputGrid_RowsRemoved);
             this.manualInputGrid.SelectionChanged += new System.EventHandler(this.manualInputGrid_SelectionChanged);
-            // 
-            // cIDDataGridViewTextBoxColumn1
-            // 
-            this.cIDDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.cIDDataGridViewTextBoxColumn1.DataPropertyName = "CID";
-            this.cIDDataGridViewTextBoxColumn1.HeaderText = "Customer ID";
-            this.cIDDataGridViewTextBoxColumn1.MinimumWidth = 55;
-            this.cIDDataGridViewTextBoxColumn1.Name = "cIDDataGridViewTextBoxColumn1";
-            this.cIDDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.cIDDataGridViewTextBoxColumn1.Width = 92;
-            // 
-            // customerNameDataGridViewTextBoxColumn
-            // 
-            this.customerNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.customerNameDataGridViewTextBoxColumn.DataPropertyName = "customerName";
-            this.customerNameDataGridViewTextBoxColumn.HeaderText = "Customer Name";
-            this.customerNameDataGridViewTextBoxColumn.MinimumWidth = 200;
-            this.customerNameDataGridViewTextBoxColumn.Name = "customerNameDataGridViewTextBoxColumn";
-            this.customerNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // purchaseAmountDataGridViewTextBoxColumn
-            // 
-            this.purchaseAmountDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.purchaseAmountDataGridViewTextBoxColumn.DataPropertyName = "purchaseAmount";
-            this.purchaseAmountDataGridViewTextBoxColumn.FillWeight = 14.01869F;
-            this.purchaseAmountDataGridViewTextBoxColumn.HeaderText = "Purchase Amount";
-            this.purchaseAmountDataGridViewTextBoxColumn.MinimumWidth = 125;
-            this.purchaseAmountDataGridViewTextBoxColumn.Name = "purchaseAmountDataGridViewTextBoxColumn";
-            this.purchaseAmountDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // purchaseDateDataGridViewTextBoxColumn
-            // 
-            this.purchaseDateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.purchaseDateDataGridViewTextBoxColumn.DataPropertyName = "purchaseDate";
-            dataGridViewCellStyle7.Format = "dd-MM-yy";
-            dataGridViewCellStyle7.NullValue = null;
-            this.purchaseDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
-            this.purchaseDateDataGridViewTextBoxColumn.FillWeight = 14.01869F;
-            this.purchaseDateDataGridViewTextBoxColumn.HeaderText = "Purchase Date";
-            this.purchaseDateDataGridViewTextBoxColumn.MinimumWidth = 100;
-            this.purchaseDateDataGridViewTextBoxColumn.Name = "purchaseDateDataGridViewTextBoxColumn";
-            this.purchaseDateDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // metroPanel2
             // 
@@ -1949,6 +1907,51 @@
             // 
             this.transactionTableAdapter.ClearBeforeFill = true;
             // 
+            // cIDDataGridViewTextBoxColumn1
+            // 
+            this.cIDDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.cIDDataGridViewTextBoxColumn1.DataPropertyName = "CID";
+            this.cIDDataGridViewTextBoxColumn1.HeaderText = "Customer ID";
+            this.cIDDataGridViewTextBoxColumn1.MinimumWidth = 55;
+            this.cIDDataGridViewTextBoxColumn1.Name = "cIDDataGridViewTextBoxColumn1";
+            this.cIDDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.cIDDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.cIDDataGridViewTextBoxColumn1.Width = 81;
+            // 
+            // customerNameDataGridViewTextBoxColumn
+            // 
+            this.customerNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.customerNameDataGridViewTextBoxColumn.DataPropertyName = "customerName";
+            this.customerNameDataGridViewTextBoxColumn.HeaderText = "Customer Name";
+            this.customerNameDataGridViewTextBoxColumn.MinimumWidth = 200;
+            this.customerNameDataGridViewTextBoxColumn.Name = "customerNameDataGridViewTextBoxColumn";
+            this.customerNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.customerNameDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // purchaseAmountDataGridViewTextBoxColumn
+            // 
+            this.purchaseAmountDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.purchaseAmountDataGridViewTextBoxColumn.DataPropertyName = "purchaseAmount";
+            this.purchaseAmountDataGridViewTextBoxColumn.FillWeight = 14.01869F;
+            this.purchaseAmountDataGridViewTextBoxColumn.HeaderText = "Purchase Amount";
+            this.purchaseAmountDataGridViewTextBoxColumn.MinimumWidth = 125;
+            this.purchaseAmountDataGridViewTextBoxColumn.Name = "purchaseAmountDataGridViewTextBoxColumn";
+            this.purchaseAmountDataGridViewTextBoxColumn.ReadOnly = true;
+            this.purchaseAmountDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // purchaseDateDataGridViewTextBoxColumn
+            // 
+            this.purchaseDateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.purchaseDateDataGridViewTextBoxColumn.DataPropertyName = "purchaseDate";
+            dataGridViewCellStyle7.Format = "dd-MM-yy";
+            dataGridViewCellStyle7.NullValue = null;
+            this.purchaseDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            this.purchaseDateDataGridViewTextBoxColumn.FillWeight = 14.01869F;
+            this.purchaseDateDataGridViewTextBoxColumn.HeaderText = "Purchase Date";
+            this.purchaseDateDataGridViewTextBoxColumn.MinimumWidth = 100;
+            this.purchaseDateDataGridViewTextBoxColumn.Name = "purchaseDateDataGridViewTextBoxColumn";
+            this.purchaseDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // mainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -2140,10 +2143,6 @@
         private System.Windows.Forms.BindingSource historyIndexBindingSource;
         private CSSDataSet4TableAdapters.historyIndexTableAdapter historyIndexTableAdapter;
         private System.Windows.Forms.Button viewFuzzyBtn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cIDDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn customerNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn purchaseAmountDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn purchaseDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn customerNameDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn purchaseAmountDataGridViewTextBoxColumn1;
@@ -2156,6 +2155,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fuzzyProcessTimeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn mPCScoreDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fuzzyRFMTimeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cIDDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn customerNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn purchaseAmountDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn purchaseDateDataGridViewTextBoxColumn;
     }
 }
 
