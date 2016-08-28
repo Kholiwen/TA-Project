@@ -14,6 +14,7 @@ namespace TA_Project
     {
         public About()
         {
+            //About page content\\
             InitializeComponent();
             metroTextBox1.AppendText("Hardy Septian Deli\n");
             metroTextBox1.AppendText("Tempat Lahir\t: Medan\n");
@@ -29,7 +30,6 @@ namespace TA_Project
 
         private void About_KeyPress(object sender, KeyPressEventArgs e)
         {
-
             if (e.KeyChar == (char)Keys.Escape)
             {
                 this.Hide();

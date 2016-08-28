@@ -13,6 +13,7 @@ namespace TA_Project
 {
     public partial class strategyViewForm : MetroFramework.Forms.MetroForm
     {
+        //Variable declaration\\
         SqlConnection sqlCon;
         SqlDataAdapter sa;
         SqlCommand command;
@@ -34,7 +35,7 @@ namespace TA_Project
             string[] strategy = new string[1];
             strategy = dt.Rows[0][2].ToString().Split('|');
             metroLabel1.Text = "Strategy - " + dt.Rows[0][1].ToString() + " Customer";
-            //listView1.Items.Add("Strategy Item");
+            //Fill list view with strategies based on selected cluster\\
             for (int i = 0; i < strategy.Length; i++)
             {
                 listView1.Items.Add("• "+strategy[i]);

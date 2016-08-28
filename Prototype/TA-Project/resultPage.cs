@@ -13,6 +13,7 @@ namespace TA_Project
 {
     public partial class resultPage : MetroFramework.Forms.MetroForm
     {
+        //Variable declaration & initialization\\
         SqlConnection sqlCon;
         SqlCommand command;
         SqlDataAdapter sa;
@@ -41,15 +42,16 @@ namespace TA_Project
             sa = new SqlDataAdapter(command);
             sa.Fill(ds1, "clusterResult");
             sa.Fill(dt);
+            //Fill data grid with cluster result\\
             dataGridView1.DataSource = ds1.Tables[0].DefaultView;
             cltr = dt.Rows.Count;
+            //Data grid summary properties setting\\
             dataGridView3.ColumnCount = 6;
-
             dataGridView3.Columns[0].Name = "Cluster";
             dataGridView3.Columns[1].Name = "Number of Customers";
             dataGridView3.Columns[2].Name = "Total Purchase Amount";
-            dataGridView3.Columns[3].Name = "Highest Purchase";
-            dataGridView3.Columns[4].Name = "Customer Name";
+            dataGridView3.Columns[3].Name = "Highest Purchase Amount";
+            dataGridView3.Columns[4].Name = "Highest Purchase Customer Name";
             dataGridView3.Columns[5].Name = "Percentage";
             dataGridView3.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView3.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -82,6 +84,7 @@ namespace TA_Project
                 {
                     totalPurchase += Convert.ToDouble(dt.Rows[j][3]);
                 }
+                //Fill summary data grid with calculated records\\
                 dataGridView3.Rows.Add(k + 1, dt.Rows.Count, totalPurchase, dt.Rows[0][3], dt.Rows[0][1], (((float)dt.Rows.Count / (float)dt2.Rows.Count) * 100));
             }
             dataGridView3.Columns[1].DefaultCellStyle.Format = " ### 'customers'";
@@ -96,6 +99,7 @@ namespace TA_Project
             sa = new SqlDataAdapter(command);
             ds2.Clear();
             sa.Fill(ds2, "customer");
+            //Fill customer list data grid with list of customers based on selected cluster\\
             dataGridView2.DataSource = ds2.Tables[0].DefaultView;
             metroTabPage1.Text = "Customer List - " + ds1.Tables[0].Rows[i - 1][5];
             dataGridView1.Columns[5].MinimumWidth = 100;
@@ -149,6 +153,7 @@ namespace TA_Project
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            //Show strategy for selected cluster\\
             DataGridView dgv = sender as DataGridView;
             if (dgv.Columns[e.ColumnIndex].Name == "Strategy link")
             {
@@ -164,6 +169,7 @@ namespace TA_Project
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
+            //Show list of customers based on selected cluster (if unselected show all customers)\\
             if (dataGridView1.SelectedRows.Count == 0)
             {
                 sqlCon.Open();
@@ -207,7 +213,6 @@ namespace TA_Project
         {
             MainForm = new mainForm();
             MainForm.Show();
-            //MainForm.setActivePanel = true;
             Hide();
         }
 
@@ -219,6 +224,7 @@ namespace TA_Project
 
         private void dataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            //Show customer detailed transaction history\\
             string custID = dataGridView2.Rows[dataGridView2.CurrentCell.RowIndex].Cells[0].Value.ToString();
             string custName = dataGridView2.Rows[dataGridView2.CurrentCell.RowIndex].Cells[1].Value.ToString();
             var custdetFrm = new customerDetail(custID);

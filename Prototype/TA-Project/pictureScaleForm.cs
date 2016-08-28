@@ -12,6 +12,7 @@ namespace TA_Project
 {
     public partial class pictureScaleForm : MetroFramework.Forms.MetroForm
     {
+        //Picture scale function\\
         public pictureScaleForm(Size sz,Point lc, string historyID, string picType)
         {
             InitializeComponent();

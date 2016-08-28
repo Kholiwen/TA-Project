@@ -23,6 +23,7 @@ namespace TA_Project
 
         public history(DataGridViewSelectedCellCollection dgvsc)
         {
+            //Variable declaration & initialization\\
             InitializeComponent();
             metroLabel1.Text = "History - " + dgvsc[0].Value;
             this.dgvsc = dgvsc;
@@ -44,9 +45,10 @@ namespace TA_Project
             sa = new SqlDataAdapter(command);
             ds = new DataSet();
             sa.Fill(ds, "history");
+            //History detail grid filled with records from database\\
             historyDetailGrid.DataSource = ds.Tables[0].DefaultView;
             sqlCon.Close();
-
+            //History detail grid properties setting\\
             historyDetailGrid.Columns[0].HeaderText = "Cluster";
             historyDetailGrid.Columns[1].HeaderText = "Recency Centroid";
             historyDetailGrid.Columns[2].HeaderText = "Frequency Centroid";
